@@ -1,0 +1,19 @@
+{
+  "title": "Android XML ProgressBar: tint colors",
+  "component": "android-progressbar",
+  "purpose": "Check that the four Android XML ProgressBar tint attributes color the correct parts of a progress indicator, and that a state selector changes the progress color when the view is selected.",
+  "changes": "Added XML color and color-state-selector support for progressTint, progressBackgroundTint, secondaryProgressTint and indeterminateTint. The example includes a second, explicitly tinted progress bar and spinner.",
+  "steps": [
+    "Scroll to the second progress example, below the standard download progress indicator. Its progress bar should show a blue first section, an amber buffered section and a pale blue remaining track.",
+    "Turn on Selected tint state. The first section should change from blue to purple, while the amber buffer and pale blue track remain the same. Turn it off and check that the first section turns blue again.",
+    "Look at the spinner below the colored bar. Its moving arc should be orange.",
+    "Try Advance download and Right-to-left layout on the first example to check that its normal behavior still works. Choose OK if the test matches these steps, or Reject with the failing step, what you saw, and your device."
+  ],
+  "expected": "The four tint attributes independently color the primary progress, buffered progress, background track and indeterminate spinner. Selecting the second bar changes only its primary tint.",
+  "limits": "This tests Bhoo's built-in ProgressBar shapes. Custom Android drawables, tint blending modes, theme attributes, and inherited SeekBar and RatingBar tint attributes are not yet supported. This is not a full Android visual parity test.",
+  "documentation": "docs/TDD/libbhoo/components/android-progressbar.md",
+  "references": [
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ProgressBar.java","local":"context/reference-sources/android-framework/ProgressBar.java","license":"Apache-2.0","scope":"Android ProgressBar tint attributes and layer roles."}
+  ],
+  "validation": ["137 Android XML importer tests passed, including literal and stateful tint colors.", "Three Rust ProgressBar tests passed, including independent layers, selected state and spinner tint."]
+}

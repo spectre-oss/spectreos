@@ -1,0 +1,29 @@
+{
+  "title": "Android LinearLayout: nested child baseline",
+  "component": "android-linear-layout",
+  "purpose": "Check that an Android XML LinearLayout can expose one nested child's text baseline so a neighboring item aligns with it.",
+  "changes": "Added support for the Android baselineAlignedChildIndex attribute. A containing LinearLayout or RelativeLayout can use the chosen direct child's baseline. The example compares a nested layout with index 1 against one with no index.",
+  "steps": [
+    "Turn on Show baseline alignment, then turn on Nested child baseline. Two rows with Caption, Nested and Peer should appear.",
+    "In the first row, the nested layout selects its second child (index 1). The words Nested and Peer should sit on the same imaginary baseline.",
+    "In the second row, no child index is set. Peer stays near the top of its row, noticeably higher than Nested.",
+    "Turn on Right-to-left layout. The order should reverse and the first row should still align Nested and Peer, while the second row remains unaligned.",
+    "Choose OK if the two rows behave as described. Otherwise choose Reject and explain what looks wrong, which row or direction is affected, and your device."
+  ],
+  "expected": "With baselineAlignedChildIndex=1, the nested second child's baseline aligns with the neighboring Peer text. Without the index, the containing layout does not acquire that baseline. Right-to-left reverses order while preserving the relationship.",
+  "limits": "This tests a nested vertical LinearLayout with two text children and a horizontal parent. XML handling and a RelativeLayout parent are also covered by automated tests. Android device font/pixel parity, nested weighted sizing, gravity and invalid-index exception parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-linear-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/LinearLayout.java",
+      "local": "context/reference-sources/android-framework/LinearLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Indexed child baseline propagation and vertical baseline offset behavior."
+    }
+  ],
+  "validation": [
+    "All 155 Rust android_xml tests passed, including nested child baseline propagation into LinearLayout and RelativeLayout parents.",
+    "All 136 Android XML importer tests passed, including child index, unset value, invalid index syntax and unsupported tags.",
+    "Browser test-bhoo-linear-child-baseline.mjs passed rendered checks for the indexed and unindexed rows at 390px width, including RTL."
+  ]
+}

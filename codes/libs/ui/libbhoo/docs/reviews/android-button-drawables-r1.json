@@ -1,0 +1,28 @@
+{
+  "title": "Android Button compound drawables",
+  "component": "android-button",
+  "purpose": "Check that supported Android XML Button drawables appear beside the text, follow RTL and respond to pressed state.",
+  "changes": "The importer and renderer now support the existing solid shape and state-selector drawable subset on Button, including padding and wrap-content width.",
+  "steps": [
+    "Under Button compound drawables, check Send: a blue circle and amber rounded rectangle should sit on opposite sides of the text without clipping. Tap it and confirm the button responds.",
+    "Press and hold Press me: its blue circle should disappear while pressed and return when released. The button should still respond.",
+    "Turn on Right-to-left layout. Send's blue and amber shapes should swap sides; press and hold Press me again. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The drawables reserve space beside the text, logical sides mirror in RTL, and the pressed selector changes while the button remains usable.",
+  "limits": "This supports solid shapes and a subset of drawable selectors/tints. Bitmap, vector and animated drawables, complete Android tint compositing, vertical wrap measurement and device pixel/motion parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-button.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "Compound drawables inherited by Button."
+    }
+  ],
+  "validation": [
+    "Rust checks cover width reservation, drawable positions, RTL, pressed selector and pressed tint.",
+    "159 Android XML importer tests passed including Button drawable and tint parsing.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified button interaction and RTL operation."
+  ]
+}

@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Half-opacity drawables and tint" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="tint_half" android:max="4" android:progress="2" android:mirrorForRtl="true" android:thumb="@drawable/seek_tint_half_thumb" android:tickMark="@drawable/seek_tint_half_tick" android:thumbTint="#800000ff" android:tickMarkTint="#800000ff" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:text="Opaque drawables, half-opacity tint" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="tint_opaque" android:max="4" android:progress="2" android:mirrorForRtl="true" android:thumb="@drawable/seek_tint_opaque_thumb" android:tickMark="@drawable/seek_tint_opaque_tick" android:thumbTint="#800000ff" android:tickMarkTint="#800000ff" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

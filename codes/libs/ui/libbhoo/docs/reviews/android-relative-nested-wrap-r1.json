@@ -1,0 +1,27 @@
+{
+  "title": "Android RelativeLayout nested wrap-content width",
+  "component": "android-relative-layout",
+  "purpose": "Check that a nested wrap-content RelativeLayout grows with its child and moves the following sibling.",
+  "changes": "The nested layout now measures its child positions using the current renderer text metrics and state.",
+  "steps": [
+    "Find Small, More and After under Nested wrap-content relative layout. They should appear next to one another.",
+    "Tap Change relative label. Small becomes Longer nested and grows; More and After should both move without overlapping. Tap again to restore Small.",
+    "Turn on Right-to-left layout and repeat. The order should mirror with all three controls adjacent. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The nested layout grows and shrinks with its child and both siblings remain adjacent in either direction.",
+  "limits": "This covers supported Bhoo relative measurement. Opposing parent-edge rules, Android font and theme behavior and device parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-relative-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/RelativeLayout.java",
+      "local": "context/reference-sources/android-framework/RelativeLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Nested relative measurement and positioning."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies nested width, sibling positions, non-default text metrics and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified nested width, sibling placement and RTL."
+  ]
+}

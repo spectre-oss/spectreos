@@ -1,0 +1,64 @@
+{
+  "source_sha256": "554d5195774fec8b07166cf83ae37e9a0bca952b01a993f98e73c68e5e174480",
+  "root_symbol": 43,
+  "mode_path": [
+    {
+      "id": 0,
+      "packed_selector": 0,
+      "processing_section": 0,
+      "parent": 0
+    },
+    {
+      "id": 3,
+      "packed_selector": 0,
+      "processing_section": 3,
+      "parent": 0
+    }
+  ],
+  "matrix_symbol": 572,
+  "matrix_file_offset": 471676,
+  "matrix": [
+    [
+      1.6886999607086182,
+      -0.7724000215530396,
+      0.08370000123977661
+    ],
+    [
+      -0.1941000074148178,
+      1.3974000215530396,
+      -0.20329999923706055
+    ],
+    [
+      0.04450000077486038,
+      -0.7526000142097473,
+      1.7080999612808228
+    ]
+  ],
+  "scope": "Base IPE, first DRC/HDR/no-flash/AEC branch; constant across CCT. Not full stock trigger emulation.",
+  "source_name": "com.qti.tuned.sunny_imx363.bin",
+  "module_vendor_id": 1,
+  "profile_id": "sunny-imx363-base-cc13-v1",
+  "child_symbols": [
+    568,
+    569,
+    570,
+    571,
+    572
+  ],
+  "offsets": [
+    0,
+    0,
+    0
+  ],
+  "verified_hal_sha256": "0c0d7db395703421728f01fde68e28130a36faf84b18b16571a540ce3474f034",
+  "verification": {
+    "matrix_float_reader": "0xe1870",
+    "row_major_matrix_multiply": "0x196abc",
+    "cct_region_reader": "0xe1964"
+  },
+  "limitations": [
+    "One constant base IPE branch, not Qualcomm runtime mode/AEC/CCT emulation",
+    "No EEPROM AWB ratios or lens shading applied",
+    "Only this phone was identified as Sunny; other IMX363 modules need their own profile"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Android SlidingDrawer: state events",
+  "component": "android-sliding-drawer",
+  "purpose": "Check that the host receives a notification when the SlidingDrawer finishes opening or closing.",
+  "changes": "The drawer now queues completed Opened and Closed state changes for the host to drain. The example displays the latest event beneath the drawer.",
+  "steps": [
+    "Tap the drawer handle to open it. After it finishes moving, the text Drawer opened should appear beneath it.",
+    "Tap the handle again to close it. After it finishes moving, the text should change to Drawer closed.",
+    "Turn on Lock handle, then use Open programmatically and Close programmatically. The event text should still update after each movement.",
+    "Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "Each completed state change is reported once, including programmatic changes while the handle is locked.",
+  "limits": "This covers open and close state events, not Android's scroll start/end listeners. Exact Android timing and device parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-sliding-drawer.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/SlidingDrawer.java",
+      "local": "context/reference-sources/android-framework/SlidingDrawer.java",
+      "license": "Apache-2.0",
+      "scope": "Open and close listener notifications."
+    }
+  ],
+  "validation": [
+    "Ten SlidingDrawer Rust tests and 157 XML importer tests passed, including event timing, deduplication, interruption and bounded retention.",
+    "A 320 \u00d7 760 browser test checked event text for touch and locked programmatic changes."
+  ],
+  "demo_height": 760
+}

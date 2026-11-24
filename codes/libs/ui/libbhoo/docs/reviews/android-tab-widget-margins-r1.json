@@ -1,0 +1,34 @@
+{
+  "title": "Android TabWidget: tab margins",
+  "component": "android-tab-widget",
+  "purpose": "Check that fixed-width Android XML tab indicators respect margins, including start and end margins in right-to-left layout.",
+  "changes": "Fixed-width tabs now account for horizontal margins when laying out and shrinking to fit, and respect top and bottom margins. This example uses an XML layout with distinct margins.",
+  "steps": [
+    "Turn on Tab margins example. The three tabs should have visible gaps; Second is slightly shorter vertically because it has top and bottom margins.",
+    "Select the tabs. Turn on Right-to-left layout and check that the tab order reverses and the start/end margins follow it.",
+    "Turn on Narrow widget. The tabs should shrink while their gaps remain. Try selecting the tabs again.",
+    "Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "Tabs retain their margin gaps and vertical spacing, the direction-aware margins follow RTL, and widths shrink when the widget is narrow.",
+  "limits": "This covers fixed-width, unweighted children. Weighted and wrap-content measurement, Android pixel rounding and device appearance are not yet verified.",
+  "documentation": "docs/TDD/libbhoo/components/android-tab-widget.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TabWidget.java",
+      "local": "context/reference-sources/android-framework/TabWidget.java",
+      "license": "Apache-2.0",
+      "scope": "TabWidget overflow measurement."
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/LinearLayout.java",
+      "local": "context/reference-sources/android-framework/LinearLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Horizontal child margin layout."
+    }
+  ],
+  "validation": [
+    "Ten TabWidget Rust tests, seven TabHost tests and 155 XML importer tests passed.",
+    "A 320 \u00d7 650 browser test checked margin spacing, narrow layout and RTL."
+  ],
+  "demo_height": 650
+}

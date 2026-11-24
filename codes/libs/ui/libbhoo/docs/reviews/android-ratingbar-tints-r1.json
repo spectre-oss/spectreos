@@ -1,0 +1,20 @@
+{
+  "title": "Android XML RatingBar: fractional star tints",
+  "component": "android-ratingbar",
+  "purpose": "Check the inherited XML progress tints on a RatingBar, especially the secondary color behind the unfilled portion of a fractional star.",
+  "changes": "Added primary, secondary and background color and state-selector tints to the Android XML RatingBar. Secondary color extends to the next whole star underneath the selected portion, as in the Android RatingBar progress rule.",
+  "steps": [
+    "Scroll below the ordinary rating examples to the colored ratings. The interactive row starts at two and a half stars: two stars and the left half of the third are blue, the rest of the third is amber, and the last two stars are pale blue.",
+    "Touch and hold the colored interactive row and drag across the stars. The selected blue portions should become red while pressed, then return to blue when released. A partially selected star should show amber in its remaining half.",
+    "Try the colored read-only row below: its rating must not change on touch. Its partially filled star should also have an amber remainder.",
+    "Turn on Right-to-left layout at the top. Check that the interactive colored rating starts from the right and dragging selects stars in the mirrored direction. Choose OK if the steps work; otherwise choose Reject and describe the failing step, what you saw, and your device."
+  ],
+  "expected": "The primary tint colors selected fractions, the secondary tint completes the last partial star, and the background tint colors unselected stars. Pressing and RTL do not break selection; the indicator remains read-only.",
+  "limits": "This checks Bhoo's current star vector and tint layers, not full Android drawable, tint-mode, theme or pixel parity. The disabled selector is covered by the SeekBar tint test.",
+  "documentation": "docs/TDD/libbhoo/components/android-ratingbar.md",
+  "references": [
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/RatingBar.java","local":"context/reference-sources/android-framework/RatingBar.java","license":"Apache-2.0","scope":"Fractional rating secondary progress."},
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ProgressBar.java","local":"context/reference-sources/android-framework/ProgressBar.java","license":"Apache-2.0","scope":"Inherited progress tint attributes."}
+  ],
+  "validation": ["137 Android XML importer tests passed, including RatingBar tint import.","Rust RatingBar tint rendering test passed for background, secondary and primary stars, pressed tint and drag updates."]
+}

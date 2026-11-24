@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Explore Bhoo's real Rust components in your browser. Live examples, states, motion, code, and implementation references.">
+<title>Bhoo — Component explorer</title>
+<link rel="icon" href="mark.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.dataset.embed='true';</script>
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to component</a>
+<aside class="sidebar" id="sidebar">
+<a class="brand" href="#/overview"><img src="mark.svg" alt="" width="34" height="38"><span>bhoo<span class="brand-dot">.</span></span><span class="version">0.1</span></a>
+<div class="sidebar-caption">THE SPECTREOS UI TOOLKIT</div>
+<label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="Find a component…" aria-label="Find a component"><kbd>/</kbd></label>
+<nav aria-label="Component navigation" id="navigation"><p class="loading-nav">Loading catalog…</p></nav>
+<div class="sidebar-bottom"><span class="status-dot"></span><span>Made for SpectreOS</span><a href="licenses/GPL-3.0.txt" target="_blank" rel="noopener">GPL v3 ↗</a></div>
+</aside>
+<div class="mobile-shade" id="mobile-shade"></div>
+<div class="workspace">
+<header class="topbar"><div class="topbar-start"><button class="icon-control mobile-menu" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button><span class="topbar-project">SpectreOS</span><span class="slash">/</span><span>Design & development</span></div><div class="topbar-end"><a href="https://m3.material.io/" target="_blank" rel="noopener">Material reference ↗</a><button id="theme" class="icon-control" aria-label="Switch to dark theme" title="Switch theme">◐</button></div></header>
+<main id="main" tabindex="-1">
+<div class="breadcrumb"><span>Library</span><span>/</span><span id="category">Actions</span></div>
+<div class="title-row"><div><div class="eyebrow" id="eyebrow">COMPONENT EXPLORER</div><h1 id="title">Buttons</h1></div><span class="implementation-badge" id="implementation-badge">Loading Rust…</span></div>
+<p class="description" id="description">A small, considered toolkit. Explore the pieces, try the interactions, and inspect what makes them work.</p>
+<div class="demo-coverage" id="demo-coverage"></div>
+<div class="page-tabs" role="tablist" aria-label="Component documentation"><button role="tab" aria-selected="true" data-tab="examples" id="tab-examples" aria-controls="panel-examples">Examples</button><button role="tab" aria-selected="false" data-tab="states" id="tab-states" aria-controls="panel-states" tabindex="-1">States & motion</button><button role="tab" aria-selected="false" data-tab="code" id="tab-code" aria-controls="panel-code" tabindex="-1">Code</button><button role="tab" aria-selected="false" data-tab="guidelines" id="tab-guidelines" aria-controls="panel-guidelines" tabindex="-1">References <span>↗</span></button></div>
+<section id="panel-examples" role="tabpanel" aria-labelledby="tab-examples">
+<div class="demo-card" id="demo-card"><div class="demo-toolbar"><div><span class="status-dot" id="runtime-dot"></span><strong id="demo-label">Interactive preview</strong><span class="subtle">/</span><span class="runtime-label">Rust · WebAssembly</span></div><button id="reset" class="text-button" title="Reset the example">↺ <span>Reset</span></button></div>
+<div class="demo-body"><div class="canvas-wrap" id="canvas-wrap"><canvas id="preview" tabindex="0" aria-label="Live Bhoo component preview. Tab navigates controls, Space or Enter activates; Escape leaves the preview."></canvas><div id="loading" class="loading">Starting the Rust engine…</div><div class="preview-caption"><span class="keycap">Tab</span> focus <span class="keycap">↵</span> activate <span class="caption-spacer"></span><span id="renderer-status">Canvas 2D</span></div></div>
+<aside class="inspector" aria-label="Preview settings"><div class="inspector-title">PLAYGROUND</div><label class="setting-label" for="motion-scheme">Motion scheme</label><select id="motion-scheme"><option value="standard">Standard</option><option value="expressive">Expressive</option></select><label class="setting-label" for="variant">Button variant</label><select id="variant"><option value="1">Filled</option><option value="2">Tonal</option><option value="3">Outlined</option><option value="4">Text</option><option value="5">Elevated color</option><option value="0">Neutral</option></select><label class="setting-toggle"><span>Disable controls</span><input id="disabled" type="checkbox" role="switch"><span class="mini-switch" aria-hidden="true"></span></label><label class="setting-toggle"><span>Reduce motion</span><input id="reduced" type="checkbox" role="switch"><span class="mini-switch" aria-hidden="true"></span></label><div class="inspector-divider"></div><div class="inspector-title">LIVE STATE</div><div id="state-readout" class="state-readout"><p>Interact with the preview.</p></div><div class="engine-readout"><span id="engine-status">Loading</span><span id="command-count">— commands</span></div><p class="inspector-note">These are Bhoo's actual Rust controls, running in your browser.</p></aside></div></div>
+<div id="planned" class="planned" hidden><span class="planned-icon">⌁</span><h2>A specification, ready to build.</h2><p>This family has a documented design contract but no live Bhoo implementation yet. Explore its states, motion, and reference implementations in the tabs above.</p><button class="primary-link" id="show-live">Explore a live component →</button></div>
+<div class="section-heading"><div><span class="eyebrow">BUILT WITH INTENT</span><h2 id="about-heading">Small details. Clear behavior.</h2></div><span class="muted">A work in progress, in the open.</span></div>
+<div class="feature-grid"><article><span class="feature-icon">↗</span><h3>One Rust core</h3><p>The same state, hit-testing, focus, and motion code used by the native Wayland demo.</p></article><article><span class="feature-icon">◌</span><h3>Motion with a purpose</h3><p>Interruptible effects, immediate state updates, and a reduced-motion path.</p></article><article><span class="feature-icon">⌘</span><h3>Honest about coverage</h3><p id="coverage-note">Live examples are partial implementations. The catalog tracks the full design scope.</p></article></div>
+</section>
+<section id="panel-states" role="tabpanel" aria-labelledby="tab-states" hidden><div class="document-panel"><div class="section-heading"><h2>State & interaction contract</h2><span class="small-badge">Design specification</span></div><p id="state-contract"></p><h3>Motion behavior</h3><p id="motion-contract"></p><div class="note"><strong>Reduced motion</strong><p id="reduced-contract"></p></div><h3>Implementation status</h3><p id="implementation-status"></p><h3>Acceptance checks</h3><ul id="checks"></ul></div></section>
+<section id="panel-code" role="tabpanel" aria-labelledby="tab-code" hidden><div class="code-card"><div class="code-toolbar"><span>Rust <span class="subtle">/</span> Bhoo example</span><button class="text-button" id="copy-code">Copy code</button></div><pre><code id="code"></code></pre></div><p class="code-note" id="code-note"></p></section>
+<section id="panel-guidelines" role="tabpanel" aria-labelledby="tab-guidelines" hidden><div class="document-panel"><span class="eyebrow">LEARN FROM THE SOURCE</span><h2>Guidelines & reference implementations</h2><p class="muted">Pinned upstream sources and design guidance used for this component family. Related patterns are labeled in the specification.</p><div id="reference-list" class="reference-list"></div><div class="note"><strong>License & attribution</strong><p>Bhoo is GPL-3.0-only. Adapted AndroidX effects token values retain their Apache-2.0 attribution. Upstream frameworks and assets keep their own licenses.</p><a href="licenses/NOTICES.md" target="_blank" rel="noopener">Read notices ↗</a></div></div></section>
+<div class="page-navigation"><a id="previous" href="#/overview"><span>← PREVIOUS</span><strong>Overview</strong></a><a id="next" href="#/checkbox"><span>NEXT →</span><strong>Checkbox</strong></a></div>
+<footer><span><strong>bhoo.</strong> A little spirit, for every interface.</span><span><a href="source.zip" download>Source code ↓</a> · Rust core · SpectreOS</span></footer>
+</main></div>
+<div class="toast" id="toast" role="status" hidden></div>
+</body></html>

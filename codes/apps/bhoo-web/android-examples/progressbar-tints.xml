@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="XML tints: progress, buffer and track" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <ProgressBar android:id="tinted_download" style="?android:attr/progressBarStyleHorizontal" android:progress="30" android:secondaryProgress="70" android:progressTint="@color/progress_example_tint" android:secondaryProgressTint="#e39b16" android:progressBackgroundTint="#b7c8d8" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <TextView android:text="XML indeterminate tint" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <ProgressBar android:id="tinted_loading" android:indeterminateTint="#d35400" android:layout_width="48dp" android:layout_height="48dp"/>
+</LinearLayout>

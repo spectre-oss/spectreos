@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Volume with buffered progress" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:mirrorForRtl="true" android:id="volume" android:min="0" android:max="100" android:progress="35" android:secondaryProgress="75" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:text="Disabled" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:mirrorForRtl="true" android:id="locked" android:min="0" android:max="100" android:progress="35" android:secondaryProgress="75" android:enabled="false" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

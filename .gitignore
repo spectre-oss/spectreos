@@ -1,0 +1,114 @@
+# Local reference repositories & generated root doc symlinks (`make init`)
+/context/
+/docs/*
+!/docs/.gitkeep
+!/docs/writing-spectreos-apps/
+!/docs/freedesktop/
+
+# Local private review state (contains per-review tokens and message IDs)
+codes/libs/ui/libbhoo/docs/reviews/state.json
+.review.lock
+
+# Local device/build validation evidence (recordings, screenshots, compiler logs, host env dumps)
+codes/apps/wisp/docs/remote_control/evidence/
+codes/utils/wisp_remote_viewer/evidence/
+
+# Linux / debugger core dumps
+/core
+core.[0-9]*
+vgcore.[0-9]*
+*.dmp
+
+# Rust / Cargo
+target/
+**/*.rs.bk
+*.pdb
+
+# Native / JVM / Android / Nix build outputs & packages
+build/
+dist/
+result
+result-*
+.direnv/
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.class
+*.jar
+*.apk
+*.AppImage
+*.flatpak
+*.xdc
+*.webxdc
+*.img
+*.iso
+
+# Media captures & archives (keep intentional source assets under codes/)
+*.h264
+*.mp4
+*.mkv
+*.tar
+*.tar.*
+*.tgz
+*.zip
+*.7z
+*.gz
+*.xz
+*.zst
+
+# Tools local outputs & caches
+tools/*.png
+tools/*.ppm
+tools/*.webm
+tools/bhoo-web-debug/web/*.wasm
+tools/bhoo-web-debug/pkg/
+tools/bhoo_review/*.json
+tools/freedesktop_specs/*.html
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node / Web
+node_modules/
+.cache/
+
+# Logs, temporary & lock files
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+
+# Environment & credentials
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*known_hosts*
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.zed/

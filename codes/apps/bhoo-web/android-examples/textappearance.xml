@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:id="appearance_base" android:text="Inherited appearance" android:textAppearance="@style/DemoTextAppearance.Caps" android:clickable="true" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:id="appearance_override" android:text="Direct size override" android:textAppearance="@style/DemoTextAppearance.Caps" android:textSize="14sp" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:id="appearance_disabled" android:text="Disabled appearance" android:textAppearance="@style/DemoTextAppearance.Caps" android:enabled="false" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

@@ -1,0 +1,13 @@
+{
+ "title":"Android SeekBar: custom thumb and tick tint modes",
+ "component":"android-seekbar",
+ "purpose":"Compare Android XML thumbTintMode and tickMarkTintMode values on matching custom shapes.",
+ "changes":"Added six independently configurable tint modes for supported custom SeekBar thumb and tick shapes.",
+ "steps":["Find Custom thumb and tick tint modes below the RTL switch. Each labeled slider uses the same amber shapes and translucent blue tint.","Compare the shapes: src_in is translucent blue, src_atop mixes blue and amber, and multiply appears dark. The other modes produce their own colors.","Drag each thumb, then turn on Right-to-left layout and drag again. Thumb and tick colors should remain consistent and the sliders should mirror.","Choose OK if the page looks and behaves correctly, or Reject with the failing row and your device."],
+ "expected":"Each mode composes the same source and tint for its thumb and ticks; dragging and RTL behavior continue to work.",
+ "limits":"Explicit modes apply only to supported custom solid shapes. Built-in thumb tint modes, other drawable types, edge compositing and Android device pixel parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/android-seekbar.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/AbsSeekBar.java","local":"context/reference-sources/android-framework/AbsSeekBar.java","license":"Apache-2.0","scope":"Thumb and tick drawable tint modes."}],
+ "validation":["151 Android XML importer tests passed, covering both attributes, all six modes and invalid inputs.","Ten SeekBar Rust tests passed, including independent thumb and tick tint modes and interaction."],
+ "demo_height":2400
+}

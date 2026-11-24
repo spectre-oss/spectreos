@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Original demo layout, informed by Delta Chat Android's GPL-3.0 chat list.
+     Not an Android app or a real messaging client. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#fffbff">
+ <LinearLayout android:orientation="horizontal" android:layout_height="64dp" android:background="#1c6ea4" android:padding="8dp">
+  <ImageButton android:id="@+id/menu" android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/menu" android:contentDescription="Demo menu" android:textColor="#ffffff"/>
+  <TextView android:text="Delta Chat" android:layout_width="0dp" android:layout_weight="1" android:textSize="24sp" android:textColor="#ffffff"/>
+  <ImageButton android:id="@+id/search" android:layout_width="48dp" android:src="@drawable/search" android:contentDescription="Search demo chats" android:textColor="#ffffff"/>
+  <ImageButton android:id="@+id/settings" android:layout_width="48dp" android:src="@drawable/more_vert" android:contentDescription="About this demo" android:textColor="#ffffff"/>
+ </LinearLayout>
+ <TextView android:text="Bhoo demo · fake chats · no account connection" android:layout_height="32dp" android:textSize="12sp" android:gravity="center" android:background="#e6f1f8"/>
+ <ScrollView android:id="@+id/chats_scroll" android:layout_height="0dp" android:layout_weight="1">
+  <LinearLayout android:orientation="vertical" android:layout_height="wrap_content">
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_0" android:clickable="true" android:contentDescription="Alex Brown">
+    <TextView android:text="AB" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Alex Brown" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Shall we meet at the café?" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="10:42" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_1" android:clickable="true" android:contentDescription="SpectreOS team">
+    <TextView android:text="ST" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="SpectreOS team" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="The new launcher looks great" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="10:15" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_2" android:clickable="true" android:contentDescription="Mina Lee">
+    <TextView android:text="ML" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Mina Lee" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Thanks! See you tomorrow" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="09:50" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_3" android:clickable="true" android:contentDescription="Saved messages">
+    <TextView android:text="SN" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Saved messages" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Your private notes and ideas" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Yesterday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_4" android:clickable="true" android:contentDescription="Book club">
+    <TextView android:text="BK" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Book club" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Next chapter this weekend" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Yesterday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_5" android:clickable="true" android:contentDescription="Family">
+    <TextView android:text="FD" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Family" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Photo from our trip" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Monday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_6" android:clickable="true" android:contentDescription="Design group">
+    <TextView android:text="DG" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Design group" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Let’s review the new icons" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Monday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_7" android:clickable="true" android:contentDescription="Jamie Bell">
+    <TextView android:text="JB" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Jamie Bell" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="That sounds good" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Sunday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_8" android:clickable="true" android:contentDescription="Weekend plans">
+    <TextView android:text="WK" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Weekend plans" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="A walk by the river?" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Sunday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_9" android:clickable="true" android:contentDescription="Bhoo lab">
+    <TextView android:text="BH" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Bhoo lab" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Smooth scrolling demo" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Saturday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_10" android:clickable="true" android:contentDescription="Nora Kim">
+    <TextView android:text="NK" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Nora Kim" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Hello from the mountains" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Friday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+   <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:id="@+id/chat_11" android:clickable="true" android:contentDescription="Community">
+    <TextView android:text="CM" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:textColor="#1c6ea4" android:background="@drawable/avatar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:padding="8dp">
+     <TextView android:text="Community" android:layout_height="28dp" android:textSize="17sp" android:textColor="#1c1b1f"/>
+     <TextView android:text="Welcome to the group" android:layout_height="24dp" android:textSize="14sp" android:textColor="#67666a"/>
+    </LinearLayout>
+    <TextView android:text="Thursday" android:layout_width="64dp" android:layout_height="28dp" android:textSize="11sp" android:gravity="end" android:textColor="#67666a"/>
+   </LinearLayout><View android:layout_height="1dp" android:background="#eee8ed"/>
+  </LinearLayout>
+ </ScrollView>
+ <Button android:id="@+id/compose" android:text="New demo chat" android:layout_height="56dp" android:gravity="center" android:background="#e6f1f8"/>
+</LinearLayout>

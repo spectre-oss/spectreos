@@ -1,0 +1,1902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contacts_bg">
+
+    <!-- Main Screen Content -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/home_coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:background="@color/contacts_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Toolbar 1: Default Contacts Toolbar -->
+            <LinearLayout
+                android:id="@+id/home_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/contacts_primary"
+                android:elevation="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <ImageButton
+                    android:id="@+id/btn_menu"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_open_drawer"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_menu_white" />
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    style="@style/Contacts.ToolbarTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/app_name" />
+
+                <ImageButton
+                    android:id="@+id/btn_search"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_search"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_search_white" />
+
+                <ImageButton
+                    android:id="@+id/btn_select_mode"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_select_contacts"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_more_vert_white" />
+            </LinearLayout>
+
+            <!-- Toolbar 2: Search Toolbar -->
+            <LinearLayout
+                android:id="@+id/search_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/contacts_surface"
+                android:elevation="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/btn_search_back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_close_search"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_arrow_back_blue" />
+
+                <EditText
+                    android:id="@+id/search_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="@string/search_hint"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/contacts_ink"
+                    android:textColorHint="@color/contacts_hint"
+                    android:textSize="16sp" />
+
+                <ImageButton
+                    android:id="@+id/btn_search_clear"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_clear_search"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_close_dark" />
+            </LinearLayout>
+
+            <!-- Toolbar 3: Contextual Action Bar (CAB) Multi-Select Toolbar -->
+            <LinearLayout
+                android:id="@+id/cab_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/contacts_cab_bg"
+                android:elevation="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/btn_cab_close"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_cancel_selection"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_close_dark" />
+
+                <TextView
+                    android:id="@+id/cab_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:singleLine="true"
+                    android:text="1"
+                    android:textColor="@color/contacts_ink"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btn_cab_share"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_share"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_share_dark" />
+
+                <ImageButton
+                    android:id="@+id/btn_cab_delete"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_delete"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_delete_dark" />
+
+                <ImageButton
+                    android:id="@+id/btn_cab_link"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_link"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_link_dark"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- Toolbar 4: Dark Label Toolbar -->
+            <LinearLayout
+                android:id="@+id/label_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/contacts_label_toolbar"
+                android:elevation="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/btn_label_menu"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_open_drawer"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_menu_white" />
+
+                <TextView
+                    android:id="@+id/label_toolbar_title"
+                    style="@style/Contacts.ToolbarTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/label_default_title" />
+
+                <ImageButton
+                    android:id="@+id/btn_label_add_member"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_add_member"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_person_add_white" />
+
+                <ImageButton
+                    android:id="@+id/btn_label_more"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_more_options"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_more_vert_white" />
+            </LinearLayout>
+
+            <!-- Main Content Area -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <!-- Empty Contacts State -->
+                <LinearLayout
+                    android:id="@+id/empty_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="32dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/ic_book_empty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/empty_contacts"
+                        android:textColor="@color/contacts_muted"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_empty_add"
+                        style="@style/Contacts.DialogAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/empty_add_contact" />
+                </LinearLayout>
+
+                <!-- Search No Results State -->
+                <LinearLayout
+                    android:id="@+id/search_empty_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="40dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_no_contacts"
+                        android:textColor="@color/contacts_muted"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Label Empty State -->
+                <LinearLayout
+                    android:id="@+id/label_empty_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="32dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/ic_book_label_empty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/label_empty"
+                        android:textColor="@color/contacts_muted"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_label_empty_add"
+                        style="@style/Contacts.DialogAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/label_add_contacts" />
+                </LinearLayout>
+
+                <!-- Contacts List ScrollView -->
+                <ScrollView
+                    android:id="@+id/contacts_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="88dp">
+
+                        <!-- Preload runtime-swapped vector drawables so install_drawables embeds them -->
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/ic_star_blue"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/ic_label_blue"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/ic_label_muted"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/ic_contacts_blue"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/ic_contacts_muted"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/avatar_circle_0"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/avatar_circle_1"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/avatar_circle_2"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/avatar_circle_3"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/avatar_circle_4"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/avatar_circle_5"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/drawer_row_active"
+                            android:visibility="gone" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/drawer_row_inactive"
+                            android:visibility="gone" />
+
+                        <!-- Label Member Count Header -->
+                        <LinearLayout
+                            android:id="@+id/label_count_row"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="16dp"
+                            android:visibility="gone">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_smartphone_muted" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/label_count_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/label_default_count"
+                                android:textColor="@color/contacts_muted"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 0 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_0"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_0"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_0" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_0"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="A"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_0"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="Alice Johnson"
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_0"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 1 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_1"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="A"
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_0" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="A"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="Alice Johnson"
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 2 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_2"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="B"
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_1" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="B"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="Bob Smith"
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 3 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_3"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="C"
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_2" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="C"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="Charlie Lee"
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 4 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_4"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_3" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_4"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 5 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_5"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_4" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_5"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 6 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_6"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_0" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_6"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 7 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_7"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_1" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_7"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 8 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_8"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_2" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_8"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <!-- Contact Row 9 -->
+                        <LinearLayout
+                            android:id="@+id/contact_row_9"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone">
+
+                            <FrameLayout
+                                android:layout_width="56dp"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/row_star_9"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_star_blue"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/row_letter_9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/contacts_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="16dp">
+
+                                <ImageView
+                                    android:id="@+id/row_avatar_bg_9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/avatar_circle_3" />
+
+                                <TextView
+                                    android:id="@+id/row_avatar_letter_9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/row_name_9"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/contacts_ink"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/row_check_9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/contacts_control_tint"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Circular + Floating Action Button -->
+        <ImageButton
+            android:id="@+id/fab_add"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/fab_circle"
+            android:contentDescription="@string/cd_create_contact"
+            android:elevation="6dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_add_white" />
+
+        <!-- Label Overflow Popup Menu -->
+        <LinearLayout
+            android:id="@+id/label_overflow_popup"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/popup_menu_card"
+            android:clickable="true"
+            android:elevation="8dp"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/menu_label_email"
+                style="@style/Contacts.PopupItem"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:text="@string/menu_send_email" />
+
+            <TextView
+                android:id="@+id/menu_label_sms"
+                style="@style/Contacts.PopupItem"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:text="@string/menu_send_message" />
+
+            <TextView
+                android:id="@+id/menu_label_remove"
+                style="@style/Contacts.PopupItem"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:text="@string/menu_remove_contacts" />
+
+            <TextView
+                android:id="@+id/menu_label_rename"
+                style="@style/Contacts.PopupItem"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:text="@string/menu_rename_label" />
+
+            <TextView
+                android:id="@+id/menu_label_delete"
+                style="@style/Contacts.PopupItem"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:text="@string/menu_delete_label" />
+        </LinearLayout>
+
+        <!-- Modal Dialog Overlay -->
+        <FrameLayout
+            android:id="@+id/home_dialog_scrim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/contacts_scrim"
+            android:clickable="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/home_dialog_card"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dialog_card"
+                android:clickable="true"
+                android:elevation="12dp"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:id="@+id/home_dialog_title"
+                    style="@style/Contacts.DialogTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dialog_create_label" />
+
+                <TextView
+                    android:id="@+id/home_dialog_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text=""
+                    android:textColor="@color/contacts_muted"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/home_dialog_input_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/dialog_label_input"
+                        style="@style/Contacts.EditorField"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:hint="@string/dialog_label_hint"
+                        android:inputType="textCapSentences" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/contacts_primary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/home_dialog_picker_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/picker_row_0"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/picker_check_0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/contacts_control_tint" />
+
+                        <TextView
+                            android:id="@+id/picker_name_0"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/contacts_ink"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/picker_row_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/picker_check_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/contacts_control_tint" />
+
+                        <TextView
+                            android:id="@+id/picker_name_1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/contacts_ink"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/picker_row_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/picker_check_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/contacts_control_tint" />
+
+                        <TextView
+                            android:id="@+id/picker_name_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/contacts_ink"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/picker_row_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/picker_check_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/contacts_control_tint" />
+
+                        <TextView
+                            android:id="@+id/picker_name_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/contacts_ink"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/picker_row_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/picker_check_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/contacts_control_tint" />
+
+                        <TextView
+                            android:id="@+id/picker_name_4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/contacts_ink"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/picker_row_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/picker_check_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/contacts_control_tint" />
+
+                        <TextView
+                            android:id="@+id/picker_name_5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/contacts_ink"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/home_dialog_cancel"
+                        style="@style/Contacts.DialogAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="@string/action_cancel" />
+
+                    <Button
+                        android:id="@+id/home_dialog_ok"
+                        style="@style/Contacts.DialogAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/action_ok" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Navigation Drawer Panel -->
+    <LinearLayout
+        android:id="@+id/contacts_drawer_panel"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/contacts_drawer_bg"
+        android:orientation="vertical">
+
+        <!-- My Info Header Row -->
+        <LinearLayout
+            android:id="@+id/drawer_my_info"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_person_circle_blue" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/drawer_my_info"
+                    android:textColor="@color/contacts_ink"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/drawer_my_info_sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/drawer_my_info_sub"
+                    android:textColor="@color/contacts_muted"
+                    android:textSize="13.5sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/contacts_divider" />
+
+        <!-- Contacts Destination Row -->
+        <FrameLayout
+            android:id="@+id/drawer_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/drawer_contacts_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/drawer_row_active" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/drawer_contacts_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_contacts_blue" />
+
+                <TextView
+                    android:id="@+id/drawer_contacts_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="@string/drawer_contacts"
+                    android:textColor="@color/contacts_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/contacts_divider" />
+
+        <!-- Labels Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="@string/drawer_labels"
+            android:textColor="@color/contacts_muted"
+            android:textSize="13.5sp" />
+
+        <!-- Dynamic Label Row 0 -->
+        <FrameLayout
+            android:id="@+id/drawer_label_0"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/drawer_label_bg_0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/drawer_row_inactive" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/drawer_label_icon_0"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_label_muted" />
+
+                <TextView
+                    android:id="@+id/drawer_label_text_0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/contacts_ink"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Dynamic Label Row 1 -->
+        <FrameLayout
+            android:id="@+id/drawer_label_1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/drawer_label_bg_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/drawer_row_inactive" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/drawer_label_icon_1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_label_muted" />
+
+                <TextView
+                    android:id="@+id/drawer_label_text_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/contacts_ink"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Dynamic Label Row 2 -->
+        <FrameLayout
+            android:id="@+id/drawer_label_2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/drawer_label_bg_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/drawer_row_inactive" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/drawer_label_icon_2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_label_muted" />
+
+                <TextView
+                    android:id="@+id/drawer_label_text_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/contacts_ink"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Dynamic Label Row 3 -->
+        <FrameLayout
+            android:id="@+id/drawer_label_3"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/drawer_label_bg_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/drawer_row_inactive" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/drawer_label_icon_3"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_label_muted" />
+
+                <TextView
+                    android:id="@+id/drawer_label_text_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/contacts_ink"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Create Label Row -->
+        <LinearLayout
+            android:id="@+id/drawer_create_label"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_add_dark" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/drawer_create_label"
+                android:textColor="@color/contacts_ink"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/contacts_divider" />
+
+        <!-- Emergency Information Row -->
+        <LinearLayout
+            android:id="@+id/drawer_emergency"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_emergency_muted" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/drawer_emergency"
+                android:textColor="@color/contacts_ink"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/contacts_divider" />
+
+        <!-- Settings Row -->
+        <LinearLayout
+            android:id="@+id/drawer_settings"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_settings_muted" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/drawer_settings"
+                android:textColor="@color/contacts_ink"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

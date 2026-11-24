@@ -1,0 +1,661 @@
+{
+  "name": "spectre-explicit-ir",
+  "locale": "fa-IR",
+  "levels": [
+    {
+      "level": "",
+      "mode": "default",
+      "rows": [
+        [
+          {
+            "symbol": "ض",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۱"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ص",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۲"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ث",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۳"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ق",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۴"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ف",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۵"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "غ",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۶"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ع",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۷"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ه",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۸",
+              "ه‍",
+              "هٔ",
+              "ة",
+              "ۀ"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "خ",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۹"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ح",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "۰"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ج",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          }
+        ],
+        [
+          {
+            "symbol": "ش",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "س",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ی",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "ئ",
+              "ي",
+              "ى"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ب",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ل",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ا",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "ٱ",
+              "ء",
+              "آ",
+              "أ",
+              "إ"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ت",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "ة"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "ن",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "م",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ک",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "ك"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "گ",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          }
+        ],
+        [
+          {
+            "symbol": "ظ",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ط",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ژ",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ز",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ر",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "ذ",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "د",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "پ",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "و",
+            "width": 0.9090909090909091,
+            "symbols": [
+              "ؤ"
+            ],
+            "style": "persian"
+          },
+          {
+            "symbol": "چ",
+            "width": 0.9090909090909091,
+            "style": "persian"
+          },
+          {
+            "symbol": "KEY_BACKSPACE",
+            "width": 0.9090909090909091,
+            "use": 1,
+            "style": "sys",
+            "icon": "edit-clear-symbolic"
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 2,
+            "style": "symbols",
+            "label": "؟۳۲۱"
+          },
+          {
+            "symbol": "،",
+            "width": 1,
+            "style": "punctuation",
+            "symbols": [
+              "☺"
+            ]
+          },
+          {
+            "symbol": "",
+            "width": 1,
+            "use": 3,
+            "style": "language",
+            "icon": "layout-menu-symbolic"
+          },
+          {
+            "symbol": " ",
+            "width": 3,
+            "label": "فارسی",
+            "style": "space"
+          },
+          {
+            "symbol": "‌",
+            "width": 1,
+            "label": "◀┆▶",
+            "style": "halfspace"
+          },
+          {
+            "symbol": ".",
+            "width": 1,
+            "style": "punctuation"
+          },
+          {
+            "symbol": "KEY_ENTER",
+            "width": 1.5,
+            "icon": "keyboard-enter-symbolic",
+            "style": "return"
+          }
+        ]
+      ]
+    },
+    {
+      "level": "opt",
+      "mode": "locked",
+      "rows": [
+        [
+          {
+            "symbol": "۱",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۲",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۳",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۴",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۵",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۶",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۷",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۸",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۹",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "۰",
+            "width": 1,
+            "style": "persian"
+          }
+        ],
+        [
+          {
+            "symbol": "@",
+            "width": 1
+          },
+          {
+            "symbol": "#",
+            "width": 1
+          },
+          {
+            "symbol": "٪",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "&",
+            "width": 1
+          },
+          {
+            "symbol": "ـ",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "+",
+            "width": 1
+          },
+          {
+            "symbol": "(",
+            "width": 1
+          },
+          {
+            "symbol": ")",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 1,
+            "style": "toggle",
+            "label": "=\\<"
+          },
+          {
+            "symbol": "*",
+            "width": 1
+          },
+          {
+            "symbol": "\"",
+            "width": 1
+          },
+          {
+            "symbol": "،",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "؛",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": ":",
+            "width": 1
+          },
+          {
+            "symbol": "؟",
+            "width": 1,
+            "style": "persian"
+          },
+          {
+            "symbol": "!",
+            "width": 1
+          },
+          {
+            "symbol": "KEY_BACKSPACE",
+            "width": 1.5,
+            "use": 1,
+            "style": "sys",
+            "icon": "edit-clear-symbolic"
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 2,
+            "style": "symbols",
+            "label": "اب‌ج"
+          },
+          {
+            "symbol": "،",
+            "width": 1,
+            "style": "punctuation",
+            "symbols": [
+              "☺"
+            ]
+          },
+          {
+            "symbol": "",
+            "width": 1,
+            "use": 3,
+            "style": "language",
+            "icon": "layout-menu-symbolic"
+          },
+          {
+            "symbol": " ",
+            "width": 3,
+            "label": "فارسی",
+            "style": "space"
+          },
+          {
+            "symbol": "‌",
+            "width": 1,
+            "label": "◀┆▶",
+            "style": "halfspace"
+          },
+          {
+            "symbol": ".",
+            "width": 1,
+            "style": "punctuation"
+          },
+          {
+            "symbol": "KEY_ENTER",
+            "width": 1.5,
+            "icon": "keyboard-enter-symbolic",
+            "style": "return"
+          }
+        ]
+      ]
+    },
+    {
+      "level": "opt+shift",
+      "mode": "locked",
+      "rows": [
+        [
+          {
+            "symbol": "~",
+            "width": 1
+          },
+          {
+            "symbol": "`",
+            "width": 1
+          },
+          {
+            "symbol": "|",
+            "width": 1
+          },
+          {
+            "symbol": "•",
+            "width": 1
+          },
+          {
+            "symbol": "√",
+            "width": 1
+          },
+          {
+            "symbol": "π",
+            "width": 1
+          },
+          {
+            "symbol": "÷",
+            "width": 1
+          },
+          {
+            "symbol": "×",
+            "width": 1
+          },
+          {
+            "symbol": "¶",
+            "width": 1
+          },
+          {
+            "symbol": "∆",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "£",
+            "width": 1
+          },
+          {
+            "symbol": "¢",
+            "width": 1
+          },
+          {
+            "symbol": "€",
+            "width": 1
+          },
+          {
+            "symbol": "¥",
+            "width": 1
+          },
+          {
+            "symbol": "^",
+            "width": 1
+          },
+          {
+            "symbol": "°",
+            "width": 1
+          },
+          {
+            "symbol": "=",
+            "width": 1
+          },
+          {
+            "symbol": "{",
+            "width": 1
+          },
+          {
+            "symbol": "}",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 1,
+            "style": "toggle",
+            "label": "?123"
+          },
+          {
+            "symbol": "\\",
+            "width": 0.875
+          },
+          {
+            "symbol": "%",
+            "width": 0.875
+          },
+          {
+            "symbol": "©",
+            "width": 0.875
+          },
+          {
+            "symbol": "®",
+            "width": 0.875
+          },
+          {
+            "symbol": "™",
+            "width": 0.875
+          },
+          {
+            "symbol": "✓",
+            "width": 0.875
+          },
+          {
+            "symbol": "[",
+            "width": 0.875
+          },
+          {
+            "symbol": "]",
+            "width": 0.875
+          },
+          {
+            "symbol": "KEY_BACKSPACE",
+            "width": 1.5,
+            "use": 1,
+            "style": "sys",
+            "icon": "edit-clear-symbolic"
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 2,
+            "style": "symbols",
+            "label": "اب‌ج"
+          },
+          {
+            "symbol": "،",
+            "width": 1,
+            "style": "punctuation",
+            "symbols": [
+              "☺"
+            ]
+          },
+          {
+            "symbol": "",
+            "width": 1,
+            "use": 3,
+            "style": "language",
+            "icon": "layout-menu-symbolic"
+          },
+          {
+            "symbol": " ",
+            "width": 3,
+            "label": "فارسی",
+            "style": "space"
+          },
+          {
+            "symbol": "‌",
+            "width": 1,
+            "label": "◀┆▶",
+            "style": "halfspace"
+          },
+          {
+            "symbol": ".",
+            "width": 1,
+            "style": "punctuation"
+          },
+          {
+            "symbol": "KEY_ENTER",
+            "width": 1.5,
+            "icon": "keyboard-enter-symbolic",
+            "style": "return"
+          }
+        ]
+      ]
+    }
+  ]
+}

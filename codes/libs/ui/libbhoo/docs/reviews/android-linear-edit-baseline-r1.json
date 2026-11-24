@@ -1,0 +1,13 @@
+{
+ "title":"Android LinearLayout: editable text baselines",
+ "component":"android-linear-layout",
+ "purpose":"Check that entered text in EditText and autocomplete fields aligns by baseline with larger text in horizontal XML layouts.",
+ "changes":"Baseline-aware layouts now use the entered-text baseline for EditText, AutoCompleteTextView and MultiAutoCompleteTextView.",
+ "steps":["Find Editable and text baselines below the Right-to-left layout switch. Each row pairs an editable field containing text with larger text.","Compare the bottom of the entered letters with Large: their text baselines should line up in all three rows.","Tap a field and edit its text; the alignment should remain stable. Turn on Right-to-left layout and check that columns reverse while baselines remain aligned.","Choose OK if the rows work as described, or Reject with the row, problem and your device."],
+ "expected":"Entered text in each field shares a baseline with the larger text in LTR and RTL while the field remains editable.",
+ "limits":"This checks Bhoo's current entered-text layout and font metrics. Empty hint presentation, exact Android theme and font metrics, and device visual parity remain unverified.",
+ "documentation":"docs/TDD/libbhoo/components/android-linear-layout.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/LinearLayout.java","local":"context/reference-sources/android-framework/LinearLayout.java","license":"Apache-2.0","scope":"Horizontal child baseline alignment."},{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"Text baseline contract inherited by editable text controls."}],
+ "validation":["Rust layout test checks entered-text baselines for all three field types against larger text in LTR and RTL."],
+ "demo_height":1300
+}

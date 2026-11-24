@@ -1,0 +1,86 @@
+Subject: [LOCAL] softisp: preserve CFA while reducing full IMX363 preview
+
+Average 16 same-colour linear RAW10 samples before normal libcamera processing.
+Opt-in and restricted to the measured full sensor mode and small previews.
+Still captures use the unchanged full-resolution path.
+
+--- a/src/libcamera/software_isp/debayer_cpu.cpp
++++ b/src/libcamera/software_isp/debayer_cpu.cpp
+@@ -10,6 +10,7 @@
+  */
+ 
+ #include "debayer_cpu.h"
++#include "raw10-reduce.h"
+ 
+ #include <algorithm>
+ #include <stdlib.h>
+@@ -478,10 +479,29 @@
+ 	return invalidFmt();
+ }
+ 
+-int DebayerCpu::configure(const StreamConfiguration &inputCfg,
++int DebayerCpu::configure(const StreamConfiguration &sourceCfg,
+ 			  const std::vector<std::reference_wrapper<StreamConfiguration>> &outputCfgs,
+ 			  bool ccmEnabled)
+ {
++	StreamConfiguration inputCfg = sourceCfg;
++	reductionSourceStride_ = 0;
++	reducedRaw_.clear();
++	const char *fullSensor = utils::secure_getenv("SPECTRE_IMX363_FULL_SENSOR");
++	if (fullSensor && std::string(fullSensor) == "1" &&
++	    sourceCfg.size == Size(4032, 3024) && outputCfgs.size() == 1 &&
++	    sourceCfg.stride >= 4032 * 5 / 4) {
++		const StreamConfiguration &out = outputCfgs[0];
++		const BayerFormat bayer = BayerFormat::fromPixelFormat(sourceCfg.pixelFormat);
++		if (bayer.bitDepth == 10 && bayer.packing == BayerFormat::Packing::CSI2 &&
++		    out.size.width <= 1000 && out.size.height <= 750) {
++			reductionSourceStride_ = sourceCfg.stride;
++			inputCfg.size = Size(1008, 756);
++			inputCfg.stride = 1260;
++			reducedRaw_.resize(inputCfg.stride * inputCfg.size.height);
++			LOG(Debayer, Info) << "Bayer-preserving 4x preview reduction";
++		}
++	}
++
+ 	if (getInputConfig(inputCfg.pixelFormat, inputConfig_) != 0)
+ 		return -EINVAL;
+ 
+@@ -866,12 +886,25 @@
+ 		return;
+ 	}
+ 
++	const uint8_t *source = in.planes()[0].data();
++	if (reductionSourceStride_) {
++		if (in.planes()[0].size() < size_t(reductionSourceStride_) * 3024) {
++			metadata.status = FrameMetadata::FrameError;
++			outputBufferReady.emit(output);
++			inputBufferReady.emit(input);
++			return;
++		}
++		spectre::reduceRaw10By4(source, reductionSourceStride_,
++				      reducedRaw_.data(), 4032, 3024);
++		source = reducedRaw_.data();
++	}
++
+ 	stats_->startFrame(frame);
+ 
+ 	if (inputConfig_.patternSize.height == 2)
+-		process2(frame, in.planes()[0].data(), out.planes()[0].data());
++		process2(frame, source, out.planes()[0].data());
+ 	else
+-		process4(frame, in.planes()[0].data(), out.planes()[0].data());
++		process4(frame, source, out.planes()[0].data());
+ 
+ 	metadata.planes()[0].bytesused = out.planes()[0].size();
+ 
+--- a/src/libcamera/software_isp/debayer_cpu.h
++++ b/src/libcamera/software_isp/debayer_cpu.h
+@@ -141,6 +141,8 @@
+ 	debayerFn debayer2_;
+ 	debayerFn debayer3_;
+ 	Rectangle window_;
++	unsigned int reductionSourceStride_ = 0;
++	std::vector<uint8_t> reducedRaw_;
+ 	std::unique_ptr<SwStatsCpu> stats_;
+ 	std::vector<uint8_t> lineBuffers_[kMaxLineBuffers];
+ 	unsigned int lineBufferLength_;

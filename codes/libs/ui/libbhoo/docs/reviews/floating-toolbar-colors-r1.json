@@ -1,0 +1,12 @@
+{
+ "title":"Floating toolbar: standard and vibrant colors",
+ "component":"floating-toolbar",
+ "purpose":"Compare the Material standard and vibrant paired floating toolbar color roles.",
+ "changes":"The standard floating toolbar uses the surface-container approximation, and the vibrant paired FAB uses tertiary-container colors.",
+ "steps":["Find Floating toolbar with FAB near the top. With Vibrant off, the toolbar uses the neutral surface color and the plus button uses the primary-container color.","Turn Vibrant on. The toolbar should use the primary-container color and the plus button should change to the tertiary-container color.","Toggle Expanded and Start, and try RTL. The colors should remain consistent and the actions should still work.","Choose OK if the colors and interactions look correct, or Reject with what you saw and your device."],
+ "expected":"Standard and vibrant variants use distinct toolbar and FAB color roles while preserving placement and interaction.",
+ "limits":"Bhoo's current theme provides the colors. Exact Android dynamic colors, elevation, transitions and device visual parity remain unverified.",
+ "documentation":"docs/TDD/libbhoo/components/floating-toolbar.md",
+ "references":[{"url":"https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","local":"context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","license":"Apache-2.0","scope":"Standard and vibrant toolbar and FAB color mapping."},{"url":"https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/tokens/FloatingToolbarTokens.kt","local":"context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/tokens/FloatingToolbarTokens.kt","license":"Apache-2.0","scope":"Floating toolbar container colors."}],
+ "validation":["Rust test verifies standard and vibrant toolbar/FAB color roles; a 320 by 440 browser pixel test checks both palettes. Existing toolbar interaction tests pass."]
+}

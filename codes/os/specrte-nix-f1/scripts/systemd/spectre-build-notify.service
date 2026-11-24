@@ -1,0 +1,14 @@
+[Unit]
+Description=Spectre Nix F1 DeltaChat notification delivery
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/spectreos/codes/os/specrte-nix-f1
+ExecStart=/usr/bin/python3 scripts/deltachat-notify.py --worker
+Restart=on-failure
+RestartSec=30
+UMask=0077
+
+[Install]
+WantedBy=default.target

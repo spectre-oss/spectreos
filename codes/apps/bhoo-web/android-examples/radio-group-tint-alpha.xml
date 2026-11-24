@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <RadioGroup android:id="alpha_half_group" android:orientation="vertical" android:checkedButton="@id/half_first" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RadioButton android:id="half_first" android:text="Half-opacity button: first" android:button="@drawable/seek_tint_half_thumb" android:buttonTint="@color/checkbox_alpha_tint" android:layout_width="match_parent" android:layout_height="48dp"/>
+    <RadioButton android:id="half_second" android:text="Half-opacity button: second" android:button="@drawable/seek_tint_half_thumb" android:buttonTint="@color/checkbox_alpha_tint" android:layout_width="match_parent" android:layout_height="48dp"/>
+  </RadioGroup>
+  <RadioGroup android:id="alpha_opaque_group" android:orientation="vertical" android:checkedButton="@id/opaque_first" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RadioButton android:id="opaque_first" android:text="Opaque button: first" android:button="@drawable/seek_tint_opaque_thumb" android:buttonTint="@color/checkbox_alpha_tint" android:layout_width="match_parent" android:layout_height="48dp"/>
+    <RadioButton android:id="opaque_second" android:text="Opaque button: second" android:button="@drawable/seek_tint_opaque_thumb" android:buttonTint="@color/checkbox_alpha_tint" android:layout_width="match_parent" android:layout_height="48dp"/>
+  </RadioGroup>
+</LinearLayout>

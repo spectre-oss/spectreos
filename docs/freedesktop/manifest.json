@@ -1,0 +1,360 @@
+{
+  "source": "https://specifications.freedesktop.org/",
+  "count": 34,
+  "specifications": [
+    {
+      "name": "appstream",
+      "targets": [
+        "https://www.freedesktop.org/software/appstream/docs/"
+      ],
+      "files": [
+        "appstream/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "clipboard",
+      "targets": [
+        "https://specifications.freedesktop.org/clipboard/latest"
+      ],
+      "files": [
+        "clipboard/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "autostart",
+      "targets": [
+        "https://specifications.freedesktop.org/autostart/latest"
+      ],
+      "files": [
+        "autostart/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "basedir",
+      "targets": [
+        "https://specifications.freedesktop.org/basedir/latest"
+      ],
+      "files": [
+        "basedir/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "clipboard-extensions",
+      "targets": [
+        "https://specifications.freedesktop.org/clipboard-extensions/latest"
+      ],
+      "files": [
+        "clipboard-extensions/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "global-shortcuts",
+      "targets": [
+        "https://specifications.freedesktop.org/global-shortcuts/latest"
+      ],
+      "files": [
+        "global-shortcuts/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "desktop-entry",
+      "targets": [
+        "https://specifications.freedesktop.org/desktop-entry/latest-single"
+      ],
+      "files": [
+        "desktop-entry/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "help-system",
+      "targets": [
+        "https://specifications.freedesktop.org/help-system/latest"
+      ],
+      "files": [
+        "help-system/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "fhs",
+      "targets": [
+        "https://specifications.freedesktop.org/fhs/latest-single"
+      ],
+      "files": [
+        "fhs/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "icon-naming",
+      "targets": [
+        "https://specifications.freedesktop.org/icon-naming/latest"
+      ],
+      "files": [
+        "icon-naming/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "intent-apps",
+      "targets": [
+        "https://specifications.freedesktop.org/intent-apps/latest"
+      ],
+      "files": [
+        "intent-apps/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "idle-inhibit",
+      "targets": [
+        "https://specifications.freedesktop.org/idle-inhibit/latest"
+      ],
+      "files": [
+        "idle-inhibit/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "icon-theme",
+      "targets": [
+        "https://specifications.freedesktop.org/icon-theme/latest"
+      ],
+      "files": [
+        "icon-theme/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mime-apps",
+      "targets": [
+        "https://specifications.freedesktop.org/mime-apps/latest-single"
+      ],
+      "files": [
+        "mime-apps/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "polkit",
+      "targets": [
+        "https://www.freedesktop.org/software/polkit/docs/latest/",
+        "https://specifications.freedesktop.org/PolicyKit/1.0/policyconfig.dtd"
+      ],
+      "files": [
+        "polkit/index.md",
+        "polkit/policyconfig.dtd"
+      ],
+      "errors": []
+    },
+    {
+      "name": "notification",
+      "targets": [
+        "https://specifications.freedesktop.org/notification/latest-single"
+      ],
+      "files": [
+        "notification/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "recent-files",
+      "targets": [
+        "https://specifications.freedesktop.org/recent-files/latest"
+      ],
+      "files": [
+        "recent-files/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "shortcuts",
+      "targets": [
+        "https://specifications.freedesktop.org/shortcuts/latest"
+      ],
+      "files": [
+        "shortcuts/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "menu",
+      "targets": [
+        "https://specifications.freedesktop.org/menu/latest-single",
+        "https://specifications.freedesktop.org/menu/menu-1.0.dtd"
+      ],
+      "files": [
+        "menu/index.md",
+        "menu/menu-1.0.dtd"
+      ],
+      "errors": []
+    },
+    {
+      "name": "secret-service",
+      "targets": [
+        "https://specifications.freedesktop.org/secret-service/latest-single"
+      ],
+      "files": [
+        "secret-service/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "shared-mime-info",
+      "targets": [
+        "https://specifications.freedesktop.org/shared-mime-info/latest-single"
+      ],
+      "files": [
+        "shared-mime-info/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "sound-theme",
+      "targets": [
+        "https://specifications.freedesktop.org/sound-theme/latest-single"
+      ],
+      "files": [
+        "sound-theme/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "sound-naming",
+      "targets": [
+        "https://specifications.freedesktop.org/sound-naming/latest"
+      ],
+      "files": [
+        "sound-naming/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "startup-notification",
+      "targets": [
+        "https://specifications.freedesktop.org/startup-notification/latest-single"
+      ],
+      "files": [
+        "startup-notification/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mpris",
+      "targets": [
+        "https://specifications.freedesktop.org/mpris/latest"
+      ],
+      "files": [
+        "mpris/Media_Player.md",
+        "mpris/Player_Interface.md",
+        "mpris/Playlists_Interface.md",
+        "mpris/Track_List_Interface.md",
+        "mpris/fullindex.md",
+        "mpris/index.md",
+        "mpris/interfaces.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "systemtray",
+      "targets": [
+        "https://specifications.freedesktop.org/systemtray/latest-single"
+      ],
+      "files": [
+        "systemtray/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "status-notifier-item",
+      "targets": [
+        "https://specifications.freedesktop.org/status-notifier-item/latest-single"
+      ],
+      "files": [
+        "status-notifier-item/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "terminal-intent",
+      "targets": [
+        "https://specifications.freedesktop.org/terminal-intent/latest"
+      ],
+      "files": [
+        "terminal-intent/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "dbus",
+      "targets": [
+        "https://dbus.freedesktop.org/doc/dbus-specification.html",
+        "https://specifications.freedesktop.org/dbus/1.0/introspect.dtd",
+        "https://specifications.freedesktop.org/dbus/1.0/busconfig.dtd"
+      ],
+      "files": [
+        "dbus/busconfig.dtd",
+        "dbus/dbus-specification.md",
+        "dbus/introspect.dtd"
+      ],
+      "errors": []
+    },
+    {
+      "name": "thumbnail",
+      "targets": [
+        "https://specifications.freedesktop.org/thumbnail/latest-single"
+      ],
+      "files": [
+        "thumbnail/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "xsettings",
+      "targets": [
+        "https://specifications.freedesktop.org/xsettings/latest"
+      ],
+      "files": [
+        "xsettings/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "xembed",
+      "targets": [
+        "https://specifications.freedesktop.org/xembed/latest-single"
+      ],
+      "files": [
+        "xembed/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "wm",
+      "targets": [
+        "https://specifications.freedesktop.org/wm/latest-single"
+      ],
+      "files": [
+        "wm/index.md"
+      ],
+      "errors": []
+    },
+    {
+      "name": "trash",
+      "targets": [
+        "https://specifications.freedesktop.org/trash/latest"
+      ],
+      "files": [
+        "trash/index.md"
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Android TextView: multiline width",
+  "component": "android-textview",
+  "purpose": "Check that a wrap-content TextView measures its longest line when its XML text uses a Unicode next-line separator.",
+  "changes": "Wrap-content measurement now recognizes all of the mandatory line separators already handled by the wrapping code. The example compares a two-line view with a single-line view containing the same longest line.",
+  "steps": [
+    "At the top, compare the green two-line box containing WWW and i with the peach box containing WWW.",
+    "The boxes should have the same width because WWW is the longest line in both. The i should appear on a second line in the green box.",
+    "Choose OK if it looks correct, or Reject with details and your device."
+  ],
+  "expected": "Both boxes have the same width, and the first box displays two lines.",
+  "limits": "The example uses the Unicode next-line separator. Android device handling of these separators, font metrics and complete text shaping remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "TextView content measurement."
+    },
+    {
+      "url": "https://crates.io/crates/unicode-linebreak/0.1.5",
+      "local": "docs/TDD/libbhoo/reference-licenses/unicode-linebreak/LICENSE-Apache-2.0.txt",
+      "license": "Apache-2.0",
+      "scope": "Unicode line-break opportunities used by Bhoo."
+    }
+  ],
+  "validation": [
+    "197 Android XML tests and 156 importer tests passed. A Rust test checks width and rendered lines for CRLF and all supported Unicode mandatory separators.",
+    "A 320 \u00d7 650 browser test checked both rendered lines and equal background widths."
+  ],
+  "demo_height": 650
+}

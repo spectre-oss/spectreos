@@ -1,0 +1,28 @@
+{
+  "title": "Android RadioGroup: nested initial choice",
+  "component": "android-radio-group",
+  "purpose": "Check an Android XML checkedButton reference to a RadioButton nested inside a container, and the framework's direct-child selection tracking.",
+  "changes": "The importer accepts a uniquely identified nested RadioButton as checkedButton. The initial nested choice is checked, and choosing a direct child clears it.",
+  "steps": [
+    "At the top under Nested initial choice, confirm Nested choice starts checked and Direct choice starts unchecked.",
+    "Tap Direct choice. It should become checked and Nested choice should clear.",
+    "Tap Nested choice again. Both may now be checked: Android RadioGroup automatically tracks direct RadioButton children, while this nested button is independent after the initial reference.",
+    "Use Reset nested choices to repeat; try right-to-left layout as well. Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "The nested initial reference is selected, a direct choice clears it, and later nested interaction remains independent, matching the documented framework behavior.",
+  "limits": "This covers XML initialization and direct-child interaction. Programmatic group selection, nested group edge cases and Android device appearance remain unverified or incomplete.",
+  "documentation": "docs/TDD/libbhoo/components/android-radio-group.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/RadioGroup.java",
+      "local": "context/reference-sources/android-framework/RadioGroup.java",
+      "license": "Apache-2.0",
+      "scope": "Initial descendant lookup and direct-child listener registration."
+    }
+  ],
+  "validation": [
+    "Two nested RadioGroup runtime tests, 197 Android XML tests and 158 importer tests passed.",
+    "A 320 \u00d7 650 browser test checked initialization, direct and nested interaction, reset and RTL."
+  ],
+  "demo_height": 650
+}

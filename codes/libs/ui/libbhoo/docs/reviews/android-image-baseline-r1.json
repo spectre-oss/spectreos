@@ -1,0 +1,13 @@
+{
+ "title":"Android ImageView: baseline alignment",
+ "component":"android-imageview",
+ "purpose":"Check ImageView XML baseline alignment beside text in horizontal layouts.",
+ "changes":"ImageView and image buttons now expose explicit baseline and baselineAlignBottom values to baseline-aware layouts.",
+ "steps":["Find Image baseline alignment below the RTL switch. In the first row the text baseline should line up with the middle of the image.","In the second row the text baseline should line up with the bottom of the image. Compare the two text positions.","Turn on Right-to-left baseline rows. The image and text swap sides while keeping the same vertical alignment.","Choose OK if both rows align as described, or Reject with the problem and your device."],
+ "expected":"An explicit 20 dp image baseline aligns text to the image middle; baselineAlignBottom aligns it to the image bottom, in LTR and RTL.",
+ "limits":"The example exercises horizontal LinearLayout. Exact Android font metrics, additional measurement combinations and Android device visual parity remain unverified.",
+ "documentation":"docs/TDD/libbhoo/components/android-imageview.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ImageView.java","local":"context/reference-sources/android-framework/ImageView.java","license":"Apache-2.0","scope":"ImageView baseline and baselineAlignBottom."}],
+ "validation":["153 Android XML importer tests passed, including baseline values and invalid inputs.","Rust layout test checks explicit and bottom image baselines against text in LTR and RTL."],
+ "demo_height":1400
+}

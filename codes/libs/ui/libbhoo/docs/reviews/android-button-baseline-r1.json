@@ -1,0 +1,33 @@
+{
+  "title": "Android multi-line Button baseline alignment",
+  "component": "android-linear-layout",
+  "purpose": "Check that a multi-line Button aligns its first text line with an adjacent TextView in a horizontal LinearLayout.",
+  "changes": "The Button now reports the baseline of its first rendered line, including the space used by its top drawable.",
+  "steps": [
+    "Find the example under Multiline button baseline. The green bar sits above the multi-line Button label; Baseline appears beside it.",
+    "Check that Baseline aligns with the first line of the Button text rather than the center of the entire multi-line label.",
+    "Turn on Right-to-left layout and check the two controls reverse position while the first text line remains aligned. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The Button's first text line and the adjacent text share a baseline in both directions.",
+  "limits": "This uses Bhoo text metrics and supported line layout. Exact Android font metrics, theme and device visual parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-linear-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "TextView baseline inherited by Button."
+    },
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/LinearLayout.java",
+      "local": "context/reference-sources/android-framework/LinearLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Horizontal child baseline alignment."
+    }
+  ],
+  "validation": [
+    "Rust regression checks first rendered line alignment against a same-size TextView in LTR and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified example visibility and RTL interaction."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Avatar group: overflow and layout",
+  "component": "avatar-group",
+  "purpose": "Check the number of visible avatars and the surplus count, together with image, initials, person fallback, overlap, square shapes and right-to-left layout.",
+  "changes": "Added a reusable avatar group with MUI-style maximum and total counting. The maximum includes the surplus badge. Groups support caller-owned images, initials and fallback icons, adjustable overlap, shared shapes and logical right-to-left placement.",
+  "steps": [
+    "Initially the group represents six contributors. Check that four avatars are shown followed by a +2 badge; the displayed summary should say 4 shown and 2 more.",
+    "Turn on Maximum 3 slots. Check that two avatars and a +4 badge remain. The badge counts as the third slot.",
+    "Turn on Total 10 contributors. With the three-slot maximum still enabled, the badge should change to +8 and the summary to 2 shown and 8 more.",
+    "Turn on Tighter overlap and check that the avatars move closer together without hiding their content. Turn on Square avatars and check that their corners become square.",
+    "Turn on Right-to-left layout. The group should move to the right, with the first image on the right and the surplus badge toward the left.",
+    "Turn off Maximum 3 slots to see the person fallback and more initials alongside the image. Choose OK if the test behaves as described; otherwise choose Reject and explain which step failed, what you saw and your device."
+  ],
+  "expected": "The surplus badge is included in the maximum, counts reflect the total, content remains recognizable when overlapped, and RTL reverses the group layout. Shape and spacing changes do not change the contributor count.",
+  "limits": "This tests one shared avatar size and the built-in surplus label. Custom surplus renderers, different sizes for individual avatars, network image loading, and exact MUI or Android pixel parity remain open. The image is generated locally for this example.",
+  "documentation": "docs/TDD/libbhoo/components/avatar-group.md",
+  "references": [
+    {
+      "url": "https://github.com/mui/material-ui/blob/0c82795c732a0ae809fd51f9537ee70747ef20a1/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
+      "local": "context/material-ui/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
+      "license": "MIT",
+      "scope": "Maximum, total, surplus, border and overlap behavior."
+    },
+    {
+      "url": "https://github.com/google/material-design-icons/blob/10ecc14790612ca8fd164e3f4ffe9c16fc50d5b7/symbols/web/person/materialsymbolsoutlined/person_24px.svg",
+      "local": "codes/libs/ui/libbhoo/assets/material-symbols/person_24px.svg",
+      "license": "Apache-2.0",
+      "scope": "Person fallback icon."
+    }
+  ],
+  "validation": [
+    "Five Rust avatar tests passed, including MUI max/total cases, mixed image and fallback content, RTL, shape and overlap, and bounded drawing for 100,000 inputs.",
+    "Browser test-bhoo-avatar-group-options.mjs passed maximum, total, square clipping and RTL placement at 390px width."
+  ]
+}

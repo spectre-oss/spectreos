@@ -1,0 +1,13 @@
+{
+ "title":"Android CheckedTextView: custom mark tint modes",
+ "component":"android-checked-textview",
+ "purpose":"Compare Android XML checkMarkTintMode values on the same custom check-mark shape.",
+ "changes":"Added six explicit tint modes for supported custom CheckedTextView mark shapes.",
+ "steps":["Find Custom check-mark tint modes below the RTL switch. Each row names a tint mode and shows the same amber shape tinted with translucent blue.","Compare the shapes: src_in is translucent blue, src_atop mixes blue and amber, and multiply appears dark. The other modes also have their own colors.","Tap the rows and turn on Right-to-left layout. The shapes move to the left and retain their colors.","Choose OK if the page looks and behaves correctly, or Reject with the failing row and your device."],
+ "expected":"Each tint mode composes the same mark and tint independently; row interaction and RTL mark placement continue to work.",
+ "limits":"Explicit modes apply only to supported custom solid shapes. Built-in check-mark tint modes, other drawable types, edge compositing and Android device pixel parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/android-checked-textview.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CheckedTextView.java","local":"context/reference-sources/android-framework/CheckedTextView.java","license":"Apache-2.0","scope":"Check-mark drawable tint mode and state."}],
+ "validation":["150 Android XML importer tests passed, including all six modes and invalid inputs.","Three focused CheckedTextView custom mark rendering tests passed, including src_atop composition."],
+ "demo_height":1800
+}

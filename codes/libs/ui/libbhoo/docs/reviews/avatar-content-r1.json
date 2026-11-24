@@ -1,0 +1,34 @@
+{
+  "title": "Avatar: image, initials and fallback",
+  "component": "avatar",
+  "purpose": "Check that avatars display a cropped image, centered initials or a person fallback consistently, and that changing shape or simulating an image error does not shift their layout.",
+  "changes": "Added a reusable avatar renderer for circle, rounded-square and square shapes. It supports caller-provided images with centered cover cropping, centered initials and a Google Material Symbols person fallback. The example simulates switching from a failed image to initials.",
+  "steps": [
+    "Look at the three avatars: the first contains a small landscape image, the second contains BH, and the third contains a person icon. Each should be centered inside its shape.",
+    "Turn on Rounded shape, then Square shape. All three avatars should use the selected outline without the image, letters or icon spilling outside it. Turn off Square shape to return to circles.",
+    "Turn on Simulate image error. The first avatar should show SP instead of the image while retaining the same size and position. Turn the switch off to restore the image.",
+    "Choose OK if the avatars behave as described. Otherwise choose Reject and explain what looks wrong, which shape or content is affected, and your device."
+  ],
+  "expected": "Image content is cropped inside the selected shape; initials and the person icon are centered; an image error replaces the image with initials without moving nearby avatars.",
+  "limits": "The example uses an original offline-generated image and a simulated host error. Loading and decoding external images are the host application's responsibility. Image crossfade, full theme customization and exact MUI or Android pixel parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/avatar.md",
+  "references": [
+    {
+      "url": "https://github.com/mui/material-ui/blob/0c82795c732a0ae809fd51f9537ee70747ef20a1/packages/mui-material/src/Avatar/Avatar.js",
+      "local": "context/material-ui/packages/mui-material/src/Avatar/Avatar.js",
+      "license": "MIT",
+      "scope": "Avatar shapes, cover-cropped images and fallback behavior; Bhoo uses its own themed colors and outlined icon."
+    },
+    {
+      "url": "https://github.com/google/material-design-icons/blob/10ecc14790612ca8fd164e3f4ffe9c16fc50d5b7/symbols/web/person/materialsymbolsoutlined/person_24px.svg",
+      "local": "codes/libs/ui/libbhoo/assets/material-symbols/person_24px.svg",
+      "license": "Apache-2.0",
+      "scope": "Bundled person fallback icon."
+    }
+  ],
+  "validation": [
+    "Two Rust avatar tests passed for centered initials, the person symbol, image cover crop, fixed bounds and each shape.",
+    "The Rust Material Symbols test passed for all bundled icons, including the new person symbol.",
+    "Browser test-bhoo-avatar-content.mjs passed image rendering, circular and square clipping, mutually exclusive shapes and simulated error fallback at 390px width."
+  ]
+}

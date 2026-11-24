@@ -1,0 +1,8 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Custom thumb: hold and drag" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="custom_thumb_seek" android:mirrorForRtl="true" android:progress="50" android:thumb="@drawable/seekbar_thumb_selector" android:splitTrack="true" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:text="Transparent custom thumb: 30 dp gap" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="transparent_thumb_seek" android:progress="50" android:thumb="@drawable/seekbar_thumb_transparent" android:progressTint="#1769aa" android:progressBackgroundTint="#e39b16" android:splitTrack="true" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:text="Disabled custom thumb" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="disabled_thumb_seek" android:progress="50" android:thumb="@drawable/seekbar_thumb_selector" android:enabled="false" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

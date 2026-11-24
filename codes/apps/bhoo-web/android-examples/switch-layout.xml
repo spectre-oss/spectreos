@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Switch android:id="wide_switch" android:text="Wide track" android:switchMinWidth="120dp" android:switchPadding="20dp" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Switch android:id="padded_switch" android:text="State text" android:textOn="YES" android:textOff="NO" android:showText="true" android:thumbTextPadding="16dp" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Switch android:id="wrap_switch" android:text="Wrap" android:layout_width="wrap_content" android:layout_height="52dp" android:switchMinWidth="96dp" android:switchPadding="12dp"/>
+</LinearLayout>

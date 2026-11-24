@@ -1,0 +1,33 @@
+{
+  "title": "Android TableLayout wrap-content columns",
+  "component": "android-table-layout",
+  "purpose": "Check that changing a wrap-content cell label resizes the shared column in both table rows.",
+  "changes": "TableLayout now uses each supported child's current measured width for shared-column sizing and gravity placement.",
+  "steps": [
+    "Find the two rows under Wrap-content shared columns: Short and One occupy the first column, Next and Two the second. The second-column cells should line up.",
+    "Tap Change table label. Short becomes Longer label and the first column widens; Next and Two should both move and remain aligned. Tap again to restore Short.",
+    "Enable Right-to-left layout and repeat. Column order should mirror and both rows remain aligned. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The shared column follows the longer label without overlapping, and both rows stay aligned in LTR and RTL.",
+  "limits": "This covers Bhoo's supported TableLayout measurement. Complete Android text, theme and table parity are not verified.",
+  "documentation": "docs/TDD/libbhoo/components/android-table-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TableLayout.java",
+      "local": "context/reference-sources/android-framework/TableLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Shared column measurement."
+    },
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TableRow.java",
+      "local": "context/reference-sources/android-framework/TableRow.java",
+      "license": "Apache-2.0",
+      "scope": "Table row child measurement."
+    }
+  ],
+  "validation": [
+    "Six Rust TableLayout tests passed, including dynamic shared-column width, row alignment and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified changing width, both-row alignment and RTL placement."
+  ]
+}

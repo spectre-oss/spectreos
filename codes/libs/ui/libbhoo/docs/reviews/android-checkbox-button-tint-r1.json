@@ -1,0 +1,17 @@
+{
+  "title": "Android XML CheckBox: button tint states",
+  "component": "android-checkbox",
+  "purpose": "Check that Android XML buttonTint selectors change the checkbox indicator color for checked, unchecked, pressed and disabled states without changing its interaction.",
+  "changes": "Added literal and supported color-state-selector buttonTint to XML CheckBox. The example includes checked, unchecked and disabled rows with distinct tint colors.",
+  "steps": [
+    "Scroll down to Android XML buttonTint. The checked box is blue, the unchecked box has an amber outline, and the disabled checked box is gray.",
+    "Touch and hold either enabled checkbox: its indicator turns red. Release to toggle it; an unchecked indicator should become blue when checked, and a checked indicator should become amber when unchecked.",
+    "Try to toggle the disabled checkbox; it should stay checked and gray.",
+    "Turn on Right-to-left layout at the top. The indicators should move to the right and continue to respond to touch. Choose OK if the steps work, or Reject and explain which step failed, what you saw and your device."
+  ],
+  "expected": "The indicator follows the selector's checked, unchecked, pressed and disabled colors. Toggling and right-to-left placement continue to work.",
+  "limits": "Tint colors Bhoo's existing checkbox fill and outline; its check stroke uses a contrasting theme color. Custom Android button drawables, tint blend modes, inherited tints on other compound buttons and exact Android pixel or motion parity are not covered.",
+  "documentation": "docs/TDD/libbhoo/components/android-checkbox.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java","local":"context/reference-sources/android-framework/CompoundButton.java","license":"Apache-2.0","scope":"buttonTint and drawable state on Android compound buttons."}],
+  "validation": ["140 Android XML importer tests passed, including checked and disabled color-selector cases.","Rust checkbox rendering test passed for checked, unchecked, pressed and disabled tint colors and pointer activation."]
+}

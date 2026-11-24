@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="64dp">
+ <ZoomButton android:id="zoom_in" android:src="@drawable/add" android:background="#DDEEE2" android:layout_width="64dp" android:layout_height="56dp"/>
+ <ZoomButton android:id="disabled" android:src="@drawable/add" android:enabled="false" android:layout_marginLeft="16dp" android:background="#DDEEE2" android:layout_width="64dp" android:layout_height="56dp"/>
+</LinearLayout>

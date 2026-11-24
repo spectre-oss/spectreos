@@ -1,0 +1,10 @@
+{
+  "vendor/libarcsoft_high_dynamic_range.so": "3e2a5db30a41b17e28d79ace12b60c5df0f7bc4c6b8688a403f624d18c65df0a",
+  "vendor/libmpbase.so": "c26598123922c12b576f8767579e939e47a71951e871047c153ebd7e3cb1b45a",
+  "bionic-camera/linker": "88ddb6050ec22348f5adf9bead9b8e0876e6c56bc0f634b1f278c1e2b8183da8",
+  "bionic-camera/libc.so": "b17c67ce286d519b3ec817a9ebd9fa23f4a76fd79e7efc45ebf12893b52bc8a0",
+  "bionic-camera/libm.so": "7aa72a5ea401c94643627494af34e57c2fbb0d2565154824d4733a2233d798ae",
+  "bionic-camera/libdl.so": "7970f68675332061c8a41fdc5759903be5fd6292d3d7b74e1a856f673bca0819",
+  "bionic-camera/liblog.so": "44467be87956f1c3dab6644662ef02a4e06b3481b46630952bffc635712f4268",
+  "bionic-camera/libc++.so": "7d95d2e1921592609edfeca1fdf57e9bf5a0e2329bcc0ddc429c57efde2d119c"
+}

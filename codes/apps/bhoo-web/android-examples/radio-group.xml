@@ -1,0 +1,5 @@
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:checkedButton="@id/express" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <RadioButton android:id="standard" android:text="Standard" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <RadioButton android:id="express" android:text="Express" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <RadioButton android:id="unavailable" android:text="Unavailable" android:enabled="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+</RadioGroup>

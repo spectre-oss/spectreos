@@ -1,0 +1,16 @@
+# SpectreOS Files app Cargo commands (`cargo test-web`, `cargo dev`, `cargo release`, `cargo app-clean`, …).
+
+[alias]
+dev = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app files"
+release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app files"
+app-build = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app files"
+app-release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app files"
+app-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- check --app files"
+app-test = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test --app files"
+app-run = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- run --app files"
+app-clean = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app files"
+clean-all = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app files"
+test-web = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web --app files"
+test-web-watch = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-watch --app files"
+test-web-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-check --app files"
+app-help = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- help"

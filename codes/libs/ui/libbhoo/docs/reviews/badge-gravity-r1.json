@@ -1,0 +1,27 @@
+{
+  "title": "Material badge anchor corners",
+  "component": "badge",
+  "purpose": "Check all four logical badge corners and how start and end mirror in RTL.",
+  "changes": "Added top-start, top-end, bottom-start and bottom-end badge placement while retaining the existing default.",
+  "steps": [
+    "Under Badge anchor corner, the label starts at Top end and the 3 badge should sit at the top right of the inbox icon.",
+    "Tap Change badge corner repeatedly. Check Bottom end, Bottom start and Top start place the badge at the corresponding corners; the icon should remain still.",
+    "Turn on Right-to-left layout and repeat. Start and end should swap left/right while top and bottom remain unchanged. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "All four logical corners work and mirror horizontally in RTL without moving the icon.",
+  "limits": "This uses Bhoo's current badge offsets and dimensions. Android custom insets, exact theme tokens and device visual parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/badge.md",
+  "references": [
+    {
+      "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "local": "context/reference-repos/material-android/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "license": "Apache-2.0",
+      "scope": "Top/bottom and start/end badge gravity."
+    }
+  ],
+  "validation": [
+    "Rust checks verify all four positions in LTR and RTL and unchanged owner bounds.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified corner selection and RTL interaction."
+  ]
+}

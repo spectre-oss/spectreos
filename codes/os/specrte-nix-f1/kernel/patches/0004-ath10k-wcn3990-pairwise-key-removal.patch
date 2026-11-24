@@ -1,0 +1,45 @@
+Subject: [PATCH] wifi: ath10k: avoid unacknowledged WCN3990 pairwise-key removal wait
+
+Adapted from David Heidelberg's RFC:
+https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2657311.html
+
+Restrict the quirk to WCN3990, the hardware in this port. Keep command-send
+errors, key-install acknowledgement waits and group-key removal unchanged.
+This addresses the three-second teardown timeout, not AP-initiated disconnects.
+
+--- a/drivers/net/wireless/ath/ath10k/core.c
++++ b/drivers/net/wireless/ath/ath10k/core.c
+@@ -746,6 +746,7 @@
+ 		.use_fw_tx_credits = false,
+ 		.delay_unmap_buffer = true,
+ 		.mcast_frame_registration = false,
++		.no_pairwise_key_del_ind = true,
+ 	},
+ };
+ 
+--- a/drivers/net/wireless/ath/ath10k/hw.h
++++ b/drivers/net/wireless/ath/ath10k/hw.h
+@@ -638,6 +638,9 @@
+ 
+ 	/* The hardware support multicast frame registrations */
+ 	bool mcast_frame_registration;
++
++	/* Firmware does not acknowledge pairwise WMI_CIPHER_NONE removal. */
++	bool no_pairwise_key_del_ind;
+ };
+ 
+ struct htt_resp;
+--- a/drivers/net/wireless/ath/ath10k/mac.c
++++ b/drivers/net/wireless/ath/ath10k/mac.c
+@@ -323,6 +323,11 @@
+ 	ret = ath10k_send_key(arvif, key, cmd, macaddr, flags);
+ 	if (ret)
+ 		return ret;
++
++	/* Group-key removal installs a replacement key and is acknowledged. */
++	if (cmd == DISABLE_KEY && !(flags & WMI_KEY_GROUP) &&
++	    ar->hw_params.no_pairwise_key_del_ind)
++		return 0;
+ 
+ 	time_left = wait_for_completion_timeout(&ar->install_key_done, 3 * HZ);
+ 	if (time_left == 0)

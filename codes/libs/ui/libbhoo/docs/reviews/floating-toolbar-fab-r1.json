@@ -1,0 +1,12 @@
+{
+ "title":"Floating toolbar: paired FAB",
+ "component":"floating-toolbar",
+ "purpose":"Check a floating toolbar paired with an independently clickable floating action button, including logical placement in RTL.",
+ "changes":"Added a paired 56 dp FAB with an 8 dp gap and start/end placement for horizontal and vertical floating toolbars.",
+ "steps":["Find Floating toolbar with FAB near the top. A separate square-rounded plus button should sit beside the toolbar with a small gap.","Tap the plus button; the status should say Create selected. Tap a toolbar action and check that its name is reported.","Turn on FAB at start; the plus button moves to the other end of the toolbar. Turn on RTL and check that logical start/end positions reverse.","Choose OK if placement and clicks work, or Reject with what happened and your device."],
+ "expected":"The FAB and toolbar actions work independently, keep an 8 dp gap and follow start/end and RTL placement.",
+ "limits":"This page exercises horizontal placement with the regular 56 dp FAB. Vertical geometry has automated tests; other FAB sizes, compact collapse, exact colors, elevation and Android device visual parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/floating-toolbar.md",
+ "references":[{"url":"https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","local":"context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","license":"Apache-2.0","scope":"FAB placement and toolbar-to-FAB gap."}],
+ "validation":["Rust tests check horizontal start/end and RTL, vertical top/bottom and FAB activation; a 320 by 440 browser test checks FAB and toolbar clicks, start/end and RTL placement."]
+}

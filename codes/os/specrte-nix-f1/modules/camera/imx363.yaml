@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: CC0-1.0
+%YAML 1.1
+---
+version: 1
+algorithms:
+  - BlackLevel:
+      # Covered-lens means 63.89..64.13 in RAW10, measured at unity digital gain.
+      blackLevel: 4096
+  - Awb:
+  - Ccm:
+      # Sunny vendor ID 1, stock CC13 IPE root 43 / CCT symbol 572.
+      # See imx363-sunny-profile.json for binary hash, offsets and scope.
+      # One constant baseline; Qualcomm's exposure/mode selection is not ported.
+      ccms:
+        - ct: 5000
+          ccm: [ 1.68869996, -0.772400022, 0.0837000012,
+                -0.194100007, 1.39740002, -0.203299999,
+                 0.0445000008, -0.752600014, 1.70809996 ]
+  - Adjust:
+  - Agc:
+      # Reserve headroom for the brightest 5% of this sensor's linear image.
+      # These keys are implemented by the project highlight-guard patch.
+      highlightQuantile: 0.95
+      highlightTarget: 0.80
+...

@@ -1,0 +1,62 @@
+Subject: [PATCH] simple: opt-in histogram highlight guard for sensor tuning
+
+Keep default AGC behavior without tuning keys. On IMX363, prevent broad
+highlight clipping while ignoring small light sources. Existing bounded
+exposure/gain changes and hysteresis are retained.
+
+--- a/src/ipa/simple/algorithms/agc.h
++++ b/src/ipa/simple/algorithms/agc.h
+@@ -17,6 +17,7 @@
+ {
+ public:
+ 	Agc();
++	int init(IPAContext &context, const YamlObject &tuningData) override;
+ 	~Agc() = default;
+ 
+ 	void process(IPAContext &context, const uint32_t frame,
+@@ -25,6 +26,8 @@
+ 		     ControlList &metadata) override;
+ 
+ private:
++	double highlightQuantile_ = 0.0;
++	double highlightTarget_ = 0.8;
+ 	void updateExposure(IPAContext &context, IPAFrameContext &frameContext, double exposureMSV);
+ };
+ 
+--- a/src/ipa/simple/algorithms/agc.cpp
++++ b/src/ipa/simple/algorithms/agc.cpp
+@@ -6,6 +6,7 @@
+  */
+ 
+ #include "agc.h"
++#include "highlight-guard.h"
+ 
+ #include <stdint.h>
+ 
+@@ -39,6 +40,17 @@
+ 
+ Agc::Agc()
+ {
++}
++
++int Agc::init([[maybe_unused]] IPAContext &context, const YamlObject &tuningData)
++{
++	highlightQuantile_ = tuningData["highlightQuantile"].get<double>().value_or(0.0);
++	highlightTarget_ = tuningData["highlightTarget"].get<double>().value_or(0.8);
++	if (!std::isfinite(highlightQuantile_) || !std::isfinite(highlightTarget_) ||
++	    highlightQuantile_ < 0.0 || highlightQuantile_ > 1.0 ||
++	    highlightTarget_ <= 0.0 || highlightTarget_ >= 1.0)
++		return -EINVAL;
++	return 0;
+ }
+ 
+ void Agc::updateExposure(IPAContext &context, IPAFrameContext &frameContext, double exposureMSV)
+@@ -164,6 +176,8 @@
+ 	}
+ 
+ 	float exposureMSV = (denom == 0 ? 0 : static_cast<float>(num) / denom);
++	exposureMSV = highlightGuard(histogram, context.activeState.blc.level,
++				     highlightQuantile_, highlightTarget_, exposureMSV);
+ 	updateExposure(context, frameContext, exposureMSV);
+ }
+ 

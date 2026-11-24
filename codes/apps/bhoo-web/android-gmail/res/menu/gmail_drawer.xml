@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/drawer_primary"
+        android:icon="@drawable/ic_inbox"
+        android:title="@string/drawer_primary" />
+    <item
+        android:id="@+id/drawer_promotions"
+        android:icon="@drawable/ic_sell"
+        android:title="@string/drawer_promotions" />
+    <item
+        android:id="@+id/drawer_starred"
+        android:icon="@drawable/ic_star"
+        android:title="@string/drawer_starred" />
+    <item
+        android:id="@+id/drawer_sent"
+        android:icon="@drawable/ic_send"
+        android:title="@string/drawer_sent" />
+    <item
+        android:id="@+id/drawer_drafts"
+        android:icon="@drawable/ic_description"
+        android:title="@string/drawer_drafts" />
+    <item
+        android:id="@+id/drawer_trash"
+        android:icon="@drawable/ic_delete"
+        android:title="@string/drawer_trash" />
+    <item
+        android:id="@+id/drawer_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/drawer_settings" />
+</menu>

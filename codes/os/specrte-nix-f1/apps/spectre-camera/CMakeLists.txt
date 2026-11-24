@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.21)
+project(spectre-camera VERSION 0.4.3 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBCAMERA REQUIRED IMPORTED_TARGET libcamera)
+# Nix normalizes source timestamps. A fixed qrc URL can therefore reuse an old
+# compiled QML screen across upgrades. Address this screen by its content hash.
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/Main.qml" CAMERA_QML_HASH)
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS Main.qml)
+configure_file(resources.qrc.in "${CMAKE_CURRENT_BINARY_DIR}/resources.qrc" @ONLY)
+add_executable(spectre-camera main.cpp camera.cpp denoise.cpp "${CMAKE_CURRENT_BINARY_DIR}/resources.qrc")
+target_compile_definitions(spectre-camera PRIVATE
+    SPECTRE_QML_URL="qrc:/spectre-camera/${CAMERA_QML_HASH}/Main.qml")
+if(QT_HOST_PATH)
+  set_target_properties(spectre-camera PROPERTIES
+    AUTOMOC_EXECUTABLE "${QT_HOST_PATH}/libexec/moc"
+    AUTORCC_EXECUTABLE "${QT_HOST_PATH}/libexec/rcc")
+endif()
+target_link_libraries(spectre-camera PRIVATE Qt6::Quick Qt6::QuickControls2 PkgConfig::LIBCAMERA)
+target_compile_options(spectre-camera PRIVATE -Wall -Wextra)
+add_executable(spectre-sensor-controls sensor-controls.cpp)
+add_executable(spectre-capture-probe capture-probe.cpp)
+target_link_libraries(spectre-capture-probe PRIVATE Qt6::Core PkgConfig::LIBCAMERA)
+target_compile_options(spectre-capture-probe PRIVATE -Wall -Wextra)
+install(TARGETS spectre-camera spectre-sensor-controls spectre-capture-probe DESTINATION bin)
+install(FILES org.spectre.Camera.desktop DESTINATION share/applications)
+install(FILES camera.svg DESTINATION share/icons/hicolor/scalable/apps RENAME org.spectre.Camera.svg)

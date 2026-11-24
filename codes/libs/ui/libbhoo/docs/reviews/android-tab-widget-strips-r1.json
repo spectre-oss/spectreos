@@ -1,0 +1,27 @@
+{
+  "title": "Android TabWidget: custom strips",
+  "component": "android-tab-widget",
+  "purpose": "Check that Android XML left and right strip drawables sit on either side of the selected tab.",
+  "changes": "Added support for solid rectangular tabStripLeft and tabStripRight drawables, including @null and tabStripEnabled. The example uses a red left strip and blue right strip.",
+  "steps": [
+    "Tap Second. A red strip should appear below First, and a blue strip should appear below Third, leaving the selected Second tab between them.",
+    "Tap First and Third in turn. The strips should move with the selected tab; a strip can be outside the widget when selection is at an edge.",
+    "Turn on Right-to-left layout and repeat. The order of the tabs reverses, and the strips still surround the selected tab.",
+    "Choose OK if it behaves as described, or Reject with details and your device."
+  ],
+  "expected": "The red left and blue right strips extend from the selected tab toward their respective edges, and update when the tab or layout direction changes.",
+  "limits": "This test uses solid rectangular drawables. Android theme drawables, drawable selectors, bitmaps and device pixel parity remain unsupported or unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-tab-widget.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TabWidget.java",
+      "local": "context/reference-sources/android-framework/TabWidget.java",
+      "license": "Apache-2.0",
+      "scope": "Left and right strip bounds and drawing order."
+    }
+  ],
+  "validation": [
+    "155 XML importer tests and six TabWidget Rust tests passed, including null, disabled and RTL cases.",
+    "A 320 \u00d7 440 browser pixel test checked strip colors and RTL tab order."
+  ]
+}

@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="XML tints: drag the colored slider" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="tinted_volume" android:mirrorForRtl="true" android:progress="35" android:secondaryProgress="75" android:progressTint="@color/seekbar_example_tint" android:progressBackgroundTint="#b7c8d8" android:secondaryProgressTint="#e39b16" android:thumbTint="#8b3fc2" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:text="Disabled: selector changes progress color" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="tinted_locked" android:enabled="false" android:progress="35" android:secondaryProgress="75" android:progressTint="@color/seekbar_example_tint" android:progressBackgroundTint="#b7c8d8" android:secondaryProgressTint="#e39b16" android:thumbTint="#8b3fc2" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

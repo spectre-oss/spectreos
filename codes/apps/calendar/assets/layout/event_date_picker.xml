@@ -1,0 +1,7 @@
+<DatePicker xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/event_date"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:datePickerMode="calendar"
+    android:minDate="01/01/0001"
+    android:maxDate="12/31/9998" />

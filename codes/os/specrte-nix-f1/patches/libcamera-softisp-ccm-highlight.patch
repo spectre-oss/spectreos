@@ -1,0 +1,35 @@
+Subject: [PATCH] software_isp: bound white-balanced inputs before colour mixing
+
+The Sunny IMX363 matrix contains negative cross-channel coefficients. Feeding
+over-range white-balanced inputs into it can subtract an unbounded red/blue
+contribution from green, turning saturated neutral highlights magenta. Bound
+each white-balanced channel to the working range before the CCM. Divide by
+the gain because combinedMatrix already includes that gain. Unsaturated
+inputs are unchanged; all work stays in LUT construction, not the pixel loop.
+
+This is a project highlight policy, not a claim to reproduce Qualcomm's ISP.
+Apply after libcamera-softisp-black-level.patch.
+
+--- a/src/libcamera/software_isp/debayer_cpu.cpp
++++ b/src/libcamera/software_isp/debayer_cpu.cpp
+@@ -788,6 +788,7 @@
+ 	const RGB<float> blackIndex = params.blackLevel * kRGBLookupSize;
+ 	if (ccmEnabled_) {
+ 		if (gammaUpdateNeeded ||
++		    params.gains != params_.gains ||
+ 		    matrixChanged(params.combinedMatrix, params_.combinedMatrix)) {
+ 			auto &red = swapRedBlueGains_ ? blueCcm_ : redCcm_;
+ 			auto &green = greenCcm_;
+@@ -796,8 +797,11 @@
+ 			const unsigned int blueIndex = swapRedBlueGains_ ? 0 : 2;
+ 			const RGB<float> div =
+ 				(RGB<float>(kRGBLookupSize) - blackIndex).max(1.0) / kRGBLookupSize;
++			const RGB<float> gains = params.gains.max(0.000001f);
+ 			for (unsigned int i = 0; i < kRGBLookupSize; i++) {
+-				const RGB<float> rgb = ((RGB<float>(i) - blackIndex) / div).max(0.0);
++				const RGB<float> rgb =
++					(((RGB<float>(i) - blackIndex) / div).max(0.0) * gains)
++						.min(kRGBLookupSize - 1) / gains;
+ 				red[i].r = std::round(rgb.r() * params.combinedMatrix[redIndex][0]);
+ 				red[i].g = std::round(rgb.r() * params.combinedMatrix[greenIndex][0]);
+ 				red[i].b = std::round(rgb.r() * params.combinedMatrix[blueIndex][0]);

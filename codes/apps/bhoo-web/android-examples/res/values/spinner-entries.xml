@@ -1,0 +1,17 @@
+<resources>
+    <string-array name="workspaces">
+        <item>Personal</item>
+        <item>Projects</item>
+        <item>Shared</item>
+        <item>Archive</item>
+        <item>Research</item>
+        <item>Design</item>
+        <item>Development</item>
+        <item>Operations</item>
+        <item>Planning</item>
+        <item>Events</item>
+        <item>Photos</item>
+        <item>Notes</item>
+        <item>Long-term research and infrastructure workspace for distributed project teams coordinating shared documentation, planning, experiments and operations across many locations</item>
+    </string-array>
+</resources>

@@ -1,0 +1,10 @@
+--- a/drivers/firmware/qcom/qcom_scm.c
++++ b/drivers/firmware/qcom/qcom_scm.c
+@@ -2475,6 +2475,7 @@ int qcom_scm_qseecom_app_get_id(const char *app_name, u32 *app_id)
+ 	if (!name_buf)
+ 		return -ENOMEM;
+ 
++	memset(name_buf, 0, name_buf_size);
+ 	memcpy(name_buf, app_name, app_name_len);
+ 
+ 	desc.owner = QSEECOM_TZ_OWNER_QSEE_OS;

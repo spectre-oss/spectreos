@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckBox android:id="notifications" android:text="Notifications" android:textColor="@color/choice_text" android:checked="true" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="updates" android:text="Updates" android:textColor="@color/choice_text" android:checked="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="disabled" android:text="Disabled option" android:textColor="@color/choice_text" android:checked="true" android:enabled="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

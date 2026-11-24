@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:id="compound_variable" android:text="Initial intrinsic bounds" android:drawableStart="@drawable/text_compound_variable" android:drawablePadding="8dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:id="compound_constant" android:text="Constant-size bounds" android:drawableStart="@drawable/text_compound_constant" android:drawablePadding="8dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

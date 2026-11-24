@@ -1,0 +1,12 @@
+{
+ "title":"Floating toolbar: expand and collapse",
+ "component":"floating-toolbar",
+ "purpose":"Check the paired floating toolbar shrinking and its FAB growing when collapsed, including reversing the animation.",
+ "changes":"Added an interruptible expanded/collapsed variant with a 56 dp expanded FAB and an 80 dp collapsed FAB.",
+ "steps":["Find Floating toolbar with FAB near the top. Expanded is on, with toolbar actions beside the smaller plus button.","Turn Expanded off. The toolbar should contract away while the plus button grows. Tap the larger plus button and check that Create selected appears.","Turn Expanded on and off quickly while it is moving. The toolbar and button should reverse smoothly and settle without jumping.","Turn on FAB at start or RTL and repeat. Choose OK if the behavior works, or Reject with the issue and your device."],
+ "expected":"Collapse contracts the action surface and grows the FAB; expansion reverses it. The FAB stays usable and logical placement follows RTL.",
+ "limits":"Expansion is caller-controlled in this example. Automatic scroll-driven compact collapse, exact FAB color and elevation, other sizes and Android device motion/visual parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/floating-toolbar.md",
+ "references":[{"url":"https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","local":"context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","license":"Apache-2.0","scope":"Toolbar expansion, FAB sizing and fast-spatial motion."}],
+ "validation":["Rust tests check 56–80 dp geometry, retargeted reversal and reduced-motion snapping; a 320 by 440 browser test verifies collapse, expansion and FAB activation."]
+}

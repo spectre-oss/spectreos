@@ -1,0 +1,6 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="clip_table" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#D0DED1">
+  <TableRow>
+    <Button android:id="clip_first" android:text="Inside" android:layout_width="90dp" android:layout_height="48dp"/>
+    <Button android:id="clip_second" android:text="Overflow" android:layout_width="90dp" android:layout_height="48dp"/>
+  </TableRow>
+</TableLayout>

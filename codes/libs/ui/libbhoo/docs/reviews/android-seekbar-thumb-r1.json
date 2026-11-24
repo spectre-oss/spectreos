@@ -1,0 +1,17 @@
+{
+  "title": "Android XML SeekBar: custom thumb drawable",
+  "component": "android-seekbar",
+  "purpose": "Check custom solid-shape thumb drawables and state selectors, including the split-track gap and disabled behavior.",
+  "changes": "Added XML thumb shapes, supported state selectors and @null. Split-track clipping now follows the selected thumb dimensions.",
+  "steps": [
+    "Scroll to the bottom, to Custom thumb: hold and drag. Its thumb starts as a blue circle. Touch and hold it: it should change to a wider red rounded rectangle; drag it and release to restore the blue circle.",
+    "The next slider has an intentionally transparent 30 dp custom thumb. Its blue and amber track should have a gap under that thumb; drag near the gap and check that it follows the finger.",
+    "The final slider has a gray disabled thumb. Touching it should not change its position.",
+    "Turn on Right-to-left layout near the top and drag the first custom thumb again. It should travel in the mirrored direction. Choose OK if these steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The custom thumb changes shape and color for the pressed state, the split gap uses its dimensions, disabled interaction is blocked and RTL reverses progress direction.",
+  "limits": "Only supported solid rectangular or circular shape drawables, state selectors and @null are covered. Bitmap, vector and animated drawables, Android optical insets and thumb offsets, tint compositing and exact device visual parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-seekbar.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/AbsSeekBar.java","local":"context/reference-sources/android-framework/AbsSeekBar.java","license":"Apache-2.0","scope":"Thumb drawables, state and split-track bounds."}],
+  "validation": ["144 Android XML importer tests passed, including thumb selector and unsupported-state rejection.","Seven Rust SeekBar tests passed, including custom thumb state, null thumb and split gap sizing."]
+}

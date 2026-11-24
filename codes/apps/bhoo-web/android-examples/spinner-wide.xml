@@ -1,0 +1,1 @@
+<Spinner xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/wide_workspace" android:layout_width="100dp" android:layout_height="48dp" android:entries="@array/workspaces" android:spinnerMode="dropdown" android:dropDownWidth="220dp" android:dropDownHorizontalOffset="12dp" android:dropDownVerticalOffset="-5dp" />

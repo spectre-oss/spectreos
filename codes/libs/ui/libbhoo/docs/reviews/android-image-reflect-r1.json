@@ -1,0 +1,13 @@
+{
+ "title":"Android ImageView: matrix reflection",
+ "component":"android-imageview",
+ "purpose":"Check that a negative horizontal image matrix scale reflects an ImageView in the browser.",
+ "changes":"ImageView matrix reflection now renders through the canvas image path, and the example exposes a reflection switch.",
+ "steps":["Find ImageView matrix below the two switches. Observe the image with Reflect horizontally turned off.","Turn on Reflect horizontally. The image should flip left to right without moving outside its frame.","Turn on Scale and translate matrix, then toggle reflection again. The enlarged image should flip while remaining clipped to its padded area.","Choose OK if the reflection works in both sizes, or Reject with what you saw and your device."],
+ "expected":"The image reflects left to right; scaling and padding clipping remain effective.",
+ "limits":"The example tests horizontal reflection in the browser. Vertical reflection is covered by a browser pixel test; native and Android device visual comparison, rotation, skew and perspective remain unverified or unsupported.",
+ "documentation":"docs/TDD/libbhoo/components/android-imageview.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ImageView.java","local":"context/reference-sources/android-framework/ImageView.java","license":"Apache-2.0","scope":"ImageView matrix scale type."}],
+ "validation":["Browser pixel test verifies image packet reflection horizontally, vertically and on both axes using four distinct colors.","Rust ImageView matrix test checks reflected UV geometry."],
+ "demo_height":1200
+}

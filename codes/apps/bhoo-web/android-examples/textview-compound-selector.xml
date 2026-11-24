@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:id="compound_selector_active" android:text="Hold this row or select above" android:drawableStart="@drawable/text_compound_selector" android:drawablePadding="8dp" android:clickable="true" android:background="#e6efe7" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:id="compound_selector_disabled" android:text="Disabled selector" android:drawableStart="@drawable/text_compound_selector" android:drawablePadding="8dp" android:enabled="false" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

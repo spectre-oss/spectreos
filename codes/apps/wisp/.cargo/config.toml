@@ -1,0 +1,16 @@
+# Wisp (Compositor, Shell & Notifications) Cargo commands (`cargo test-web`, `cargo dev`, `cargo release`, `cargo app-clean`, …).
+
+[alias]
+dev = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app wisp"
+release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app wisp"
+app-build = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app wisp"
+app-release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app wisp"
+app-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- check --app wisp"
+app-test = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test --app wisp"
+app-run = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- run --app wisp"
+app-clean = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app wisp"
+clean-all = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app wisp"
+test-web = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web --app wisp"
+test-web-watch = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-watch --app wisp"
+test-web-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-check --app wisp"
+app-help = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- help"

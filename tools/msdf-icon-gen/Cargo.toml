@@ -1,0 +1,11 @@
+[package]
+name = "msdf-icon-gen"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+fdsm = "0.8"
+svgtypes = "0.15"
+nalgebra = "0.34"
+image = { version = "0.25", default-features = false }

@@ -1,0 +1,18 @@
+{
+  "title": "Android TextView: compound drawable tint modes",
+  "component": "android-textview",
+  "purpose": "Compare the supported Android XML drawableTintMode values on the same compound drawable.",
+  "changes": "Added src_in, src_atop, src_over, multiply, screen and add tint modes for solid compound shapes on TextView and CheckedTextView.",
+  "steps": [
+    "Find Android XML compound drawable tint modes below the switches. Each row names a tint mode and shows the same amber shape tinted with translucent blue.",
+    "Compare the shapes: src_in appears translucent blue, src_atop mixes blue and amber, and multiply appears dark. The remaining modes have their own resulting colors; the labels remain unchanged.",
+    "Turn on Right-to-left layout and check that the shapes move to the other side while keeping their colors and spacing.",
+    "Choose OK if the example displays correctly, or Reject and describe the row, the problem and your device."
+  ],
+  "expected": "Each mode composes the blue tint with the original amber drawable independently of the text, and the drawable follows the layout direction.",
+  "limits": "This covers solid XML compound shapes only; other drawable kinds, additional blend modes, antialiased edge compositing and Android device pixel parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"Compound drawable tint mode XML and application."}],
+  "validation": ["147 Android XML importer tests passed, including all six modes and invalid inputs.","Rust rendering checks cover src_in and src_atop colors, the default mode, and existing RTL and state behavior."],
+  "demo_height": 1600
+}

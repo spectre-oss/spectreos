@@ -1,0 +1,66 @@
+Subject: [PATCH] regulator: qcom-labibb: defer OCP IRQ until rdev is assigned
+
+The regulator core can call set_over_current_protection() while applying
+constraints inside devm_regulator_register(). An already asserted IRQ may
+then enter the handler before probe stores the returned rdev pointer.
+Request the IRQ without auto-enabling it and defer enabling until registration
+succeeds. Calls made after registration can enable it immediately.
+
+--- a/drivers/regulator/qcom-labibb-regulator.c
++++ b/drivers/regulator/qcom-labibb-regulator.c
+@@ -95,6 +95,7 @@
+ 	int				sc_count;
+ 	int				ocp_irq;
+ 	int				ocp_irq_count;
++	bool				ocp_irq_deferred;
+ 	int				fatal_count;
+ };
+ 
+@@ -312,7 +313,7 @@
+ {
+ 	struct labibb_regulator *vreg = rdev_get_drvdata(rdev);
+ 	char *ocp_irq_name;
+-	u32 irq_flags = IRQF_ONESHOT;
++	u32 irq_flags = IRQF_ONESHOT | IRQF_NO_AUTOEN;
+ 	int irq_trig_low, ret;
+ 
+ 	/*
+@@ -369,9 +370,23 @@
+ 	if (ret)
+ 		return ret;
+ 
+-	return devm_request_threaded_irq(vreg->dev, vreg->ocp_irq, NULL,
+-					 qcom_labibb_ocp_isr, irq_flags,
+-					 ocp_irq_name, vreg);
++	ret = devm_request_threaded_irq(vreg->dev, vreg->ocp_irq, NULL,
++					qcom_labibb_ocp_isr, irq_flags,
++					ocp_irq_name, vreg);
++	if (ret)
++		return ret;
++
++	/*
++	 * Constraints may enable OCP inside regulator_register(), before probe
++	 * has assigned vreg->rdev. Keep the IRQ disabled until that assignment
++	 * completes; the handler and recovery work both dereference it.
++	 */
++	if (vreg->rdev)
++		enable_irq(vreg->ocp_irq);
++	else
++		vreg->ocp_irq_deferred = true;
++
++	return 0;
+ }
+ 
+ /**
+@@ -878,6 +893,11 @@
+ 			return PTR_ERR(vreg->rdev);
+ 		}
+ 
++		if (vreg->ocp_irq_deferred) {
++			vreg->ocp_irq_deferred = false;
++			enable_irq(vreg->ocp_irq);
++		}
++
+ 		ret = devm_request_threaded_irq(vreg->dev, vreg->sc_irq, NULL,
+ 						qcom_labibb_sc_isr,
+ 						IRQF_ONESHOT |

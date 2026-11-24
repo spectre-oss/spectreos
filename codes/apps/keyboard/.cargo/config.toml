@@ -1,0 +1,16 @@
+# SpectreOS Keyboard app Cargo commands (`cargo test-web`, `cargo dev`, `cargo release`, `cargo app-clean`, …).
+
+[alias]
+dev = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app keyboard"
+release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app keyboard"
+app-build = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app keyboard"
+app-release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app keyboard"
+app-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- check --app keyboard"
+app-test = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test --app keyboard"
+app-run = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- run --app keyboard"
+app-clean = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app keyboard"
+clean-all = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app keyboard"
+test-web = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web --app keyboard"
+test-web-watch = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-watch --app keyboard"
+test-web-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-check --app keyboard"
+app-help = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- help"

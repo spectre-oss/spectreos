@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="XML tints: drag to rate" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <RatingBar android:id="tinted_rating" android:mirrorForRtl="true" android:numStars="5" android:rating="2.5" android:stepSize="0.5" android:progressTint="@color/seekbar_example_tint" android:secondaryProgressTint="#e39b16" android:progressBackgroundTint="#b7c8d8" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <TextView android:text="Tinted read-only rating" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <RatingBar android:id="tinted_indicator" android:numStars="5" android:rating="3.5" android:isIndicator="true" android:progressTint="@color/seekbar_example_tint" android:secondaryProgressTint="#e39b16" android:progressBackgroundTint="#b7c8d8" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

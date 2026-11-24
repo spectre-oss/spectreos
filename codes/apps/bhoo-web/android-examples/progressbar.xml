@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Download progress" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <ProgressBar android:mirrorForRtl="true" android:id="download" style="?android:attr/progressBarStyleHorizontal" android:progress="30" android:secondaryProgress="70" android:max="100" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <TextView android:text="Loading" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <ProgressBar android:id="loading" android:layout_width="48dp" android:layout_height="48dp"/>
+</LinearLayout>

@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Tick drawable selector: hold and drag" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="stateful_ticks" android:max="4" android:progress="2" android:mirrorForRtl="true" android:tickMark="@drawable/seekbar_tick_selector" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:text="Disabled tick drawable selector" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="disabled_stateful_ticks" android:max="4" android:progress="2" android:enabled="false" android:tickMark="@drawable/seekbar_tick_selector" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

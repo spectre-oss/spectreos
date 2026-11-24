@@ -1,0 +1,20 @@
+{
+  "title": "Android XML SeekBar: track and thumb tints",
+  "component": "android-seekbar",
+  "purpose": "Check that XML tint colors affect the correct parts of a SeekBar, and that color selectors respond to pressing and disabling it without breaking dragging.",
+  "changes": "Added Android XML progressTint, progressBackgroundTint, secondaryProgressTint and thumbTint to SeekBar, including supported state selectors. The example includes an interactive tinted slider and a disabled one.",
+  "steps": [
+    "Scroll below the ordinary volume examples to the colored sliders. On the first colored slider, check for a blue active track, amber buffered section, pale blue remaining track and purple thumb.",
+    "Touch and hold the colored slider and drag its thumb. The active track should turn red while pressed, follow your finger, and turn blue again when released.",
+    "Look at the second colored slider: its active track should be gray because it is disabled, and it must not move when touched. Its other explicit tint colors should remain visible.",
+    "Turn on Right-to-left layout near the top of the page. Check that the interactive colored slider's progress and dragging direction are mirrored. Choose OK if these steps work, or Reject and describe the failing step, what you saw and your device."
+  ],
+  "expected": "Each tint colors the named slider layer; the pressed and disabled selector states change the active track as described. Dragging remains responsive and RTL reverses its direction.",
+  "limits": "This tests Bhoo's existing slider geometry and supported literal or selector colors. Custom Android drawables, tint blending modes, tick marks, indeterminate mode and exact Android device visual parity are not covered.",
+  "documentation": "docs/TDD/libbhoo/components/android-seekbar.md",
+  "references": [
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/AbsSeekBar.java","local":"context/reference-sources/android-framework/AbsSeekBar.java","license":"Apache-2.0","scope":"SeekBar thumb tint and state handling."},
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ProgressBar.java","local":"context/reference-sources/android-framework/ProgressBar.java","license":"Apache-2.0","scope":"Inherited progress tint attributes."}
+  ],
+  "validation": ["137 Android XML importer tests passed, including SeekBar tint import and unsupported-view rejection.","Four Rust SeekBar tests passed; the tint test checks the four colors, pressed and disabled states, and drag updates."]
+}

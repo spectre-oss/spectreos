@@ -1,0 +1,27 @@
+{
+  "title": "Android TableLayout nested wrap-content width",
+  "component": "android-table-layout",
+  "purpose": "Check that a nested wrap-content TableLayout grows with its child and moves the following sibling.",
+  "changes": "The nested table now measures shared columns using the current renderer text metrics and child state.",
+  "steps": [
+    "Find Small, More and After under Nested wrap-content table. They should appear next to one another.",
+    "Tap Change table label. Small becomes Longer nested and grows; More and After should move without overlapping. Tap again to restore Small.",
+    "Turn on Right-to-left layout and repeat. The order should mirror with all three controls adjacent. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The nested table grows and shrinks with its child and both following controls remain adjacent in either direction.",
+  "limits": "This covers supported Bhoo table measurement. Complete Android table constraints, font and theme behavior and device parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-table-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TableLayout.java",
+      "local": "context/reference-sources/android-framework/TableLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Nested table measurement and positioning."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies nested width, sibling positions, non-default text metrics and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified nested width, sibling placement and RTL."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Android ViewSwitcher: delayed animation",
+  "component": "android-viewswitcher",
+  "purpose": "Check that an Android XML animation set waits for its startOffset before transitioning between views.",
+  "changes": "The XML importer and renderer now honor startOffset on alpha and translate animations and their enclosing sets. This example uses an 800 ms delay, then a 500 ms slide and fade.",
+  "steps": [
+    "Press Show next view and watch the colored view.",
+    "The first view should remain in place briefly. After about 0.8 seconds it slides and fades away while the second view slides and fades in.",
+    "Press the button again and check the same delay before the view changes back. Choose OK if it behaves as described, or Reject with details and your device."
+  ],
+  "expected": "The view stays visible during the delay, then the two views transition smoothly; both directions work.",
+  "limits": "The example demonstrates one set-level delay. Android device timing and visual parity have not been verified; other animation types and ObjectAnimator start delays remain unsupported.",
+  "documentation": "docs/TDD/libbhoo/components/android-viewswitcher.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/view/animation/AnimationSet.java",
+      "local": "context/reference-sources/android-framework/AnimationSet.java",
+      "license": "Apache-2.0",
+      "scope": "Animation-set start offsets and child offsets."
+    }
+  ],
+  "validation": [
+    "154 XML importer tests and 196 Android XML Rust tests passed, including nested and independent start offsets.",
+    "A 320 \u00d7 440 browser test checks the view before and after the delay."
+  ]
+}

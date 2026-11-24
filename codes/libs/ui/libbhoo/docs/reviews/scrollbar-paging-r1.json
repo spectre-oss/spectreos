@@ -1,0 +1,35 @@
+{
+  "title": "Scrollbar: smooth dragging and track paging",
+  "component": "scrollbar",
+  "purpose": "Check that the scrollbar moves the list predictably on a phone: dragging should begin without a jump, and touching the track should move one page at a time.",
+  "changes": "The thumb keeps the point where you grabbed it under your finger. Pressing the track above or below the thumb moves the list by one visible page. Taking control of the scrollbar stops an ongoing fling.",
+  "steps": [
+    "In the example, find the thin vertical scrollbar beside the numbered list. Drag its thumb from near its top edge and then from near its bottom edge. The thumb should not jump when you first touch it.",
+    "Drag the thumb up and down. The numbered rows should follow it immediately, and it should stop at the top and bottom of the list.",
+    "Tap the track below the thumb once. The list should move by approximately one visible page, not jump all the way to the tapped position. Tap above the thumb to move back one page.",
+    "Swipe the list quickly and then touch the scrollbar while the list is still moving. The fling should stop and the scrollbar should respond to your touch.",
+    "Optional keyboard check: focus the scrollbar, then try Page Up, Page Down, Home and End.",
+    "Choose OK if the tested behavior is correct. Otherwise choose Reject and describe which step failed, what you saw and your device."
+  ],
+  "expected": "Dragging starts without a jump and follows your finger; track taps move one visible page; the list stays within its scroll limits; and touching the scrollbar stops an ongoing fling.",
+  "limits": "This test covers the vertical example and its listed interactions. It does not establish full Material appearance or motion parity, nested scrolling, touch expansion or comparison against an Android device. Keyboard checks are optional without a keyboard.",
+  "documentation": "docs/TDD/libbhoo/components/scrollbar.md",
+  "references": [
+    {
+      "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt",
+      "local": "context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt",
+      "license": "Apache-2.0",
+      "scope": "Related scrollbar geometry and Material parameters; this is not a claim of exact Compose interaction parity."
+    },
+    {
+      "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/scrollbar.dart",
+      "local": "context/reference-sources/flutter-material/packages/material_ui/lib/src/scrollbar.dart",
+      "license": "BSD-3-Clause",
+      "scope": "Related scrollbar thumb and track presentation."
+    }
+  ],
+  "validation": [
+    "Four Rust scrollbar_drag tests passed for anchored drag, track paging, pointer cancellation, keyboard page keys, end limits and stopping a fling.",
+    "Browser test-bhoo-scrollbar-paging.mjs passed track paging, anchored thumb dragging and a page key at 390px width."
+  ]
+}

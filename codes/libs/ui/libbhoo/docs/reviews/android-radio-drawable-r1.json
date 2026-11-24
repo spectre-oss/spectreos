@@ -1,0 +1,20 @@
+{
+  "title": "Android XML RadioButton: button drawable selector",
+  "component": "android-radio-group",
+  "purpose": "Check a custom Android XML button drawable selector on RadioButton while preserving single selection and RTL behavior.",
+  "changes": "Added solid-shape button drawables and supported state selectors to RadioButton. The example uses a blue circle when selected, amber square when unselected and gray circle when disabled.",
+  "steps": [
+    "Scroll to Android XML button drawable selector. Standard starts selected with a blue circle; Express has an amber square; Unavailable has a gray circle.",
+    "Tap Express. Its indicator should become a blue circle, and Standard should become an amber square. Tap Standard to switch back; only one option should be selected.",
+    "Tap Unavailable and check that its gray circle and the current selection remain unchanged.",
+    "Turn on Right-to-left layout near the top. The indicators should move to the right and the enabled options should still select one at a time. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The drawable selector supplies the visible state shape, enabled choices remain mutually exclusive, the disabled choice cannot select, and indicators follow layout direction.",
+  "limits": "Only solid rectangular or circular XML shapes up to 32 dp, supported state selectors and @null are covered. Bitmap, vector and animated drawables, tint compositing and exact Android device appearance remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-radio-group.md",
+  "references": [
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java","local":"context/reference-sources/android-framework/CompoundButton.java","license":"Apache-2.0","scope":"Compound button drawable and checked state."},
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/RadioGroup.java","local":"context/reference-sources/android-framework/RadioGroup.java","license":"Apache-2.0","scope":"Radio-group single selection."}
+  ],
+  "validation": ["144 Android XML importer tests passed, including RadioButton shape selector import.","Three Rust RadioGroup tests passed, including custom checked, unchecked and disabled drawable states, single selection and RTL."]
+}

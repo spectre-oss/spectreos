@@ -1,0 +1,138 @@
+--- a/src/top-panel.h
++++ b/src/top-panel.h
+@@ -13,7 +13,10 @@
+ 
+ G_DECLARE_FINAL_TYPE (PhoshTopPanel, phosh_top_panel, PHOSH, TOP_PANEL, PhoshDragSurface)
+ 
+-#define PHOSH_TOP_BAR_HEIGHT 32
++/* Poco F1 notch coverage in physical panel pixels, independent of UI scale. */
++#define PHOSH_TOP_BAR_PHYSICAL_HEIGHT 90
++int phosh_top_panel_get_bar_height (void);
++#define PHOSH_TOP_BAR_HEIGHT (phosh_top_panel_get_bar_height ())
+ #define PHOSH_TOP_BAR_ICON_PIXEL_SIZE 16
+ /* Minimum padding of network and indicator box to the left / right screen edge */
+ #define PHOSH_TOP_BAR_MIN_PADDING 9
+--- a/src/top-panel.c
++++ b/src/top-panel.c
+@@ -30,6 +30,7 @@
+ #include "wall-clock.h"
+ 
+ #include <handy.h>
++#include <math.h>
+ 
+ #define GNOME_DESKTOP_USE_UNSTABLE_API
+ #include <libgnome-desktop/gnome-xkb-info.h>
+@@ -795,6 +796,18 @@
+   g_clear_object (&self->cutout_css_provider);
+ 
+   G_OBJECT_CLASS (phosh_top_panel_parent_class)->dispose (object);
++}
++
++
++/* Layer-shell uses integer logical coordinates. Round upward so coverage
++ * never falls below 90 physical pixels (30 logical pixels at scale 3). */
++int
++phosh_top_panel_get_bar_height (void)
++{
++  PhoshMonitor *monitor = phosh_shell_get_primary_monitor (phosh_shell_get_default ());
++  double scale = monitor ? MAX (1.0, phosh_monitor_get_fractional_scale (monitor)) : 1.0;
++
++  return (int) ceil (PHOSH_TOP_BAR_PHYSICAL_HEIGHT / scale);
+ }
+ 
+ 
+@@ -1041,6 +1054,15 @@
+   g_return_if_fail (PHOSH_IS_TOP_PANEL (self));
+   g_return_if_fail (PHOSH_IS_LAYOUT_MANAGER (layout_manager));
+ 
++  gtk_widget_set_size_request (self->box_top_bar, -1, PHOSH_TOP_BAR_HEIGHT);
++  phosh_drag_surface_set_exclusive (PHOSH_DRAG_SURFACE (self), PHOSH_TOP_BAR_HEIGHT);
++  if (phosh_layer_surface_get_configured_height (PHOSH_LAYER_SURFACE (self)) > 0) {
++    phosh_drag_surface_set_margin (PHOSH_DRAG_SURFACE (self),
++                                  get_margin (phosh_layer_surface_get_configured_height (PHOSH_LAYER_SURFACE (self))),
++                                  0);
++    update_drag_handle (self, TRUE);
++  }
++
+   set_clock_position (self, layout_manager);
+   set_margin (self, layout_manager);
+ }
+--- a/src/layout-manager.c
++++ b/src/layout-manager.c
+@@ -44,6 +44,7 @@
+   PhoshLayoutClockPosition    clock_pos;
+   guint                       clock_box_shift;
+   guint                       corner_shift;
++  guint                       bar_height;
+   guint                       network_box_shift;
+   guint                       indicators_box_shift;
+ 
+@@ -65,19 +66,19 @@
+ /* Space we want reserved for the central clock */
+ static const GdkRectangle center_clock_rect = {
+   .width = 40,
+-  .height = PHOSH_TOP_BAR_HEIGHT
++  .height = 0 /* Set from the current output scale before intersection tests */
+ };
+ 
+ static const GdkRectangle network_box_rect = {
+   /* Relevant icons are wifi, bt, 2 * wwan, network status */
+   .width = BOX_ITEM_WIDTH * 5,
+-  .height = PHOSH_TOP_BAR_HEIGHT
++  .height = 0 /* Set from the current output scale before intersection tests */
+ };
+ 
+ static const GdkRectangle indicators_box_rect = {
+   /* Relevant icons are  battery, vpn, location and language */
+   .width = BOX_ITEM_WIDTH * 4 /* max icons */,
+-  .height = PHOSH_TOP_BAR_HEIGHT
++  .height = 0 /* Set from the current output scale before intersection tests */
+ };
+ 
+ /**
+@@ -120,6 +121,7 @@
+ 
+   scale = phosh_monitor_get_fractional_scale (self->builtin);
+   clock_rect = center_clock_rect;
++  clock_rect.height = PHOSH_TOP_BAR_HEIGHT;
+   clock_rect.x = (self->builtin->width / scale / 2.0) - center_clock_rect.width / 2.0;
+   clock_box_rect.width = self->builtin->width / scale;
+   clock_box_rect.height = CLOCK_BOX_HEIGHT;
+@@ -194,6 +196,8 @@
+   GdkRectangle indicators_box = indicators_box_rect;
+   GdkRectangle network_box = network_box_rect;
+   guint width;
++
++  indicators_box.height = network_box.height = PHOSH_TOP_BAR_HEIGHT;
+ 
+   layout = g_settings_get_enum (self->settings, SHELL_LAYOUT_KEY);
+   if (layout != PHOSH_SHELL_LAYOUT_DEVICE)
+@@ -311,7 +315,8 @@
+   indicators_box_shift = MAX (indicators_box_shift, corner_shift);
+   network_box_shift = MAX (network_box_shift, corner_shift);
+ 
+-  if (self->corner_shift == corner_shift &&
++  if (self->bar_height == PHOSH_TOP_BAR_HEIGHT &&
++      self->corner_shift == corner_shift &&
+       self->network_box_shift == network_box_shift &&
+       self->indicators_box_shift == indicators_box_shift &&
+       self->clock_pos == pos &&
+@@ -319,6 +324,7 @@
+     return;
+   }
+ 
++  self->bar_height = PHOSH_TOP_BAR_HEIGHT;
+   self->clock_pos = pos;
+   self->clock_box_shift = clock_box_shift;
+   self->corner_shift = corner_shift;
+--- a/src/stylesheet/common.css
++++ b/src/stylesheet/common.css
+@@ -12,6 +12,8 @@
+ }
+ 
+ #top-bar-bin {
++  /* Always mask the physical notch, including over the home/lock screen. */
++  background-color: #000;
+   transition: background-color 200ms ease;
+ }
+ 

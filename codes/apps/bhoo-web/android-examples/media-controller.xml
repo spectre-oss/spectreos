@@ -1,0 +1,17 @@
+<MediaController xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/controller" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#cc000000" android:layoutDirection="ltr">
+  <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center">
+      <ImageButton android:id="@+id/prev" android:contentDescription="Previous" android:src="@drawable/android_media_previous" android:scaleType="center" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" />
+      <ImageButton android:id="@+id/rew" android:contentDescription="Rewind 5 seconds" android:src="@drawable/android_media_rew" android:scaleType="center" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" />
+      <ImageButton android:id="@+id/pause" android:contentDescription="Play" android:src="@drawable/android_media_play" android:scaleType="center" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" />
+      <ImageButton android:id="@+id/ffwd" android:contentDescription="Fast forward 15 seconds" android:src="@drawable/android_media_ff" android:scaleType="center" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" />
+      <ImageButton android:id="@+id/next" android:contentDescription="Next" android:src="@drawable/android_media_next" android:scaleType="center" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" />
+      <ImageView android:src="@drawable/android_media_pause" android:visibility="gone" android:layout_width="0dp" android:layout_height="0dp" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center_vertical">
+      <TextView android:id="@+id/time_current" android:text="0:00" android:textSize="14sp" android:textColor="#ffffffff" android:layout_width="48dp" android:layout_height="wrap_content" />
+      <SeekBar android:id="@+id/mediacontroller_progress" android:max="1000" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" />
+      <TextView android:id="@+id/time" android:text="0:00" android:textSize="14sp" android:textColor="#ffffffff" android:layout_width="48dp" android:layout_height="wrap_content" />
+    </LinearLayout>
+  </LinearLayout>
+</MediaController>

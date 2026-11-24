@@ -1,0 +1,4 @@
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android" android:id="switcher" android:inAnimation="@anim/delayed_slide_in" android:outAnimation="@anim/delayed_slide_out" android:layout_width="match_parent" android:layout_height="120dp">
+  <TextView android:text="First view" android:gravity="center" android:background="#DDF0E4" android:layout_width="match_parent" android:layout_height="match_parent"/>
+  <TextView android:text="Second view" android:gravity="center" android:background="#E5E3FA" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</ViewSwitcher>

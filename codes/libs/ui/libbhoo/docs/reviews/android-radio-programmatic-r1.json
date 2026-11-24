@@ -1,0 +1,28 @@
+{
+  "title": "Android RadioGroup: programmatic selection",
+  "component": "android-radio-group",
+  "purpose": "Check that an app can select or clear a RadioGroup by ID, including a nested RadioButton.",
+  "changes": "The host can request a named RadioButton selection or clear the group. The example buttons exercise the new host API against the Android XML group.",
+  "steps": [
+    "Under Nested initial choice, tap Clear group selection. Both choices should become unchecked.",
+    "Tap Select direct by ID. Direct choice should become checked.",
+    "Tap Select nested by ID. Nested choice should become checked and Direct choice should clear.",
+    "Turn on right-to-left layout and repeat. Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "Clear leaves no selected group choice; selecting either ID checks it and clears the previously selected choice in both layout directions.",
+  "limits": "Requests apply on the next group render. Unknown IDs follow Android's stored-ID behavior but have no matching visible choice. Independently checked nested buttons are not cleared unless they are the group's selected ID. Nested RadioGroup edge cases, change listeners and Android device parity remain incomplete or unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-radio-group.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/RadioGroup.java",
+      "local": "context/reference-sources/android-framework/RadioGroup.java",
+      "license": "Apache-2.0",
+      "scope": "Programmatic check, clear and descendant lookup."
+    }
+  ],
+  "validation": [
+    "Five nested RadioGroup tests, 197 Android XML tests and 158 importer tests passed, including pre-render requests, clearing, unknown IDs and replacing nested choices.",
+    "A 320 \u00d7 720 browser test checked programmatic selection and clearing in LTR and RTL; the nested interaction test also passed."
+  ],
+  "demo_height": 720
+}

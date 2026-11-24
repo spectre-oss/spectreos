@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckBox android:id="appearance_check" android:text="Styled checkbox" android:textAppearance="@style/DemoTextAppearance.Caps" android:checked="true" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <RadioButton android:id="appearance_radio" android:text="Styled radio" android:textAppearance="@style/DemoTextAppearance.Caps" android:checked="false" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <Switch android:id="appearance_switch" android:text="Styled switch" android:textAppearance="@style/DemoTextAppearance.Caps" android:textSize="14sp" android:checked="true" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

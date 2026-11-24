@@ -1,0 +1,13 @@
+{
+ "title":"Android SeekBar: custom tint transparency",
+ "component":"android-seekbar",
+ "purpose":"Check that a translucent tint preserves the custom thumb and tick drawable's own transparency.",
+ "changes":"Custom solid thumb and tick tinting now combines drawable alpha and tint alpha using the default source-in behavior.",
+ "steps":["Find Custom drawable tint opacity below the RTL switch. Compare the two sliders: the top slider's blue thumb and tick marks should appear lighter than those in the bottom slider.","Drag both thumbs and check that the color and transparency remain consistent as their values change.","Turn on Right-to-left layout and drag again; the sliders should mirror while their thumb and tick colors remain the same.","Choose OK if these steps work, or Reject with the problem and your device."],
+ "expected":"A half-opacity drawable with a half-opacity tint is more transparent than an opaque drawable with the same tint. The thumb and ticks retain their tint while dragging and in RTL.",
+ "limits":"This covers supported solid custom thumb and tick shapes with the default source-in tint. Other tint modes, other drawable types, antialiased edge composition and Android device pixel parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/android-seekbar.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/AbsSeekBar.java","local":"context/reference-sources/android-framework/AbsSeekBar.java","license":"Apache-2.0","scope":"Thumb and tick drawable tint application."}],
+ "validation":["Nine SeekBar Rust rendering and interaction tests passed, including exact alpha composition for custom thumb and tick shapes."],
+ "demo_height":1800
+}

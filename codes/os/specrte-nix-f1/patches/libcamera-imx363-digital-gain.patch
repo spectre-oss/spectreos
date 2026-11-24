@@ -1,0 +1,41 @@
+Subject: [PATCH] simple: use verified IMX363 unity digital gain for software ISP
+
+Stock QTech/Sunny driver analysis and fixed-exposure RAW comparisons establish
+256 as unity; the downstream default 1024 is 4x gain. Normalize every processed
+configuration, including preview/photo switches. Preserve raw-only diagnostics.
+See docs/camera-xiaomi-research.md and docs/camera-colour.md.
+
+--- a/src/libcamera/pipeline/simple/simple.cpp
++++ b/src/libcamera/pipeline/simple/simple.cpp
+@@ -1523,6 +1523,31 @@
+ 	if (ret < 0)
+ 		return ret;
+ 
++	/* IMX363 uses Q8 digital gain: 256 is unity, not the downstream
++	 * driver's old default of 1024 (4x). The software IPA controls exposure
++	 * and analogue gain, so keep sensor digital gain at unity for processed
++	 * streams. Write on every configure: mode switches and other clients can
++	 * change it. Raw-only diagnostic streams retain their explicit settings.
++	 */
++	if (data->swIsp_ && config->needConversion() &&
++	    data->sensor_->model() == "imx363") {
++		constexpr int32_t unityGain = 256;
++		const auto &sensorControls = data->sensor_->controls();
++		auto gainInfo = sensorControls.find(V4L2_CID_DIGITAL_GAIN);
++		if (gainInfo == sensorControls.end() ||
++		    gainInfo->second.min().get<int32_t>() > unityGain ||
++		    gainInfo->second.max().get<int32_t>() < unityGain) {
++			LOG(SimplePipeline, Error) << "IMX363 unity digital gain is unavailable";
++			return -EINVAL;
++		}
++		ControlList controls(sensorControls);
++		controls.set(V4L2_CID_DIGITAL_GAIN, unityGain);
++		ret = data->sensor_->setControls(&controls);
++		if (ret)
++			return ret < 0 ? ret : -EINVAL;
++		LOG(SimplePipeline, Info) << "IMX363 sensor digital gain set to unity (256)";
++	}
++
+ 	/* Configure the video node, taking into account any Bayer pattern change. */
+ 	V4L2PixelFormat videoFormat;
+ 	if (format.code == pipeConfig->code) {

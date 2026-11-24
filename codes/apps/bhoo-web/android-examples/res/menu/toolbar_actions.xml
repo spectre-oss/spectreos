@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/primary_actions">
+        <item android:id="@+id/search" android:title="Search" android:icon="@drawable/toolbar_vector_search" android:showAsAction="ifRoom|withText" />
+        <item android:id="@+id/archive" android:title="Archive" android:icon="@drawable/archive" android:showAsAction="ifRoom" />
+    </group>
+    <group android:id="@+id/view_mode" android:checkableBehavior="single" android:orderInCategory="30">
+        <item android:id="@+id/compact" android:title="Compact" android:checked="true" />
+        <item android:id="@+id/comfortable" android:title="Comfortable" />
+    </group>
+    <group android:id="@+id/secondary_actions" android:enabled="false">
+        <item android:id="@+id/settings" android:title="Settings (order 20)" android:orderInCategory="20" android:showAsAction="never" />
+        <item android:id="@+id/about" android:title="About (order 10)" android:orderInCategory="10" android:showAsAction="never" android:enabled="true" />
+    </group>
+</menu>

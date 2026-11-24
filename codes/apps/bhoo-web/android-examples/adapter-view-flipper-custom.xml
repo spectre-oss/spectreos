@@ -1,0 +1,1 @@
+<AdapterViewFlipper xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/adapter_flipper" android:layout_width="match_parent" android:layout_height="160dp" android:autoStart="true" android:flipInterval="2500" android:inAnimation="@animator/flipper_in" android:outAnimation="@animator/flipper_out" />

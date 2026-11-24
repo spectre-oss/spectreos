@@ -1,0 +1,62 @@
+--- a/drivers/firmware/qcom/qcom_scm.c
++++ b/drivers/firmware/qcom/qcom_scm.c
+@@ -12,6 +12,7 @@
+ #include <linux/completion.h>
+ #include <linux/cpumask.h>
+ #include <linux/dma-mapping.h>
++#include <linux/debugfs.h>
+ #include <linux/err.h>
+ #include <linux/export.h>
+ #include <linux/firmware/qcom/qcom_scm.h>
+@@ -2109,6 +2110,41 @@
+ 		return status;
+ 
+ 	return 0;
++}
++
++/* Temporary diagnostic build only. The SCM driver cannot be unbound and
++ * has no remove callback: firmware may keep this allocation until reboot.
++ * Never free it after successful registration; logs are root-readable only.
++ */
++static struct debugfs_blob_wrapper qsee_diag_log;
++static void qcom_scm_qseecom_diag_log_init(void)
++{
++ struct qcom_scm_qseecom_resp res = {};
++ struct qcom_scm_desc desc = {
++  .owner = QSEECOM_TZ_OWNER_QSEE_OS,
++  .svc = QSEECOM_TZ_SVC_APP_MGR,
++  .cmd = 6,
++  .arginfo = QCOM_SCM_ARGS(2, QCOM_SCM_RW, QCOM_SCM_VAL),
++ };
++ int ret;
++ void *buf = qcom_tzmem_alloc(__scm->mempool, SZ_32K, GFP_KERNEL);
++ if (!buf)
++  return;
++ memset(buf, 0, SZ_32K);
++ desc.args[0] = qcom_tzmem_to_phys(buf);
++ desc.args[1] = SZ_32K;
++ mutex_lock(&qcom_scm_qseecom_call_lock);
++ ret = __qcom_scm_qseecom_call(&desc, &res);
++ mutex_unlock(&qcom_scm_qseecom_call_lock);
++ if (ret || res.result) {
++  dev_warn(__scm->dev, "QSEE diagnostic log registration: %d/%llu\n", ret, res.result);
++  qcom_tzmem_free(buf);
++  return;
++ }
++ qsee_diag_log.data = buf;
++ qsee_diag_log.size = SZ_32K;
++ debugfs_create_blob("poco-qsee-log", 0400, NULL, &qsee_diag_log);
++ dev_info(__scm->dev, "QSEE diagnostic log registered (root only)\n");
+ }
+ 
+ /* Registered listener services, protected by qcom_scm_qseecom_call_lock. */
+@@ -3296,6 +3332,9 @@
+ 	 */
+ 	ret = qcom_scm_qseecom_init(scm);
+ 	WARN(ret < 0, "failed to initialize qseecom: %d\n", ret);
++#ifdef CONFIG_QCOM_QSEECOM
++	qcom_scm_qseecom_diag_log_init();
++#endif
+ 
+ 	/* Initialize the QTEE object interface. */
+ 	qcom_scm_qtee_init(scm);

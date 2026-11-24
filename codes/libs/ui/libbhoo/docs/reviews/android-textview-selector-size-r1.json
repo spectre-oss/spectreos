@@ -1,0 +1,13 @@
+{
+ "title":"Android TextView: state drawable bounds",
+ "component":"android-textview",
+ "purpose":"Check that differently sized selector shapes retain the drawable's installed bounds when the selected state changes.",
+ "changes":"Compound drawable selectors now accept shapes of different intrinsic sizes and the Android constantSize option.",
+ "steps":["Find Drawable selector intrinsic sizes below the two switches. Each row shows a blue oval next to its label.","Turn on Selected text. Both ovals change to amber rectangles. Their occupied width and height should stay the same, and the labels should not move.","Turn Selected text off and on again, then turn on Right-to-left layout. The shapes should move to the other side while their reserved space remains stable.","Choose OK if both rows behave correctly, or Reject and describe the row, problem and device."],
+ "expected":"The first selector retains the default shape's initial intrinsic bounds; the constant-size selector retains the maximum dimensions of its states. Both keep their text positions while switching shapes.",
+ "limits":"Solid shape selectors only. A selector with no initial intrinsic shape is rejected unless constantSize provides one. Android device rendering, bitmap/vector drawables and animated transitions remain unverified or unsupported.",
+ "documentation":"docs/TDD/libbhoo/components/android-textview.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/graphics/java/android/graphics/drawable/DrawableContainer.java","local":"context/reference-sources/android-framework/DrawableContainer.java","license":"Apache-2.0","scope":"Intrinsic bounds, constant size, and applying container bounds to state drawables."},{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"Initial compound drawable intrinsic bounds."}],
+ "validation":["148 Android XML importer tests passed, including variable and constant-size selectors.","Rust rendering test verifies a smaller pressed shape uses the installed drawable bounds."],
+ "demo_height":2000
+}

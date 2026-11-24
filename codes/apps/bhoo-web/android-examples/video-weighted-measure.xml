@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+  <VideoView android:id="@+id/video" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+  <TextView android:text="Next view" android:textColor="#ffffffff" android:background="#ff3f704f" android:gravity="center" android:layout_width="match_parent" android:layout_height="32dp" />
+</LinearLayout>

@@ -1,0 +1,220 @@
+Subject: [LOCAL] simple: manual exposure and WB for measured HDR brackets
+
+--- a/src/ipa/simple/algorithms/agc.cpp
++++ b/src/ipa/simple/algorithms/agc.cpp
+@@ -67,13 +67,13 @@
+ 	double &again = frameContext.sensor.gain;
+ 
+ 	if (exposureMSV < kExposureOptimal - kExposureSatisfactory) {
+-		if (exposure < context.configuration.agc.exposureMax) {
++		if (frameContext.manualExposure.exposureAuto && exposure < context.configuration.agc.exposureMax) {
+ 			int32_t next = exposure * kExpNumeratorUp / kExpDenominator;
+ 			if (next - exposure < 1)
+ 				exposure += 1;
+ 			else
+ 				exposure = next;
+-		} else {
++		} else if (frameContext.manualExposure.gainAuto) {
+ 			double next = again * kExpNumeratorUp / kExpDenominator;
+ 			if (next - again < context.configuration.agc.againMinStep)
+ 				again += context.configuration.agc.againMinStep;
+@@ -83,13 +83,13 @@
+ 	}
+ 
+ 	if (exposureMSV > kExposureOptimal + kExposureSatisfactory) {
+-		if (again > context.configuration.agc.again10) {
++		if (frameContext.manualExposure.gainAuto && again > context.configuration.agc.again10) {
+ 			double next = again * kExpNumeratorDown / kExpDenominator;
+ 			if (again - next < context.configuration.agc.againMinStep)
+ 				again -= context.configuration.agc.againMinStep;
+ 			else
+ 				again = next;
+-		} else {
++		} else if (frameContext.manualExposure.exposureAuto) {
+ 			int32_t next = exposure * kExpNumeratorDown / kExpDenominator;
+ 			if (exposure - next < 1)
+ 				exposure -= 1;
+@@ -132,7 +132,21 @@
+ 		context.activeState.agc.valid = true;
+ 	}
+ 
+-	if (!stats->valid) {
++	const auto &manual = frameContext.manualExposure;
++	metadata.set(controls::ExposureTimeMode, manual.exposureAuto ?
++		controls::ExposureTimeModeAuto : controls::ExposureTimeModeManual);
++	metadata.set(controls::AnalogueGainMode, manual.gainAuto ?
++		controls::AnalogueGainModeAuto : controls::AnalogueGainModeManual);
++	if (!manual.exposureAuto)
++		context.activeState.agc.exposure = spectre::exposureLines(manual.exposureUs,
++			context.configuration.agc.lineDuration.get<std::micro>(),
++			context.configuration.agc.exposureMin, context.configuration.agc.exposureMax);
++	if (!manual.gainAuto)
++		context.activeState.agc.again = manual.gain;
++	if (!manual.exposureAuto) frameContext.sensor.exposure = context.activeState.agc.exposure;
++	if (!manual.gainAuto) frameContext.sensor.gain = context.activeState.agc.again;
++
++	if (!stats->valid || (!manual.exposureAuto && !manual.gainAuto)) {
+ 		/*
+ 		 * Use the new exposure and gain values calculated the last time
+ 		 * there were valid stats.
+--- a/src/ipa/simple/algorithms/awb.cpp
++++ b/src/ipa/simple/algorithms/awb.cpp
+@@ -39,7 +39,15 @@
+ 		  IPAFrameContext &frameContext,
+ 		  DebayerParams *params)
+ {
+-	auto &gains = context.activeState.awb.gains;
++	const auto &manual = frameContext.manualWb;
++	RGB<float> gains = manual.automatic ? context.activeState.awb.gains :
++		RGB<float>{ { manual.red, 1.0f, manual.blue } };
++	frameContext.temperatureK = manual.automatic ? context.activeState.awb.temperatureK :
++		estimateCCT(RGB<double>{ { 1.0 / gains.r(), 1.0, 1.0 / gains.b() } });
++	if (!manual.automatic) {
++		context.activeState.awb.gains = gains;
++		context.activeState.awb.temperatureK = frameContext.temperatureK;
++	}
+ 	Matrix<float, 3, 3> gainMatrix = { { gains.r(), 0, 0,
+ 					     0, gains.g(), 0,
+ 					     0, 0, gains.b() } };
+@@ -67,7 +75,9 @@
+ 	};
+ 	metadata.set(controls::ColourGains, mdGains);
+ 
+-	if (!stats->valid)
++	metadata.set(controls::AwbEnable, frameContext.manualWb.automatic);
++	metadata.set(controls::ColourTemperature, frameContext.temperatureK);
++	if (!stats->valid || !frameContext.manualWb.automatic)
+ 		return;
+ 
+ 	/*
+@@ -98,7 +108,7 @@
+ 
+ 	RGB<double> rgbGains{ { 1 / gains.r(), 1 / gains.g(), 1 / gains.b() } };
+ 	context.activeState.awb.temperatureK = estimateCCT(rgbGains);
+-	metadata.set(controls::ColourTemperature, context.activeState.awb.temperatureK);
++
+ 
+ 	LOG(IPASoftAwb, Debug)
+ 		<< "gain R/B: " << gains << "; temperature: "
+--- a/src/ipa/simple/algorithms/ccm.cpp
++++ b/src/ipa/simple/algorithms/ccm.cpp
+@@ -44,7 +44,7 @@
+ void Ccm::prepare(IPAContext &context, [[maybe_unused]] const uint32_t frame,
+ 		  IPAFrameContext &frameContext, [[maybe_unused]] DebayerParams *params)
+ {
+-	const unsigned int ct = context.activeState.awb.temperatureK;
++	const unsigned int ct = frameContext.temperatureK;
+ 
+ 	/* Change CCM only on bigger temperature changes. */
+ 	if (!currentCcm_ ||
+--- a/src/ipa/simple/ipa_context.h
++++ b/src/ipa/simple/ipa_context.h
+@@ -7,6 +7,7 @@
+ 
+ #pragma once
+ 
++#include "manual-capture.h"
+ #include <array>
+ #include <optional>
+ #include <stdint.h>
+@@ -36,6 +37,8 @@
+ };
+ 
+ struct IPAActiveState {
++	spectre::ManualExposure manualExposure;
++	spectre::ManualWhiteBalance manualWb;
+ 	struct {
+ 		int32_t exposure;
+ 		double again;
+@@ -64,6 +67,9 @@
+ };
+ 
+ struct IPAFrameContext : public FrameContext {
++	spectre::ManualExposure manualExposure;
++	spectre::ManualWhiteBalance manualWb;
++	unsigned int temperatureK = 0;
+ 	Matrix<float, 3, 3> ccm;
+ 
+ 	struct {
+--- a/src/ipa/simple/soft_simple.cpp
++++ b/src/ipa/simple/soft_simple.cpp
+@@ -178,8 +178,6 @@
+ 		stats_ = static_cast<SwIspStats *>(mem);
+ 	}
+ 
+-	ControlInfoMap::Map ctrlMap = context_.ctrlMap;
+-	*ipaControls = ControlInfoMap(std::move(ctrlMap), controls::controls);
+ 
+ 	/*
+ 	 * Check if the sensor driver supports the controls required by the
+@@ -197,6 +195,24 @@
+ 		return -EINVAL;
+ 	}
+ 
++	/* Advertise only controls implemented below; values use sensor units converted
++	 * to public microseconds and gain multipliers. */
++	const auto &ei = sensorControls.at(V4L2_CID_EXPOSURE);
++	const auto &gi = sensorControls.at(V4L2_CID_ANALOGUE_GAIN);
++	double lineUs = double(sensorInfo.minLineLength) * 1000000.0 / sensorInfo.pixelRate;
++	auto toUs = [lineUs](int32_t lines) { return int32_t(std::max(1.0, lines * lineUs)); };
++	auto toGain = [this](int32_t code) { return float(camHelper_ ? camHelper_->gain(code) : code); };
++	auto ctrlMap = context_.ctrlMap;
++	ctrlMap[&controls::AeEnable] = ControlInfo(false, true, true);
++	ctrlMap[&controls::ExposureTimeMode] = ControlInfo(controls::ExposureTimeModeValues);
++	ctrlMap[&controls::AnalogueGainMode] = ControlInfo(controls::AnalogueGainModeValues);
++	ctrlMap[&controls::ExposureTime] = ControlInfo(toUs(ei.min().get<int32_t>()),
++		toUs(ei.max().get<int32_t>()), toUs(ei.def().get<int32_t>()));
++	ctrlMap[&controls::AnalogueGain] = ControlInfo(toGain(gi.min().get<int32_t>()),
++		toGain(gi.max().get<int32_t>()), toGain(gi.def().get<int32_t>()));
++	ctrlMap[&controls::AwbEnable] = ControlInfo(false, true, true);
++	ctrlMap[&controls::ColourGains] = ControlInfo(0.1f, 8.0f, 1.0f);
++	*ipaControls = ControlInfoMap(std::move(ctrlMap), controls::controls);
+ 	return 0;
+ }
+ 
+@@ -220,6 +236,11 @@
+ 		LOG(IPASoft, Warning) << "Minimum exposure is zero, that can't be linear";
+ 		context_.configuration.agc.exposureMin = 1;
+ 	}
++
++	context_.activeState.manualExposure.exposureUs =
++		context_.configuration.agc.lineDuration.get<std::micro>() * exposureInfo.def().get<int32_t>();
++	context_.activeState.manualExposure.gain = camHelper_ ?
++		camHelper_->gain(gainInfo.def().get<int32_t>()) : gainInfo.def().get<int32_t>();
+ 
+ 	int32_t againMin = gainInfo.min().get<int32_t>();
+ 	int32_t againMax = gainInfo.max().get<int32_t>();
+@@ -279,6 +300,33 @@
+ void IPASoftSimple::queueRequest(const uint32_t frame, const ControlList &controls)
+ {
+ 	IPAFrameContext &frameContext = context_.frameContexts.alloc(frame);
++	auto &state = context_.activeState;
++	const auto &range = context_.configuration.agc;
++	double lineUs = range.lineDuration.get<std::micro>();
++	spectre::ExposureRequest request;
++	request.ae = controls.get(controls::AeEnable);
++	if (auto mode = controls.get(controls::ExposureTimeMode)) {
++		if (*mode == controls::ExposureTimeModeAuto || *mode == controls::ExposureTimeModeManual)
++			request.exposureAuto = *mode == controls::ExposureTimeModeAuto;
++	}
++	if (auto mode = controls.get(controls::AnalogueGainMode)) {
++		if (*mode == controls::AnalogueGainModeAuto || *mode == controls::AnalogueGainModeManual)
++			request.gainAuto = *mode == controls::AnalogueGainModeAuto;
++	}
++	if (auto us = controls.get(controls::ExposureTime)) request.exposureUs = *us;
++	if (auto gain = controls.get(controls::AnalogueGain)) request.gain = *gain;
++	state.manualExposure.update(request,
++		state.agc.valid ? state.agc.exposure * lineUs : state.manualExposure.exposureUs,
++		state.agc.valid ? state.agc.again : state.manualExposure.gain,
++		range.exposureMin * lineUs, range.exposureMax * lineUs, range.againMin, range.againMax);
++	frameContext.manualExposure = state.manualExposure;
++	std::optional<float> red, blue;
++	if (auto gains = controls.get(controls::ColourGains)) {
++		red = (*gains)[0]; blue = (*gains)[1];
++	}
++	state.manualWb.update(controls.get(controls::AwbEnable), red, blue,
++		state.awb.gains.r(), state.awb.gains.b());
++	frameContext.manualWb = state.manualWb;
+ 
+ 	for (auto const &algo : algorithms())
+ 		algo->queueRequest(context_, frame, frameContext, controls);

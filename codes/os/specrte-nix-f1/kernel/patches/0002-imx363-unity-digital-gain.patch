@@ -1,0 +1,18 @@
+Subject: [PATCH] media: imx363: default digital gain to sensor unity
+
+The sensor's Q8 digital gain uses 0x100 for unity. The former default
+0x400 applies 4x digital gain to all Bayer channels. Verified against the
+original Xiaomi QTech/Sunny driver and fixed-exposure captures on this phone.
+Keep the control ABI unchanged; correct only its default.
+
+--- a/drivers/media/i2c/imx363.c
++++ b/drivers/media/i2c/imx363.c
+@@ -55,7 +55,7 @@
+ #define IMX363_REG_GB_DIGITAL_GAIN	CCI_REG16(0x0214)
+ #define IMX363_DGTL_GAIN_MIN		0
+ #define IMX363_DGTL_GAIN_MAX		4096	/* Max = 0xFFF */
+-#define IMX363_DGTL_GAIN_DEFAULT	1024
++#define IMX363_DGTL_GAIN_DEFAULT	256	/* Q8 unity gain */
+ #define IMX363_DGTL_GAIN_STEP		1
+ 
+ /* HDR control */

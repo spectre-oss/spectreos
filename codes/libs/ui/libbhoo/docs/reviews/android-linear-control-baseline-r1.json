@@ -1,0 +1,13 @@
+{
+ "title":"Android LinearLayout: control label baselines",
+ "component":"android-linear-layout",
+ "purpose":"Check that CheckBox, RadioButton and Switch labels align by baseline with larger text in horizontal XML layouts.",
+ "changes":"Baseline-aware layouts now use the rendered label baseline for these three controls.",
+ "steps":["Find Control and text baselines below the Right-to-left layout switch. Each row pairs a small control label with larger text.","Compare the bottom of each label's letters with Large: their text baselines should line up in the CheckBox, RadioButton and Switch rows.","Tap the controls to check they remain interactive. Turn on Right-to-left layout; the columns should reverse while the label baselines stay aligned.","Choose OK if the rows work as described, or Reject with the row, problem and your device."],
+ "expected":"Each control's small label shares a baseline with the larger text, in LTR and RTL, and remains interactive.",
+ "limits":"This example checks Bhoo's current rendered font metrics and horizontal LinearLayout. Exact Android theme, font metrics and device visual parity remain unverified.",
+ "documentation":"docs/TDD/libbhoo/components/android-linear-layout.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/LinearLayout.java","local":"context/reference-sources/android-framework/LinearLayout.java","license":"Apache-2.0","scope":"Horizontal child baseline alignment."},{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java","local":"context/reference-sources/android-framework/CompoundButton.java","license":"Apache-2.0","scope":"Checkable text controls."}],
+ "validation":["Rust layout test checks all three control label baselines against larger text in LTR and RTL."],
+ "demo_height":1000
+}

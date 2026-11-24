@@ -1,0 +1,28 @@
+{
+  "title": "Android TabWidget: fixed widths",
+  "component": "android-tab-widget",
+  "purpose": "Check that Android XML fixed-width tab indicators keep their requested widths and shrink when they cannot all fit.",
+  "changes": "Unweighted fixed-width children without margins now use their requested widths. When the widget is too narrow, the overflow is distributed across the children. The example imports an XML layout with widths 48, 96 and 96 dp.",
+  "steps": [
+    "Turn on Fixed tab widths. First should be narrower than Second and Third, which should have equal widths.",
+    "Turn on Narrow widget. All three tabs should shrink to fit the smaller widget; First remains the narrowest.",
+    "Tap Second and Third to check selection, then turn on Right-to-left layout and check the order and selection again.",
+    "Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "Distinct XML widths are visible when the tabs fit, and all tabs fit inside the narrow widget after shrinking; right-to-left reverses their order.",
+  "limits": "This covers fixed widths without weights or margins. Other sizing combinations still use an approximation, and Android pixel rounding and device appearance are not verified.",
+  "documentation": "docs/TDD/libbhoo/components/android-tab-widget.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TabWidget.java",
+      "local": "context/reference-sources/android-framework/TabWidget.java",
+      "license": "Apache-2.0",
+      "scope": "Unconstrained first measurement and overflow distribution."
+    }
+  ],
+  "validation": [
+    "Nine TabWidget Rust tests and seven TabHost regression tests passed; 155 XML importer tests passed.",
+    "A 320 \u00d7 600 browser test checked XML widths, overflow and RTL."
+  ],
+  "demo_height": 600
+}

@@ -1,0 +1,23 @@
+@define-color pos_key_fg_color #e3e3e7;
+@define-color pos_key_bg_color #46464a;
+@define-color pos_fg_color #e3e3e7;
+@define-color pos_bg_color #29292b;
+@import url("resource:///mobi/phosh/stevia/stylesheet/common.css");
+pos-key { background: #46464a; color: #e3e3e7; border-radius: 10px; margin: 7.5px 3.5px; font: 35px "Roboto", "Noto Sans Arabic", sans-serif; }
+pos-key.space { font-size: 20px; }
+pos-key.sys, pos-key.toggle, pos-key.return, pos-key.punctuation { background: #3e465f; color: #dfe3f2; }
+pos-key.toggle { font-size: 22px; }
+pos-key.symbols, pos-key.return { border-radius: 50px; font-size: 22px; }
+pos-key.language { background: #46464a; }
+pos-key.halfspace { font-size: 25px; }
+pos-key.hint { color: #c8c8cc; font-size: 16px; }
+pos-key.pressed, pos-key.sys.pressed, pos-key.toggle.pressed, pos-key.return.pressed { background: #596781; }
+pos-indicator-popup, pos-char-popup { color: #e3e3e7; background: #46464a; border: 1px solid #62626a; border-radius: 10px; }
+pos-indicator-popup label { font-size: 130%; font-weight: normal; margin: 3px 6px 5px; }
+pos-char-popup button { color: #e3e3e7; background: transparent; font-size: 125%; padding: 6px; border-radius: 6px; }
+pos-char-popup button:hover, pos-char-popup button:active { background: #596781; }
+#spectre-footer { background: #29292b; }
+#spectre-footer button { background: transparent; color: #ffffff; border: none; box-shadow: none; }
+
+/* Persian keys use the system Persian typeface. */
+pos-key.persian { font-family: "Shabnam"; }

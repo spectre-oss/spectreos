@@ -1,0 +1,28 @@
+{
+  "title": "Retest: Android GridLayout nested wrap-content width and button click ripple",
+  "component": "android-grid-layout",
+  "purpose": "Retest the nested wrap-content GridLayout after fixing the button click ripple animation and clipping boundary reported in android-grid-nested-wrap-r1.",
+  "changes": "Kind::Button in codes/libs/ui/libbhoo/src/android_xml.rs now derives its click ripple and hover state-layer corner radius from self.radius (0.0 for rectangular buttons, min(width, height) * 0.5 for oval buttons, or the configured corner radius) instead of a hardcoded 12.0 dp radius, fixing the click animation clipping boundary on Small, More, and After. Nested wrap-content GridLayout column measurement using active renderer text metrics and child state remains in place.",
+  "steps": [
+    "Find Small, More and After under Nested wrap-content grid. They should appear next to one another as rectangular buttons.",
+    "Tap Small, More and After individually. Watch the click ripple animation and its boundary on each button: the ripple should expand cleanly inside the rectangular button bounds with square corners rather than clipping to rounded corners or extending outside the button.",
+    "Tap Change grid label. Small becomes Longer nested and grows; More and After should move without overlapping. Tap Longer nested, More and After again to check the click ripple against the resized rectangular bounds, then tap Change grid label again to restore Small.",
+    "Turn on Right-to-left layout and repeat tapping Small, More and After and tapping Change grid label. The order should mirror with all three controls adjacent and clean rectangular click ripples. Choose OK only if both the click animation/boundary and nested wrap-content layout are fixed; otherwise choose Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Click ripples stay cleanly clipped to each rectangular button's exact boundary on Small, More and After (at both sizes and in both directions), and the nested grid grows and shrinks with its child while keeping both following controls adjacent.",
+  "limits": "This covers Bhoo's button state-layer ripple clipping for rectangular, rounded and oval radii and supported nested wrap-content GridLayout measurement. Custom Android RippleDrawable masks, theme-driven Android button defaults, complex weighted constraints, Android font and theme behavior and real-device parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-grid-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/GridLayout.java",
+      "local": "context/reference-sources/android-framework/GridLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Nested grid measurement and positioning."
+    }
+  ],
+  "validation": [
+    "Rust regression test nested_grid_button_ripple_matches_button_radius clicks Small in android_grid_nested_wrap and asserts DrawCommand::Ripple matches the button's exact bounds with corner_radius == 0.0.",
+    "Rust regression test nested_grid_wrap_tracks_child_and_following_sibling_with_active_metrics verifies nested width, sibling positions, non-default text metrics and RTL.",
+    "Full libbhoo Rust test suite (805 tests across 73 suites) and 171 Android XML importer Python tests passed."
+  ]
+}

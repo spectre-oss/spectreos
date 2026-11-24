@@ -1,0 +1,17 @@
+# SpectreOS repo-wide Cargo commands (works on any app or `all`).
+# Run `cargo app-help` for the complete list, or see `docs/writing-spectreos-apps/cargo-commands.md`.
+
+[alias]
+dev = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build"
+release = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release"
+app-build = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build"
+app-release = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release"
+app-check = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- check"
+app-test = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test"
+app-run = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- run"
+app-clean = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean"
+clean-all = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean"
+test-web = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web"
+test-web-watch = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-watch"
+test-web-check = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-check"
+app-help = "run --quiet --manifest-path tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- help"

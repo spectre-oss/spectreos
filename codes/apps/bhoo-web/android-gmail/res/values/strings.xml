@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_in_mail">Search in mail</string>
+    <string name="account_initial">A</string>
+    <string name="compose">Compose</string>
+    <string name="nav_mail">Mail</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_meet">Meet</string>
+    <string name="nav_badge_99_plus">99+</string>
+
+    <string name="drawer_primary">Primary</string>
+    <string name="drawer_promotions">Promotions</string>
+    <string name="drawer_starred">Starred</string>
+    <string name="drawer_sent">Sent</string>
+    <string name="drawer_drafts">Drafts</string>
+    <string name="drawer_trash">Trash</string>
+    <string name="drawer_settings">Settings</string>
+
+    <string name="section_primary">Primary</string>
+    <string name="chat_title">Google Chat</string>
+    <string name="chat_subtitle">No unread spaces — tap Mail below to return to your inbox</string>
+    <string name="meet_title">Google Meet</string>
+    <string name="meet_subtitle">Ready for video meetings — tap Mail below to return to your inbox</string>
+
+    <string name="email_0_initial">S</string>
+    <string name="email_0_sender">Sam</string>
+    <string name="email_0_subject">Photos from my trip!</string>
+    <string name="email_0_snippet">Hey Alex, I hope you're doing well! I just...</string>
+    <string name="email_0_time">6:11 PM</string>
+    <string name="email_0_attachment">sora-sagano-8s...</string>
+    <string name="email_0_attachment_more">+1</string>
+
+    <string name="email_1_sender">Promotions</string>
+    <string name="email_1_subject">MasterClass - Congrats on finishi...</string>
+    <string name="email_1_badge">4 new</string>
+
+    <string name="email_2_initial">S</string>
+    <string name="email_2_sender">Square</string>
+    <string name="email_2_subject">Your Square account has been deactivat...</string>
+    <string name="email_2_snippet">Your Square account has been deactivat...</string>
+    <string name="email_2_time">5:43 PM</string>
+
+    <string name="email_3_sender">Under Armour</string>
+    <string name="email_3_subject">Order confirmation for UA US-31884...</string>
+    <string name="email_3_snippet">Expected by Tue, Jan 14</string>
+    <string name="email_3_time">1:23 PM</string>
+
+    <string name="email_4_initial">P</string>
+    <string name="email_4_sender">Pinterest</string>
+    <string name="email_4_subject">Pinterest account security alert: Did y...</string>
+    <string name="email_4_snippet">A new device logged in to your Pinterest...</string>
+    <string name="email_4_time">10:47 AM</string>
+
+    <string name="email_5_initial">V</string>
+    <string name="email_5_sender">Vercel</string>
+    <string name="email_5_subject">Vercel December Product Update</string>
+    <string name="email_5_snippet">Reduced prices | Observability and Obse...</string>
+    <string name="email_5_time">9:53 AM</string>
+
+    <string name="email_6_initial">G</string>
+    <string name="email_6_sender">Google One</string>
+    <string name="email_6_subject">Your month with Google...</string>
+    <string name="email_6_snippet">Storage summary and member benefits...</string>
+    <string name="email_6_time">9:11 AM</string>
+
+    <string name="label_inbox">Inbox</string>
+    <string name="detail_time">10:35 AM</string>
+    <string name="detail_to_me">to me</string>
+    <string name="detail_body_greeting">Hey Alex,</string>
+    <string name="detail_body_p1">I hope you're doing well! I just got back from my trip, and I wanted to share some photos with you. I had an amazing time, and I thought you'd enjoy seeing some of the highlights.</string>
+    <string name="detail_body_p2">I've attached a few of my favorite pictures from the trip — everything from beautiful landscapes to fun moments with the people I met. Take a look and let me know what you think!</string>
+    <string name="detail_body_p3">It was such an unforgettable experience, and I can't wait to tell you all about it. We should catch up soon — maybe over coffee?</string>
+    <string name="detail_body_signoff">Best,\nSam</string>
+    <string name="photo_sakura_caption">Sakura sky</string>
+    <string name="photo_kyoto_caption">Kyoto canal</string>
+    <string name="quick_reply_prompt">Start your reply with one tap</string>
+    <string name="quick_reply_great">Great pictures!</string>
+    <string name="quick_reply_amazing">Amazing photos!</string>
+
+    <string name="compose_title">Compose</string>
+    <string name="compose_to_hint">To</string>
+    <string name="compose_to_default">samlee.mobbin@gmail.com &amp; 1 more</string>
+    <string name="compose_from_hint">From</string>
+    <string name="compose_from_default">aallexsmiith@gmail.com</string>
+    <string name="compose_subject_hint">Subject</string>
+    <string name="compose_subject_default">Catch up soon?</string>
+    <string name="compose_body_hint">Compose email</string>
+    <string name="compose_body_default">Hey Sam, How's it going? I attached some pictures from my recent trip to Japan! Can't wait to visit you soon.</string>
+
+    <string name="cd_open_drawer">Open navigation drawer</string>
+    <string name="cd_star_message">Star message</string>
+    <string name="cd_back">Navigate back to inbox</string>
+    <string name="cd_archive">Archive</string>
+    <string name="cd_delete">Delete</string>
+    <string name="cd_mark_unread">Mark as unread</string>
+    <string name="cd_more">More options</string>
+    <string name="cd_close">Close compose</string>
+    <string name="cd_attach">Attach file</string>
+    <string name="cd_send">Send email</string>
+    <string name="cd_react">Add reaction</string>
+    <string name="cd_reply">Reply</string>
+</resources>

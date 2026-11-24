@@ -1,0 +1,27 @@
+{
+  "title": "Android XML CheckBox runtime label",
+  "component": "android-checkbox",
+  "purpose": "Verify that changing an Android XML CheckBox label updates both its displayed text and wrap-content width without changing its checked state.",
+  "changes": "The checkbox reads its host-provided runtime label and remeasures the wrap-content control when the text changes.",
+  "steps": [
+    "Find Short under Runtime label and wrap content and check it.",
+    "Tap Change checkbox label. Short should become Longer checkbox label, and the checkbox should remain checked while the row grows. Tap again to restore Short.",
+    "Enable Right-to-left layout and repeat. Check the indicator and text appear in the correct order, the row changes size, and the checked state persists. Choose OK if it works or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Changing the label resizes the control, keeps it usable and retains the check state in both layout directions.",
+  "limits": "This is Bhoo host state rather than a full Android TextView implementation. Android drawable padding, complete text layout, theme and exact device appearance and motion remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-checkbox.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java",
+      "local": "context/reference-sources/android-framework/CompoundButton.java",
+      "license": "Apache-2.0",
+      "scope": "Android compound button behavior and inherited TextView label."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies label drawing, wrap width, RTL placement, restoration and preserved checked state.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified text changes, width, checked state and RTL interaction."
+  ]
+}

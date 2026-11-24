@@ -1,0 +1,27 @@
+{
+  "title": "Android XML Switch runtime label",
+  "component": "android-switch",
+  "purpose": "Check that changing the external label of an Android XML Switch updates its text and wrap-content width without changing its on/off state.",
+  "changes": "The Switch reads its runtime label from LayoutState, and a wrap-content switch measures that updated label.",
+  "steps": [
+    "Find the compact switch labelled Wrap in Android XML switch sizing and spacing. Turn it on.",
+    "Tap Change switch label. Wrap should become Longer switch label and the control should grow to fit; it should remain on. Tap the button again to restore Wrap and its compact width.",
+    "Enable Right-to-left layout and repeat the label changes and toggles. The switch should stay alongside its label and remain usable. Choose OK if this works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The label and wrap-content width change together, toggling still works, and the existing checked value survives label changes in either layout direction.",
+  "limits": "The example uses Bhoo host state to update text. Android TextView spans, complete theme and measurement behavior, and device-level visual and motion parity are not verified.",
+  "documentation": "docs/TDD/libbhoo/components/android-switch.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/Switch.java",
+      "local": "context/reference-sources/android-framework/Switch.java",
+      "license": "Apache-2.0",
+      "scope": "Switch measurement and inherited text behavior."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies changed rendered label, width, checked state, RTL placement and restoration.",
+    "Full libbhoo Rust test suite passed.",
+    "Phone-sized 320 × 500 browser test verified label changes, width, checked state and RTL interaction."
+  ]
+}

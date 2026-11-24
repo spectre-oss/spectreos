@@ -1,0 +1,28 @@
+{
+  "title": "Android SlidingDrawer: nested views",
+  "component": "android-sliding-drawer",
+  "purpose": "Check that an Android XML SlidingDrawer can find its handle and content when their IDs belong to nested descendants.",
+  "changes": "The importer now accepts distinct handle and content descendant IDs, and the drawer locates those views for rendering and interaction. The example has an interactive button inside nested content.",
+  "steps": [
+    "Turn on Nested handle and content. Tap the drawer's Open handle; the drawer should open and reveal Nested action.",
+    "Tap Nested action. The text Nested action pressed should appear beneath the drawer.",
+    "Close the drawer, toggle Nested handle and content off and on to clear the message, then turn on Horizontal and repeat. You can also drag the handle to open or close it.",
+    "Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "The nested handle opens and closes the drawer, and the nested content button works in both orientations.",
+  "limits": "Referenced views are rendered directly; effects from their ancestor wrappers are not reproduced. Android device parity, exact fling physics and callbacks remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-sliding-drawer.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/SlidingDrawer.java",
+      "local": "context/reference-sources/android-framework/SlidingDrawer.java",
+      "license": "Apache-2.0",
+      "scope": "Descendant lookup and drawer behavior."
+    }
+  ],
+  "validation": [
+    "Seven SlidingDrawer Rust tests and 157 XML importer tests passed, including nested views and missing or duplicate ID validation.",
+    "A 320 \u00d7 760 browser test opened the drawer and activated the nested button in both orientations."
+  ],
+  "demo_height": 760
+}

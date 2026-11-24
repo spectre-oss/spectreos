@@ -1,0 +1,14 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/tabhost" android:layout_width="match_parent" android:layout_height="220dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+        <TabWidget android:id="@android:id/tabs" android:layout_width="match_parent" android:layout_height="56dp">
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="First" />
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Second" />
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Third" />
+        </TabWidget>
+        <FrameLayout android:id="@android:id/tabcontent" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#E4EEE8">
+            <TextView android:id="@+id/page_one" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="First tab content" />
+            <TextView android:id="@+id/page_two" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Second tab content" />
+            <TextView android:id="@+id/page_three" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Third tab content" />
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>

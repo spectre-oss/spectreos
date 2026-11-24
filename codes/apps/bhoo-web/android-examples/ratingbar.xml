@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Choose a rating" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <RatingBar android:mirrorForRtl="true" android:id="rating" android:numStars="5" android:rating="2.5" android:stepSize="0.5" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <TextView android:text="Read-only rating" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <RatingBar android:mirrorForRtl="true" android:id="indicator" android:numStars="5" android:rating="3.5" android:stepSize="0.5" android:isIndicator="true" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

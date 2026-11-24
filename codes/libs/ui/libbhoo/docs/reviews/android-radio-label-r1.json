@@ -1,0 +1,33 @@
+{
+  "title": "Android XML RadioButton runtime label",
+  "component": "android-radio-group",
+  "purpose": "Verify that changing a radio button label updates its displayed text and wrap-content width without losing the group's selection.",
+  "changes": "RadioButton reads its host-provided runtime label and remeasures the wrap-content control while retaining group selection.",
+  "steps": [
+    "Find the selected Short option under Runtime label and wrap content. Tap Change radio label: it should become Longer radio label and grow while remaining selected.",
+    "Select Other, change the label back and forth, and verify Other stays selected. Select Short or Longer radio label again and verify only that option is selected.",
+    "Turn on Right-to-left layout and repeat. The indicator and text should reverse placement and both choices should work. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The label and width update together; radio selection remains mutually exclusive and survives label changes in both directions.",
+  "limits": "This is Bhoo host state rather than a full Android TextView implementation. Android drawable padding, complete text layout and exact device appearance and motion remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-radio-group.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java",
+      "local": "context/reference-sources/android-framework/CompoundButton.java",
+      "license": "Apache-2.0",
+      "scope": "Compound button behavior and inherited text."
+    },
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/RadioGroup.java",
+      "local": "context/reference-sources/android-framework/RadioGroup.java",
+      "license": "Apache-2.0",
+      "scope": "Group selection behavior."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies rendered text, wrap width, retained selection, restoration and RTL placement.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified text changes, width, selection and RTL interaction."
+  ]
+}

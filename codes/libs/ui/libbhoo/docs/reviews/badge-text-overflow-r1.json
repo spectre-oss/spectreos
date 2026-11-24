@@ -1,0 +1,27 @@
+{
+  "title": "Material badge text overflow",
+  "component": "badge",
+  "purpose": "Check that a text badge shortens a long label with an ellipsis and follows its icon in RTL.",
+  "changes": "Added a text badge option that limits visible grapheme clusters, retaining complete combined characters when truncating.",
+  "steps": [
+    "Under Text badge overflow, the source says New and the inbox badge should show New.",
+    "Tap Change badge text: the source becomes Updates and the badge should show Upd… inside a fitting pill. Tap again to restore New.",
+    "Turn on Right-to-left layout and repeat. The badge should appear on the opposite side of the icon and still show the shortened text. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Text at the limit is retained, longer text ends in an ellipsis, and the badge mirrors with its owner.",
+  "limits": "Bhoo counts Unicode grapheme clusters while Android's reference counts UTF-16 units, so emoji and complex scripts can truncate differently. Complex shaping, locale-specific formatting and exact Android visual parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/badge.md",
+  "references": [
+    {
+      "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "local": "context/reference-repos/material-android/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "license": "Apache-2.0",
+      "scope": "Text badge maximum length and ellipsis behavior."
+    }
+  ],
+  "validation": [
+    "Rust tests cover short and long text, one-character limit, combining marks, emoji sequences, invalid limits and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified short and truncated labels and RTL interaction."
+  ]
+}

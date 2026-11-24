@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=Calendar
+GenericName=Calendar & Schedule
+Comment=Manage local calendars, recurring events, reminders, and iCalendar files on SpectreOS
+Exec=spectre-calendar
+Icon=org.spectreos.Calendar
+Terminal=false
+Categories=Office;Calendar;
+MimeType=text/calendar;
+Keywords=events;schedule;agenda;reminders;appointments;ics;
+StartupNotify=true
+StartupWMClass=org.spectreos.Calendar

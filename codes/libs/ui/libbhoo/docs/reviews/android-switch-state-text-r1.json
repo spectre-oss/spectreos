@@ -1,0 +1,17 @@
+{
+  "title": "Android XML Switch: on/off state text",
+  "component": "android-switch",
+  "purpose": "Check Android XML textOn, textOff and showText on Switch, including a longer label, toggling, and right-to-left layout.",
+  "changes": "Added on/off labels inside the switch thumb, showText control and sizing for the longer label. The displayed label changes as the animated thumb passes the middle.",
+  "steps": [
+    "Scroll to Android XML switch state text. Connection starts on and should display YES in the thumb. Power starts off and should display OFF; its switch is wider to accommodate READY.",
+    "Toggle Connection and Power several times. The labels should change to NO and READY respectively, remain readable inside the thumb, and follow it during motion.",
+    "Toggle Text hidden. Its thumb should contain no on/off text in either state.",
+    "Turn on Right-to-left layout near the top. Repeat the toggles: the switches should appear to the left of their labels, the thumb travel should reverse, and the state text should remain readable. Choose OK if these steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The configured on/off text appears in the moving thumb, longer labels fit, showText=false hides the text, and behavior works in both layout directions.",
+  "limits": "Bhoo uses a fixed 9 sp state-text style and its own switch geometry. Android switch text appearances, text padding, custom drawables, theme defaults and exact device pixel or motion parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-switch.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/Switch.java","local":"context/reference-sources/android-framework/Switch.java","license":"Apache-2.0","scope":"State text, showText, sizing and midpoint label selection."}],
+  "validation": ["142 Android XML importer tests passed, including textOn/textOff and showText validation.","Four Rust switch tests passed, including label sizing, toggle, RTL and tint regressions."]
+}

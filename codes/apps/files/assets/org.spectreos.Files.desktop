@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=Files
+GenericName=File Manager
+Comment=Browse and organize files on SpectreOS
+Exec=spectre-files
+Icon=system-file-manager
+Terminal=false
+Categories=System;FileManager;
+Keywords=files;downloads;media;folders;storage;
+StartupWMClass=org.spectreos.Files

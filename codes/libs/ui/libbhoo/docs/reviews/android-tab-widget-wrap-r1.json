@@ -1,0 +1,34 @@
+{
+  "title": "Android TabWidget: content-sized tabs",
+  "component": "android-tab-widget",
+  "purpose": "Check that Android XML wrap_content tabs use their content width and shrink when the widget is too narrow.",
+  "changes": "Wrap-content tab children now use Bhoo's intrinsic content measurement instead of equal-width slots. The example imports three wrap_content tabs, with a longer middle label.",
+  "steps": [
+    "Turn on Wrap-content tabs. The longer middle label should have a wider tab than First and Third.",
+    "Turn on Narrow widget. The tabs should shrink to fit; the labels may be clipped in the smaller space.",
+    "Turn on Right-to-left layout and check that the order reverses. Tap the middle tab to check selection.",
+    "Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "Tab widths follow the content, shrink when space is limited, and preserve selection and RTL ordering.",
+  "limits": "Content width uses Bhoo's approximate font metrics. Match-parent mixtures, Android's detailed measurement and device appearance remain unverified or approximate.",
+  "documentation": "docs/TDD/libbhoo/components/android-tab-widget.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TabWidget.java",
+      "local": "context/reference-sources/android-framework/TabWidget.java",
+      "license": "Apache-2.0",
+      "scope": "Unconstrained first measurement and overflow distribution."
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/LinearLayout.java",
+      "local": "context/reference-sources/android-framework/LinearLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Horizontal child measurement."
+    }
+  ],
+  "validation": [
+    "Thirteen TabWidget Rust tests, seven TabHost tests and 156 XML importer tests passed; tests include dynamic text and overflow.",
+    "A 320 \u00d7 760 browser test checked content sizing, narrow layout, selection and RTL."
+  ],
+  "demo_height": 760
+}

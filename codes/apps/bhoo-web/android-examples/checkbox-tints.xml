@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckBox android:id="tint_checked" android:text="Checked: blue" android:buttonTint="@color/checkbox_button_example" android:checked="true" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="tint_unchecked" android:text="Unchecked: amber" android:buttonTint="@color/checkbox_button_example" android:checked="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="tint_disabled" android:text="Disabled: gray" android:buttonTint="@color/checkbox_button_example" android:checked="true" android:enabled="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

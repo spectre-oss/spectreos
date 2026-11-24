@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckBox android:id="custom_check_one" android:text="Checked circle" android:button="@drawable/check_mark_selector" android:checked="true" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="custom_check_two" android:text="Unchecked square" android:button="@drawable/check_mark_selector" android:checked="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="custom_check_disabled" android:text="Disabled circle" android:button="@drawable/check_mark_selector" android:checked="true" android:enabled="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

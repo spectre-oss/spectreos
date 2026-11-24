@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Gmail.Text.SectionHeader">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gmail_muted</item>
+    </style>
+
+    <style name="Gmail.Text.SenderUnread">
+        <item name="android:textSize">15.5sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gmail_ink</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Gmail.Text.SenderRead">
+        <item name="android:textSize">15.5sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gmail_muted</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Gmail.Text.SubjectUnread">
+        <item name="android:textSize">13.5sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gmail_ink</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Gmail.Text.SubjectRead">
+        <item name="android:textSize">13.5sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gmail_muted</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Gmail.Text.Snippet">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gmail_muted</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Gmail.Text.TimeUnread">
+        <item name="android:textSize">11.5sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gmail_ink</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="Gmail.Text.TimeRead">
+        <item name="android:textSize">11.5sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gmail_muted</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="Gmail.AvatarText">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Gmail.Detail.Subject">
+        <item name="android:textSize">21sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gmail_ink</item>
+    </style>
+
+    <style name="Gmail.Detail.Body">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gmail_ink</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="Gmail.QuickReplyChip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="app:chipBackgroundColor">@color/white</item>
+        <item name="app:chipStrokeColor">@color/gmail_outline</item>
+        <item name="app:chipStrokeWidth">1dp</item>
+        <item name="app:chipCornerRadius">10dp</item>
+        <item name="android:textColor">@color/gmail_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Gmail.PhotoCard" parent="Widget.Material3.CardView.Outlined">
+        <item name="app:cardCornerRadius">12dp</item>
+        <item name="app:strokeColor">@color/gmail_outline</item>
+        <item name="app:strokeWidth">1dp</item>
+        <item name="app:cardElevation">0dp</item>
+    </style>
+
+    <style name="Gmail.ComposeInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="app:boxBackgroundMode">outline</item>
+        <item name="app:boxCornerRadiusTopStart">8dp</item>
+        <item name="app:boxStrokeColor">@color/gmail_outline</item>
+        <item name="android:background">@color/gmail_surface</item>
+    </style>
+</resources>

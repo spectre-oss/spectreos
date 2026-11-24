@@ -1,0 +1,27 @@
+{
+  "title": "Android Button multi-line label",
+  "component": "android-button",
+  "purpose": "Check that a narrow wrap-content Button displays a multi-line label without clipping and reserves space for its top drawable.",
+  "changes": "Button labels now wrap to the available width and wrap-content height accounts for their lines, line spacing, supported drawable extents and padding.",
+  "steps": [
+    "Find the button under Multiline wrap-content button. Its green bar should sit above the complete text Send the weekly update now, which should appear on multiple lines inside the button.",
+    "Tap the button and check the status says Pressed: multiline_button. The text and bar should remain inside the button.",
+    "Turn on Right-to-left layout and repeat. The button should move to the opposite edge, the complete text should remain visible, and it should still respond. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The button grows to contain the wrapped label and drawable, stays tappable, and works in both layout directions.",
+  "limits": "This covers Bhoo's supported wrapping, line limit and shape drawable subset. Android typography, complex text shaping, multi-line baseline alignment and device pixel/motion parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-button.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "Text wrapping and measurement inherited by Button."
+    }
+  ],
+  "validation": [
+    "Rust regression checks line wrapping, height, drawable separation, activation and RTL; existing Android XML tests pass.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified height, activation and RTL interaction."
+  ]
+}

@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:id="label" android:text="Press and hold this text" android:textSize="20sp" android:textColor="@color/image_states" android:clickable="true" android:layout_width="match_parent" android:layout_height="64dp" android:background="#E3ECE4"/>
+  <Button android:id="action" android:text="Press this button" android:textColor="@color/image_states" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:id="disabled" android:text="Disabled text" android:textSize="20sp" android:textColor="@color/image_states" android:enabled="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.spectreos.OSK0
+Exec=/usr/bin/env spectre-keyboard
+SystemdService=org.spectreos.OSK.service

@@ -1,0 +1,40 @@
+#!/bin/busybox sh
+export PATH=/bin
+/bin/busybox --install -s /bin
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+mkdir -p /dev/pts /run /logs /config
+mount -t devpts devpts /dev/pts
+exec >/logs/init.txt 2>&1
+# This diagnostic never mounts or writes a phone partition.
+(sleep 360; reboot -f) &
+echo 'RAM-only sensor diagnostic; automatic Android return in 360 seconds'
+mount -t configfs configfs /config
+G=/config/usb_gadget/sensors
+mkdir -p "$G"
+echo 0x18d1 > "$G/idVendor"
+echo 0xd001 > "$G/idProduct"
+mkdir -p "$G/strings/0x409" "$G/configs/c.1/strings/0x409" "$G/functions/rndis.usb0"
+echo sensor-diagnostic > "$G/strings/0x409/serialnumber"
+echo Poco > "$G/strings/0x409/manufacturer"
+echo 'Linux sensor diagnostic' > "$G/strings/0x409/product"
+echo USB > "$G/configs/c.1/strings/0x409/configuration"
+ln -s "$G/functions/rndis.usb0" "$G/configs/c.1/rndis.usb0"
+for U in /sys/class/udc/*; do [ -e "$U" ] && basename "$U" > "$G/UDC" && break; done
+ip link set usb0 up
+ip addr add 172.16.42.1/24 dev usb0
+httpd -p 80 -h /logs
+# Ephemeral debugging shell, reachable only on the direct USB interface.
+telnetd -b 172.16.42.1:2323 -l /bin/sh
+mount -t debugfs debugfs /sys/kernel/debug
+ln -s /nix/store/4j7ap1sg82b5pzzshf2hdh4v4h07c87c-v4l-utils-aarch64-unknown-linux-gnu-1.32.0/bin/media-ctl /bin/media-ctl
+ln -s /nix/store/4j7ap1sg82b5pzzshf2hdh4v4h07c87c-v4l-utils-aarch64-unknown-linux-gnu-1.32.0/bin/v4l2-ctl /bin/v4l2-ctl
+while :; do
+ dmesg > /logs/kernel.txt
+ cat /proc/uptime > /logs/uptime.txt
+ cat /sys/kernel/debug/devices_deferred > /logs/deferred.txt
+ ls -l /sys/bus/i2c/devices/ > /logs/i2c.txt
+ ls -l /sys/class/video4linux/ > /logs/video.txt
+ sleep 2
+done

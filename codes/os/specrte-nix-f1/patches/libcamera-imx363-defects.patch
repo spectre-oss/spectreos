@@ -1,0 +1,59 @@
+Subject: [LOCAL] Correct measured Sunny defects before preview reduction and still ISP
+
+--- a/src/libcamera/software_isp/debayer_cpu.cpp
++++ b/src/libcamera/software_isp/debayer_cpu.cpp
+@@ -12,6 +12,7 @@
+ #include "debayer_cpu.h"
+ #include "raw10-reduce.h"
+ #include "raw10-denoise.h"
++#include "raw10-defects.h"
+ 
+ #include <algorithm>
+ #include <stdlib.h>
+@@ -490,6 +491,17 @@
+ 	denoisedRaw_.clear();
+ 	reducedRaw_.clear();
+ 	const char *fullSensor = utils::secure_getenv("SPECTRE_IMX363_FULL_SENSOR");
++	defectSourceStride_ = 0;
++	defectCorrectedRaw_.clear();
++	const char *defects = utils::secure_getenv("SPECTRE_IMX363_SUNNY_DEFECTS");
++	if (fullSensor && std::string(fullSensor) == "1" && defects &&
++	    std::string(defects) == "1" && sourceCfg.size == Size(4032, 3024) &&
++	    sourceCfg.pixelFormat == formats::SRGGB10_CSI2P && sourceCfg.stride >= 5040) {
++		defectSourceStride_ = sourceCfg.stride;
++		defectCorrectedRaw_.resize(size_t(sourceCfg.stride) * 3024);
++		LOG(Debayer, Info) << "Sunny measured defect map enabled: "
++				   << spectre::sunnyDefects.size() << " pixels";
++	}
+ 	if (fullSensor && std::string(fullSensor) == "1" &&
+ 	    sourceCfg.size == Size(4032, 3024) && outputCfgs.size() == 1 &&
+ 	    sourceCfg.stride >= 4032 * 5 / 4) {
+@@ -899,6 +911,17 @@
+ 	}
+ 
+ 	const uint8_t *source = in.planes()[0].data();
++	if (defectSourceStride_) {
++		if (!spectre::correctRaw10Defects(source, in.planes()[0].size(), defectSourceStride_,
++		                               defectCorrectedRaw_.data(), 4032, 3024,
++		                               spectre::sunnyDefects.data(), spectre::sunnyDefects.size())) {
++			metadata.status = FrameMetadata::FrameError;
++			outputBufferReady.emit(output);
++			inputBufferReady.emit(input);
++			return;
++		}
++		source = defectCorrectedRaw_.data();
++	}
+ 	if (reductionSourceStride_) {
+ 		if (in.planes()[0].size() < size_t(reductionSourceStride_) * 3024) {
+ 			metadata.status = FrameMetadata::FrameError;
+--- a/src/libcamera/software_isp/debayer_cpu.h
++++ b/src/libcamera/software_isp/debayer_cpu.h
+@@ -144,6 +144,8 @@
+ 	unsigned int reductionSourceStride_ = 0;
+ 	unsigned int denoiseSourceStride_ = 0;
+ 	std::vector<uint8_t> denoisedRaw_;
++	unsigned int defectSourceStride_ = 0;
++	std::vector<uint8_t> defectCorrectedRaw_;
+ 	std::vector<uint8_t> reducedRaw_;
+ 	std::unique_ptr<SwStatsCpu> stats_;
+ 	std::vector<uint8_t> lineBuffers_[kMaxLineBuffers];

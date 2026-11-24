@@ -1,0 +1,16 @@
+# SpectreOS Calendar app Cargo commands (`cargo test-web`, `cargo dev`, `cargo release`, `cargo app-clean`, …).
+
+[alias]
+dev = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app calendar"
+release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app calendar"
+app-build = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- build --app calendar"
+app-release = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- release --app calendar"
+app-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- check --app calendar"
+app-test = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test --app calendar"
+app-run = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- run --app calendar"
+app-clean = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app calendar"
+clean-all = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- clean --app calendar"
+test-web = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web --app calendar"
+test-web-watch = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-watch --app calendar"
+test-web-check = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- test-web-check --app calendar"
+app-help = "run --quiet --manifest-path ../../../tools/spectre-xtask/Cargo.toml --target-dir /tmp/spectre-xtask-target -- help"

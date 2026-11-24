@@ -1,0 +1,14 @@
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -632,7 +632,10 @@
+ &slpi_pas {
+ 	firmware-name = "qcom/sdm845/Xiaomi/beryllium/slpi.mbn";
+ 
+-	status = "okay";
++	/* Recovery: avoid the SLPI restart / FastRPC SCM -EINVAL loop.
++	 * Sensors remain unavailable until firmware ownership is repaired.
++	 */
++	status = "disabled";
+ };
+ 
+ &sound {

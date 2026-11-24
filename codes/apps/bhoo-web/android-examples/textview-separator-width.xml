@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="80dp">
+    <TextView android:id="@+id/separator_multiline" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingHorizontal="12dp" android:gravity="center" android:background="#C5E8D1" android:text="WWW&#x85;i" android:textSize="24sp"/>
+    <TextView android:id="@+id/separator_reference" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingHorizontal="12dp" android:gravity="center" android:background="#F3D2BB" android:text="WWW" android:textSize="24sp"/>
+</LinearLayout>

@@ -1,0 +1,384 @@
+{
+  "checked_on": "2026-11-08",
+  "description": "Source inventories used for the Bhoo component catalog; directory presence does not imply feature completeness or API stability.",
+  "sources": [
+    {
+      "repository": "https://github.com/material-components/material-components-android",
+      "commit": "66b0eeb53afeb6025ffbbd37734b08e5bce197ed",
+      "path": "docs/components",
+      "entries": [
+        {
+          "name": "BadgeDrawable.md",
+          "type": "file"
+        },
+        {
+          "name": "Banner.md",
+          "type": "file"
+        },
+        {
+          "name": "BottomAppBar.md",
+          "type": "file"
+        },
+        {
+          "name": "BottomNavigation.md",
+          "type": "file"
+        },
+        {
+          "name": "BottomSheet.md",
+          "type": "file"
+        },
+        {
+          "name": "Button.md",
+          "type": "file"
+        },
+        {
+          "name": "ButtonGroup.md",
+          "type": "file"
+        },
+        {
+          "name": "Card.md",
+          "type": "file"
+        },
+        {
+          "name": "Carousel.md",
+          "type": "file"
+        },
+        {
+          "name": "Checkbox.md",
+          "type": "file"
+        },
+        {
+          "name": "Chip.md",
+          "type": "file"
+        },
+        {
+          "name": "CommonButton.md",
+          "type": "file"
+        },
+        {
+          "name": "DataTable.md",
+          "type": "file"
+        },
+        {
+          "name": "DatePicker.md",
+          "type": "file"
+        },
+        {
+          "name": "Dialog.md",
+          "type": "file"
+        },
+        {
+          "name": "Divider.md",
+          "type": "file"
+        },
+        {
+          "name": "DockedFloatingToolbars.md",
+          "type": "file"
+        },
+        {
+          "name": "DockedToolbar.md",
+          "type": "file"
+        },
+        {
+          "name": "ExtendedFloatingActionButton.md",
+          "type": "file"
+        },
+        {
+          "name": "FloatingActionButton.md",
+          "type": "file"
+        },
+        {
+          "name": "FloatingActionButtonMenu.md",
+          "type": "file"
+        },
+        {
+          "name": "FloatingToolbar.md",
+          "type": "file"
+        },
+        {
+          "name": "IconButton.md",
+          "type": "file"
+        },
+        {
+          "name": "ImageList.md",
+          "type": "file"
+        },
+        {
+          "name": "List.md",
+          "type": "file"
+        },
+        {
+          "name": "LoadingIndicator.md",
+          "type": "file"
+        },
+        {
+          "name": "MaterialTextView.md",
+          "type": "file"
+        },
+        {
+          "name": "Menu.md",
+          "type": "file"
+        },
+        {
+          "name": "NavigationDrawer.md",
+          "type": "file"
+        },
+        {
+          "name": "NavigationRail.md",
+          "type": "file"
+        },
+        {
+          "name": "OverflowLinearLayout.md",
+          "type": "file"
+        },
+        {
+          "name": "ProgressIndicator.md",
+          "type": "file"
+        },
+        {
+          "name": "RadioButton.md",
+          "type": "file"
+        },
+        {
+          "name": "Search.md",
+          "type": "file"
+        },
+        {
+          "name": "SideSheet.md",
+          "type": "file"
+        },
+        {
+          "name": "Slider.md",
+          "type": "file"
+        },
+        {
+          "name": "Snackbar.md",
+          "type": "file"
+        },
+        {
+          "name": "SplitButton.md",
+          "type": "file"
+        },
+        {
+          "name": "Switch.md",
+          "type": "file"
+        },
+        {
+          "name": "Tabs.md",
+          "type": "file"
+        },
+        {
+          "name": "TextField.md",
+          "type": "file"
+        },
+        {
+          "name": "TimePicker.md",
+          "type": "file"
+        },
+        {
+          "name": "ToggleButtonGroup.md",
+          "type": "file"
+        },
+        {
+          "name": "Tooltip.md",
+          "type": "file"
+        },
+        {
+          "name": "TopAppBar.md",
+          "type": "file"
+        },
+        {
+          "name": "assets",
+          "type": "dir"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/angular/components",
+      "commit": "249b3ee5c8b334dcb6b8d9e035380318e4438c2c",
+      "path": "src/material",
+      "entries": [
+        {
+          "name": "BUILD.bazel",
+          "type": "file"
+        },
+        {
+          "name": "_index.scss",
+          "type": "file"
+        },
+        {
+          "name": "autocomplete",
+          "type": "dir"
+        },
+        {
+          "name": "badge",
+          "type": "dir"
+        },
+        {
+          "name": "bottom-sheet",
+          "type": "dir"
+        },
+        {
+          "name": "button-toggle",
+          "type": "dir"
+        },
+        {
+          "name": "button",
+          "type": "dir"
+        },
+        {
+          "name": "card",
+          "type": "dir"
+        },
+        {
+          "name": "checkbox",
+          "type": "dir"
+        },
+        {
+          "name": "chips",
+          "type": "dir"
+        },
+        {
+          "name": "config.bzl",
+          "type": "file"
+        },
+        {
+          "name": "core",
+          "type": "dir"
+        },
+        {
+          "name": "datepicker",
+          "type": "dir"
+        },
+        {
+          "name": "dialog",
+          "type": "dir"
+        },
+        {
+          "name": "divider",
+          "type": "dir"
+        },
+        {
+          "name": "expansion",
+          "type": "dir"
+        },
+        {
+          "name": "form-field",
+          "type": "dir"
+        },
+        {
+          "name": "grid-list",
+          "type": "dir"
+        },
+        {
+          "name": "icon",
+          "type": "dir"
+        },
+        {
+          "name": "index.ts",
+          "type": "file"
+        },
+        {
+          "name": "input",
+          "type": "dir"
+        },
+        {
+          "name": "list",
+          "type": "dir"
+        },
+        {
+          "name": "menu",
+          "type": "dir"
+        },
+        {
+          "name": "package.json",
+          "type": "file"
+        },
+        {
+          "name": "paginator",
+          "type": "dir"
+        },
+        {
+          "name": "prebuilt-themes",
+          "type": "dir"
+        },
+        {
+          "name": "progress-bar",
+          "type": "dir"
+        },
+        {
+          "name": "progress-spinner",
+          "type": "dir"
+        },
+        {
+          "name": "radio",
+          "type": "dir"
+        },
+        {
+          "name": "schematics",
+          "type": "dir"
+        },
+        {
+          "name": "select",
+          "type": "dir"
+        },
+        {
+          "name": "sidenav",
+          "type": "dir"
+        },
+        {
+          "name": "slide-toggle",
+          "type": "dir"
+        },
+        {
+          "name": "slider",
+          "type": "dir"
+        },
+        {
+          "name": "snack-bar",
+          "type": "dir"
+        },
+        {
+          "name": "sort",
+          "type": "dir"
+        },
+        {
+          "name": "stepper",
+          "type": "dir"
+        },
+        {
+          "name": "table",
+          "type": "dir"
+        },
+        {
+          "name": "tabs",
+          "type": "dir"
+        },
+        {
+          "name": "testing",
+          "type": "dir"
+        },
+        {
+          "name": "timepicker",
+          "type": "dir"
+        },
+        {
+          "name": "toolbar",
+          "type": "dir"
+        },
+        {
+          "name": "tooltip",
+          "type": "dir"
+        },
+        {
+          "name": "tree",
+          "type": "dir"
+        },
+        {
+          "name": "tsconfig.json",
+          "type": "file"
+        }
+      ]
+    }
+  ]
+}

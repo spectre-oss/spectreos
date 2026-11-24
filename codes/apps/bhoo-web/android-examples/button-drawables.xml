@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Button android:id="drawable_button" android:text="Send" android:drawableStart="@drawable/text_compound_blue" android:drawableEnd="@drawable/text_compound_amber" android:drawablePadding="8dp" android:paddingHorizontal="12dp" android:background="#e8def8" android:layout_width="wrap_content" android:layout_height="52dp"/>
+  <Button android:id="selector_button" android:text="Press me" android:drawableStart="@drawable/text_compound_selector" android:drawablePadding="8dp" android:paddingHorizontal="12dp" android:background="#d9e8de" android:layout_width="wrap_content" android:layout_height="52dp"/>
+</LinearLayout>

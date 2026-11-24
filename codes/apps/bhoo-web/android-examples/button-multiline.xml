@@ -1,0 +1,3 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Button android:id="multiline_button" android:text="Send the weekly update now" android:drawableTop="@drawable/text_compound_green" android:drawablePadding="4dp" android:padding="8dp" android:background="#e8def8" android:layout_width="160dp" android:layout_height="wrap_content"/>
+</LinearLayout>

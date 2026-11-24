@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=SpectreOS Keyboard
+GenericName=On-Screen Keyboard
+Comment=Default SpectreOS Wayland on-screen keyboard built with Rust and libbhoo
+Exec=spectre-keyboard
+Icon=input-keyboard
+Terminal=false
+NoDisplay=true
+Categories=System;Utility;
+OnlyShowIn=SpectreOS;Wisp;
+StartupWMClass=org.spectreos.Keyboard

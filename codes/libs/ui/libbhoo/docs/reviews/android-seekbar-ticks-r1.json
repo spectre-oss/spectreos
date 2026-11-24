@@ -1,0 +1,17 @@
+{
+  "title": "Android XML SeekBar: tick marks",
+  "component": "android-seekbar",
+  "purpose": "Check that an Android XML SeekBar can draw a tick mark at each integer position, that the thumb sits above the marks, and that the tick tint responds to touch.",
+  "changes": "Added support for solid shape tickMark drawables and stateful tickMarkTint. The focused example has an integer range from 2 through 6 and a blue circular mark for each position.",
+  "steps": [
+    "Scroll to the bottom of the example, to Tick marks: positions 2 to 6. Five equally spaced blue marks represent the five positions. The middle mark starts underneath the thumb, so it may be covered.",
+    "Drag the thumb between the endpoints. Check that it moves in integer steps, the mark previously hidden by the thumb becomes visible, and the thumb covers the mark at its new position.",
+    "While holding the slider, the marks turn red. They return to blue after release.",
+    "Turn on Right-to-left layout near the top and repeat the drag. The marks remain evenly spaced and progress moves in the mirrored direction. Choose OK if these steps work, or Reject and explain the failing step, what you saw and your device."
+  ],
+  "expected": "Five evenly spaced marks cover the integer range including both endpoints. They remain under the moving thumb and use the pressed-state tint while held.",
+  "limits": "Only solid circular or rounded rectangular XML shape drawables are supported, with a maximum range of 1024. Bitmap, vector and state-list tick drawables, blend modes and exact Android device geometry remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-seekbar.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/AbsSeekBar.java","local":"context/reference-sources/android-framework/AbsSeekBar.java","license":"Apache-2.0","scope":"Integer tick count, endpoint spacing, tint and drawing order."}],
+  "validation": ["138 Android XML importer tests passed, including supported shape and tint and unsupported range rejection.","Five Rust SeekBar tests passed, including tick count, equal spacing, tint and drawing beneath the thumb."]
+}

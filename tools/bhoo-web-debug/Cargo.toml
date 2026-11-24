@@ -1,0 +1,37 @@
+[package]
+name = "bhoo-web-debug"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "Debug-only WebAssembly browser workbench for libbhoo apps (Files, Settings, Calendar, Keyboard, Notifications). Never compiled into production phone binaries."
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = ["files", "settings", "calendar", "keyboard", "notifications"]
+files = ["dep:spectre-files"]
+settings = ["dep:spectre-settings"]
+calendar = ["dep:spectre-calendar"]
+keyboard = ["dep:spectre-keyboard"]
+notifications = ["dep:wisp"]
+
+[dependencies]
+bhoo = { package = "libbhoo", path = "../../codes/libs/ui/libbhoo", default-features = false }
+spectre-files = { path = "../../codes/apps/files", default-features = false, optional = true }
+spectre-settings = { path = "../../codes/apps/settings", default-features = false, optional = true }
+spectre-calendar = { path = "../../codes/apps/calendar", default-features = false, optional = true }
+spectre-keyboard = { path = "../../codes/apps/keyboard", default-features = false, optional = true }
+wisp = { path = "../../codes/apps/wisp", default-features = false, optional = true }
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.release]
+opt-level = "s"
+lto = false
+codegen-units = 4
+panic = "abort"
+strip = "symbols"

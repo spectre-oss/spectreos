@@ -1,0 +1,5 @@
+<TabWidget xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/tabs" android:layout_width="match_parent" android:layout_height="56dp" android:tabStripEnabled="true" android:tabStripLeft="@drawable/tab_strip_left" android:tabStripRight="@drawable/tab_strip_right">
+    <TextView android:layout_marginStart="10dp" android:layout_marginEnd="4dp" android:id="@+id/first" android:layout_width="48dp" android:layout_height="match_parent" android:gravity="center" android:text="First" />
+    <TextView android:layout_marginLeft="5dp" android:layout_marginRight="7dp" android:layout_marginTop="2dp" android:layout_marginBottom="3dp" android:id="@+id/second" android:layout_width="96dp" android:layout_height="match_parent" android:gravity="center" android:text="Second" />
+    <TextView android:id="@+id/third" android:layout_width="96dp" android:layout_height="match_parent" android:gravity="center" android:text="Third" />
+</TabWidget>

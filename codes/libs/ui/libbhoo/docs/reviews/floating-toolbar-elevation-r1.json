@@ -1,0 +1,12 @@
+{
+ "title":"Floating toolbar: paired elevation",
+ "component":"floating-toolbar",
+ "purpose":"Check the shadow presentation of a floating toolbar paired with a FAB during expansion and collapse.",
+ "changes":"The paired toolbar now uses a small level-1 shadow when expanded, fading to level 0 on collapse. The FAB uses level 2 at rest and level 3 on hover.",
+ "steps":["Find Floating toolbar with FAB near the top. Look at the subtle shadow under the toolbar and the separate shadow under the plus button.","Turn Expanded off and on. The toolbar shadow should disappear with the toolbar and return as it expands; the FAB remains raised.","If your device has a mouse or trackpad, hover over the plus button and move away; its shadow should rise and settle. Try Vibrant as well.","Choose OK if the shadows and motion look right, or Reject with what you saw and your device."],
+ "expected":"Expanded toolbar and FAB have separate shadows; the toolbar shadow fades on collapse and the FAB shadow responds to hover where available.",
+ "limits":"Bhoo approximates Material elevation using its shared shadow renderer. Exact Android shadow pixels and device appearance remain unverified.",
+ "documentation":"docs/TDD/libbhoo/components/floating-toolbar.md",
+ "references":[{"url":"https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","local":"context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","license":"Apache-2.0","scope":"Paired toolbar and FAB elevation roles."}],
+ "validation":["Rust tests verify toolbar shadow, FAB hover elevation and collapsed-state shadow behavior; existing toolbar tests pass."]
+}

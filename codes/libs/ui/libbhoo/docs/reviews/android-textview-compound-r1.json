@@ -1,0 +1,17 @@
+{
+  "title": "Android XML TextView: compound drawables",
+  "component": "android-textview",
+  "purpose": "Check supported Android XML compound drawables around TextView text and verify logical start/end placement in RTL.",
+  "changes": "Added solid XML shape drawables on the left, right, top, bottom, start and end, plus drawablePadding and space reservation for text and wrapping.",
+  "steps": [
+    "Under Android XML compound drawables, the Start and end row should show a blue circle on the left, the text, and an amber rounded rectangle on the right, with visible gaps around the text.",
+    "The Four sides row should show a blue circle on the physical left, an amber rectangle on the physical right, a green bar above the text and a red bar below it. The centered text should not overlap the shapes.",
+    "Turn on Right-to-left layout at the top. In Start and end, the blue start circle should move to the right and the amber end rectangle to the left. In Four sides, the physical left and right shapes should stay on their original sides.",
+    "Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Shapes occupy the requested sides without overlapping text. Logical start/end swap in RTL; physical left/right do not.",
+  "limits": "This covers TextView with supported solid rectangular or oval XML shape drawables and explicit dimensions. Bitmap, vector, selector and animated drawables, drawable tint, exact Android text measurement and device pixel parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"Compound drawable positions, padding and relative direction resolution."}],
+  "validation": ["147 Android XML importer tests passed, including compound shape and @null import.","All 178 Rust Android XML tests passed, including four-side positions, RTL precedence, text reservation and wrap-content height.","Bhoo screenshots were inspected at 320px in LTR and RTL; Android device parity is not established."]
+}

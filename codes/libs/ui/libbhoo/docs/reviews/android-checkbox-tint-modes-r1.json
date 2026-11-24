@@ -1,0 +1,13 @@
+{
+ "title":"Android CheckBox: custom button tint modes",
+ "component":"android-checkbox",
+ "purpose":"Compare Android XML buttonTintMode values on the same custom CheckBox button drawable.",
+ "changes":"Added six explicit tint modes for supported custom CheckBox and RadioButton shapes.",
+ "steps":["Find Custom button tint modes below the RTL switch. Each row names a tint mode and shows the same amber shape tinted with translucent blue.","Compare the shapes: src_in is translucent blue, src_atop mixes blue and amber, and multiply appears dark. The other modes also produce their own colors.","Tap the rows and turn on Right-to-left layout. Their shapes should move to the right and retain their colors.","Choose OK if the page looks and behaves correctly, or Reject with the failing row and your device."],
+ "expected":"Each tint mode composes the same source shape and tint independently; CheckBox input and RTL placement continue to work.",
+ "limits":"Explicit modes apply only to supported custom solid shapes. Built-in button drawable tint modes, other drawable types, edge compositing and Android device pixel parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/android-checkbox.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java","local":"context/reference-sources/android-framework/CompoundButton.java","license":"Apache-2.0","scope":"Button drawable tint mode and state."}],
+ "validation":["149 Android XML importer tests passed, covering all six modes on CheckBox and RadioButton and unsupported inputs.","Rust rendering test verifies src_atop composition for both custom CheckBox and RadioButton."],
+ "demo_height":1600
+}

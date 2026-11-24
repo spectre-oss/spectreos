@@ -1,0 +1,17 @@
+{
+  "title": "Android HorizontalScrollView: trackpad wheel direction",
+  "component": "android-horizontal-scroll",
+  "purpose": "Check horizontal trackpad or wheel scrolling in left-to-right and right-to-left layouts while the two rows remain independent.",
+  "changes": "The web adapter now forwards horizontal wheel deltas to the horizontal scroll container. The scroll controller maps physical horizontal direction to the logical RTL offset, while preserving vertical mouse-wheel fallback.",
+  "steps": [
+    "On a device with a horizontal trackpad or wheel, leave Right-to-left layout off. Place the pointer over the first row and scroll horizontally toward later items. A4 should become visible while the second row stays at its start.",
+    "Scroll horizontally in the opposite direction and return to A1. A vertical mouse wheel can also advance the row if available.",
+    "Turn on Right-to-left layout. With the pointer over the first row, scroll horizontally in the opposite physical direction to reveal A4, then reverse to return to A1. The second row should not move.",
+    "Repeat over the second row. Choose OK if these steps work, or Reject and describe which direction or row failed, what you saw, and your device. If you only have a phone without a trackpad or horizontal wheel, leave this test for a suitable device."
+  ],
+  "expected": "Horizontal trackpad or wheel input moves the row in the physical direction of the gesture, maps correctly in RTL, and does not move the other row.",
+  "limits": "This covers horizontal wheel input on the focused Bhoo webxdc page and the vertical-wheel fallback. Touch, Android device wheel conventions, browser-specific inertial input and full device parity are separate. This does not resolve the user's pending RTL touch review.",
+  "documentation": "docs/TDD/libbhoo/components/android-horizontal-scroll.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/HorizontalScrollView.java","local":"context/reference-sources/android-framework/HorizontalScrollView.java","license":"Apache-2.0","scope":"Horizontal container scrolling; Bhoo's browser wheel mapping is an independent adapter."}],
+  "validation": ["Rust horizontal-scroll and scroll-indicator tests passed, including physical horizontal direction in LTR and RTL and vertical-wheel fallback.","Browser wheel test verifies horizontal deltaX, both layout directions and independent rows."]
+}

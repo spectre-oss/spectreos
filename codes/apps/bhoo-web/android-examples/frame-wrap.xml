@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="56dp">
+  <FrameLayout android:id="nested_frame" android:layout_width="wrap_content" android:layout_height="48dp">
+    <Button android:id="frame_wrap" android:text="Short" android:paddingHorizontal="12dp" android:background="#e8def8" android:layout_width="wrap_content" android:layout_height="48dp"/>
+  </FrameLayout>
+  <Button android:id="frame_after" android:text="After" android:background="#d9e8de" android:layout_width="56dp" android:layout_height="48dp"/>
+</LinearLayout>

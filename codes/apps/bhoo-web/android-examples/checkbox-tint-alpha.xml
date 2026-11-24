@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckBox android:id="checkbox_alpha_half" android:text="Half-opacity button and tint" android:button="@drawable/seek_tint_half_thumb" android:buttonTint="@color/checkbox_alpha_tint" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="checkbox_alpha_opaque" android:text="Opaque button, half-opacity tint" android:button="@drawable/seek_tint_opaque_thumb" android:buttonTint="@color/checkbox_alpha_tint" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

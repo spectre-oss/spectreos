@@ -1,0 +1,96 @@
+Subject: [LOCAL] IMX363 measured-noise same-CFA still filter
+
+Opt-in; full SRGGB10 only. Preview retains its existing RAW average.
+
+--- a/src/libcamera/software_isp/debayer_cpu.cpp
++++ b/src/libcamera/software_isp/debayer_cpu.cpp
+@@ -11,6 +11,7 @@
+ 
+ #include "debayer_cpu.h"
+ #include "raw10-reduce.h"
++#include "raw10-denoise.h"
+ 
+ #include <algorithm>
+ #include <stdlib.h>
+@@ -485,6 +486,8 @@
+ {
+ 	StreamConfiguration inputCfg = sourceCfg;
+ 	reductionSourceStride_ = 0;
++	denoiseSourceStride_ = 0;
++	denoisedRaw_.clear();
+ 	reducedRaw_.clear();
+ 	const char *fullSensor = utils::secure_getenv("SPECTRE_IMX363_FULL_SENSOR");
+ 	if (fullSensor && std::string(fullSensor) == "1" &&
+@@ -500,6 +503,15 @@
+ 			reducedRaw_.resize(inputCfg.stride * inputCfg.size.height);
+ 			LOG(Debayer, Info) << "Bayer-preserving 4x preview reduction";
+ 		}
++	}
++
++	const char *denoise = utils::secure_getenv("SPECTRE_IMX363_RAW_DENOISE");
++	if (!reductionSourceStride_ && fullSensor && std::string(fullSensor) == "1" &&
++	    denoise && std::string(denoise) == "1" && sourceCfg.size == Size(4032, 3024) &&
++	    sourceCfg.pixelFormat == formats::SRGGB10_CSI2P && sourceCfg.stride >= 5040) {
++		denoiseSourceStride_ = sourceCfg.stride;
++		denoisedRaw_.resize(size_t(sourceCfg.stride) * 3024);
++		LOG(Debayer, Info) << "IMX363 measured-noise RAW filtering enabled";
+ 	}
+ 
+ 	if (getInputConfig(inputCfg.pixelFormat, inputConfig_) != 0)
+@@ -899,6 +911,16 @@
+ 		source = reducedRaw_.data();
+ 	}
+ 
++	if (denoiseSourceStride_) {
++		if (!spectre::denoiseRaw10(source, in.planes()[0].size(), denoiseSourceStride_,
++		                         denoisedRaw_.data(), 4032, 3024, params.noiseGain)) {
++			metadata.status = FrameMetadata::FrameError;
++			outputBufferReady.emit(output);
++			inputBufferReady.emit(input);
++			return;
++		}
++		source = denoisedRaw_.data();
++	}
+ 	stats_->startFrame(frame);
+ 
+ 	if (inputConfig_.patternSize.height == 2)
+--- a/src/libcamera/software_isp/debayer_cpu.h
++++ b/src/libcamera/software_isp/debayer_cpu.h
+@@ -142,6 +142,8 @@
+ 	debayerFn debayer3_;
+ 	Rectangle window_;
+ 	unsigned int reductionSourceStride_ = 0;
++	unsigned int denoiseSourceStride_ = 0;
++	std::vector<uint8_t> denoisedRaw_;
+ 	std::vector<uint8_t> reducedRaw_;
+ 	std::unique_ptr<SwStatsCpu> stats_;
+ 	std::vector<uint8_t> lineBuffers_[kMaxLineBuffers];
+--- a/include/libcamera/internal/software_isp/debayer_params.h
++++ b/include/libcamera/internal/software_isp/debayer_params.h
+@@ -21,6 +21,7 @@
+ 	Matrix<float, 3, 3> combinedMatrix;
+ 	RGB<float> blackLevel;
+ 	float gamma;
++	float noiseGain = 1.0f;
+ 	float contrastExp;
+ 	RGB<float> gains;
+ };
+--- a/src/ipa/simple/soft_simple.cpp
++++ b/src/ipa/simple/soft_simple.cpp
+@@ -162,6 +162,7 @@
+ 		params_->blackLevel = { { 0.0, 0.0, 0.0 } };
+ 		params_->gamma = 1.0 / algorithms::kDefaultGamma;
+ 		params_->contrastExp = 1.0;
++		params_->noiseGain = 1.0f;
+ 		params_->gains = { { 1.0, 1.0, 1.0 } };
+ 		/* combinedMatrix is reset for each frame. */
+ 	}
+@@ -305,6 +306,8 @@
+ 		sensorControls.get(V4L2_CID_EXPOSURE).get<int32_t>();
+ 	int32_t again = sensorControls.get(V4L2_CID_ANALOGUE_GAIN).get<int32_t>();
+ 	frameContext.sensor.gain = camHelper_ ? camHelper_->gain(again) : again;
++	/* Latest observed sensor gain; no direct V4L2 access from the debayer. */
++	params_->noiseGain = frameContext.sensor.gain;
+ 
+ 	ControlList metadata(controls::controls);
+ 	for (auto const &algo : algorithms())

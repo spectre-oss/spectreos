@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Button android:id="wrap_button" android:text="Short" android:paddingHorizontal="12dp" android:background="#e8def8" android:layout_width="wrap_content" android:layout_height="48dp"/>
+  <Button android:id="disabled_button" android:text="Disabled option" android:enabled="false" android:paddingHorizontal="12dp" android:background="#e8def8" android:layout_width="wrap_content" android:layout_height="48dp"/>
+</LinearLayout>

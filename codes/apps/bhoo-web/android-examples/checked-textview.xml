@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckedTextView android:id="one" android:text="Morning notifications" android:checked="true" android:clickable="true" android:padding="12dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <CheckedTextView android:id="two" android:text="Evening notifications" android:checked="false" android:clickable="true" android:padding="12dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <CheckedTextView android:id="disabled" android:text="Disabled choice" android:checked="true" android:enabled="false" android:clickable="true" android:padding="12dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

@@ -1,0 +1,87 @@
+[package]
+name = "libbhoo"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+description = "Minimal UI foundations for SpectreOS"
+publish = false
+
+[lib]
+name = "bhoo"
+
+[features]
+default = []
+gles = ["dep:glow", "dep:harfrust", "dep:skrifa", "dep:zeno", "dep:unicode-bidi", "dep:bytemuck"]
+wayland = ["gles", "dep:winit", "dep:glutin", "dep:glutin-winit", "dep:raw-window-handle"]
+
+[dependencies]
+unicode-segmentation = "=1.13.3"
+unicode-linebreak = "=0.1.5"
+winit = { version = "0.30", default-features = false, features = ["wayland", "wayland-dlopen", "rwh_06"], optional = true }
+glutin = { version = "0.32", default-features = false, features = ["egl", "wayland"], optional = true }
+glutin-winit = { version = "0.5", default-features = false, features = ["egl", "wayland"], optional = true }
+glow = { version = "0.16", optional = true }
+raw-window-handle = { version = "0.6", optional = true }
+harfrust = { version = "0.16", optional = true }
+skrifa = { version = "0.50", optional = true }
+zeno = { version = "0.3", optional = true }
+unicode-bidi = { version = "0.3", optional = true }
+bytemuck = { version = "1", optional = true }
+unicode-width = { version = "=0.2.2", default-features = false }
+
+[[example]]
+name = "launcher"
+required-features = ["wayland"]
+
+[[example]]
+name = "components"
+required-features = ["wayland"]
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false
+
+[profile.release]
+strip = "symbols"
+lto = "thin"
+codegen-units = 1
+
+[[example]]
+name = "effects"
+required-features = ["wayland"]
+
+[[example]]
+name = "checkbox_native"
+required-features = ["wayland"]
+
+[[example]]
+name = "split_outline"
+required-features = ["wayland"]
+
+[[example]]
+name = "image_reflection"
+required-features = ["wayland"]
+
+[[example]]
+name = "android_screen_capture"
+required-features = ["wayland"]
+
+[[example]]
+name = "android_m3_showcase"
+required-features = ["wayland"]
+
+[[example]]
+name = "android_gmail_capture"
+required-features = ["wayland"]
+
+[[example]]
+name = "android_contacts_capture"
+required-features = ["wayland"]
+
+[[example]]
+name = "android_launcher_capture"
+required-features = ["wayland"]

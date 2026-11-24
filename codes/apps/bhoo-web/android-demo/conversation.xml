@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#f2eee8">
+ <LinearLayout android:orientation="horizontal" android:layout_height="64dp" android:padding="8dp" android:background="#1c6ea4">
+  <ImageButton android:id="@+id/back" android:src="@drawable/arrow_back" android:layout_width="48dp" android:contentDescription="Back to chats" android:textColor="#ffffff"/>
+  <TextView android:id="@+id/chat_title" android:text="Alex Brown" android:layout_width="0dp" android:layout_weight="1" android:textSize="20sp" android:textColor="#ffffff"/>
+  <ImageButton android:id="@+id/info" android:src="@drawable/more_vert" android:layout_width="48dp" android:contentDescription="Demo information" android:textColor="#ffffff"/>
+ </LinearLayout>
+ <TextView android:text="Local UI demo · messages are not sent" android:layout_height="32dp" android:textSize="12sp" android:gravity="center" android:background="#e6f1f8"/>
+ <ScrollView android:id="@+id/messages_scroll" android:layout_height="0dp" android:layout_weight="1" android:padding="16dp">
+  <LinearLayout android:orientation="vertical" android:layout_height="wrap_content">
+   <TextView android:text="Today" android:layout_height="40dp" android:gravity="center" android:textSize="12sp"/>
+   <TextView android:text="Hello! How is the Bhoo project going?" android:layout_height="64dp" android:padding="12dp" android:background="@drawable/incoming"/>
+   <View android:layout_height="12dp"/>
+   <TextView android:text="We’re building the UI in Rust :)" android:layout_height="64dp" android:padding="12dp" android:background="@drawable/outgoing"/>
+   <View android:layout_height="12dp"/>
+   <TextView android:text="Try typing a local demo reply below." android:layout_height="64dp" android:padding="12dp" android:background="@drawable/incoming"/>
+   <View android:layout_height="12dp"/>
+   <TextView android:id="@+id/last_message" android:text="Your demo reply will appear here." android:layout_height="64dp" android:padding="12dp" android:background="@drawable/outgoing"/>
+  </LinearLayout>
+ </ScrollView>
+ <LinearLayout android:orientation="horizontal" android:layout_height="80dp" android:padding="8dp" android:background="#ffffff">
+  <EditText android:id="@+id/message" android:hint="Message" android:layout_width="0dp" android:layout_weight="1" android:layout_height="64dp"/>
+  <ImageButton android:id="@+id/send" android:src="@drawable/send" android:layout_width="48dp" android:layout_height="64dp" android:contentDescription="Add local demo reply"/>
+ </LinearLayout>
+</LinearLayout>

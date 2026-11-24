@@ -1,0 +1,45 @@
+[
+  {
+    "id": "wisp-notif-critical",
+    "name": "Critical Banner",
+    "app": "notifications",
+    "pinned": true,
+    "resetBefore": true,
+    "steps": [
+      { "type": "notifMode", "value": "0" },
+      {
+        "type": "pushNotif",
+        "app": "System Security",
+        "title": "Critical Thermal Alert",
+        "body": "Battery reached 46 °C",
+        "urgency": 2
+      },
+      { "type": "wait", "ms": 120 },
+      { "type": "assertState", "path": "mode", "expected": "heads_up_pinned" }
+    ]
+  },
+  {
+    "id": "wisp-notif-shade",
+    "name": "Open Shade",
+    "app": "notifications",
+    "pinned": true,
+    "resetBefore": true,
+    "steps": [
+      { "type": "notifMode", "value": "1" },
+      { "type": "wait", "ms": 80 },
+      { "type": "assertState", "path": "shadeStage", "expected": "1" }
+    ]
+  },
+  {
+    "id": "wisp-notif-lockscreen",
+    "name": "Lock Screen Alerts",
+    "app": "notifications",
+    "pinned": false,
+    "resetBefore": true,
+    "steps": [
+      { "type": "notifMode", "value": "3" },
+      { "type": "wait", "ms": 80 },
+      { "type": "assertState", "path": "locked", "expected": "true" }
+    ]
+  }
+]

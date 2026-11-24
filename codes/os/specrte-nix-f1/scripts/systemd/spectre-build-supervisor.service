@@ -1,0 +1,17 @@
+[Unit]
+Description=Spectre Nix F1 Grok build supervisor
+After=network-online.target spectre-build-notify.service
+Wants=spectre-build-notify.service
+
+[Service]
+Type=simple
+WorkingDirectory=%h/spectreos/codes/os/specrte-nix-f1
+Environment=PATH=%h/.local/bin:%h/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/python3 scripts/build-supervisor.py
+Restart=on-failure
+RestartSec=60
+TimeoutStopSec=30
+UMask=0077
+
+[Install]
+WantedBy=default.target

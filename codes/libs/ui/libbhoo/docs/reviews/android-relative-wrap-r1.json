@@ -1,0 +1,27 @@
+{
+  "title": "Android RelativeLayout wrap-content child",
+  "component": "android-relative-layout",
+  "purpose": "Check that a sibling anchored after a wrap-content button moves when the button label changes.",
+  "changes": "RelativeLayout now uses the child's current measured wrap-content width when resolving sibling anchors.",
+  "steps": [
+    "Find Short and Next under Wrap-content sibling placement. They should appear side by side with a small gap.",
+    "Tap Change relative label: Short should become Longer label and grow; Next should move with it and retain the gap. Tap again to restore Short.",
+    "Enable Right-to-left layout and repeat. The order should mirror and the gap should remain. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The child grows or shrinks with its text and the sibling remains adjacent without overlapping in either direction.",
+  "limits": "This tests Bhoo's supported wrap-content measurement and anchor rules. Full Android text, theme and RelativeLayout parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-relative-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/RelativeLayout.java",
+      "local": "context/reference-sources/android-framework/RelativeLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Relative child measurement and positioning."
+    }
+  ],
+  "validation": [
+    "Thirteen Rust RelativeLayout tests passed, including dynamic width, sibling gap and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified dynamic width, sibling gap and RTL placement."
+  ]
+}

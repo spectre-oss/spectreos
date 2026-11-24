@@ -1,0 +1,17 @@
+{
+  "title": "Android XML controls: label text appearance",
+  "component": "android-checkbox",
+  "purpose": "Check local Android XML textAppearance on CheckBox, RadioButton and Switch labels, including a direct size override and RTL placement.",
+  "changes": "Extended supported local textAppearance and explicit text size, bold, all-caps and letter spacing to compound-control labels while preserving their stateful text colors and interaction.",
+  "steps": [
+    "Scroll to XML text appearance on controls. The checkbox and radio labels should be large, bold, blue and uppercase. The switch label should have the same styling but a smaller directly overridden size.",
+    "Touch and hold the checkbox or radio label: the label turns red while pressed. Release and check that the control toggles or selects normally and the label returns to blue.",
+    "Toggle the switch and check that its external label remains styled and the control moves normally.",
+    "Turn on Right-to-left layout near the top. Indicators and switch should move to the opposite side, and the styled labels should align for RTL. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Each external label follows the local appearance and color selector; the switch's direct textSize overrides only its size. Control interactions and RTL placement continue to work.",
+  "limits": "This covers a local textAppearance subset and Bhoo's existing single-line control labels. Framework styles, theme attributes, complete Android text measurement and exact device font or pixel parity remain open. Switch text inside the thumb has separate styling.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"Text appearance and direct attribute precedence inherited by Android text widgets."}],
+  "validation": ["145 Android XML importer tests passed, including textAppearance on the three controls.","Rust rendering test passed for sizes, weights, capitalization, letter spacing, colors, checkbox toggling and RTL alignment."]
+}

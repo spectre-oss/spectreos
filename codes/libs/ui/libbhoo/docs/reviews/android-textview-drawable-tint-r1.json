@@ -1,0 +1,17 @@
+{
+  "title": "Android XML TextView: compound drawable tint",
+  "component": "android-textview",
+  "purpose": "Check stateful Android XML drawableTint on compound shapes, without changing the TextView's text color.",
+  "changes": "Added literal and supported state-selector tint colors for solid compound drawables, preserving source alpha in the default source-in approximation.",
+  "steps": [
+    "Under Android XML drawable tint, the enabled row should have blue shapes at both ends while its text remains the normal text color. The disabled row's shape should be gray.",
+    "Touch and hold the enabled row. Both shapes should turn red; release and they should return to blue. The text itself should not become red.",
+    "Turn on Selected text near the top. The enabled row's shapes should turn amber. Hold the row again to see the pressed red state, then release to return to amber.",
+    "Turn on Right-to-left layout and check that start and end swap sides while both shapes retain the tint. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Both compound drawables follow the same normal, pressed, selected and disabled tint selector; text color remains separate and RTL placement continues to work.",
+  "limits": "This covers supported solid-shape compound drawables and the default source-in tint approximation. Bitmap, vector, selector and animated compound drawables, other tint modes and exact Android device appearance remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"Compound drawable tint and state handling."}],
+  "validation": ["147 Android XML importer tests passed, including literal and state-selector drawableTint.","Two Rust compound drawable tests passed, including pressed, selected, disabled, source/tint alpha and placement."]
+}

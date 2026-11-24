@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="First row — swipe horizontally" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <HorizontalScrollView android:layout_width="match_parent" android:layout_height="64dp" android:background="#E6EFE7">
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent">
+      <Button android:id="a_one" android:text="A1" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+      <Button android:id="a_two" android:text="A2" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+      <Button android:id="a_three" android:text="A3" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+      <Button android:id="a_four" android:text="A4" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+    </LinearLayout>
+  </HorizontalScrollView>
+  <TextView android:text="Second row — swipe separately" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <HorizontalScrollView android:layout_width="match_parent" android:layout_height="64dp" android:background="#E6EFE7">
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent">
+      <Button android:id="b_one" android:text="B1" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+      <Button android:id="b_two" android:text="B2" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+      <Button android:id="b_three" android:text="B3" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+      <Button android:id="b_four" android:text="B4" android:layout_width="120dp" android:layout_height="48dp" android:background="#CDE5D2"/>
+    </LinearLayout>
+  </HorizontalScrollView>
+</LinearLayout>

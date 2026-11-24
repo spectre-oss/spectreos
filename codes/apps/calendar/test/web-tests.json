@@ -1,0 +1,19 @@
+[
+  {
+    "id": "calendar-reminder-notify",
+    "name": "Reminder Notify",
+    "app": "calendar",
+    "pinned": true,
+    "resetBefore": false,
+    "steps": [
+      {
+        "type": "pushNotif",
+        "app": "Calendar",
+        "title": "Design Review in 10m",
+        "body": "SpectreOS Bhoo UI sync",
+        "urgency": 1
+      },
+      { "type": "wait", "ms": 60 }
+    ]
+  }
+]

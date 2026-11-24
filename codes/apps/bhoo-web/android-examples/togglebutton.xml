@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <ToggleButton android:id="power" android:textOn="Enabled" android:textOff="Paused" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <ToggleButton android:id="disabled" android:textOn="On" android:textOff="Unavailable" android:enabled="false" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="12dp"/>
+</LinearLayout>

@@ -1,0 +1,20 @@
+{
+  "title": "Retest: Android HorizontalScrollView RTL",
+  "component": "android-horizontal-scroll",
+  "purpose": "Retest the reported RTL problem in the two horizontal scroll rows, and check the corrections to label alignment and changing direction during a fling.",
+  "changes": "Canceled a running horizontal fling or drag when layout direction changes, keeping the current clamped logical position. Android XML button labels now default to centered, and explicit start/end gravity follows RTL. The two independent scroll rows and right-to-left logical start remain in place.",
+  "steps": [
+    "Turn on Right-to-left layout before scrolling. A1 and B1 should start at the right edge of their rows, with A2 and B2 to their left. Each button label should be centered within its item.",
+    "Swipe the first row to the right to reveal A4. The second row should stay at its start. Swipe the second row to the right and check that B4 appears without moving the first row.",
+    "Try a quick swipe, then change the direction switch while the row is still moving. The old fling should stop instead of continuing after the layout flips. Try switching back and swiping again.",
+    "Check the exact RTL behavior that was wrong in the previous test. Choose OK only if it is fixed; otherwise choose Reject and describe which row or step is wrong, what you expected, what you saw, and your phone model."
+  ],
+  "expected": "RTL starts at the right and a rightward swipe reveals later items. Rows scroll independently, labels are centered, and direction changes stop old momentum. The previously reported RTL issue must also be resolved for acceptance.",
+  "limits": "The earlier feedback did not identify the specific wrong RTL behavior, so these corrections may not address the reported issue. This test covers the example's Android XML horizontal scroll, label alignment and direction change. Exact Android device physics, wheel behavior and pixel parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-horizontal-scroll.md",
+  "references": [
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/HorizontalScrollView.java","local":"context/reference-sources/android-framework/HorizontalScrollView.java","license":"Apache-2.0","scope":"RTL initial position and horizontal layout."},
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/res/res/values/styles_material.xml","local":"context/reference-sources/android-framework/res/values/styles_material.xml","license":"Apache-2.0","scope":"Default Material Button label gravity."}
+  ],
+  "validation": ["146 Android XML importer tests passed, including explicit button gravity.","Rust tests passed for RTL scrolling, short content, direction changes during a fling, and default/explicit button label alignment.","Browser touch test passed RTL item order and independent rows at 320px and 390px widths."]
+}

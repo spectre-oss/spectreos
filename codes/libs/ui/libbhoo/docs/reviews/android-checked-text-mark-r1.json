@@ -1,0 +1,17 @@
+{
+  "title": "Android XML CheckedTextView: check-mark position and tint",
+  "component": "android-checked-textview",
+  "purpose": "Check Android XML checkMarkGravity and checkMarkTint on a checked text row, including logical direction and disabled state.",
+  "changes": "Added start, end, left and right check-mark gravity and literal or state-selector tint colors to the existing host-controlled CheckedTextView.",
+  "steps": [
+    "Scroll to XML check-mark tint and gravity. With right-to-left layout off, Start check mark should have a blue check on the left and End check mark a blue check on the right. The disabled row should have a gray check on the left.",
+    "Touch and hold either enabled row: its check turns red while held. Release to toggle it off; tap again to restore the blue check. The disabled row must not toggle.",
+    "Turn on Right-to-left layout at the top. The start checks should move to the right and the end check to the left, with the text remaining on the other side.",
+    "Choose OK if these steps work, or Reject with the failing step, what you saw, and your device."
+  ],
+  "expected": "Enabled and disabled selectors color the checked mark; pressing changes its color. Start and end reverse with layout direction, and the host's toggle changes only enabled rows.",
+  "limits": "The mark is Bhoo's existing Material check vector, shown only when checked. Custom Android checkMark drawables, unchecked drawable states, blend modes, full theme resolution and exact Android visual parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-checked-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CheckedTextView.java","local":"context/reference-sources/android-framework/CheckedTextView.java","license":"Apache-2.0","scope":"Check-mark tint, drawable state and gravity."}],
+  "validation": ["139 Android XML importer tests passed, including stateful tint, gravity and unsupported-value rejection.","Two Rust CheckedTextView tests passed, covering host-controlled state, RTL, mark positioning and disabled tint."]
+}

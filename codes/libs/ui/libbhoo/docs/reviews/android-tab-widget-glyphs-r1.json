@@ -1,0 +1,33 @@
+{
+  "title": "Android TabWidget: letter widths",
+  "component": "android-tab-widget",
+  "purpose": "Check that wrap-content tabs account for the actual widths of different letters rather than only their number.",
+  "changes": "Wrap-content Android text now uses the renderer's glyph advances. This XML example compares three narrow i letters with three wide W letters.",
+  "steps": [
+    "Turn on Glyph width example. The middle WWW tab should be much wider than either iii tab, even though both labels have three letters.",
+    "Tap WWW to select it, then turn on Right-to-left layout and check the tabs again.",
+    "Choose OK if it looks and behaves as described, or Reject with details and your device."
+  ],
+  "expected": "The WWW tab is visibly wider than the iii tabs, the wider letters receive more space, and selection and RTL work.",
+  "limits": "The example uses ASCII glyph advances supplied by the web renderer. Bhoo sums individual glyph advances, so kerning is not reproduced. Non-ASCII shaping, Android fonts and device visual parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-tab-widget.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "TextView content-based measurement."
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TabWidget.java",
+      "local": "context/reference-sources/android-framework/TabWidget.java",
+      "license": "Apache-2.0",
+      "scope": "TabWidget measurement."
+    }
+  ],
+  "validation": [
+    "The complete libbhoo Rust test suite and 156 XML importer tests passed. A glyph-specific Rust test covers narrow, wide and multiline text.",
+    "A 320 \u00d7 850 browser test compared tab widths with the sum of renderer glyph advances and checked selection and RTL."
+  ],
+  "demo_height": 850
+}

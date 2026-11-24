@@ -1,0 +1,18 @@
+{
+  "title": "Android TextView: compound drawable selector",
+  "component": "android-textview",
+  "purpose": "Check that an Android XML state-list compound drawable responds to pressed, selected, disabled and RTL states without moving the text.",
+  "changes": "Added compound drawable state selectors containing solid shapes or @null for TextView and CheckedTextView.",
+  "steps": [
+    "Find Android XML compound drawable selector below the two switches. The first row has a blue oval and the disabled row has a gray oval.",
+    "Press and hold the first row. Its oval disappears while pressed and returns on release; the text stays in place.",
+    "Turn on Selected text. The first row's oval changes to an amber rounded rectangle. Hold and release the row again; it should disappear during the hold and return amber.",
+    "Turn on Right-to-left layout. Both shapes should move to the other side. The disabled row remains gray. Choose OK if these steps work, or Reject with the failing step and your device."
+  ],
+  "expected": "The selector chooses the appropriate shape or no drawable for each state, preserves text spacing, and follows the layout direction.",
+  "limits": "Selector entries support local or inline solid shapes and @null; non-null shapes must have equal dimensions. Other drawable types, animated transitions, dynamic intrinsic sizes and Android pixel parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"TextView compound drawable state and placement."}],
+  "validation": ["148 Android XML importer tests passed, including selector state and invalid state handling.","Rust rendering test covers pressed @null, checked, disabled and RTL states."],
+  "demo_height": 1800
+}

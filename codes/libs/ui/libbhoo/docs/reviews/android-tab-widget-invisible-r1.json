@@ -1,0 +1,27 @@
+{
+  "title": "Android TabWidget: invisible tab",
+  "component": "android-tab-widget",
+  "purpose": "Check that an invisible Android tab keeps its space but cannot be selected by tapping that empty space.",
+  "changes": "Invisible TabWidget children no longer draw or receive taps; their layout slot is retained. The example adds a switch to hide and restore the middle tab.",
+  "steps": [
+    "Select First, then turn on Hide Second (keep space). Second should disappear while the gap between First and Third stays the same size.",
+    "Tap the empty middle space. The selected-tab label should still say First.",
+    "Turn the switch off, then tap Second. It should reappear and become selected.",
+    "Repeat with Right-to-left layout enabled. Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "The hidden tab keeps its space and cannot be selected by tapping; after restoration it can be selected normally in either layout direction.",
+  "limits": "This checks an invisible XML child; full Android measurement and device visual parity remain unverified. An already-selected tab remains selected when hidden.",
+  "documentation": "docs/TDD/libbhoo/components/android-tab-widget.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TabWidget.java",
+      "local": "context/reference-sources/android-framework/TabWidget.java",
+      "license": "Apache-2.0",
+      "scope": "TabWidget measurement includes invisible children while gone children are excluded."
+    }
+  ],
+  "validation": [
+    "Eight TabWidget Rust tests passed, including invisible child layout and input in both layout directions.",
+    "A 320 \u00d7 440 browser interaction test checked the empty slot, restoration and RTL."
+  ]
+}

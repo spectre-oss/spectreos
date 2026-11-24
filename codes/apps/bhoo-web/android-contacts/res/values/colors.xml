@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="contacts_primary">#435E91</color>
+    <color name="contacts_primary_dark">#2A4678</color>
+    <color name="contacts_bg">#F2F0F4</color>
+    <color name="contacts_detail_bg">#F4F4F4</color>
+    <color name="contacts_surface">#FFFFFF</color>
+    <color name="contacts_drawer_bg">#FAFAFA</color>
+    <color name="contacts_drawer_active">#E8E8E8</color>
+    <color name="contacts_label_toolbar">#303033</color>
+    <color name="contacts_cab_bg">#F6F6F6</color>
+    <color name="contacts_editor_hero">#607D8B</color>
+    <color name="contacts_avatar_alice">#A3ABC0</color>
+    <color name="contacts_avatar_bob">#5C76AA</color>
+    <color name="contacts_avatar_charlie">#A687A8</color>
+    <color name="contacts_avatar_myinfo">#5391F4</color>
+    <color name="contacts_avatar_teal">#5A8F7B</color>
+    <color name="contacts_avatar_amber">#C27B58</color>
+    <color name="contacts_ink">#1F1F1F</color>
+    <color name="contacts_muted">#5F6368</color>
+    <color name="contacts_hint">#8E9199</color>
+    <color name="contacts_divider">#E0E0E0</color>
+    <color name="contacts_underline">#9E9E9E</color>
+    <color name="contacts_scrim">#66000000</color>
+    <color name="contacts_emergency_red">#E06666</color>
+    <color name="contacts_empty_circle">#E2E2E5</color>
+    <color name="contacts_about_header">#8C95A6</color>
+</resources>

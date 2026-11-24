@@ -1,0 +1,49 @@
+[workspace]
+members = [".", "smithay"]
+default-members = ["."]
+
+[package]
+name = "wisp"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "Wisp — the unified SpectreOS Wayland Compositor, System UI & Launcher built on libbhoo and embedded Smithay."
+
+[features]
+development = ["compositor", "remote_control"]
+remote_control = ["compositor", "dep:serde", "dep:serde_json", "dep:openh264"]
+default = []
+svg-icons = ["dep:resvg"]
+wayland = ["bhoo/wayland", "svg-icons"]
+compositor = ["bhoo/gles", "svg-icons", "dep:smithay", "dep:tracing", "dep:tracing-subscriber", "dep:libc"]
+
+[dependencies]
+openh264 = { version = "0.9.8", optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+serde_json = { version = "1", optional = true }
+bhoo = { package = "libbhoo", path = "../../libs/ui/libbhoo", default-features = false }
+spectre-settings = { path = "../settings" }
+spectre-files = { path = "../files" }
+spectre-calendar = { path = "../calendar" }
+chrono = "0.4.42"
+chrono-tz = "0.10"
+image = { version = "=0.25.6", default-features = false }
+png = { version = "0.17", default-features = false }
+resvg = { version = "0.45", default-features = false, optional = true }
+smithay = { path = "smithay", default-features = false, features = ["backend_drm", "backend_gbm", "backend_egl", "backend_libinput", "backend_session_libseat", "backend_udev", "desktop", "renderer_gl", "wayland_frontend"], optional = true }
+tracing = { version = "0.1", optional = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+libc = { version = "0.2", optional = true }
+
+[[bin]]
+name = "wisp"
+path = "src/main.rs"
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

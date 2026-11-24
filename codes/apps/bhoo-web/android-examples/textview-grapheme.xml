@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="56dp">
+    <TextView android:id="@+id/combining_example" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingHorizontal="12dp" android:gravity="center" android:background="#D2EBD9" android:text="e&#x301;" android:textSize="24sp"/>
+    <TextView android:id="@+id/plain_example" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingHorizontal="12dp" android:gravity="center" android:background="#DDE3F7" android:text="e" android:textSize="24sp"/>
+    <TextView android:id="@+id/cjk_example" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingHorizontal="12dp" android:gravity="center" android:background="#F5E0CB" android:text="中" android:textSize="24sp"/>
+    <TextView android:id="@+id/emoji_example" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingHorizontal="12dp" android:gravity="center" android:background="#F8DEF0" android:text="👩‍💻" android:textSize="24sp"/>
+</LinearLayout>

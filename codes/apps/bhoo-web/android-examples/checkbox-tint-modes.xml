@@ -1,0 +1,8 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckBox android:id="mode_src_in" android:text="src_in" android:button="@drawable/text_compound_amber" android:buttonTint="#800000ff" android:buttonTintMode="src_in" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="mode_src_atop" android:text="src_atop" android:button="@drawable/text_compound_amber" android:buttonTint="#800000ff" android:buttonTintMode="src_atop" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="mode_src_over" android:text="src_over" android:button="@drawable/text_compound_amber" android:buttonTint="#800000ff" android:buttonTintMode="src_over" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="mode_multiply" android:text="multiply" android:button="@drawable/text_compound_amber" android:buttonTint="#800000ff" android:buttonTintMode="multiply" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="mode_screen" android:text="screen" android:button="@drawable/text_compound_amber" android:buttonTint="#800000ff" android:buttonTintMode="screen" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <CheckBox android:id="mode_add" android:text="add" android:button="@drawable/text_compound_amber" android:buttonTint="#800000ff" android:buttonTintMode="add" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

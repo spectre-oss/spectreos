@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="56dp">
+  <GridLayout android:id="nested_grid" android:orientation="horizontal" android:columnCount="2" android:layout_width="wrap_content" android:layout_height="48dp">
+    <Button android:id="nested_grid_label" android:text="Small" android:paddingHorizontal="12dp" android:background="#e8def8" android:layout_width="wrap_content" android:layout_height="48dp"/>
+    <Button android:id="nested_grid_next" android:text="More" android:background="#d9e8de" android:layout_width="56dp" android:layout_height="48dp"/>
+  </GridLayout>
+  <Button android:id="nested_grid_after" android:text="After" android:background="#f5d9dd" android:layout_width="56dp" android:layout_height="48dp"/>
+</LinearLayout>

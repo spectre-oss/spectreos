@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Contacts</string>
+    <string name="cd_open_drawer">Open navigation drawer</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_select_contacts">Select contacts</string>
+    <string name="cd_close_search">Close search</string>
+    <string name="cd_clear_search">Clear search</string>
+    <string name="cd_cancel_selection">Cancel selection</string>
+    <string name="cd_share">Share</string>
+    <string name="cd_delete">Delete</string>
+    <string name="cd_link">Link</string>
+    <string name="cd_add_member">Add contacts</string>
+    <string name="cd_more_options">More options</string>
+    <string name="cd_create_contact">Create new contact</string>
+    <string name="cd_navigate_up">Navigate up</string>
+    <string name="cd_star">Add to favorites</string>
+    <string name="cd_edit">Edit</string>
+    <string name="cd_sms">Send message</string>
+    <string name="cd_cancel">Cancel</string>
+    <string name="cd_expand_name">Expand name fields</string>
+    <string name="cd_change_photo">Change photo</string>
+
+    <string name="search_hint">Search contacts</string>
+    <string name="empty_contacts">Your contacts list is empty</string>
+    <string name="empty_add_contact">ADD CONTACT</string>
+    <string name="search_no_contacts">No contacts</string>
+    <string name="label_empty">No contacts with this label</string>
+    <string name="label_add_contacts">ADD CONTACTS</string>
+    <string name="label_default_title">Work</string>
+    <string name="label_default_count">1 contact · DEVICE</string>
+
+    <string name="drawer_my_info">My info</string>
+    <string name="drawer_my_info_sub">Set up your profile</string>
+    <string name="drawer_contacts">Contacts</string>
+    <string name="drawer_labels">Labels</string>
+    <string name="drawer_create_label">Create label</string>
+    <string name="drawer_emergency">Emergency information</string>
+    <string name="drawer_settings">Settings</string>
+
+    <string name="menu_send_email">Send email</string>
+    <string name="menu_send_message">Send message</string>
+    <string name="menu_remove_contacts">Remove contacts</string>
+    <string name="menu_rename_label">Rename label</string>
+    <string name="menu_delete_label">Delete label</string>
+
+    <string name="dialog_create_label">Create label</string>
+    <string name="dialog_label_hint">Label name</string>
+    <string name="action_cancel">CANCEL</string>
+    <string name="action_ok">OK</string>
+    <string name="action_delete">DELETE</string>
+    <string name="action_discard">DISCARD</string>
+    <string name="action_save">SAVE</string>
+
+    <string name="detail_default_name">Alice Johnson</string>
+    <string name="detail_default_phone">+1 555-010-1234</string>
+    <string name="detail_default_phone_type">Mobile</string>
+    <string name="detail_default_email">alice@example.com</string>
+    <string name="detail_default_email_type">Home</string>
+    <string name="detail_default_about">About Alice</string>
+    <string name="detail_organization">Organization</string>
+    <string name="detail_default_org">Acme Corp</string>
+    <string name="detail_notes">Notes</string>
+    <string name="detail_labels">Labels</string>
+    <string name="detail_ringtone">Ringtone</string>
+    <string name="detail_menu_link">Link</string>
+    <string name="detail_menu_delete">Delete</string>
+    <string name="detail_menu_share">Share</string>
+    <string name="detail_menu_shortcut">Create shortcut</string>
+    <string name="detail_menu_ringtone">Set ringtone</string>
+    <string name="detail_delete_title">Delete this contact?</string>
+
+    <string name="editor_create_title">Create new contact</string>
+    <string name="editor_saving_to">Saving to</string>
+    <string name="editor_device">Device</string>
+    <string name="hint_prefix">Name prefix</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_middle_name">Middle name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_suffix">Name suffix</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_company">Company</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_notes">Notes</string>
+    <string name="editor_more_fields">More fields</string>
+    <string name="editor_change_photo">Change photo</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="pref_my_info">My info</string>
+    <string name="pref_accounts">Accounts</string>
+    <string name="pref_default_account">Default account for new contacts</string>
+    <string name="pref_contacts_to_display">Contacts to display</string>
+    <string name="pref_all_contacts">All contacts</string>
+    <string name="pref_sort_by">Sort by</string>
+    <string name="pref_first_name">First name</string>
+    <string name="pref_last_name">Last name</string>
+    <string name="pref_name_format">Name format</string>
+    <string name="pref_first_name_first">First name first</string>
+    <string name="pref_phonetic">Phonetic name</string>
+    <string name="pref_hide_if_empty">Hide if empty</string>
+    <string name="pref_import">Import</string>
+    <string name="pref_export">Export</string>
+    <string name="pref_blocked">Blocked numbers</string>
+    <string name="pref_about">About Contacts</string>
+
+    <string name="about_build_version">Build version</string>
+    <string name="about_version_num">1.7.34</string>
+    <string name="about_open_source">Open source licenses</string>
+    <string name="about_open_source_sub">License details for open source software</string>
+    <string name="about_privacy">Privacy policy</string>
+    <string name="about_terms">Terms of service</string>
+
+    <string name="emerg_medical_header">Medical information</string>
+    <string name="emerg_name">Name</string>
+    <string name="emerg_owner">Owner</string>
+    <string name="emerg_add_info">Add information</string>
+    <string name="emerg_contacts_header">Emergency contacts</string>
+    <string name="emerg_add_contact">Add contact</string>
+    <string name="emerg_disclaimer_1">Adding medical information and emergency contacts can help first responders in an emergency.</string>
+    <string name="emerg_disclaimer_2">Anyone can read this information from your lock screen, and dial your contacts by tapping their names, without unlocking your phone.</string>
+
+    <string name="blocked_unknown">Unknown</string>
+    <string name="blocked_unknown_sub">Block calls from unidentified callers</string>
+    <string name="blocked_explanation">You won't receive calls or texts from blocked numbers.</string>
+    <string name="blocked_add_number">Add a number</string>
+</resources>

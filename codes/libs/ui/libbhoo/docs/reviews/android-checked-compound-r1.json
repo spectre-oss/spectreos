@@ -1,0 +1,18 @@
+{
+  "title": "Android CheckedTextView: compound drawables",
+  "component": "android-checked-textview",
+  "purpose": "Check that XML compound drawables, checked-state tint and the separate check mark fit together and follow right-to-left layout.",
+  "changes": "CheckedTextView now accepts the supported TextView compound shape drawables, padding and stateful tint, including checked-state colors.",
+  "steps": [
+    "Find CheckedTextView compound drawables below the Right-to-left switch. The first row shows blue shapes at both sides and a check mark; the disabled row has a gray shape.",
+    "Tap the first row: the check mark disappears and both shapes turn red. Tap it again: the check mark returns and both shapes turn blue. The text should not jump or overlap either shape.",
+    "Turn on Right-to-left layout. The leading and trailing shapes and the check mark should move to their corresponding sides; tap the first row again and check its colors and spacing.",
+    "Try the disabled row: its gray drawable stays unchanged. Choose OK if the behavior is correct, or Reject and describe what went wrong and your device."
+  ],
+  "expected": "Checked and unchecked tint states follow the host value, the check mark and compound shapes have separate space, and logical sides follow the layout direction.",
+  "limits": "Only solid shape compound drawables and supported tint selectors are included. Bitmap, vector, animated or selector compound drawables, other tint modes, and exact Android spacing and pixel parity are not verified.",
+  "documentation": "docs/TDD/libbhoo/components/android-checked-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CheckedTextView.java","local":"context/reference-sources/android-framework/CheckedTextView.java","license":"Apache-2.0","scope":"Check-mark padding, drawing and checked-state behavior."}],
+  "validation": ["147 Android XML importer tests passed, including CheckedTextView compound shapes and checked tint selector.","Rust rendering test verified checked tint and compound drawable placement beside the check mark in LTR and RTL."],
+  "demo_height": 1200
+}

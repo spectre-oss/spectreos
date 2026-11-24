@@ -1,0 +1,61 @@
+{
+  "row": "item_conversation",
+  "original_classes": [
+    "ImageView",
+    "androidx.constraintlayout.widget.ConstraintLayout",
+    "org.fossify.commons.views.MyTextView"
+  ],
+  "attributes_not_executed_by_bridge": [
+    "alpha",
+    "ellipsize",
+    "focusable",
+    "src",
+    "textAlignment",
+    "textDirection"
+  ],
+  "explicit_adapters": [
+    {
+      "id": "conversation_image",
+      "overrides": {
+        "kind": "Avatar"
+      }
+    },
+    {
+      "id": "draft_indicator",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "conversation_body_short",
+      "overrides": {
+        "layout_constraintStart_toStartOf": "@id/conversation_address",
+        "layout_constraintStart_toEndOf": "",
+        "layout_constraintEnd_toEndOf": "parent",
+        "layout_constraintEnd_toStartOf": ""
+      }
+    }
+  ],
+  "unresolved_nonlayout_theme_attributes": [
+    "@color/color_primary"
+  ],
+  "limits": [
+    "Only row/card XML is executed; screen XML guides the Rust controller.",
+    "No Android services, resource qualifiers, bidi constraints, arbitrary custom views or data binding runtime.",
+    "Theme/drawable selectors are replaced by Bhoo colors and icons.",
+    "Plant photographs replaced by locally drawn placeholder illustrations."
+  ],
+  "dependency_dimension_aliases": {
+    "activity_margin": "16dp",
+    "medium_margin": "8dp",
+    "small_margin": "4dp",
+    "tiny_margin": "2dp",
+    "two_line_list_item_min_height": "72dp",
+    "list_icon_size_medium": "48dp",
+    "small_icon_size": "24dp",
+    "list_primary_text_size": "16sp",
+    "list_secondary_text_size": "14sp",
+    "normal_text_size": "14sp",
+    "list_tertiary_text_size": "12sp"
+  }
+}

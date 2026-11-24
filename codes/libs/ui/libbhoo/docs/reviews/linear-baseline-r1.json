@@ -1,0 +1,29 @@
+{
+  "title": "Android LinearLayout: text baseline alignment",
+  "component": "android-linear-layout",
+  "purpose": "Check that an Android XML horizontal LinearLayout aligns different text sizes on their text baseline by default, and that baselineAligned=false turns the alignment off.",
+  "changes": "Added horizontal baseline alignment, its XML opt-out, and extra wrap-content height for mixed ascents and descents. The example has an aligned row and an unaligned row.",
+  "steps": [
+    "Turn on Show baseline alignment. Two rows containing a small and a large word will appear.",
+    "In the first row, look at the bottoms of the letters, ignoring the part of the letter g that descends below the line. The small and large words should sit on the same imaginary baseline.",
+    "In the second row, baseline alignment is disabled in Android XML. Both colored text boxes start at the top, so the small word sits noticeably higher than the large word.",
+    "Turn on Right-to-left layout. The two words should reverse order, and the first row should retain its aligned baselines while the second remains unaligned.",
+    "Choose OK if the rows behave as described. Otherwise choose Reject and describe what looks wrong, which row or direction is affected, and your device."
+  ],
+  "expected": "The default row aligns mixed-size text on a common baseline; the baselineAligned=false row keeps top-aligned text boxes. Changing layout direction reverses the order without changing that relationship.",
+  "limits": "This test covers horizontal mixed-size text and the XML opt-out. Bhoo's renderer supplies the font metrics; exact Android font and pixel parity, baselineAlignedChildIndex, and baselines for other view types remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-linear-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/LinearLayout.java",
+      "local": "context/reference-sources/android-framework/LinearLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Default baseline alignment, XML opt-out, top/bottom gravity and wrap-content baseline measurement."
+    }
+  ],
+  "validation": [
+    "All 153 Rust android_xml tests passed, including new baseline alignment, XML opt-out, RTL and wrap-content height cases.",
+    "All 135 Android XML importer tests passed, including baselineAligned true, false and invalid values.",
+    "Browser test-bhoo-linear-baseline.mjs passed rendered pixel checks for aligned and unaligned rows at 390px width, including RTL."
+  ]
+}

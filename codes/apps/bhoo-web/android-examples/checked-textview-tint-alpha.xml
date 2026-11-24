@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckedTextView android:id="checkmark_alpha_half" android:text="Half-opacity mark and tint" android:checkMark="@drawable/seek_tint_half_thumb" android:checkMarkTint="@color/checkbox_alpha_tint" android:checked="true" android:clickable="true" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <CheckedTextView android:id="checkmark_alpha_opaque" android:text="Opaque mark, half-opacity tint" android:checkMark="@drawable/seek_tint_opaque_thumb" android:checkMarkTint="@color/checkbox_alpha_tint" android:checked="true" android:clickable="true" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

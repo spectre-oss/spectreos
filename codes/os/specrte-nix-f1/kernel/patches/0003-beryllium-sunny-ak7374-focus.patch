@@ -1,0 +1,63 @@
+Subject: [LOCAL] beryllium: wire the verified Sunny AK7374 focus actuator
+
+This workspace targets the owner's EEPROM vendor ID 1 Sunny module only.
+Stock descriptor SHA256 d3fe8a1f0f9ccc3cc9dec0678672a8b96f866a3235453d76a959005dbd11396a
+names beryllium_imx363_ak7374_sunny and specifies a 10-bit DAC at register 0,
+shifted six bits. Active register 2 is zero. Do not apply to QTech modules.
+Lens movement/AF still require runtime validation on a booted kernel.
+
+--- a/drivers/media/i2c/ak7375.c
++++ b/drivers/media/i2c/ak7375.c
+@@ -51,6 +51,22 @@
+ 	.power_delay_us	= 20000,
+ };
+ 
++/* Poco F1 Sunny stock descriptor: AK7374, 10-bit DAC shifted by six.
++ * Only active mode is verified in that descriptor; do not invent standby.
++ */
++static const struct ak73xx_chipdef ak7374_cdef = {
++	.reg_position = 0x0,
++	.reg_cont = 0x2,
++	.shift_pos = 6,
++	.mode_active = 0x0,
++	.has_standby = false,
++	.focus_pos_max = 1023,
++	.focus_steps = 1,
++	.ctrl_steps = 16,
++	.ctrl_delay_us = 1000,
++	.power_delay_us = 10000,
++};
++
+ static const struct ak73xx_chipdef ak7375_cdef = {
+ 	.reg_position	= 0x0,
+ 	.reg_cont	= 0x2,
+@@ -330,6 +346,7 @@
+ 
+ static const struct of_device_id ak7375_of_table[] = {
+ 	{ .compatible = "asahi-kasei,ak7345", .data = &ak7345_cdef, },
++	{ .compatible = "asahi-kasei,ak7374", .data = &ak7374_cdef, },
+ 	{ .compatible = "asahi-kasei,ak7375", .data = &ak7375_cdef, },
+ 	{ /* sentinel */ }
+ };
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -331,9 +331,9 @@
+ 	status = "okay";
+ 
+ 	actuator: actuator@c {
+-		compatible = "rohm,bu64748";
++		compatible = "asahi-kasei,ak7374";
+ 		reg = <0x0c>;
+-		vcc-supply = <&cam0_actuator_regulator>;
++		vdd-supply = <&cam0_actuator_regulator>;
+ 		vio-supply = <&cam_iovdd>;
+ 		status = "okay";
+ 	};
+@@ -341,6 +341,7 @@
+ 	camera@10 {
+ 		compatible = "sony,imx363";
+ 		reg = <0x10>;
++		lens-focus = <&actuator>;
+ 
+ 		reset-gpios = <&tlmm 80 GPIO_ACTIVE_LOW>;
+ 		pinctrl-names = "default";

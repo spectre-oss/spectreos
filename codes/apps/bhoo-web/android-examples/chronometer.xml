@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Chronometer android:id="up" android:format="Elapsed %s" android:textSize="22sp" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <Chronometer android:id="down" android:format="Remaining %1$s (100%%)" android:countDown="true" android:textSize="22sp" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

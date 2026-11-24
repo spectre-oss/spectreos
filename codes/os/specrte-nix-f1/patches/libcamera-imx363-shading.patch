@@ -1,0 +1,62 @@
+Subject: [LOCAL] IMX363 Sunny colour shading with optional brightness mesh
+
+--- a/src/libcamera/software_isp/debayer_cpu.cpp
++++ b/src/libcamera/software_isp/debayer_cpu.cpp
+@@ -524,6 +524,20 @@
+ 		denoiseSourceStride_ = sourceCfg.stride;
+ 		denoisedRaw_.resize(size_t(sourceCfg.stride) * 3024);
+ 		LOG(Debayer, Info) << "IMX363 measured-noise RAW filtering enabled";
++	}
++
++	shading_.clear();
++	shadedRaw_.clear();
++	const char *shading = utils::secure_getenv("SPECTRE_IMX363_SHADING");
++	if (fullSensor && std::string(fullSensor) == "1" && shading &&
++	    (std::string(shading) == "colour" || std::string(shading) == "full") &&
++	    sourceCfg.size == Size(4032, 3024) && sourceCfg.pixelFormat == formats::SRGGB10_CSI2P) {
++		if (!shading_.prepare(inputCfg.size.width, inputCfg.size.height,
++		                     bool(reductionSourceStride_), spectre::sunnyShading,
++		                     std::string(shading) == "colour"))
++			return -EINVAL;
++		shadedRaw_.resize(size_t(inputCfg.stride) * inputCfg.size.height);
++		LOG(Debayer, Info) << "Sunny module lens shading: " << shading;
+ 	}
+ 
+ 	if (getInputConfig(inputCfg.pixelFormat, inputConfig_) != 0)
+@@ -944,6 +958,17 @@
+ 		}
+ 		source = denoisedRaw_.data();
+ 	}
++	if (!shadedRaw_.empty()) {
++		size_t length = reductionSourceStride_ ? reducedRaw_.size() : in.planes()[0].size();
++		if (!shading_.apply(source, length, inputConfig_.stride,
++		                    shadedRaw_.data(), shadedRaw_.size())) {
++			metadata.status = FrameMetadata::FrameError;
++			outputBufferReady.emit(output);
++			inputBufferReady.emit(input);
++			return;
++		}
++		source = shadedRaw_.data();
++	}
+ 	stats_->startFrame(frame);
+ 
+ 	if (inputConfig_.patternSize.height == 2)
+--- a/src/libcamera/software_isp/debayer_cpu.h
++++ b/src/libcamera/software_isp/debayer_cpu.h
+@@ -10,6 +10,7 @@
+  */
+ 
+ #pragma once
++#include "raw10-shading.h"
+ 
+ #include <memory>
+ #include <stdint.h>
+@@ -147,6 +148,8 @@
+ 	unsigned int defectSourceStride_ = 0;
+ 	std::vector<uint8_t> defectCorrectedRaw_;
+ 	std::vector<uint8_t> reducedRaw_;
++	spectre::Raw10Shading shading_;
++	std::vector<uint8_t> shadedRaw_;
+ 	std::unique_ptr<SwStatsCpu> stats_;
+ 	std::vector<uint8_t> lineBuffers_[kMaxLineBuffers];
+ 	unsigned int lineBufferLength_;

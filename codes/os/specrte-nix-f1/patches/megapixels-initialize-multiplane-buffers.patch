@@ -1,0 +1,20 @@
+--- a/src/camera.c
++++ b/src/camera.c
+@@ -202,7 +202,7 @@
+                         .index = i,
+                 };
+ 
+-                struct v4l2_plane planes[1];
++                struct v4l2_plane planes[1] = {0};
+                 if (camera->use_mplane) {
+                         buf.m.planes = planes;
+                         buf.length = 1;
+@@ -262,7 +262,7 @@
+                         .index = i,
+                 };
+ 
+-                struct v4l2_plane planes[1];
++                struct v4l2_plane planes[1] = {0};
+                 if (camera->use_mplane) {
+                         buf.m.planes = planes;
+                         buf.length = 1;

@@ -1,0 +1,27 @@
+{
+  "title": "Android FrameLayout nested wrap-content width",
+  "component": "android-frame-layout",
+  "purpose": "Check that a nested wrap-content frame resizes with a child's label and moves the following sibling.",
+  "changes": "A wrap-content FrameLayout now measures the current widths of its supported children instead of relying on fixed fallback widths.",
+  "steps": [
+    "Find Short and After under Nested wrap-content frame. They should appear next to one another.",
+    "Tap Change frame label. Short becomes Longer label and grows; After should move with it without overlapping. Tap again to restore Short.",
+    "Turn on Right-to-left layout and repeat. The order should mirror with the controls adjacent. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The nested frame grows and shrinks with its label and the following sibling stays adjacent in both directions.",
+  "limits": "This covers supported Bhoo child measurement. Complex Android measurement, font and theme behavior and device parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-frame-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/FrameLayout.java",
+      "local": "context/reference-sources/android-framework/FrameLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Frame child measurement and positioning."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies frame width, sibling position, runtime label and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified nested width, adjacent sibling and RTL."
+  ]
+}

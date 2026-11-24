@@ -1,0 +1,27 @@
+{
+  "title": "Android Button single-line ellipsis",
+  "component": "android-button",
+  "purpose": "Check start, middle and end ellipsis on Android XML Buttons with maxLines set to one.",
+  "changes": "Buttons now apply the corresponding single-line ellipsis even when singleLine is not explicitly set.",
+  "steps": [
+    "Under Single-line ellipsis, check the three buttons. The first should begin with an ellipsis, the second should have one in the middle, and the third should end with one. Each label should fit on one line.",
+    "Tap each button and check the status changes to the corresponding ellipsis_start, ellipsis_middle or ellipsis_end ID.",
+    "Turn on Right-to-left layout and repeat. The buttons should move to the opposite edge, their labels should remain one line and each button should respond. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Start, middle and end truncation appear at their configured positions, with each one-line button remaining tappable in both directions.",
+  "limits": "This tests Bhoo's Unicode-aware single-line ellipsis with Latin labels. Multi-line start/middle truncation, complex shaping, Android font metrics and device parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-button.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "TextView line limits and ellipsize inherited by Button."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies start, middle and end ellipses in LTR and RTL without the singleLine attribute.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified button activation, status and RTL interaction."
+  ]
+}

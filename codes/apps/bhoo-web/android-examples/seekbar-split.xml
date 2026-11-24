@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Transparent thumb: split track" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="split_seek" android:mirrorForRtl="true" android:progress="50" android:thumbTint="#00000000" android:progressTint="#1769aa" android:progressBackgroundTint="#e39b16" android:splitTrack="true" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <TextView android:text="Transparent thumb: continuous track" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="continuous_seek" android:mirrorForRtl="true" android:progress="50" android:thumbTint="#00000000" android:progressTint="#1769aa" android:progressBackgroundTint="#e39b16" android:splitTrack="false" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

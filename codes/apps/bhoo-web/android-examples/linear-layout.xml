@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+ <TextView android:text="Default: clip to padding" android:layout_width="match_parent" android:layout_height="24dp"/>
+ <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="96dp" android:background="#A9C9AD">
+  <TextView android:text="Oversized child" android:layout_width="match_parent" android:layout_height="80dp" android:background="#D5B9EB"/>
+ </LinearLayout>
+ <TextView android:text="clipToPadding = false" android:layout_width="match_parent" android:layout_height="24dp"/>
+ <LinearLayout android:orientation="vertical" android:padding="16dp" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="96dp" android:background="#A9C9AD">
+  <TextView android:text="Oversized child" android:layout_width="match_parent" android:layout_height="80dp" android:background="#D5B9EB"/>
+ </LinearLayout>
+</LinearLayout>

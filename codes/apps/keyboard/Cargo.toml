@@ -1,0 +1,43 @@
+[package]
+name = "spectre-keyboard"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "SpectreOS default on-screen keyboard built in Rust with libbhoo, Wayland layer-shell/input-method-v2/virtual-keyboard-v1, and Freedesktop D-Bus (org.spectreos.OSK0)."
+
+[features]
+default = ["osk"]
+osk = [
+    "bhoo/gles",
+    "dep:wayland-client",
+    "dep:wayland-egl",
+    "dep:wayland-protocols",
+    "dep:wayland-protocols-wlr",
+    "dep:wayland-protocols-misc",
+    "dep:libc",
+]
+preview = ["bhoo/wayland"]
+
+[dependencies]
+bhoo = { package = "libbhoo", path = "../../libs/ui/libbhoo", default-features = false }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+wayland-client = { version = "0.31", optional = true }
+wayland-egl = { version = "0.32", optional = true }
+wayland-protocols = { version = "0.32", features = ["client", "staging"], optional = true }
+wayland-protocols-wlr = { version = "0.3", features = ["client"], optional = true }
+wayland-protocols-misc = { version = "0.3", features = ["client"], optional = true }
+libc = { version = "0.2", optional = true }
+
+[[bin]]
+name = "spectre-keyboard"
+path = "src/main.rs"
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

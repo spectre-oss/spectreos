@@ -1,0 +1,31 @@
+From: Samuel LEGROS <sam.legros@gmail.com>
+Subject: [PATCH] libipa: add IMX363 gain helper (v0.7.0 backport)
+
+Adapted helper portion of https://patchwork.libcamera.org/patch/28201/ .
+That submission was withdrawn pending upstream kernel support; this is a local
+board-support backport, not an accepted upstream calibration. The pinned IMX363
+driver writes 0..480 to 0x0204. Gain uses 512/(512-code), not the raw code as
+linear gain. The 64/1024 black pedestal is a starting assumption from the
+submission, not a measured Poco F1 calibration. Do not invent sensor delays.
+
+--- a/src/ipa/libipa/camera_sensor_helper.cpp
++++ b/src/ipa/libipa/camera_sensor_helper.cpp
+@@ -617,6 +617,18 @@
+ };
+ REGISTER_CAMERA_SENSOR_HELPER("imx335", CameraSensorHelperImx335)
+ 
++class CameraSensorHelperImx363 : public CameraSensorHelper
++{
++public:
++	CameraSensorHelperImx363()
++	{
++		/* Starting pedestal: 64 at 10 bits, scaled to 16 bits. */
++		blackLevel_ = 4096;
++		gain_ = AnalogueGainLinear{ 0, 512, -1, 512 };
++	}
++};
++REGISTER_CAMERA_SENSOR_HELPER("imx363", CameraSensorHelperImx363)
++
+ class CameraSensorHelperImx415 : public CameraSensorHelper
+ {
+ public:

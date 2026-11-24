@@ -1,0 +1,123 @@
+/* Experimental wiring from the running stock DT; no illumination at boot. */
+/ {
+ cam3_avdd: reg-cam3-avdd {
+  compatible = "regulator-fixed";
+  regulator-name = "cam3_avdd";
+  vin-supply = <&ir_bob>;
+  gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
+  enable-active-high;
+  regulator-enable-ramp-delay = <1000>;
+ };
+ cam3_dvdd: reg-cam3-dvdd {
+  compatible = "regulator-fixed";
+  regulator-name = "cam3_dvdd";
+  vin-supply = <&cam_ldo>;
+  gpio = <&tlmm 7 GPIO_ACTIVE_HIGH>;
+  enable-active-high;
+  regulator-enable-ramp-delay = <1000>;
+ };
+};
+&cci_i2c1 {
+ status = "okay";
+ ir_camera: camera@60 {
+  compatible = "ovti,ov7251";
+  spectre,enable-ir-strobe;
+  reg = <0x60>;
+  enable-gpios = <&tlmm 25 GPIO_ACTIVE_HIGH>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&cam3_default &cam_mclk3_default &ir_camera_oe &ir_camera_select>;
+  clocks = <&clock_camcc CAM_CC_MCLK3_CLK>;
+  clock-names = "xclk";
+  assigned-clocks = <&clock_camcc CAM_CC_MCLK3_CLK>;
+  assigned-clock-rates = <24000000>;
+  vdddo-supply = <&cam_iovdd>;
+  vdda-supply = <&cam3_avdd>;
+  vddd-supply = <&cam3_dvdd>;
+  port {
+   ov7251_ep: endpoint {
+    data-lanes = <1>;
+    link-frequencies = /bits/ 64 <240000000 319200000>;
+    remote-endpoint = <&csiphy1_ir_ep>;
+   };
+  };
+ };
+};
+&camss {
+ ports {
+  port@1 {
+   reg = <1>;
+   csiphy1_ir_ep: endpoint {
+    clock-lanes = <7>;
+    data-lanes = <0>;
+    remote-endpoint = <&ov7251_ep>;
+   };
+  };
+ };
+};
+&tlmm {
+ cam3_default: cam3-default-state {
+  pins = "gpio25";
+  function = "gpio";
+  drive-strength = <2>;
+  bias-disable;
+ };
+ ir_default: ir-default-state {
+  pins = "gpio93", "gpio96", "gpio135";
+  function = "gpio";
+  drive-strength = <8>;
+  bias-disable;
+ };
+};
+&i2c10 {
+ status = "okay";
+ ir_led: led-controller@63 {
+  compatible = "spectre,beryllium-ir-diagnostic";
+  reg = <0x63>;
+  enable-gpios = <&tlmm 93 GPIO_ACTIVE_HIGH>;
+  torch-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+  tx-gpios = <&tlmm 135 GPIO_ACTIVE_HIGH>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&ir_default>;
+  pwms = <&pmi8998_lpg 0 25000000>;
+ };
+};
+
+/* Stock cam_vana votes bobb1 before raising the external analog gate. */
+&apps_rsc {
+ regulators-ir {
+  compatible = "qcom,pmi8998-rpmh-regulators";
+  qcom,pmic-id = "b";
+  ir_bob: bob {
+   regulator-name = "ir_bob";
+   regulator-min-microvolt = <3300000>;
+   regulator-max-microvolt = <3600000>;
+   regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
+  };
+ };
+};
+
+/* The front RGB and IR paths share a board switch. Select IR explicitly. */
+&tlmm {
+ ir_camera_oe: ir-camera-oe-state {
+  pins = "gpio8";
+  function = "gpio";
+  bias-pull-down;
+  drive-strength = <2>;
+  output-low;
+ };
+ ir_camera_select: ir-camera-select-state {
+  pins = "gpio36";
+  function = "gpio";
+  bias-pull-up;
+  drive-strength = <2>;
+  output-high;
+ };
+};
+&cam_mclk3_default {
+ drive-strength = <4>;
+};
+
+/* Both camera analog gates share BOB: retain it while either sensor is on. */
+&cam0_avdd {
+ vin-supply = <&ir_bob>;
+};

@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Tick marks: positions 2 to 6" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <SeekBar android:id="tick_volume" android:min="2" android:max="6" android:progress="4" android:mirrorForRtl="true" android:tickMark="@drawable/seekbar_tick" android:tickMarkTint="@color/seekbar_example_tint" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

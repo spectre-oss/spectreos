@@ -1,0 +1,358 @@
+--- a/src/pos-osk-widget.c
++++ b/src/pos-osk-widget.c
+@@ -13,6 +13,7 @@
+ 
+ #include "util.h"
+ #include "pos-char-popup.h"
++#include "spectre-touch.h"
+ #include "phosh-osk-enums.h"
+ #include "pos-enums.h"
+ #include "pos-enum-types.h"
+@@ -157,6 +158,9 @@
+   guint                repeat_id;
+ 
+   PosIndicatorPopup   *indicator_popup;
++  GdkPixbuf *reference_art;
++  char typing_prefix[64];
++  gboolean adaptive_typing;
+ 
+   /* Cursor movement */
+   GtkGesture          *cursor_drag;
+@@ -595,7 +599,8 @@
+     }
+ 
+     row->width += pos_osk_key_get_width (key);
+-    g_ptr_array_add (self->symbols, (gpointer)pos_osk_key_get_symbol (key));
++    if (pos_osk_key_get_symbol (key) && *pos_osk_key_get_symbol (key))
++      g_ptr_array_add (self->symbols, (gpointer)pos_osk_key_get_symbol (key));
+     g_ptr_array_add (row->keys, g_steal_pointer (&key));
+   }
+ 
+@@ -604,8 +609,10 @@
+     return;
+   }
+ 
+-  add_common_keys_pre (self, row, l, r, max_rows);
+-  add_common_keys_post (row, l, r, max_rows);
++  if (!g_str_has_prefix(self->layout.name,"spectre-explicit-")) {
++    add_common_keys_pre (self, row, l, r, max_rows);
++    add_common_keys_post (row, l, r, max_rows);
++  }
+ }
+ 
+ 
+@@ -937,6 +944,12 @@
+ }
+ 
+ 
++static gboolean spectre_is_reference(PosOskWidget *self);
++static void spectre_assign_boxes(PosOskWidget *self);
++static PosOskKey *spectre_locate(PosOskWidget *self,double x,double y);
++static gboolean spectre_footer_press(PosOskWidget *self,double x,double y);
++static gboolean spectre_draw_reference(PosOskWidget *self,cairo_t *cr);
++
+ static PosOskKey *
+ pos_osk_widget_locate_key (PosOskWidget *self, double x, double y)
+ {
+@@ -949,6 +962,8 @@
+ 
+   pos_x = x - layer->offset_x;
+ 
++  if (spectre_is_reference(self)) return spectre_locate(self,x,y);
++  if (y < off_y) return NULL;
+   row_num = (int)((y - off_y) / layer->key_height);
+   g_return_val_if_fail (row_num < self->layout.n_rows, NULL);
+ 
+@@ -1008,8 +1023,9 @@
+ {
+   PosOskKey *key = NULL;
+ 
++  if (spectre_footer_press(self,x,y)) return GDK_EVENT_STOP;
+   key = pos_osk_widget_locate_key (self, x, y);
+-  g_return_val_if_fail (key != NULL, GDK_EVENT_PROPAGATE);
++  if (!key) return GDK_EVENT_PROPAGATE;
+ 
+   if (self->current) {
+     g_warning ("Got button press event for %s while another key %s is pressed",
+@@ -1085,7 +1101,10 @@
+     break;
+ 
+   case POS_OSK_KEY_USE_MENU:
+-    pos_osk_widget_show_menu (self, key);
++    if (spectre_is_reference(self)) {
++      GActionGroup *group=gtk_widget_get_action_group(GTK_WIDGET(self),"win");
++      g_action_group_activate_action(group,"next-layout",NULL);
++    } else pos_osk_widget_show_menu (self, key);
+     break;
+   default:
+     g_assert_not_reached ();
+@@ -1114,8 +1133,8 @@
+   if (self->current == NULL)
+     return GDK_EVENT_PROPAGATE;
+ 
+-  key = pos_osk_widget_locate_key (self, event->x, event->y);
+-  g_return_val_if_fail (key != NULL, GDK_EVENT_PROPAGATE);
++  key = spectre_is_reference(self) ? self->current : pos_osk_widget_locate_key(self,event->x,event->y);
++  if (!key) return GDK_EVENT_PROPAGATE;
+ 
+   pos_osk_widget_key_release_action (self, key);
+ 
+@@ -1165,6 +1184,10 @@
+   if (event->sequence != self->sequence)
+     return GDK_EVENT_PROPAGATE;
+ 
++  if (event->type == GDK_TOUCH_CANCEL && spectre_is_reference(self)) {
++    pos_osk_widget_cancel_press(self);
++    return GDK_EVENT_STOP;
++  }
+   if (event->type == GDK_TOUCH_END || event->type == GDK_TOUCH_CANCEL) {
+     if (self->current) {
+       key_repeat_cancel (self);
+@@ -1172,6 +1195,7 @@
+       pos_osk_widget_key_release_action (self, self->current);
+     }
+   } else if (event->type == GDK_TOUCH_UPDATE) {
++    if (spectre_is_reference(self)) return GDK_EVENT_STOP;
+     PosOskKey *key;
+ 
+     if (!self->current)
+@@ -1205,6 +1229,7 @@
+   PosOskWidget *self = POS_OSK_WIDGET (widget);
+   PosOskKey *key;
+ 
++  if (spectre_is_reference(self)) return GDK_EVENT_STOP;
+   if ((event->state & GDK_BUTTON1_MASK) == 0)
+     return GDK_EVENT_PROPAGATE;
+ 
+@@ -1274,6 +1299,18 @@
+     return;
+   }
+ 
++  if (spectre_is_reference(self)) {
++    const char *symbol=pos_osk_key_get_symbol(key);
++    if (pos_osk_key_get_use(key)==POS_OSK_KEY_USE_MENU || g_strcmp0(symbol,",")==0 || g_strcmp0(symbol,"،")==0) {
++      pos_osk_widget_cancel_press(self);
++      GActionGroup *group=gtk_widget_get_action_group(GTK_WIDGET(self),"win");
++      g_action_group_change_action_state(group,"select-layout",g_variant_new_string("emoji"));
++      return;
++    }
++    if (g_strcmp0(symbol," ")==0) {
++      pos_osk_widget_cancel_press(self);pos_osk_widget_show_menu(self,key);return;
++    }
++  }
+   symbols = pos_osk_key_get_symbols (key);
+   if (symbols == NULL || symbols[0] == NULL)
+     return;
+@@ -1511,6 +1548,7 @@
+   GdkScreen *screen;
+   int scale, scale_w, scale_h;
+ 
++  if (spectre_is_reference(self)) { self->key_scale=150; return; }
+   scale_h = 100 * MAX (1.0, (double)self->height / POS_INPUT_SURFACE_DEFAULT_HEIGHT); /* in % */
+   scale_w = 100 * MAX (1.0, (double)self->width / MINIMUM_WIDTH); /* in % */
+   scale = MIN (scale_w, scale_h);
+@@ -1576,6 +1614,8 @@
+     }
+   }
+ 
++  spectre_assign_boxes(self);
++
+   /* On key size changes we adjust the font and icon size */
+   update_key_scale (self);
+ 
+@@ -1589,6 +1629,8 @@
+   PosOskWidget *self = POS_OSK_WIDGET (widget);
+   GtkStyleContext *context;
+   PosOskWidgetKeyboardLayer *layer = pos_osk_widget_get_current_layer (self);
++
++  if (spectre_draw_reference(self,cr)) return FALSE;
+ 
+   cairo_save (cr);
+ 
+@@ -1628,6 +1670,7 @@
+   g_ptr_array_free (self->symbols, TRUE);
+   g_clear_pointer (&self->event_history, g_array_unref);
+ 
++  g_clear_object(&self->reference_art);
+   G_OBJECT_CLASS (pos_osk_widget_parent_class)->finalize (object);
+ }
+ 
+@@ -1639,6 +1682,10 @@
+ {
+   PosOskWidget *self = POS_OSK_WIDGET (widget);
+ 
++  if (spectre_is_reference(self)) {
++    *minimum_height=*natural_height=(gint)ceil(MAX(self->width,MINIMUM_WIDTH)*777.0/1080.0);
++    return;
++  }
+   *minimum_height = *natural_height = self->key_height * self->layout.n_rows;
+ 
+ }
+@@ -1652,6 +1699,16 @@
+ }
+ 
+ 
++#include "spectre-widget.inc"
++
++static GtkSizeRequestMode spectre_request_mode(GtkWidget *widget) {
++  return spectre_is_reference(POS_OSK_WIDGET(widget)) ? GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH : GTK_SIZE_REQUEST_CONSTANT_SIZE;
++}
++static void spectre_height_for_width(GtkWidget *widget,gint width,gint *minimum,gint *natural) {
++  if (spectre_is_reference(POS_OSK_WIDGET(widget))) *minimum=*natural=(gint)ceil(width*777.0/1080.0);
++  else pos_osk_widget_get_preferred_height(widget,minimum,natural);
++}
++
+ static void
+ pos_osk_widget_class_init (PosOskWidgetClass *klass)
+ {
+@@ -1662,6 +1719,8 @@
+   object_class->set_property = pos_osk_widget_set_property;
+   object_class->finalize = pos_osk_widget_finalize;
+ 
++  widget_class->get_request_mode = spectre_request_mode;
++  widget_class->get_preferred_height_for_width = spectre_height_for_width;
+   widget_class->draw = pos_osk_widget_draw;
+   widget_class->size_allocate = pos_osk_widget_size_allocate;
+   widget_class->button_press_event = pos_osk_widget_button_press_event;
+@@ -1824,6 +1883,7 @@
+ static void
+ pos_osk_widget_init (PosOskWidget *self)
+ {
++  self->adaptive_typing=TRUE;
+   const char *purpose_class = "normal";
+   g_autoptr (GtkWidgetPath) path = NULL;
+   GtkStyleContext *key_context;
+--- a/src/pos-osk-widget.h
++++ b/src/pos-osk-widget.h
+@@ -43,3 +43,6 @@
+ guint             pos_osk_widget_max_rows (PosOskWidget *self);
+ 
+ G_END_DECLS
++
++void pos_osk_widget_set_touch_context(PosOskWidget *self,const char *text,gsize length,gboolean adaptive);
++void pos_osk_widget_note_touch_symbol(PosOskWidget *self,const char *symbol);
+--- a/src/pos-osk-key.c
++++ b/src/pos-osk-key.c
+@@ -184,7 +184,7 @@
+    */
+   props[PROP_WIDTH] =
+     g_param_spec_double ("width", "", "",
+-                         1.0, 10.0, 1.0,
++                         0.1, 10.0, 1.0,
+                          G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+   /**
+    * PosOskKey:symbol
+--- a/src/pos-input-surface.c
++++ b/src/pos-input-surface.c
+@@ -15,6 +15,7 @@
+ #include "phosh-osk-enums.h"
+ #include "pos-emoji-picker.h"
+ #include "pos-input-method.h"
++#include "spectre-touch.h"
+ #include "pos-clipboard-manager.h"
+ #include "pos-completer.h"
+ #include "pos-completer-manager.h"
+@@ -317,6 +318,24 @@
+   if (handled)
+     return;
+ 
++  /* Match the supplied erase() rule for normal IM clients; selections and
++   * secure fields keep the client's native Backspace semantics. */
++  if (self->bs_mode != POS_BACKSPACE_MODE_WORD &&
++      pos_input_method_get_purpose(self->input_method) != POS_INPUT_METHOD_PURPOSE_PASSWORD &&
++      pos_input_method_get_purpose(self->input_method) != POS_INPUT_METHOD_PURPOSE_PIN) {
++    guint anchor,cursor;
++    const char *text=pos_input_method_get_surrounding_text(self->input_method,&anchor,&cursor);
++    if (text && cursor && cursor==anchor && cursor<=strlen(text) && g_utf8_validate(text,cursor,NULL)) {
++      glong count=0;
++      g_autofree gunichar *points=g_utf8_to_ucs4(text,cursor,NULL,&count,NULL);
++      if (points && count) {
++        gsize start=spectre_erase_start(points,count);
++        guint bytes=cursor-(g_utf8_offset_to_pointer(text,start)-text);
++        pos_input_method_delete_surrounding_text(self->input_method,bytes,0,TRUE);
++        return;
++      }
++    }
++  }
+   pos_vk_driver_key_down (self->keyboard_driver, "KEY_BACKSPACE", POS_KEYCODE_MODIFIER_NONE);
+   pos_vk_driver_key_up (self->keyboard_driver, "KEY_BACKSPACE");
+ }
+@@ -572,6 +591,8 @@
+ {
+   g_assert (POS_IS_INPUT_SURFACE (self));
+ 
++  GtkWidget *child=hdy_deck_get_visible_child(self->deck);
++  if (POS_IS_OSK_WIDGET(child)) pos_osk_widget_note_touch_symbol(POS_OSK_WIDGET(child),symbol);
+   pos_input_surface_submit_symbol (self, symbol);
+ }
+ 
+@@ -1466,6 +1487,11 @@
+   g_assert (POS_IS_INPUT_METHOD (im));
+   g_assert (self->input_method == im);
+ 
++  gboolean adaptive=pos_input_method_get_purpose(im)!=POS_INPUT_METHOD_PURPOSE_PASSWORD &&
++    pos_input_method_get_purpose(im)!=POS_INPUT_METHOD_PURPOSE_PIN;
++  pos_osk_widget_set_touch_context(POS_OSK_WIDGET(self->osk_terminal),NULL,0,adaptive);
++  for (guint i=0;i<self->osks->len;i++)
++    pos_osk_widget_set_touch_context(g_ptr_array_index(self->osks,i),NULL,0,adaptive);
+   select_layout_by_im_purpose (self);
+ }
+ 
+@@ -1513,6 +1539,12 @@
+   g_assert (POS_IS_INPUT_METHOD (im));
+ 
+   text = pos_input_method_get_surrounding_text (im, &anchor, &cursor);
++  gboolean adaptive=pos_input_method_get_purpose(im)!=POS_INPUT_METHOD_PURPOSE_PASSWORD &&
++    pos_input_method_get_purpose(im)!=POS_INPUT_METHOD_PURPOSE_PIN;
++  pos_osk_widget_set_touch_context(POS_OSK_WIDGET(self->osk_terminal),text,cursor,adaptive);
++  for (guint i=0;i<self->osks->len;i++)
++    pos_osk_widget_set_touch_context(g_ptr_array_index(self->osks,i),text,cursor,adaptive);
++
+ 
+   if (!pos_input_surface_is_completion_mode (self))
+     return;
+@@ -1538,6 +1570,12 @@
+   g_assert (POS_IS_INPUT_METHOD (im));
+ 
+   active = pos_input_method_get_active (im);
++  gboolean adaptive=pos_input_method_get_purpose(im)!=POS_INPUT_METHOD_PURPOSE_PASSWORD &&
++    pos_input_method_get_purpose(im)!=POS_INPUT_METHOD_PURPOSE_PIN;
++  pos_osk_widget_set_touch_context(POS_OSK_WIDGET(self->osk_terminal),NULL,0,adaptive);
++  for (guint i=0;i<self->osks->len;i++)
++    pos_osk_widget_set_touch_context(g_ptr_array_index(self->osks,i),NULL,0,adaptive);
++
+ 
+   if (active) {
+     /* TODO: Reset buffered commit_string, delete_surrounding_text */
+@@ -2204,8 +2242,20 @@
+ }
+ 
+ 
++static void spectre_hide_activated(GSimpleAction *action,GVariant *parameter,gpointer data) {
++  g_object_set(data,"surface-visible",FALSE,NULL);
++}
++static void spectre_next_layout(GSimpleAction *action,GVariant *parameter,gpointer data) {
++  PosInputSurface *self=data;GtkWidget *child=hdy_deck_get_visible_child(self->deck);
++  const char *current=POS_IS_OSK_WIDGET(child)?pos_osk_widget_get_name(POS_OSK_WIDGET(child)):"";
++  const char *next=g_strcmp0(current,"ir")==0?"us":"ir";
++  g_action_group_change_action_state(G_ACTION_GROUP(self->action_map),"select-layout",g_variant_new_string(next));
++}
++
+ static GActionEntry entries[] =
+ {
++  { .name = "hide-keyboard", .activate=spectre_hide_activated },
++  { .name = "next-layout", .activate=spectre_next_layout },
+   { .name = "clipboard-paste", .activate = clipboard_paste_activated },
+   { .name = "settings", .activate = settings_activated },
+   { .name = "select-layout", .parameter_type = "s", .state = "\"terminal\"",
+--- a/src/phosh-osk-stevia.gresources.xml
++++ b/src/phosh-osk-stevia.gresources.xml
+@@ -13,6 +13,8 @@
+     <file compressed="true">stylesheet/adwaita-dark.css</file>
+     <file compressed="true">stylesheet/adwaita-hc-light.css</file>
+     <file compressed="true">stylesheet/common.css</file>
++    <file>reference/english.png</file>
++    <file>reference/persian.png</file>
+     <!-- from gnome-shell -->
+     <file preprocess="json-stripblanks">layouts/am.json</file>
+     <file preprocess="json-stripblanks">layouts/ara.json</file>

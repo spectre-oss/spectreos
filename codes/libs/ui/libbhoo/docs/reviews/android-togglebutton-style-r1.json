@@ -1,0 +1,16 @@
+{
+  "title": "Android XML ToggleButton: label style and disabled indicator",
+  "component": "android-togglebutton",
+  "purpose": "Check that ToggleButton applies XML text styling to both state labels and honors disabledAlpha for its indicator.",
+  "changes": "Added explicit bold and all-caps styling for the changing labels, and disabledAlpha for the indicator when the button is disabled.",
+  "steps": [
+    "Scroll to Text style and disabled indicator opacity. The first button reads PAUSED in bold uppercase. Tap it: the label changes to READY, still bold uppercase. Tap again to restore PAUSED.",
+    "The next two buttons are disabled and checked. Indicator visible should have a colored line near its bottom edge; Indicator hidden should have no visible bottom line.",
+    "Tap the disabled buttons and verify that neither changes its state or label. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Both on/off labels use the requested styling. The disabledAlpha values 1 and 0 respectively show and hide the checked indicator; disabled buttons do not toggle.",
+  "limits": "This tests Bhoo's current ToggleButton background and indicator. Android custom drawables, complete text appearance and theme resolution, and exact device pixel or motion parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-togglebutton.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ToggleButton.java","local":"context/reference-sources/android-framework/ToggleButton.java","license":"Apache-2.0","scope":"On/off labels and disabled indicator alpha."}],
+  "validation": ["142 Android XML importer tests passed, including ToggleButton style and disabledAlpha validation.","Two Rust ToggleButton tests passed, covering styled labels, indicator opacity and state toggling."]
+}

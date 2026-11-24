@@ -1,0 +1,5 @@
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android" android:id="flipper" android:autoStart="true" android:flipInterval="1800" android:inAnimation="@anim/slide_fade_in" android:outAnimation="@anim/slide_fade_out" android:layout_width="match_parent" android:layout_height="120dp">
+  <TextView android:text="First view" android:gravity="center" android:background="#DDF0E4" android:layout_width="match_parent" android:layout_height="match_parent"/>
+  <TextView android:text="Second view" android:gravity="center" android:background="#E5E3FA" android:layout_width="match_parent" android:layout_height="match_parent"/>
+  <TextView android:text="Third view" android:gravity="center" android:background="#FCECCF" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</ViewFlipper>

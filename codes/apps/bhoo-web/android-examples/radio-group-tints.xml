@@ -1,0 +1,5 @@
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android" android:id="tinted_radio_group" android:orientation="vertical" android:checkedButton="@id/tint_standard" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <RadioButton android:id="tint_standard" android:text="Standard" android:buttonTint="@color/checkbox_button_example" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <RadioButton android:id="tint_express" android:text="Express" android:buttonTint="@color/checkbox_button_example" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <RadioButton android:id="tint_unavailable" android:text="Unavailable" android:buttonTint="@color/checkbox_button_example" android:enabled="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+</RadioGroup>

@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="104dp" android:layout_height="wrap_content" android:minHeight="64dp" android:orientation="horizontal" android:padding="4dp" android:gravity="center_vertical" android:background="@color/grid_item_background">
+    <ImageView android:id="@+id/team_picture" android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/switcher_night" android:scaleType="fitCenter" />
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:paddingLeft="4dp">
+        <TextView android:id="@+id/team_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Workspace" android:textSize="12sp" android:textColor="#183D2A" />
+        <TextView android:id="@+id/team_subtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Team" android:textSize="10sp" android:textColor="#355C42" />
+    </LinearLayout>
+</LinearLayout>

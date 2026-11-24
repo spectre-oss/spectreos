@@ -1,0 +1,762 @@
+{
+  "name": "spectre-keyboard-us",
+  "locale": "en-US",
+  "levels": [
+    {
+      "level": "",
+      "mode": "default",
+      "rows": [
+        [
+          {
+            "symbol": "q",
+            "width": 1,
+            "symbols": [
+              "1"
+            ]
+          },
+          {
+            "symbol": "w",
+            "width": 1,
+            "symbols": [
+              "2"
+            ]
+          },
+          {
+            "symbol": "e",
+            "width": 1,
+            "symbols": [
+              "3"
+            ]
+          },
+          {
+            "symbol": "r",
+            "width": 1,
+            "symbols": [
+              "4"
+            ]
+          },
+          {
+            "symbol": "t",
+            "width": 1,
+            "symbols": [
+              "5"
+            ]
+          },
+          {
+            "symbol": "y",
+            "width": 1,
+            "symbols": [
+              "6"
+            ]
+          },
+          {
+            "symbol": "u",
+            "width": 1,
+            "symbols": [
+              "7"
+            ]
+          },
+          {
+            "symbol": "i",
+            "width": 1,
+            "symbols": [
+              "8"
+            ]
+          },
+          {
+            "symbol": "o",
+            "width": 1,
+            "symbols": [
+              "9"
+            ]
+          },
+          {
+            "symbol": "p",
+            "width": 1,
+            "symbols": [
+              "0"
+            ]
+          }
+        ],
+        [
+          {
+            "symbol": "a",
+            "width": 1
+          },
+          {
+            "symbol": "s",
+            "width": 1
+          },
+          {
+            "symbol": "d",
+            "width": 1
+          },
+          {
+            "symbol": "f",
+            "width": 1
+          },
+          {
+            "symbol": "g",
+            "width": 1
+          },
+          {
+            "symbol": "h",
+            "width": 1
+          },
+          {
+            "symbol": "j",
+            "width": 1
+          },
+          {
+            "symbol": "k",
+            "width": 1
+          },
+          {
+            "symbol": "l",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 1,
+            "style": "toggle",
+            "label": "⇧"
+          },
+          {
+            "symbol": "z",
+            "width": 1
+          },
+          {
+            "symbol": "x",
+            "width": 1
+          },
+          {
+            "symbol": "c",
+            "width": 1
+          },
+          {
+            "symbol": "v",
+            "width": 1
+          },
+          {
+            "symbol": "b",
+            "width": 1
+          },
+          {
+            "symbol": "n",
+            "width": 1
+          },
+          {
+            "symbol": "m",
+            "width": 1
+          },
+          {
+            "symbol": "KEY_BACKSPACE",
+            "width": 1.5,
+            "use": 1,
+            "style": "sys",
+            "icon": "edit-clear-symbolic"
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 2,
+            "style": "symbols",
+            "label": "?123"
+          },
+          {
+            "symbol": ",",
+            "width": 1,
+            "style": "punctuation",
+            "symbols": [
+              "☺"
+            ]
+          },
+          {
+            "symbol": "",
+            "width": 1,
+            "use": 3,
+            "style": "language",
+            "icon": "layout-menu-symbolic"
+          },
+          {
+            "symbol": " ",
+            "width": 4,
+            "label": "English",
+            "style": "space"
+          },
+          {
+            "symbol": ".",
+            "width": 1,
+            "style": "punctuation"
+          },
+          {
+            "symbol": "KEY_ENTER",
+            "width": 1.5,
+            "icon": "keyboard-enter-symbolic",
+            "style": "return"
+          }
+        ]
+      ]
+    },
+    {
+      "level": "shift",
+      "mode": "latched",
+      "rows": [
+        [
+          {
+            "symbol": "Q",
+            "width": 1,
+            "symbols": [
+              "1"
+            ]
+          },
+          {
+            "symbol": "W",
+            "width": 1,
+            "symbols": [
+              "2"
+            ]
+          },
+          {
+            "symbol": "E",
+            "width": 1,
+            "symbols": [
+              "3"
+            ]
+          },
+          {
+            "symbol": "R",
+            "width": 1,
+            "symbols": [
+              "4"
+            ]
+          },
+          {
+            "symbol": "T",
+            "width": 1,
+            "symbols": [
+              "5"
+            ]
+          },
+          {
+            "symbol": "Y",
+            "width": 1,
+            "symbols": [
+              "6"
+            ]
+          },
+          {
+            "symbol": "U",
+            "width": 1,
+            "symbols": [
+              "7"
+            ]
+          },
+          {
+            "symbol": "I",
+            "width": 1,
+            "symbols": [
+              "8"
+            ]
+          },
+          {
+            "symbol": "O",
+            "width": 1,
+            "symbols": [
+              "9"
+            ]
+          },
+          {
+            "symbol": "P",
+            "width": 1,
+            "symbols": [
+              "0"
+            ]
+          }
+        ],
+        [
+          {
+            "symbol": "A",
+            "width": 1
+          },
+          {
+            "symbol": "S",
+            "width": 1
+          },
+          {
+            "symbol": "D",
+            "width": 1
+          },
+          {
+            "symbol": "F",
+            "width": 1
+          },
+          {
+            "symbol": "G",
+            "width": 1
+          },
+          {
+            "symbol": "H",
+            "width": 1
+          },
+          {
+            "symbol": "J",
+            "width": 1
+          },
+          {
+            "symbol": "K",
+            "width": 1
+          },
+          {
+            "symbol": "L",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 1,
+            "style": "toggle",
+            "label": "⇧"
+          },
+          {
+            "symbol": "Z",
+            "width": 1
+          },
+          {
+            "symbol": "X",
+            "width": 1
+          },
+          {
+            "symbol": "C",
+            "width": 1
+          },
+          {
+            "symbol": "V",
+            "width": 1
+          },
+          {
+            "symbol": "B",
+            "width": 1
+          },
+          {
+            "symbol": "N",
+            "width": 1
+          },
+          {
+            "symbol": "M",
+            "width": 1
+          },
+          {
+            "symbol": "KEY_BACKSPACE",
+            "width": 1.5,
+            "use": 1,
+            "style": "sys",
+            "icon": "edit-clear-symbolic"
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 2,
+            "style": "symbols",
+            "label": "?123"
+          },
+          {
+            "symbol": ",",
+            "width": 1,
+            "style": "punctuation",
+            "symbols": [
+              "☺"
+            ]
+          },
+          {
+            "symbol": "",
+            "width": 1,
+            "use": 3,
+            "style": "language",
+            "icon": "layout-menu-symbolic"
+          },
+          {
+            "symbol": " ",
+            "width": 4,
+            "label": "English",
+            "style": "space"
+          },
+          {
+            "symbol": ".",
+            "width": 1,
+            "style": "punctuation"
+          },
+          {
+            "symbol": "KEY_ENTER",
+            "width": 1.5,
+            "icon": "keyboard-enter-symbolic",
+            "style": "return"
+          }
+        ]
+      ]
+    },
+    {
+      "level": "opt",
+      "mode": "locked",
+      "rows": [
+        [
+          {
+            "symbol": "1",
+            "width": 1
+          },
+          {
+            "symbol": "2",
+            "width": 1
+          },
+          {
+            "symbol": "3",
+            "width": 1
+          },
+          {
+            "symbol": "4",
+            "width": 1
+          },
+          {
+            "symbol": "5",
+            "width": 1
+          },
+          {
+            "symbol": "6",
+            "width": 1
+          },
+          {
+            "symbol": "7",
+            "width": 1
+          },
+          {
+            "symbol": "8",
+            "width": 1
+          },
+          {
+            "symbol": "9",
+            "width": 1
+          },
+          {
+            "symbol": "0",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "@",
+            "width": 1
+          },
+          {
+            "symbol": "#",
+            "width": 1
+          },
+          {
+            "symbol": "$",
+            "width": 1
+          },
+          {
+            "symbol": "%",
+            "width": 1
+          },
+          {
+            "symbol": "&",
+            "width": 1
+          },
+          {
+            "symbol": "-",
+            "width": 1
+          },
+          {
+            "symbol": "+",
+            "width": 1
+          },
+          {
+            "symbol": "(",
+            "width": 1
+          },
+          {
+            "symbol": ")",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 1,
+            "style": "toggle",
+            "label": "=\\<"
+          },
+          {
+            "symbol": "*",
+            "width": 1
+          },
+          {
+            "symbol": "\"",
+            "width": 1
+          },
+          {
+            "symbol": "'",
+            "width": 1
+          },
+          {
+            "symbol": ":",
+            "width": 1
+          },
+          {
+            "symbol": ";",
+            "width": 1
+          },
+          {
+            "symbol": "!",
+            "width": 1
+          },
+          {
+            "symbol": "?",
+            "width": 1
+          },
+          {
+            "symbol": "KEY_BACKSPACE",
+            "width": 1.5,
+            "use": 1,
+            "style": "sys",
+            "icon": "edit-clear-symbolic"
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 2,
+            "style": "symbols",
+            "label": "ABC"
+          },
+          {
+            "symbol": ",",
+            "width": 1,
+            "style": "punctuation",
+            "symbols": [
+              "☺"
+            ]
+          },
+          {
+            "symbol": "",
+            "width": 1,
+            "use": 3,
+            "style": "language",
+            "icon": "layout-menu-symbolic"
+          },
+          {
+            "symbol": " ",
+            "width": 4,
+            "label": "English",
+            "style": "space"
+          },
+          {
+            "symbol": ".",
+            "width": 1,
+            "style": "punctuation"
+          },
+          {
+            "symbol": "KEY_ENTER",
+            "width": 1.5,
+            "icon": "keyboard-enter-symbolic",
+            "style": "return"
+          }
+        ]
+      ]
+    },
+    {
+      "level": "opt+shift",
+      "mode": "locked",
+      "rows": [
+        [
+          {
+            "symbol": "~",
+            "width": 1
+          },
+          {
+            "symbol": "`",
+            "width": 1
+          },
+          {
+            "symbol": "|",
+            "width": 1
+          },
+          {
+            "symbol": "•",
+            "width": 1
+          },
+          {
+            "symbol": "√",
+            "width": 1
+          },
+          {
+            "symbol": "π",
+            "width": 1
+          },
+          {
+            "symbol": "÷",
+            "width": 1
+          },
+          {
+            "symbol": "×",
+            "width": 1
+          },
+          {
+            "symbol": "¶",
+            "width": 1
+          },
+          {
+            "symbol": "∆",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "£",
+            "width": 1
+          },
+          {
+            "symbol": "¢",
+            "width": 1
+          },
+          {
+            "symbol": "€",
+            "width": 1
+          },
+          {
+            "symbol": "¥",
+            "width": 1
+          },
+          {
+            "symbol": "^",
+            "width": 1
+          },
+          {
+            "symbol": "°",
+            "width": 1
+          },
+          {
+            "symbol": "=",
+            "width": 1
+          },
+          {
+            "symbol": "{",
+            "width": 1
+          },
+          {
+            "symbol": "}",
+            "width": 1
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 1,
+            "style": "toggle",
+            "label": "?123"
+          },
+          {
+            "symbol": "\\",
+            "width": 0.875
+          },
+          {
+            "symbol": "%",
+            "width": 0.875
+          },
+          {
+            "symbol": "©",
+            "width": 0.875
+          },
+          {
+            "symbol": "®",
+            "width": 0.875
+          },
+          {
+            "symbol": "™",
+            "width": 0.875
+          },
+          {
+            "symbol": "✓",
+            "width": 0.875
+          },
+          {
+            "symbol": "[",
+            "width": 0.875
+          },
+          {
+            "symbol": "]",
+            "width": 0.875
+          },
+          {
+            "symbol": "KEY_BACKSPACE",
+            "width": 1.5,
+            "use": 1,
+            "style": "sys",
+            "icon": "edit-clear-symbolic"
+          }
+        ],
+        [
+          {
+            "symbol": "",
+            "width": 1.5,
+            "use": 2,
+            "layer": 2,
+            "style": "symbols",
+            "label": "ABC"
+          },
+          {
+            "symbol": ",",
+            "width": 1,
+            "style": "punctuation",
+            "symbols": [
+              "☺"
+            ]
+          },
+          {
+            "symbol": "",
+            "width": 1,
+            "use": 3,
+            "style": "language",
+            "icon": "layout-menu-symbolic"
+          },
+          {
+            "symbol": " ",
+            "width": 4,
+            "label": "English",
+            "style": "space"
+          },
+          {
+            "symbol": ".",
+            "width": 1,
+            "style": "punctuation"
+          },
+          {
+            "symbol": "KEY_ENTER",
+            "width": 1.5,
+            "icon": "keyboard-enter-symbolic",
+            "style": "return"
+          }
+        ]
+      ]
+    }
+  ]
+}

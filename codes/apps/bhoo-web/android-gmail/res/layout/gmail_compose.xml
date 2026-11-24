@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gmail_surface"
+    android:orientation="vertical">
+
+    <!-- Gmail Compose Top Bar: Close + Attach + Blue Send + More -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/compose_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/gmail_surface"
+        android:paddingEnd="4dp"
+        android:navigationContentDescription="@string/cd_close"
+        android:navigationIcon="@drawable/ic_close">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/compose_attach"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:contentDescription="@string/cd_attach"
+                android:src="@drawable/ic_attach_file" />
+
+            <ImageButton
+                android:id="@+id/compose_send"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:contentDescription="@string/cd_send"
+                android:src="@drawable/ic_send" />
+
+            <ImageButton
+                android:id="@+id/compose_more"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:contentDescription="@string/cd_more"
+                android:src="@drawable/ic_more_horiz" />
+        </LinearLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ScrollView
+        android:id="@+id/compose_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- To Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="52dp"
+                    android:text="@string/compose_to_hint"
+                    android:textColor="@color/gmail_muted"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/compose_to"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:inputType="textEmailAddress"
+                    android:text="@string/compose_to_default"
+                    android:textColor="@color/gmail_ink"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_expand_more" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/gmail_divider" />
+
+            <!-- From Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="52dp"
+                    android:text="@string/compose_from_hint"
+                    android:textColor="@color/gmail_muted"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/compose_from"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp"
+                    android:singleLine="true"
+                    android:text="@string/compose_from_default"
+                    android:textColor="@color/gmail_ink"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_expand_more" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/gmail_divider" />
+
+            <!-- Subject Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="52dp"
+                    android:text="@string/compose_subject_hint"
+                    android:textColor="@color/gmail_muted"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/compose_subject"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:inputType="textEmailSubject"
+                    android:text="@string/compose_subject_default"
+                    android:textColor="@color/gmail_ink"
+                    android:textSize="15.5sp" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/gmail_divider" />
+
+            <!-- Full-Bleed Borderless Multiline Body -->
+            <EditText
+                android:id="@+id/compose_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="240dp"
+                android:background="@android:color/transparent"
+                android:gravity="top|start"
+                android:inputType="text|textMultiLine"
+                android:minLines="8"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="16dp"
+                android:text="@string/compose_body_default"
+                android:textColor="@color/gmail_ink"
+                android:textSize="15.5sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

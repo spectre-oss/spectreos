@@ -1,0 +1,26 @@
+{
+  "mobile-nixos": {
+    "url": "https://github.com/mobile-nixos/mobile-nixos",
+    "baseRevision": "2c132754323fc1915e8d21dcfc0ef68ab084c6fb",
+    "localBranch": "specrte-nix-f1"
+  },
+  "kernel": {
+    "url": "https://gitlab.com/sdm845-mainline/linux",
+    "tag": "sdm845-7.1-rc1-r0",
+    "revision": "85f1df2a4ec71d7a91dd95a7a49f889d1595ffa8",
+    "version": "7.1.0-rc1"
+  },
+  "firmware": {
+    "url": "https://gitlab.com/sdm845-mainline/firmware-xiaomi-beryllium",
+    "revision": "d396d32118803235a58aab0d0bc3643256634a05"
+  },
+  "u-boot": {
+    "url": "https://github.com/u-boot/u-boot.git",
+    "revision": "8d534cec0cc0109a37c0ded8854da03f1526dc0e"
+  },
+  "phosh": {
+    "url": "https://gitlab.gnome.org/World/Phosh/phosh.git",
+    "tag": "v0.54.0",
+    "revision": "484333d2b0536bb0eb1aae61884bcdd978bad49f"
+  }
+}

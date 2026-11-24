@@ -1,0 +1,32 @@
+[
+  {
+    "id": "settings-system-notify",
+    "name": "System Notify + History",
+    "app": "settings",
+    "pinned": true,
+    "resetBefore": false,
+    "steps": [
+      {
+        "type": "pushNotif",
+        "app": "Settings",
+        "title": "Test System Alert",
+        "body": "Fired via org.freedesktop.Notifications.Notify",
+        "urgency": 1
+      },
+      { "type": "wait", "ms": 80 },
+      { "type": "assertState", "path": "notifHistoryCount", "expected": ">=1" }
+    ]
+  },
+  {
+    "id": "settings-wifi-dbus",
+    "name": "D-Bus Wi-Fi On",
+    "app": "settings",
+    "pinned": true,
+    "resetBefore": false,
+    "steps": [
+      { "type": "dbus", "preset": "nm-wifi-on", "value": "true" },
+      { "type": "wait", "ms": 60 },
+      { "type": "assertState", "path": "wifiEnabled", "expected": "true" }
+    ]
+  }
+]

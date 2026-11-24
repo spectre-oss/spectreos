@@ -1,0 +1,13 @@
+{
+ "title":"Android flipper: delayed vertical motion",
+ "component":"android-adapter-view-flipper",
+ "purpose":"Check separate ObjectAnimator start delays for the two directions of a flipper transition.",
+ "changes":"XML object animators now accept startOffset independently for alpha and each translation axis. In this example vertical movement waits 500 ms while horizontal movement and fading begin immediately.",
+ "steps":["Press Start or stop to pause automatic flipping, then press Toggle custom animation.","Press Next and watch the item: it should begin moving horizontally and fading, then begin moving vertically after a short delay.","Press Previous to repeat in the other direction. You can toggle the custom animation off to compare the default crossfade.","Choose OK if it behaves as described, or Reject with what happened and your device."],
+ "expected":"Horizontal movement and fading begin first; vertical movement begins about half a second later. Next and Previous both work.",
+ "limits":"This illustrates Bhoo's supported together-set approximation; Android's AdapterViewAnimator XML path expects an ObjectAnimator, so AnimatorSet compatibility and Android-device visual parity are not claimed. Retained property values and interrupted animations need further validation.",
+ "documentation":"docs/TDD/libbhoo/components/android-adapter-view-flipper.md",
+ "references":[{"url":"https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/animation/AnimatorInflater.java","local":"context/reference-sources/android-framework/AnimatorInflater.java","license":"Apache-2.0","scope":"Object animator XML startOffset."}],
+ "validation":["154 importer tests, 196 Android XML tests, 12 flipper integration tests and the independent delay unit test passed."],
+ "demo_height":850
+}

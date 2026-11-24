@@ -1,0 +1,53 @@
+--- a/drivers/misc/fastrpc.c
++++ b/drivers/misc/fastrpc.c
+@@ -1183,6 +1183,9 @@
+ 	msg->size = roundup(ctx->msg_sz, PAGE_SIZE);
+ 	fastrpc_context_get(ctx);
+ 
++	dev_info(&cctx->rpdev->dev, "sensor-diag send handle=%u sc=%#x pd=%d addr=%#llx size=%llu\n",
++		 handle, msg->sc, fl->pd, (unsigned long long)msg->addr,
++		 (unsigned long long)msg->size);
+ 	ret = rpmsg_send(cctx->rpdev->ept, (void *)msg, sizeof(*msg));
+ 
+ 	if (ret)
+@@ -1571,8 +1574,13 @@
+ 	args[0].fd = -1;
+ 	sc = FASTRPC_SCALARS(FASTRPC_RMID_INIT_RELEASE, 1, 0);
+ 
+-	return fastrpc_internal_invoke(fl, true, FASTRPC_INIT_HANDLE,
+-				       sc, &args[0]);
++	{
++		int ret = fastrpc_internal_invoke(fl, true, FASTRPC_INIT_HANDLE,
++						 sc, &args[0]);
++		dev_info(fl->sctx->dev, "sensor-diag init-call pd=%d client=%d result=%d\n",
++			 fl->pd, client_id, ret);
++		return ret;
++	}
+ }
+ 
+ static int fastrpc_device_release(struct inode *inode, struct file *file)
+@@ -1716,8 +1724,13 @@
+ 	sc = FASTRPC_SCALARS(FASTRPC_RMID_INIT_ATTACH, 1, 0);
+ 	fl->pd = pd;
+ 
+-	return fastrpc_internal_invoke(fl, true, FASTRPC_INIT_HANDLE,
+-				       sc, &args[0]);
++	{
++		int ret = fastrpc_internal_invoke(fl, true, FASTRPC_INIT_HANDLE,
++						 sc, &args[0]);
++		dev_info(fl->sctx->dev, "sensor-diag init-call pd=%d client=%d result=%d\n",
++			 fl->pd, client_id, ret);
++		return ret;
++	}
+ }
+ 
+ static int fastrpc_invoke(struct fastrpc_user *fl, char __user *argp)
+@@ -2524,6 +2537,8 @@
+ 		return -ENOENT;
+ 	}
+ 
++	dev_info(&rpdev->dev, "sensor-diag response ctx=%#llx retval=%d\n",
++		 (unsigned long long)rsp->ctx, rsp->retval);
+ 	ctx->retval = rsp->retval;
+ 	complete(&ctx->work);
+ 

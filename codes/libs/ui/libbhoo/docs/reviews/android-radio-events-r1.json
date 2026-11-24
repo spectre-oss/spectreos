@@ -1,0 +1,28 @@
+{
+  "title": "Android RadioGroup: selection events",
+  "component": "android-radio-group",
+  "purpose": "Check that the host receives RadioGroup selection-change notifications for direct taps and programmatic selection or clearing.",
+  "changes": "The host can drain a bounded queue of group selection events. The example displays the latest event below the two choices.",
+  "steps": [
+    "Under Nested initial choice, tap Direct choice. The message below the choices should say Group event: direct choice.",
+    "Tap Clear group selection. The message should change to Group event: cleared.",
+    "Tap Select nested by ID. The message should change to Group event: nested choice.",
+    "Turn on right-to-left layout and repeat. Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "Each supported group selection or clear produces a matching host event. The initial XML selection does not produce an event.",
+  "limits": "Events are queued during rendering rather than delivered through a synchronous Android listener. Nested buttons tapped independently do not generate a group event; Android device timing remains unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-radio-group.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/RadioGroup.java",
+      "local": "context/reference-sources/android-framework/RadioGroup.java",
+      "license": "Apache-2.0",
+      "scope": "Checked-change notification, repeated check and clear behavior."
+    }
+  ],
+  "validation": [
+    "Seven nested RadioGroup tests, 197 Android XML tests and 158 importer tests passed, including event deduplication, repeated clears, unknown IDs and queue bounds.",
+    "A 320 \u00d7 720 browser test checked event text in LTR and RTL; programmatic selection regression also passed."
+  ],
+  "demo_height": 720
+}

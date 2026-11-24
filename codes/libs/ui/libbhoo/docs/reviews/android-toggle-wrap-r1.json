@@ -1,0 +1,27 @@
+{
+  "title": "Android XML ToggleButton wrap-content labels",
+  "component": "android-togglebutton",
+  "purpose": "Check that a wrap-content ToggleButton grows and shrinks to fit its current on/off label.",
+  "changes": "The button measures its current state label and XML padding rather than using a fixed 48 dp width.",
+  "steps": [
+    "Find the small Off button under Wrap-content state labels. Tap it: it should grow and show Enabled for notifications without clipping.",
+    "Tap it again and check it returns to the smaller Off state. Repeat several times.",
+    "Enable Right-to-left layout and repeat. The control should align with the opposite edge while both labels stay readable. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The button changes width with its label, stays tappable and works in both layout directions.",
+  "limits": "Bhoo uses its own 48 dp minimum, typography and indicator. Android theme/background minimums and device appearance and motion remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-togglebutton.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ToggleButton.java",
+      "local": "context/reference-sources/android-framework/ToggleButton.java",
+      "license": "Apache-2.0",
+      "scope": "On/off state label updates."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies current state label, wrap width, RTL placement and restored width.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified toggling, width changes and RTL placement."
+  ]
+}

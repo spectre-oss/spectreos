@@ -1,0 +1,5 @@
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android" android:id="drawable_radio_group" android:orientation="vertical" android:checkedButton="@id/drawable_standard" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <RadioButton android:id="drawable_standard" android:text="Standard" android:button="@drawable/check_mark_selector" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <RadioButton android:id="drawable_express" android:text="Express" android:button="@drawable/check_mark_selector" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <RadioButton android:id="drawable_unavailable" android:text="Unavailable" android:button="@drawable/check_mark_selector" android:enabled="false" android:layout_width="match_parent" android:layout_height="48dp"/>
+</RadioGroup>

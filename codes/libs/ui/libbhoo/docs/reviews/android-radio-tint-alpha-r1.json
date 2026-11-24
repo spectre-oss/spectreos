@@ -1,0 +1,13 @@
+{
+ "title":"Android RadioButton: custom button tint transparency",
+ "component":"android-radio-group",
+ "purpose":"Check that a translucent tint preserves custom RadioButton drawable transparency while selection remains independent in each group.",
+ "changes":"Custom solid RadioButton drawable tinting now combines drawable alpha and tint alpha using default source-in behavior.",
+ "steps":["Find Custom radio button tint opacity below the RTL switch. The first two rows use half-opacity source shapes; the next two use opaque shapes. Compare matching red or blue circles: the first pair should appear lighter.","Tap the second row in each pair. The selected circle turns red and the other turns blue; each pair keeps one selection and the first pair remains lighter.","Turn on Right-to-left layout and change selections again. Circles should move to the right and retain their colors and opacity difference.","Choose OK if the behavior works, or Reject with the problem and your device."],
+ "expected":"Tint alpha combines with source alpha, and checked-state colors update while each RadioGroup keeps one selection and follows layout direction.",
+ "limits":"Custom solid button shapes with the default source-in tint only. Other tint modes, drawable types, edge compositing and Android device pixel parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/android-radio-group.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java","local":"context/reference-sources/android-framework/CompoundButton.java","license":"Apache-2.0","scope":"Button drawable tint and checked state."}],
+ "validation":["Five RadioButton and RadioGroup Rust rendering and interaction tests passed, including source and tint alpha composition, exclusive selection and RTL."],
+ "demo_height":1200
+}

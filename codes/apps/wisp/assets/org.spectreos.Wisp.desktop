@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=Wisp
+GenericName=SpectreOS Shell & Compositor
+Comment=Unified SpectreOS Wayland compositor, launcher, lock screen, and notifications service
+Exec=wisp
+Icon=org.spectreos.Wisp
+Terminal=false
+NoDisplay=true
+Categories=System;
+Keywords=shell;launcher;compositor;notifications;wayland;
+StartupWMClass=org.spectreos.Wisp

@@ -1,0 +1,3 @@
+[submodule "codes/shiraz-core"]
+	path = codes/shiraz-core
+	url = https://github.com/spectre-oss/shiraz.git

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=SpectreOS Settings
+GenericName=System Settings
+Comment=Configure SpectreOS display, notifications, lock screen, network, and device preferences
+Exec=spectre-settings
+Icon=org.spectreos.Settings
+Terminal=false
+Categories=Settings;System;
+Keywords=settings;preferences;wifi;bluetooth;display;notifications;lock;battery;storage;about;
+StartupNotify=true
+StartupWMClass=org.spectreos.Settings

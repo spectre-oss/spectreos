@@ -1,0 +1,17 @@
+{
+  "title": "Android XML SeekBar: tick drawable selector",
+  "component": "android-seekbar",
+  "purpose": "Check that SeekBar tickMark drawable selectors change mark shape and color for pressed and disabled states.",
+  "changes": "Added state selectors and @null for supported solid-shape tick drawables, alongside the existing tick tint and split-track behavior.",
+  "steps": [
+    "Scroll to the bottom, to Tick drawable selector: hold and drag. The enabled slider has blue circular tick marks; the middle one may be covered by the thumb.",
+    "Touch and hold the enabled slider. The marks should become larger red squares while held. Drag across the positions and release; they should return to blue circles.",
+    "The disabled slider below has gray circular ticks. Try touching it: it must not move or change its marks.",
+    "Turn on Right-to-left layout near the top and repeat with the enabled slider. Its progress direction should mirror and the tick marks should retain their state changes. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Tick shapes follow the drawable selector, the disabled slider remains unchanged, and dragging and RTL continue to work.",
+  "limits": "Only supported solid rectangular or circular shape drawables, selectors and @null are covered. Bitmap, vector and animated tick drawables, Android tint compositing and exact device visual parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-seekbar.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/AbsSeekBar.java","local":"context/reference-sources/android-framework/AbsSeekBar.java","license":"Apache-2.0","scope":"Stateful tick mark drawable and drawing."}],
+  "validation": ["144 Android XML importer tests passed, including selector, referenced shape and @null.","Eight Rust SeekBar tests passed, including pressed, disabled, absent and tinted tick selector states."]
+}

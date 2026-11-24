@@ -1,0 +1,27 @@
+{
+  "title": "Material badge anchor offsets",
+  "component": "badge",
+  "purpose": "Check that configurable badge offsets move it toward its icon without moving the icon, including for different corners and RTL.",
+  "changes": "Added horizontal and vertical badge offsets alongside the logical corner option; positive offsets move toward the icon center.",
+  "steps": [
+    "Under Badge anchor corner, note the 3 badge at Top end. Turn on Move badge inward: the badge should move toward the center of the inbox icon while the icon stays still. Turn it off to restore the original position.",
+    "Use Change badge corner to try Bottom end, Bottom start and Top start. At each corner, turn Move badge inward on and off and check the movement points toward the icon center.",
+    "Turn on Right-to-left layout and repeat. Start and end mirror, and inward movement should still point toward the icon center. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The badge moves inward or returns to its corner without moving the icon; the offset direction follows each corner in both layout directions.",
+  "limits": "Offsets are additional to Bhoo's existing base placement. Android default offsets, separate text/dot offsets, theme tokens and device visual parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/badge.md",
+  "references": [
+    {
+      "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "local": "context/reference-repos/material-android/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "license": "Apache-2.0",
+      "scope": "Horizontal and vertical toward-center offsets."
+    }
+  ],
+  "validation": [
+    "Rust checks verify positive and negative offsets in all four corners and both directions, unchanged owner bounds and non-finite rejection.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified offset and corner controls in LTR and RTL."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "host": "<build-host-ip>",
+  "user": "<build-user>",
+  "identity": "~/.ssh/<build-host-key>",
+  "project": "/path/to/spectreos/codes/os/specrte-nix-f1",
+  "local_docs": "../../docs/spectre-nix"
+}

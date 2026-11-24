@@ -1,0 +1,17 @@
+{
+  "title": "Android XML Switch: thumb and track tints",
+  "component": "android-switch",
+  "purpose": "Check separate Android XML thumbTint and trackTint state selectors on a Switch, including interaction, disabled state and right-to-left layout.",
+  "changes": "Added separate literal and supported color-state-selector tints for the Switch thumb and track. The example includes on, off and disabled rows with distinct colors.",
+  "steps": [
+    "Scroll down to Android XML thumbTint and trackTint. The first switch has a blue track and white thumb; the second has an amber track and brown thumb; the disabled switch has a light gray track and gray thumb.",
+    "Touch and hold an enabled switch. Its thumb should turn red while held. Release to toggle it: the thumb moves and the track and thumb colors change to the other state.",
+    "Try the disabled switch. It should remain in its original state and keep its gray colors.",
+    "Turn on Right-to-left layout near the top. The controls move to the left of their labels and the thumb travel reverses. Toggle the enabled switches again. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Thumb and track follow their independent state selectors, the pressed thumb turns red, toggling remains animated, and disabled and RTL behavior remain intact.",
+  "limits": "The colors apply to Bhoo's existing switch geometry and uniformly colored track. Custom Android drawables, tint blending modes, inherited buttonTint, native alpha compositing and exact device visual parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-switch.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/Switch.java","local":"context/reference-sources/android-framework/Switch.java","license":"Apache-2.0","scope":"Separate thumb and track tint attributes and drawable state."}],
+  "validation": ["141 Android XML importer tests passed, including stateful thumb and literal track tints.","Rust switch rendering test passed for independent checked, unchecked, pressed and disabled tints and toggle interaction."]
+}

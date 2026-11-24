@@ -1,0 +1,17 @@
+{
+  "title": "Android XML TextView: local text appearance",
+  "component": "android-textview",
+  "purpose": "Check that a local Android XML textAppearance style is inherited, that a direct attribute can override it, and that its color selector responds to press and disabled states.",
+  "changes": "Added local textAppearance style resolution for supported text widgets, including text size, weight, color, all-caps and letter spacing. Direct view attributes override appearance values.",
+  "steps": [
+    "Scroll to Android XML textAppearance. The first line should read INHERITED APPEARANCE in large, bold blue uppercase letters.",
+    "Touch and hold that line: its text should turn red; release it and it should return to blue.",
+    "The second line reads DIRECT SIZE OVERRIDE in smaller bold blue uppercase letters. Its direct XML textSize overrides the inherited size, while the other style properties remain.",
+    "The disabled line should be large, bold, uppercase and gray. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Inherited appearance values apply, the direct size overrides only size, and the inherited color selector follows pressed and disabled state.",
+  "limits": "This supports local styles and a subset of text appearance attributes. Android framework styles, theme attributes, other typography properties, runtime resource changes and exact Android font/pixel parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java","local":"context/reference-sources/android-framework/TextView.java","license":"Apache-2.0","scope":"Text appearance loading and direct attribute precedence."}],
+  "validation": ["145 Android XML importer tests passed, including style inheritance, overrides, selector colors and unsupported attributes.","Rust rendering test passed for the compiled XML example's inherited and overridden sizes, bold uppercase text and pressed/disabled colors."]
+}

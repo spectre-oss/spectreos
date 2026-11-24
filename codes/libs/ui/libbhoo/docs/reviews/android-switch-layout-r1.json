@@ -1,0 +1,28 @@
+{
+  "title": "Android XML Switch sizing and spacing",
+  "component": "android-switch",
+  "purpose": "Check that Android XML switchMinWidth, switchPadding and thumbTextPadding change switch geometry while toggling remains usable in both layout directions.",
+  "changes": "Added XML control of the minimum track width, the gap beside the label, and padding around on/off thumb text, including wrap-content measurement and thumb travel for wider tracks.",
+  "steps": [
+    "At Android XML switch sizing and spacing, check that Wide track has a noticeably wider track and a gap after its label. Toggle it several times: the thumb should travel between the ends.",
+    "Check State text: the on/off text should fit in the wider thumb. Toggle it between NO and YES. Check that Wrap is a compact switch rather than filling the whole row.",
+    "Turn on Right-to-left layout near the top and repeat. The tracks should move to the left of their labels, with thumb motion reversed. Choose OK if it works; otherwise choose Reject and describe the failing step, what happened and your device."
+  ],
+  "expected": "The configured sizes and gaps are visible, state text fits, wrap content remains compact, and switches toggle in both directions.",
+  "limits": "Bhoo keeps a minimum 52 dp track and a fixed 9 sp state text style. Android theme defaults, custom drawables, optical insets and exact Android device appearance and animation have not been verified.",
+  "documentation": "docs/TDD/libbhoo/components/android-switch.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/Switch.java",
+      "local": "context/reference-sources/android-framework/Switch.java",
+      "license": "Apache-2.0",
+      "scope": "Switch sizing, thumb text padding and label spacing."
+    }
+  ],
+  "validation": [
+    "159 Android XML importer tests passed, including sizing validation.",
+    "Six Rust switch tests passed, including spacing and right-to-left geometry.",
+    "Full libbhoo Rust test suite passed after correcting wrap-content track measurement.",
+    "A 320 × 500 browser check verified visibility, all three toggles, wrap width and RTL placement."
+  ]
+}

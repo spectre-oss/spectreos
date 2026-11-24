@@ -1,0 +1,3 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+ <DigitalClock android:id="clock" android:textSize="28sp" android:padding="12dp" android:background="#E3ECE4" android:layout_width="match_parent" android:layout_height="64dp"/>
+</LinearLayout>

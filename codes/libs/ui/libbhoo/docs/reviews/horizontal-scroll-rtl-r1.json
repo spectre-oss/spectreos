@@ -1,0 +1,30 @@
+{
+  "title": "Android HorizontalScrollView: RTL touch scrolling",
+  "component": "android-horizontal-scroll",
+  "purpose": "Check that Android XML HorizontalScrollView starts at the correct edge and scrolls naturally in right-to-left layout, while two rows keep independent positions.",
+  "changes": "Right-to-left content now starts at its right-hand logical start, and swiping right moves toward later items. Short content also aligns to the right. The example has a direction switch and two independently scrollable rows.",
+  "steps": [
+    "On a phone-sized screen, turn on Right-to-left layout before scrolling either row. The first item in each row (A1 and B1) should be at the right-hand end.",
+    "Swipe the first row toward the right to reveal later items such as A4. The second row should stay in its original position.",
+    "Swipe the second row toward the right to reveal later items such as B4. The first row should stay where you left it.",
+    "Swipe either row back toward the left. It should return toward its first item without moving the other row.",
+    "Optionally turn off Right-to-left layout and check that left-to-right content is scrolled in the opposite direction. The current logical positions are retained when the switch changes.",
+    "Choose OK if the rows behave as described. Otherwise choose Reject and explain which step failed, what you saw and your device."
+  ],
+  "expected": "In RTL, each row begins on the right with its first item and a rightward swipe reveals later items. The two rows scroll independently and stay within their content bounds.",
+  "limits": "This tests the example's Android XML horizontal scroll containers and touch interaction at phone width. Short-content placement is covered by an automated test. Exact Android fling physics, wheel conventions and device pixel parity remain open. A very wide viewport may fit all items and require no scrolling.",
+  "documentation": "docs/TDD/libbhoo/components/android-horizontal-scroll.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/HorizontalScrollView.java",
+      "local": "context/reference-sources/android-framework/HorizontalScrollView.java",
+      "license": "Apache-2.0",
+      "scope": "Initial scroll position at the right-hand logical start in RTL."
+    }
+  ],
+  "validation": [
+    "All 157 Rust android_xml tests passed, including logical start, touch direction, end clamping and short-content RTL placement.",
+    "Seven scroll indicator and scrollbar tests passed after the shared horizontal touch controller change.",
+    "Browser test-bhoo-android-horizontal-rtl.mjs passed RTL touch scrolling and independence of the two rows at 390px width."
+  ]
+}

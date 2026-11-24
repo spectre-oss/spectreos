@@ -1,0 +1,8 @@
+<SlidingDrawer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer" android:layout_width="match_parent" android:layout_height="240dp"
+    android:handle="@id/handle" android:content="@id/content">
+    <Button android:id="@+id/handle" android:layout_width="72dp" android:layout_height="48dp" android:text="Open" />
+    <FrameLayout android:id="@+id/content" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#E4EEE8">
+        <TextView android:id="@+id/message" android:layout_width="match_parent" android:layout_height="48dp" android:text="Drawer content" android:gravity="center" />
+    </FrameLayout>
+</SlidingDrawer>

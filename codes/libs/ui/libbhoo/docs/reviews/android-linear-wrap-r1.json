@@ -1,0 +1,27 @@
+{
+  "title": "Android LinearLayout nested wrap-content row",
+  "component": "android-linear-layout",
+  "purpose": "Check that a nested wrap-content row resizes with a child's label and moves its following sibling.",
+  "changes": "A wrap-content LinearLayout now measures the current widths of its children instead of relying on fixed fallback widths.",
+  "steps": [
+    "Find Short, Next and After under Nested wrap-content row. They should appear next to one another.",
+    "Tap Change nested label. Short becomes Longer label and grows; Next and After should both move without overlapping. Tap again to restore Short.",
+    "Turn on Right-to-left layout and repeat. The order should mirror with all three controls adjacent. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The nested row grows and shrinks with its label and the following sibling stays adjacent in both directions.",
+  "limits": "This covers supported Bhoo child measurement. Complex weighted nesting, Android font and theme measurement and device parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-linear-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/LinearLayout.java",
+      "local": "context/reference-sources/android-framework/LinearLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Nested child measurement and positioning."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies nested width, sibling positions, runtime label and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified nested width, adjacent siblings and RTL."
+  ]
+}

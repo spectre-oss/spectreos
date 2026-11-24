@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Button android:id="ellipsis_start" android:text="Start of a longer button label" android:maxLines="1" android:ellipsize="start" android:paddingHorizontal="8dp" android:background="#e8def8" android:layout_width="160dp" android:layout_height="48dp"/>
+  <Button android:id="ellipsis_middle" android:text="Middle of a longer button label" android:maxLines="1" android:ellipsize="middle" android:paddingHorizontal="8dp" android:background="#d9e8de" android:layout_width="160dp" android:layout_height="48dp"/>
+  <Button android:id="ellipsis_end" android:text="End of a longer button label" android:maxLines="1" android:ellipsize="end" android:paddingHorizontal="8dp" android:background="#f5d9dd" android:layout_width="160dp" android:layout_height="48dp"/>
+</LinearLayout>

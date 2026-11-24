@@ -1,0 +1,33 @@
+{
+  "title": "Android TextView: wide characters",
+  "component": "android-textview",
+  "purpose": "Check the improved wrap-content width estimate for wide CJK characters and joined emoji.",
+  "changes": "The fallback uses Unicode width categories: wide graphemes receive about one em instead of the previous 0.6 em. Combining marks and joined emoji are still counted as one grapheme.",
+  "steps": [
+    "At the top, compare the colored boxes containing an accented e, plain e, \u4e2d, and the joined woman-at-laptop emoji.",
+    "The accented and plain e boxes should have equal width. The CJK and emoji boxes should be wider, giving those characters more space.",
+    "Choose OK if it looks correct, or Reject with details and your device."
+  ],
+  "expected": "The wide-character boxes are wider than the plain-letter boxes, and the accent does not create extra width.",
+  "limits": "Unicode terminal-width categories are a heuristic for proportional fonts. Actual emoji and CJK glyph advances, kerning, full shaping and Android device parity are not yet verified; the appearance of emoji depends on your device font.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [
+    {
+      "url": "https://crates.io/crates/unicode-width/0.2.2",
+      "local": "docs/TDD/libbhoo/reference-licenses/unicode-width/LICENSE-MIT.txt",
+      "license": "MIT",
+      "scope": "Unicode width categories; font widths are estimated separately."
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "TextView content measurement."
+    }
+  ],
+  "validation": [
+    "The full libbhoo Rust test suite and 156 XML importer tests passed. Tests cover CJK, joined emoji, flags, combining marks and line wrapping.",
+    "A 320 \u00d7 650 browser pixel test checked the four example widths; the archive contains the MIT and Unicode licenses."
+  ],
+  "demo_height": 650
+}

@@ -1,0 +1,118 @@
+{
+  "row": "message_list_item",
+  "original_classes": [
+    "ImageView",
+    "Space",
+    "View",
+    "androidx.constraintlayout.widget.Barrier",
+    "androidx.constraintlayout.widget.ConstraintLayout",
+    "androidx.constraintlayout.widget.Guideline",
+    "com.google.android.material.textview.MaterialTextView",
+    "de.hdodenhof.circleimageview.CircleImageView"
+  ],
+  "attributes_not_executed_by_bridge": [
+    "bufferType",
+    "contentDescription",
+    "ellipsize",
+    "focusable",
+    "foreground",
+    "layout_constrainedWidth",
+    "layout_constraintBaseline_toBaselineOf",
+    "layout_constraintHorizontal_chainStyle",
+    "layout_goneMarginEnd",
+    "lineSpacingMultiplier",
+    "src",
+    "srcCompat",
+    "textAppearance"
+  ],
+  "explicit_adapters": [
+    {
+      "id": "contact_picture",
+      "overrides": {
+        "kind": "Avatar"
+      }
+    },
+    {
+      "id": "preview",
+      "overrides": {
+        "textSize": "14sp",
+        "maxLines": "1",
+        "layout_constraintStart_toStartOf": "@id/start_keyline",
+        "layout_constraintStart_toEndOf": "",
+        "layout_constraintEnd_toEndOf": "parent",
+        "layout_constraintEnd_toStartOf": ""
+      }
+    },
+    {
+      "id": "account_color_chip",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "status",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "subject",
+      "overrides": {
+        "layout_width": "0dp",
+        "textSize": "16sp",
+        "textStyle": "bold",
+        "layout_constraintStart_toStartOf": "@id/start_keyline",
+        "layout_constraintStart_toEndOf": "",
+        "layout_constraintEnd_toStartOf": "@id/date"
+      }
+    },
+    {
+      "id": "thread_count",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "attachment",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "date",
+      "overrides": {
+        "textSize": "12sp",
+        "layout_constraintTop_toTopOf": "@id/top_guideline"
+      }
+    },
+    {
+      "id": "star",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "divider",
+      "overrides": {
+        "background": "#eeeeee"
+      }
+    }
+  ],
+  "unresolved_nonlayout_theme_attributes": [
+    "?android:attr/listDivider",
+    "?attr/colorOnSecondaryContainer",
+    "?attr/colorOnSurfaceVariant",
+    "?attr/selectableItemBackground",
+    "?attr/textAppearanceBodyLarge",
+    "?attr/textAppearanceBodyMedium",
+    "@dimen/messageListDefaultLineSpacingMultiplier",
+    "@string/star_button_description"
+  ],
+  "limits": [
+    "Only row/card XML is executed; screen XML guides the Rust controller.",
+    "No Android services, resource qualifiers, bidi constraints, arbitrary custom views or data binding runtime.",
+    "Theme/drawable selectors are replaced by Bhoo colors and icons.",
+    "Plant photographs replaced by locally drawn placeholder illustrations."
+  ],
+  "dependency_dimension_aliases": {}
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Android XML Button wrap-content labels",
+  "component": "android-button",
+  "purpose": "Check that an Android XML Button with wrap_content changes width to fit its current label and remains usable.",
+  "changes": "The Button now measures its displayed text and horizontal padding, including runtime text changes, instead of always using a 48 dp width.",
+  "steps": [
+    "Find the Short button and tap it. The status should say Pressed: wrap_button. The Disabled option below should not respond.",
+    "Tap Change button label: Short should become A much longer button and grow without clipping. Tap the longer button and check it still responds; restore the short label.",
+    "Enable Right-to-left layout and repeat the label changes and taps. The example buttons should align with the opposite edge. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The button width follows its label, activation works after resizing, disabled stays inactive and RTL placement mirrors.",
+  "limits": "Bhoo uses its own 48 dp minimum, typography, background and state layer. Complete Android text and drawable behavior, themes and device appearance and motion remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-button.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "Inherited text measurement and display."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies rendered text, width, runtime changes, activation and RTL placement.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified label resizing, activation, disabled state and RTL placement."
+  ]
+}

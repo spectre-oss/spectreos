@@ -1,0 +1,12 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+ <TextView android:text="Default: gone child is not measured" android:layout_width="match_parent" android:layout_height="24dp"/>
+ <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#C5E3CC">
+  <View android:layout_width="80dp" android:layout_height="40dp" android:background="#D9CCEF"/>
+  <View android:layout_width="180dp" android:layout_height="70dp" android:visibility="gone"/>
+ </FrameLayout>
+ <TextView android:text="measureAllChildren = true" android:layout_width="match_parent" android:layout_height="24dp"/>
+ <FrameLayout android:measureAllChildren="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#C5E3CC">
+  <View android:layout_width="80dp" android:layout_height="40dp" android:background="#D9CCEF"/>
+  <View android:layout_width="180dp" android:layout_height="70dp" android:visibility="gone"/>
+ </FrameLayout>
+</LinearLayout>

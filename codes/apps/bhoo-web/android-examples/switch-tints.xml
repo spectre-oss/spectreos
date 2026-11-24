@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Switch android:id="tint_switch_on" android:text="On: blue track" android:checked="true" android:thumbTint="@color/switch_thumb_example" android:trackTint="@color/switch_track_example" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Switch android:id="tint_switch_off" android:text="Off: amber track" android:checked="false" android:thumbTint="@color/switch_thumb_example" android:trackTint="@color/switch_track_example" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Switch android:id="tint_switch_disabled" android:text="Disabled: gray" android:checked="true" android:enabled="false" android:thumbTint="@color/switch_thumb_example" android:trackTint="@color/switch_track_example" android:layout_width="match_parent" android:layout_height="52dp"/>
+</LinearLayout>

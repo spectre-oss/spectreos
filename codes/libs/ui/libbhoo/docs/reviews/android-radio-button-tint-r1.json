@@ -1,0 +1,20 @@
+{
+  "title": "Android XML RadioButton: button tint states",
+  "component": "android-radio-group",
+  "purpose": "Check inherited Android XML buttonTint selector colors on RadioButton and verify group selection and right-to-left placement.",
+  "changes": "Added literal and supported color-state-selector buttonTint to XML RadioButton. The focused example has an independent tinted radio group with selected, unselected and disabled options.",
+  "steps": [
+    "Scroll to Android XML buttonTint. Standard is selected with a blue ring and dot; Express has an amber ring; Unavailable has a gray ring.",
+    "Touch and hold Express. Its ring should turn red while pressed. Release: Express becomes blue and selected, while Standard becomes amber and unselected.",
+    "Try selecting Unavailable. It must stay gray and must not change the selected option.",
+    "Turn on Right-to-left layout near the top. The rings should move to the right; select Standard and confirm the group still has one selection. Choose OK if the steps work, or Reject and describe the failing step, what you saw and your device."
+  ],
+  "expected": "Each radio indicator follows its checked, unchecked, pressed or disabled color; selecting an enabled option clears the previous selection and disabled options do not select.",
+  "limits": "Tint colors Bhoo's existing radio ring and dot. Custom Android button drawables, tint blend modes and exact Android pixel or motion parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-radio-group.md",
+  "references": [
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java","local":"context/reference-sources/android-framework/CompoundButton.java","license":"Apache-2.0","scope":"Inherited button tint and drawable state."},
+    {"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/RadioGroup.java","local":"context/reference-sources/android-framework/RadioGroup.java","license":"Apache-2.0","scope":"Radio-group single selection."}
+  ],
+  "validation": ["140 Android XML importer tests passed, including RadioButton tint selectors.","Rust RadioButton tint test passed for checked, unchecked, pressed and disabled colors; two radio-group selection tests passed."]
+}

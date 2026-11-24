@@ -1,0 +1,8 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Live time (updates each second)" android:layout_width="match_parent" android:layout_height="24dp"/>
+  <TextClock android:id="seconds" android:format12Hour="h:mm:ss a" android:format24Hour="HH:mm:ss" android:textSize="24sp" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <TextView android:text="Quoted text (updates each minute)" android:layout_width="match_parent" android:layout_height="24dp"/>
+  <TextClock android:id="literal" android:format12Hour="h:mm a 'seconds'" android:format24Hour="HH:mm 'seconds'" android:textSize="24sp" android:layout_width="match_parent" android:layout_height="48dp"/>
+  <TextView android:text="Hour cycles: k (1–24), K (0–11)" android:layout_width="match_parent" android:layout_height="24dp"/>
+  <TextClock android:id="cycles" android:format12Hour="k ' / ' K" android:format24Hour="k ' / ' K" android:textSize="24sp" android:layout_width="match_parent" android:layout_height="48dp"/>
+</LinearLayout>

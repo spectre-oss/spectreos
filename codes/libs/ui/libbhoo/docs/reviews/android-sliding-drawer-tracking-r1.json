@@ -1,0 +1,28 @@
+{
+  "title": "Android SlidingDrawer: tracking events",
+  "component": "android-sliding-drawer",
+  "purpose": "Check the notifications for starting and ending drawer tracking, alongside the completed open and close events.",
+  "changes": "The drawer now queues tracking-started and tracking-ended events. The example lists recent events below the drawer in their delivery order.",
+  "steps": [
+    "Press and hold the drawer handle. While holding it, look below the drawer for Event: tracking started.",
+    "Release the handle. The list should add tracking ended, then opened when the drawer finishes moving.",
+    "Turn on Lock handle and use Close programmatically. The list should add tracking started, tracking ended, then closed.",
+    "Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "Tracking start and end are reported in order. The opened or closed event follows when the movement reaches its destination.",
+  "limits": "For animated programmatic requests, Android reports start and end together when the request starts; they do not mean the animation has settled. Locking during an active drag is Bhoo-specific and Android device timing remains unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-sliding-drawer.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/SlidingDrawer.java",
+      "local": "context/reference-sources/android-framework/SlidingDrawer.java",
+      "license": "Apache-2.0",
+      "scope": "Tracking start/end and programmatic animation listener order."
+    }
+  ],
+  "validation": [
+    "Twelve SlidingDrawer Rust tests and 157 XML importer tests passed, including tracking order, cancellation and lock interruption.",
+    "A 320 \u00d7 900 browser test checked held-handle and locked programmatic event order; open/close and nested demos also passed."
+  ],
+  "demo_height": 900
+}

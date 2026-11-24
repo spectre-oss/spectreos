@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="72dp" android:layout_height="wrap_content" android:minHeight="64dp" android:orientation="vertical" android:padding="4dp" android:background="@color/grid_item_background">
+    <ImageView android:id="@+id/grid_item_picture" android:layout_width="48dp" android:layout_height="28dp" android:src="@drawable/switcher_day" android:scaleType="fitCenter" />
+    <TextView android:id="@+id/grid_item_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Workspace" android:textSize="12sp" android:textColor="#183D2A" />
+    <TextView android:id="@+id/grid_item_subtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Workspace" android:textSize="10sp" android:textColor="#355C42" />
+</LinearLayout>

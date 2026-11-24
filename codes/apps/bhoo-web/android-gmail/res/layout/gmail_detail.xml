@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gmail_surface"
+    android:orientation="vertical">
+
+    <!-- Material 3 Top App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/gmail_surface"
+        android:paddingEnd="4dp"
+        android:navigationContentDescription="@string/cd_back"
+        android:navigationIcon="@drawable/ic_arrow_back">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/detail_archive"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:contentDescription="@string/cd_archive"
+                android:src="@drawable/ic_archive" />
+
+            <ImageButton
+                android:id="@+id/detail_delete"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:contentDescription="@string/cd_delete"
+                android:src="@drawable/ic_delete" />
+
+            <ImageButton
+                android:id="@+id/detail_mark_unread"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:contentDescription="@string/cd_mark_unread"
+                android:src="@drawable/ic_mark_email_unread" />
+
+            <ImageButton
+                android:id="@+id/detail_more"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:contentDescription="@string/cd_more"
+                android:src="@drawable/ic_more_vert" />
+        </LinearLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ScrollView
+        android:id="@+id/detail_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="28dp">
+
+            <!-- Preload filled star vector so detail star toggle can swap drawables -->
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_star_filled"
+                android:visibility="gone" />
+
+            <!-- Subject + Inbox Chip + Star -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:id="@+id/detail_subject"
+                    style="@style/Gmail.Detail.Subject"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/email_0_subject" />
+
+                <TextView
+                    android:id="@+id/detail_inbox_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/inbox_tag_chip"
+                    android:gravity="center"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/label_inbox"
+                    android:textColor="@color/gmail_muted"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/detail_star"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:padding="8dp"
+                    android:contentDescription="@string/cd_star_message"
+                    android:src="@drawable/ic_star_outline" />
+            </LinearLayout>
+
+            <!-- Sender Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/avatar_detail_sender">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_person"
+                        android:tint="@color/avatar_detail_person" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/detail_sender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/email_0_sender"
+                            android:textColor="@color/gmail_ink"
+                            android:textSize="15.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/detail_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/detail_time"
+                            android:textColor="@color/gmail_muted"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detail_to_me"
+                            android:textColor="@color/gmail_muted"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="2dp"
+                            android:src="@drawable/ic_expand_more" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/detail_react"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="8dp"
+                    android:contentDescription="@string/cd_react"
+                    android:src="@drawable/ic_sentiment_satisfied" />
+
+                <ImageButton
+                    android:id="@+id/detail_reply"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="8dp"
+                    android:contentDescription="@string/cd_reply"
+                    android:src="@drawable/ic_reply" />
+
+                <ImageButton
+                    android:id="@+id/detail_sender_more"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="8dp"
+                    android:contentDescription="@string/cd_more"
+                    android:src="@drawable/ic_more_horiz" />
+            </LinearLayout>
+
+            <!-- Email Body -->
+            <TextView
+                style="@style/Gmail.Detail.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:text="@string/detail_body_greeting" />
+
+            <TextView
+                style="@style/Gmail.Detail.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:text="@string/detail_body_p1" />
+
+            <TextView
+                style="@style/Gmail.Detail.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:text="@string/detail_body_p2" />
+
+            <TextView
+                style="@style/Gmail.Detail.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:text="@string/detail_body_p3" />
+
+            <TextView
+                style="@style/Gmail.Detail.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Best," />
+
+            <TextView
+                android:id="@+id/detail_signoff"
+                style="@style/Gmail.Detail.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp"
+                android:text="@string/email_0_sender" />
+
+            <!-- 2 Photo Attachment MaterialCardViews with clipToOutline -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/photo_card_1"
+                    style="@style/Gmail.PhotoCard"
+                    android:layout_width="0dp"
+                    android:layout_height="112dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:clipToOutline="true"
+                    app:cardBackgroundColor="@color/photo_sakura_bg"
+                    app:cardCornerRadius="12dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/photo_sakura" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/photo_caption_scrim"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:singleLine="true"
+                        android:text="@string/photo_sakura_caption"
+                        android:textColor="@color/photo_sakura_ink"
+                        android:textSize="12.5sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/photo_card_2"
+                    style="@style/Gmail.PhotoCard"
+                    android:layout_width="0dp"
+                    android:layout_height="112dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:clipToOutline="true"
+                    app:cardBackgroundColor="@color/photo_kyoto_bg"
+                    app:cardCornerRadius="12dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/photo_kyoto" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/photo_caption_scrim"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:singleLine="true"
+                        android:text="@string/photo_kyoto_caption"
+                        android:textColor="@color/gmail_ink"
+                        android:textSize="12.5sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Quick Reply Prompt & 2 Material 3 Chips -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_horizontal"
+                android:text="@string/quick_reply_prompt"
+                android:textColor="@color/gmail_blue"
+                android:textSize="13.5sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/quick_reply_great"
+                    style="@style/Gmail.QuickReplyChip"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/quick_reply_great" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/quick_reply_amazing"
+                    style="@style/Gmail.QuickReplyChip"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/quick_reply_amazing" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

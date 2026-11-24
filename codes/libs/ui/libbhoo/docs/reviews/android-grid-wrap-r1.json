@@ -1,0 +1,27 @@
+{
+  "title": "Android GridLayout wrap-content child",
+  "component": "android-grid-layout",
+  "purpose": "Check that GridLayout remeasures a wrap-content button and moves the next column when the label changes.",
+  "changes": "Grid track sizing and child placement use the current measured width of wrap-content children.",
+  "steps": [
+    "Find Short and Next under Wrap-content grid columns. They should appear side by side with a small gap.",
+    "Tap Change grid label. Short becomes Longer label and grows; Next should move with the column and keep its gap. Tap again to restore Short.",
+    "Turn on Right-to-left layout and repeat. The order should mirror without overlapping. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The first column resizes with the button label and the second column stays adjacent in both layout directions.",
+  "limits": "This covers supported Bhoo grid constraints and text measurement. Full Android GridLayout, text and theme parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-grid-layout.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/GridLayout.java",
+      "local": "context/reference-sources/android-framework/GridLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Grid child measurement and track placement."
+    }
+  ],
+  "validation": [
+    "Seven Rust grid tests passed, including dynamic child width, sibling placement and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified changing width, column gap and RTL placement."
+  ]
+}

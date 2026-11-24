@@ -1,0 +1,21 @@
+[package]
+name = "spectre-calendar"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "SpectreOS calendar and event scheduler"
+
+[dependencies]
+bhoo = { package = "libbhoo", path = "../../libs/ui/libbhoo", default-features = false }
+spectre-files = { path = "../files" }
+chrono = { version = "0.4.42", default-features = false, features = ["clock", "std", "serde"] }
+chrono-tz = { version = "0.10", features = ["serde"] }
+ical = { version = "0.11", default-features = false, features = ["ical"] }
+rrule = "0.14"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+libc = "0.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+iana-time-zone = "0.1"

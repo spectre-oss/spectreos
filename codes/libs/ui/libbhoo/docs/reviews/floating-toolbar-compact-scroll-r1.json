@@ -1,0 +1,12 @@
+{
+ "title":"Floating toolbar: collapse on scroll",
+ "component":"floating-toolbar",
+ "purpose":"Check a floating toolbar collapsing into its FAB after scrolling down and expanding when scrolling reverses.",
+ "changes":"Added a scroll threshold controller for the expandable paired toolbar, with independent thresholds and reverse-layout support.",
+ "steps":["Turn on Scroll example, then turn on Collapse into FAB. The content area shows a toolbar with a separate plus button near its bottom.","Swipe up inside the content area by more than about 40 dp. The action surface should contract and the plus button should grow while staying visible.","Swipe down inside the content area by more than about 40 dp. The action surface should return and the plus button shrink. Try reversing again.","Choose OK if it works, or Reject with what happened and your device."],
+ "expected":"Consumed scroll past the threshold collapses the toolbar into its FAB; opposite scroll past the threshold expands it, with interruptible motion.",
+ "limits":"This example uses bottom-anchored vertical content and 40 dp thresholds. Other layouts, exact Android device motion and styling, and additional FAB sizes remain unverified.",
+ "documentation":"docs/TDD/libbhoo/components/floating-toolbar.md",
+ "references":[{"url":"https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","local":"context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","license":"Apache-2.0","scope":"Nested scroll expansion thresholds and paired toolbar geometry."}],
+ "validation":["Seventeen Rust toolbar tests pass, including threshold hysteresis, reverse layout and animation reversal; a 320 by 440 browser touch test verifies collapse and expansion."]
+}

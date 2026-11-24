@@ -1,0 +1,13 @@
+{
+ "title":"Android CheckBox: custom button tint transparency",
+ "component":"android-checkbox",
+ "purpose":"Check that a translucent tint preserves the custom CheckBox button drawable's own transparency, including checked-state tint changes.",
+ "changes":"Custom solid CheckBox button tinting now combines drawable alpha and tint alpha using the default source-in behavior.",
+ "steps":["Find Custom button tint opacity below the RTL switch. Compare the two blue circles: the first should appear lighter than the second.","Tap each row. Its circle changes from blue to red when checked, and returns to blue when tapped again. The first remains lighter in each state.","Turn on Right-to-left layout. The circles move to the right; tap the rows again to verify the colors and transparency.","Choose OK if these steps work, or Reject with the problem and your device."],
+ "expected":"A half-opacity drawable with a half-opacity tint is more transparent than an opaque drawable with the same tint. The checked selector changes color without losing the alpha difference.",
+ "limits":"Custom solid button shapes with default source-in tint only. Other tint modes, drawable types, edge compositing and Android device pixel parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/android-checkbox.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CompoundButton.java","local":"context/reference-sources/android-framework/CompoundButton.java","license":"Apache-2.0","scope":"Button drawable tint and checked-state updates."}],
+ "validation":["Five CheckBox Rust rendering and interaction tests passed, including exact source and tint alpha composition, checked state and RTL."],
+ "demo_height":1200
+}

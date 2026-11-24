@@ -1,0 +1,86 @@
+{
+  "row": "conversation_list_item_view",
+  "original_classes": [
+    "ImageView",
+    "LinearLayout",
+    "TextView",
+    "View",
+    "androidx.appcompat.widget.AppCompatTextView",
+    "org.thoughtcrime.securesms.ConversationListItem",
+    "org.thoughtcrime.securesms.components.AvatarView",
+    "org.thoughtcrime.securesms.components.FromTextView"
+  ],
+  "attributes_not_executed_by_bridge": [
+    "divider",
+    "drawablePadding",
+    "ellipsize",
+    "focusable",
+    "fontFamily",
+    "importantForAccessibility",
+    "layout_alignParentLeft",
+    "layout_alignParentStart",
+    "nextFocusLeft",
+    "nextFocusRight",
+    "showDividers",
+    "style"
+  ],
+  "explicit_adapters": [
+    {
+      "id": "avatar",
+      "overrides": {
+        "kind": "Avatar"
+      }
+    },
+    {
+      "id": "from_text",
+      "overrides": {
+        "textSize": "16sp"
+      }
+    },
+    {
+      "id": "subject",
+      "overrides": {
+        "textSize": "14sp"
+      }
+    },
+    {
+      "id": "date",
+      "overrides": {
+        "textSize": "12sp"
+      }
+    },
+    {
+      "id": "request_badge",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "archived_badge",
+      "overrides": {
+        "visibility": "gone"
+      }
+    },
+    {
+      "id": "unread_indicator",
+      "overrides": {
+        "visibility": "gone"
+      }
+    }
+  ],
+  "unresolved_nonlayout_theme_attributes": [
+    "?attr/conversation_item_outgoing_text_secondary_color",
+    "?attr/conversation_list_item_background",
+    "?attr/conversation_list_item_contact_color",
+    "?attr/conversation_list_item_date_color",
+    "?attr/conversation_list_item_divider",
+    "?attr/conversation_list_item_subject_color"
+  ],
+  "limits": [
+    "Only row/card XML is executed; screen XML guides the Rust controller.",
+    "No Android services, resource qualifiers, bidi constraints, arbitrary custom views or data binding runtime.",
+    "Theme/drawable selectors are replaced by Bhoo colors and icons.",
+    "Plant photographs replaced by locally drawn placeholder illustrations."
+  ],
+  "dependency_dimension_aliases": {}
+}

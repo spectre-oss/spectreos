@@ -1,0 +1,27 @@
+{
+  "title": "Android Button vertical drawable height",
+  "component": "android-button",
+  "purpose": "Check that a wrap-content Button grows tall enough for its top and bottom compound drawables and text.",
+  "changes": "Button wrap-content height now reserves the supported drawable heights, gaps, text line and vertical padding.",
+  "steps": [
+    "Find Vertical under Wrap-content drawable height. A green bar should appear above the text and a red bar below it, with all three inside the button.",
+    "Tap the button and check the status says Pressed: height_button. Neither bar nor the text should be clipped.",
+    "Turn on Right-to-left layout and repeat. The bars should remain above and below the text and the button should respond. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The button grows beyond its minimum height to contain both drawables and the text, and remains tappable in both directions.",
+  "limits": "This covers the supported shape-drawable and single-line measurement subset. Android multiline text, font/theme behavior, other drawable types and device pixel/motion parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-button.md",
+  "references": [
+    {
+      "url": "https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "TextView compound drawable measurement inherited by Button."
+    }
+  ],
+  "validation": [
+    "Rust regression verifies vertical drawable bounds, text separation, RTL and activation.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified height, activation and RTL interaction."
+  ]
+}

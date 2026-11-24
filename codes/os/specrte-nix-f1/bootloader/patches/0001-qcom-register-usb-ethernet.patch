@@ -1,0 +1,24 @@
+--- a/arch/arm/mach-snapdragon/board.c
++++ b/arch/arm/mach-snapdragon/board.c
+@@ -21,6 +21,7 @@
+ #include <linux/sizes.h>
+ #include <lmb.h>
+ #include <malloc.h>
++#include <net-common.h>
+ #include <soc/qcom/smem.h>
+ #include <sort.h>
+ #include <time.h>
+@@ -452,5 +453,13 @@
+ 	/* Configure the dfu_string for capsule updates */
+ 	qcom_configure_capsule_updates();
+ 
++	/* Register the USB network device before initr_net() enumerates it. */
++	if (IS_ENABLED(CONFIG_USB_ETHER)) {
++		int ret = usb_ether_init();
++
++		if (ret)
++			log_err("USB Ethernet initialization failed: %d\n", ret);
++	}
++
+ 	return 0;
+ }

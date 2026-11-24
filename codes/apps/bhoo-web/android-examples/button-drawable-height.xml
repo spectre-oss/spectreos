@@ -1,0 +1,3 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Button android:id="height_button" android:text="Vertical" android:drawableTop="@drawable/text_compound_green" android:drawableBottom="@drawable/text_compound_red" android:drawablePadding="8dp" android:paddingVertical="4dp" android:background="#e8def8" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+</LinearLayout>

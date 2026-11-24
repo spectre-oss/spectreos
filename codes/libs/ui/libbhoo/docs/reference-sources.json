@@ -1,0 +1,2017 @@
+{
+  "retrieved_on": "2026-11-08",
+  "scope": "Selected raw files at pinned commits; no Git repositories, binary assets, dependency installs, SDKs, tests, or complete build trees.",
+  "sources": [
+    {
+      "name": "material-web",
+      "repository": "https://github.com/material-components/material-web",
+      "commit": "d872455c4be56022da2095349b30ef46e0b55bc3",
+      "source_root": "",
+      "license": "Apache-2.0",
+      "legal_files": [
+        "reference-licenses/material-web/LICENSE"
+      ],
+      "file_count": 713,
+      "bytes": 1988953
+    },
+    {
+      "name": "material-android",
+      "repository": "https://github.com/material-components/material-components-android",
+      "commit": "66b0eeb53afeb6025ffbbd37734b08e5bce197ed",
+      "source_root": "lib/java/com/google/android/material",
+      "license": "Apache-2.0",
+      "legal_files": [
+        "reference-licenses/material-android/LICENSE"
+      ],
+      "file_count": 454,
+      "bytes": 5157897
+    },
+    {
+      "name": "compose-material3",
+      "repository": "https://github.com/androidx/androidx",
+      "commit": "1448d64974931a04c9fba96ac630cbd6b96cda36",
+      "source_root": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3",
+      "license": "Apache-2.0",
+      "legal_files": [
+        "reference-licenses/compose-material3/LICENSE.txt",
+        "reference-licenses/compose-material3/license-baseline.txt"
+      ],
+      "file_count": 255,
+      "bytes": 4707900
+    },
+    {
+      "name": "angular-material",
+      "repository": "https://github.com/angular/components",
+      "commit": "249b3ee5c8b334dcb6b8d9e035380318e4438c2c",
+      "source_root": "src/material",
+      "license": "MIT",
+      "legal_files": [
+        "reference-licenses/angular-material/LICENSE"
+      ],
+      "file_count": 577,
+      "bytes": 2433089
+    },
+    {
+      "name": "flutter-material",
+      "repository": "https://github.com/flutter/packages",
+      "commit": "565c6573861992fbd225ca138bbc2d3b8aeb5d00",
+      "source_root": "packages/material_ui/lib/src",
+      "license": "BSD-3-Clause",
+      "legal_files": [
+        "reference-licenses/flutter-material/AUTHORS",
+        "reference-licenses/flutter-material/LICENSE",
+        "reference-licenses/flutter-material/packages/material_ui/AUTHORS",
+        "reference-licenses/flutter-material/packages/material_ui/LICENSE"
+      ],
+      "file_count": 201,
+      "bytes": 5482633
+    }
+  ],
+  "components": [
+    {
+      "component": "application-tile",
+      "name": "Application tile",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "list/internal/listitem/list-item.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/list/internal/listitem/list-item.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ListItem.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ListItem.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/list_tile.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/list_tile.dart"
+        }
+      ]
+    },
+    {
+      "component": "autocomplete",
+      "name": "Autocomplete",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/textfield/MaterialAutoCompleteTextView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/textfield/MaterialAutoCompleteTextView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ExposedDropdownMenu.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ExposedDropdownMenu.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/autocomplete/autocomplete.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/autocomplete/autocomplete.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/autocomplete.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/autocomplete.dart"
+        }
+      ]
+    },
+    {
+      "component": "avatar",
+      "name": "Avatar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/circle_avatar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/circle_avatar.dart"
+        }
+      ]
+    },
+    {
+      "component": "badge",
+      "name": "Badge",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/badge/BadgeDrawable.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/badge/BadgeDrawable.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Badge.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Badge.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/badge/badge.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/badge/badge.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/badge.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/badge.dart"
+        }
+      ]
+    },
+    {
+      "component": "banner",
+      "name": "Banner",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/banner.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/banner.dart"
+        }
+      ]
+    },
+    {
+      "component": "bottom-app-bar",
+      "name": "Bottom app bar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/bottomappbar/BottomAppBar.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/bottomappbar/BottomAppBar.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AppBar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AppBar.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/toolbar/toolbar.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/toolbar/toolbar.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/bottom_app_bar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/bottom_app_bar.dart"
+        }
+      ]
+    },
+    {
+      "component": "bottom-sheet",
+      "name": "Bottom sheet",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/bottomsheet/BottomSheetBehavior.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/bottomsheet/BottomSheetBehavior.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ModalBottomSheet.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ModalBottomSheet.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/bottom-sheet/bottom-sheet.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/bottom-sheet/bottom-sheet.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/bottom_sheet.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/bottom_sheet.dart"
+        }
+      ]
+    },
+    {
+      "component": "breadcrumb",
+      "name": "Breadcrumb",
+      "scope": "related desktop building blocks",
+      "matches": []
+    },
+    {
+      "component": "button-group",
+      "name": "Button group",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/button/MaterialButtonGroup.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/button/MaterialButtonGroup.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ButtonGroup.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ButtonGroup.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/button-toggle/button-toggle.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/button-toggle/button-toggle.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/toggle_buttons.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/toggle_buttons.dart"
+        }
+      ]
+    },
+    {
+      "component": "button",
+      "name": "Button",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "button/internal/filled-button.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/button/internal/filled-button.ts"
+        },
+        {
+          "source": "material-web",
+          "path": "button/internal/button.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/button/internal/button.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/button/MaterialButton.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/button/MaterialButton.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Button.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Button.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/button/button.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/button/button.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/filled_button.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/filled_button.dart"
+        }
+      ]
+    },
+    {
+      "component": "card",
+      "name": "Card",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/card/MaterialCardView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/card/MaterialCardView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Card.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Card.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/card/card.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/card/card.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/card.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/card.dart"
+        }
+      ]
+    },
+    {
+      "component": "carousel",
+      "name": "Carousel",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/carousel/CarouselLayoutManager.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/carousel/CarouselLayoutManager.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/carousel/Carousel.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/carousel/Carousel.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/carousel.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/carousel.dart"
+        }
+      ]
+    },
+    {
+      "component": "checkbox",
+      "name": "Checkbox",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "checkbox/internal/checkbox.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/checkbox/internal/checkbox.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/checkbox/MaterialCheckBox.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/checkbox/MaterialCheckBox.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Checkbox.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Checkbox.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/checkbox/checkbox.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/checkbox/checkbox.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/checkbox.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/checkbox.dart"
+        }
+      ]
+    },
+    {
+      "component": "chip",
+      "name": "Chip",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "chips/internal/filter-chip.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/chips/internal/filter-chip.ts"
+        },
+        {
+          "source": "material-web",
+          "path": "chips/internal/chip.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/chips/internal/chip.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/chip/Chip.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/chip/Chip.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Chip.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Chip.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/chips/chip.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/chips/chip.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/chip.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/chip.dart"
+        }
+      ]
+    },
+    {
+      "component": "color-picker",
+      "name": "Color picker",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/color/ColorRoles.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/color/ColorRoles.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ColorScheme.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ColorScheme.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/color_scheme.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/color_scheme.dart"
+        }
+      ]
+    },
+    {
+      "component": "command-palette",
+      "name": "Command palette",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "textfield/internal/text-field.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/textfield/internal/text-field.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/search/SearchView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/search/SearchView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SearchBar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SearchBar.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/autocomplete/autocomplete.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/autocomplete/autocomplete.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/search_anchor.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/search_anchor.dart"
+        }
+      ]
+    },
+    {
+      "component": "context-menu-integration",
+      "name": "Context-menu integration",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "menu/internal/menu.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/menu/internal/menu.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Menu.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Menu.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/menu/menu-trigger.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/menu/menu-trigger.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/menu_anchor.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/menu_anchor.dart"
+        }
+      ]
+    },
+    {
+      "component": "data-table",
+      "name": "Data table",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "angular-material",
+          "path": "src/material/table/table.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/table/table.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/data_table.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/data_table.dart"
+        }
+      ]
+    },
+    {
+      "component": "date-picker",
+      "name": "Date picker",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/datepicker/MaterialDatePicker.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/datepicker/MaterialDatePicker.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/DatePicker.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/DatePicker.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/datepicker/datepicker.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/datepicker/datepicker.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/date_picker.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/date_picker.dart"
+        }
+      ]
+    },
+    {
+      "component": "date-range-picker",
+      "name": "Date-range picker",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/datepicker/MaterialDatePicker.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/datepicker/MaterialDatePicker.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/DateRangePicker.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/DateRangePicker.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/datepicker/date-range-picker.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/datepicker/date-range-picker.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/date_picker.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/date_picker.dart"
+        }
+      ]
+    },
+    {
+      "component": "dialog",
+      "name": "Dialog",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "dialog/internal/dialog.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/dialog/internal/dialog.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/dialog/MaterialAlertDialogBuilder.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/dialog/MaterialAlertDialogBuilder.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AlertDialog.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AlertDialog.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/dialog/dialog.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/dialog/dialog.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/dialog.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/dialog.dart"
+        }
+      ]
+    },
+    {
+      "component": "divider",
+      "name": "Divider",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "divider/internal/divider.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/divider/internal/divider.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/divider/MaterialDivider.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/divider/MaterialDivider.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Divider.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Divider.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/divider/divider.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/divider/divider.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/divider.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/divider.dart"
+        }
+      ]
+    },
+    {
+      "component": "empty-error-state",
+      "name": "Empty/error state",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Text.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Text.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/form-field/form-field.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/form-field/form-field.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/input_decorator.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/input_decorator.dart"
+        }
+      ]
+    },
+    {
+      "component": "expansion-panel-accordion",
+      "name": "Expansion panel / accordion",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/expandable/ExpandableWidgetHelper.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/expandable/ExpandableWidgetHelper.java"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/expansion/expansion-panel.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/expansion/expansion-panel.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/expansion_panel.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/expansion_panel.dart"
+        }
+      ]
+    },
+    {
+      "component": "expressive-loading-indicator",
+      "name": "Expressive loading indicator",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/loadingindicator/LoadingIndicator.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/loadingindicator/LoadingIndicator.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/LoadingIndicator.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/LoadingIndicator.kt"
+        }
+      ]
+    },
+    {
+      "component": "file-chooser-integration",
+      "name": "File chooser integration",
+      "scope": "related desktop building blocks",
+      "matches": []
+    },
+    {
+      "component": "floating-action-button",
+      "name": "Floating action button",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "fab/internal/fab.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/fab/internal/fab.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingActionButton.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingActionButton.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/button/button.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/button/button.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/floating_action_button.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/floating_action_button.dart"
+        }
+      ]
+    },
+    {
+      "component": "floating-action-menu",
+      "name": "Floating action menu",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingActionButtonMenu.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingActionButtonMenu.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/menu/menu.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/menu/menu.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/floating_action_button.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/floating_action_button.dart"
+        }
+      ]
+    },
+    {
+      "component": "floating-toolbar",
+      "name": "Floating toolbar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/floatingtoolbar/FloatingToolbarLayout.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/floatingtoolbar/FloatingToolbarLayout.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/toolbar/toolbar.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/toolbar/toolbar.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/app_bar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/app_bar.dart"
+        }
+      ]
+    },
+    {
+      "component": "focus-ring",
+      "name": "Focus ring",
+      "scope": "foundation",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "focus/internal/focus-ring.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/focus/internal/focus-ring.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/PrecisionPointer.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/PrecisionPointer.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/ink_well.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/ink_well.dart"
+        }
+      ]
+    },
+    {
+      "component": "form-field-container",
+      "name": "Form-field container",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "field/internal/field.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/field/internal/field.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/textfield/TextInputLayout.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/textfield/TextInputLayout.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextFieldDefaults.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextFieldDefaults.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/form-field/form-field.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/form-field/form-field.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/input_decorator.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/input_decorator.dart"
+        }
+      ]
+    },
+    {
+      "component": "grid-list-image-list",
+      "name": "Grid list / image list",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "angular-material",
+          "path": "src/material/grid-list/grid-list.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/grid-list/grid-list.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/grid_tile.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/grid_tile.dart"
+        }
+      ]
+    },
+    {
+      "component": "icon-button",
+      "name": "Icon button",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "iconbutton/internal/icon-button.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/iconbutton/internal/icon-button.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/IconButton.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/IconButton.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/button/icon-button.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/button/icon-button.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/icon_button.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/icon_button.dart"
+        }
+      ]
+    },
+    {
+      "component": "icon",
+      "name": "Icon",
+      "scope": "foundation",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "icon/internal/icon.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/icon/internal/icon.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Icon.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Icon.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/icon/icon.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/icon/icon.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/icon_button.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/icon_button.dart"
+        }
+      ]
+    },
+    {
+      "component": "list-and-list-item",
+      "name": "List and list item",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "list/internal/list.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/list/internal/list.ts"
+        },
+        {
+          "source": "material-web",
+          "path": "list/internal/listitem/list-item.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/list/internal/listitem/list-item.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ListItem.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ListItem.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/list/list.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/list/list.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/list_tile.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/list_tile.dart"
+        }
+      ]
+    },
+    {
+      "component": "menu",
+      "name": "Menu",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "menu/internal/menu.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/menu/internal/menu.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Menu.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Menu.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/menu/menu.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/menu/menu.ts"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/menu/menu-trigger.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/menu/menu-trigger.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/menu_anchor.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/menu_anchor.dart"
+        }
+      ]
+    },
+    {
+      "component": "multiline-text-field",
+      "name": "Multiline text field",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "textfield/internal/text-field.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/textfield/internal/text-field.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/textfield/TextInputEditText.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/textfield/TextInputEditText.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextField.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextField.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/input/input.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/input/input.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/text_field.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/text_field.dart"
+        }
+      ]
+    },
+    {
+      "component": "navigation-bar",
+      "name": "Navigation bar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/bottomnavigation/BottomNavigationView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/bottomnavigation/BottomNavigationView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/NavigationBar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/NavigationBar.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/navigation_bar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/navigation_bar.dart"
+        }
+      ]
+    },
+    {
+      "component": "navigation-drawer",
+      "name": "Navigation drawer",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/navigation/NavigationView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/navigation/NavigationView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/NavigationDrawer.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/NavigationDrawer.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/sidenav/drawer.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/sidenav/drawer.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/navigation_drawer.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/navigation_drawer.dart"
+        }
+      ]
+    },
+    {
+      "component": "navigation-rail",
+      "name": "Navigation rail",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/navigationrail/NavigationRailView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/navigationrail/NavigationRailView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/NavigationRail.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/NavigationRail.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/navigation_rail.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/navigation_rail.dart"
+        }
+      ]
+    },
+    {
+      "component": "notification-surface",
+      "name": "Notification surface",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Snackbar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Snackbar.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/banner.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/banner.dart"
+        }
+      ]
+    },
+    {
+      "component": "numeric-field-spin-box",
+      "name": "Numeric field / spin box",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "textfield/internal/text-field.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/textfield/internal/text-field.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextField.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextField.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/input/input.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/input/input.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/text_field.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/text_field.dart"
+        }
+      ]
+    },
+    {
+      "component": "overlay-and-scrim",
+      "name": "Overlay and scrim",
+      "scope": "foundation",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "dialog/internal/dialog.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/dialog/internal/dialog.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/internal/ScrimInsetsFrameLayout.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/internal/ScrimInsetsFrameLayout.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrim.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrim.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/dialog/dialog.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/dialog/dialog.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/dialog.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/dialog.dart"
+        }
+      ]
+    },
+    {
+      "component": "paginator",
+      "name": "Paginator",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "angular-material",
+          "path": "src/material/paginator/paginator.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/paginator/paginator.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/paginated_data_table.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/paginated_data_table.dart"
+        }
+      ]
+    },
+    {
+      "component": "popover",
+      "name": "Popover",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "menu/internal/menu.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/menu/internal/menu.ts"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Menu.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Menu.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/menu/menu.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/menu/menu.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/menu_anchor.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/menu_anchor.dart"
+        }
+      ]
+    },
+    {
+      "component": "progress-indicator",
+      "name": "Progress indicator",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "progress/internal/linear-progress.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/progress/internal/linear-progress.ts"
+        },
+        {
+          "source": "material-web",
+          "path": "progress/internal/circular-progress.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/progress/internal/circular-progress.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/progressindicator/BaseProgressIndicator.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/progressindicator/BaseProgressIndicator.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ProgressIndicator.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ProgressIndicator.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/progress-bar/progress-bar.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/progress-bar/progress-bar.ts"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/progress-spinner/progress-spinner.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/progress-spinner/progress-spinner.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/progress_indicator.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/progress_indicator.dart"
+        }
+      ]
+    },
+    {
+      "component": "radio-group",
+      "name": "Radio group",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "radio/internal/radio.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/radio/internal/radio.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/radiobutton/MaterialRadioButton.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/radiobutton/MaterialRadioButton.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/RadioButton.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/RadioButton.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/radio/radio.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/radio/radio.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/radio.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/radio.dart"
+        }
+      ]
+    },
+    {
+      "component": "range-slider",
+      "name": "Range slider",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "slider/internal/slider.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/slider/internal/slider.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/slider/RangeSlider.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/slider/RangeSlider.java"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/slider/BaseSlider.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/slider/BaseSlider.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Slider.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Slider.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/slider/slider.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/slider/slider.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/range_slider.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/range_slider.dart"
+        }
+      ]
+    },
+    {
+      "component": "refresh-indicator",
+      "name": "Refresh indicator",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/pulltorefresh/PullToRefresh.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/pulltorefresh/PullToRefresh.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/refresh_indicator.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/refresh_indicator.dart"
+        }
+      ]
+    },
+    {
+      "component": "scaffold",
+      "name": "Scaffold",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scaffold.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scaffold.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/scaffold.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/scaffold.dart"
+        }
+      ]
+    },
+    {
+      "component": "scroll-area-viewport",
+      "name": "Scroll area / viewport",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ScrollField.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ScrollField.kt"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/scrollbar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/scrollbar.dart"
+        }
+      ]
+    },
+    {
+      "component": "scrollbar",
+      "name": "Scrollbar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/scrollbar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/scrollbar.dart"
+        }
+      ]
+    },
+    {
+      "component": "search",
+      "name": "Search",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "textfield/internal/text-field.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/textfield/internal/text-field.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/search/SearchBar.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/search/SearchBar.java"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/search/SearchView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/search/SearchView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SearchBar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SearchBar.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/autocomplete/autocomplete.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/autocomplete/autocomplete.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/search_anchor.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/search_anchor.dart"
+        }
+      ]
+    },
+    {
+      "component": "segmented-selection-toggle-group",
+      "name": "Segmented selection / toggle group",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/button/MaterialButtonToggleGroup.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/button/MaterialButtonToggleGroup.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SegmentedButton.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SegmentedButton.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/button-toggle/button-toggle.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/button-toggle/button-toggle.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/segmented_button.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/segmented_button.dart"
+        }
+      ]
+    },
+    {
+      "component": "select",
+      "name": "Select",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "select/internal/select.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/select/internal/select.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/textfield/MaterialAutoCompleteTextView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/textfield/MaterialAutoCompleteTextView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ExposedDropdownMenu.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ExposedDropdownMenu.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/select/select.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/select/select.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/dropdown_menu.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/dropdown_menu.dart"
+        }
+      ]
+    },
+    {
+      "component": "shortcut-hint",
+      "name": "Shortcut hint",
+      "scope": "related desktop building blocks",
+      "matches": []
+    },
+    {
+      "component": "side-sheet",
+      "name": "Side sheet",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/sidesheet/SideSheetBehavior.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/sidesheet/SideSheetBehavior.java"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/sidenav/drawer.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/sidenav/drawer.ts"
+        }
+      ]
+    },
+    {
+      "component": "slider",
+      "name": "Slider",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "slider/internal/slider.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/slider/internal/slider.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/slider/Slider.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/slider/Slider.java"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/slider/BaseSlider.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/slider/BaseSlider.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Slider.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Slider.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/slider/slider.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/slider/slider.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/slider.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/slider.dart"
+        }
+      ]
+    },
+    {
+      "component": "snackbar",
+      "name": "Snackbar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/snackbar/Snackbar.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/snackbar/Snackbar.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Snackbar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Snackbar.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/snack-bar/snack-bar.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/snack-bar/snack-bar.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/snack_bar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/snack_bar.dart"
+        }
+      ]
+    },
+    {
+      "component": "sort-header",
+      "name": "Sort header",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "angular-material",
+          "path": "src/material/sort/sort-header.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/sort/sort-header.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/data_table.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/data_table.dart"
+        }
+      ]
+    },
+    {
+      "component": "split-button",
+      "name": "Split button",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/button/MaterialSplitButton.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/button/MaterialSplitButton.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SplitButton.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/SplitButton.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/menu/menu-trigger.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/menu/menu-trigger.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/menu_anchor.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/menu_anchor.dart"
+        }
+      ]
+    },
+    {
+      "component": "split-pane-resizable-divider",
+      "name": "Split pane / resizable divider",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/divider/MaterialDivider.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/divider/MaterialDivider.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/DragHandle.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/DragHandle.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/divider.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/divider.dart"
+        }
+      ]
+    },
+    {
+      "component": "state-layer-ripple",
+      "name": "State layer / ripple",
+      "scope": "foundation",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "ripple/internal/ripple.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/ripple/internal/ripple.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/ripple/RippleDrawableCompat.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/ripple/RippleDrawableCompat.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Ripple.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Ripple.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/core/ripple/ripple.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/core/ripple/ripple.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/ink_ripple.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/ink_ripple.dart"
+        }
+      ]
+    },
+    {
+      "component": "stepper",
+      "name": "Stepper",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "angular-material",
+          "path": "src/material/stepper/stepper.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/stepper/stepper.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/stepper.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/stepper.dart"
+        }
+      ]
+    },
+    {
+      "component": "surface-and-elevation",
+      "name": "Surface and elevation",
+      "scope": "foundation",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "elevation/internal/elevation.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/elevation/internal/elevation.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/elevation/ElevationOverlayProvider.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/elevation/ElevationOverlayProvider.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Surface.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Surface.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/material.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/material.dart"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/elevation_overlay.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/elevation_overlay.dart"
+        }
+      ]
+    },
+    {
+      "component": "switch",
+      "name": "Switch",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "switch/internal/switch.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/switch/internal/switch.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/materialswitch/MaterialSwitch.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/materialswitch/MaterialSwitch.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Switch.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Switch.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/slide-toggle/slide-toggle.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/slide-toggle/slide-toggle.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/switch.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/switch.dart"
+        }
+      ]
+    },
+    {
+      "component": "tabs",
+      "name": "Tabs",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "tabs/internal/tabs.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/tabs/internal/tabs.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/tabs/TabLayout.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/tabs/TabLayout.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TabRow.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TabRow.kt"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Tab.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Tab.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/tabs/tab-group.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/tabs/tab-group.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/tabs.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/tabs.dart"
+        }
+      ]
+    },
+    {
+      "component": "text-field",
+      "name": "Text field",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "textfield/internal/filled-text-field.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/textfield/internal/filled-text-field.ts"
+        },
+        {
+          "source": "material-web",
+          "path": "textfield/internal/text-field.ts",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/textfield/internal/text-field.ts"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/textfield/TextInputLayout.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/textfield/TextInputLayout.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextField.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TextField.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/input/input.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/input/input.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/text_field.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/text_field.dart"
+        }
+      ]
+    },
+    {
+      "component": "theme-tokens",
+      "name": "Theme tokens",
+      "scope": "foundation",
+      "matches": [
+        {
+          "source": "material-web",
+          "path": "tokens/_md-sys-motion.scss",
+          "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/tokens/_md-sys-motion.scss"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/motion/MotionUtils.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/motion/MotionUtils.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/MaterialTheme.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/MaterialTheme.kt"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ColorScheme.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ColorScheme.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/theme_data.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/theme_data.dart"
+        }
+      ]
+    },
+    {
+      "component": "time-picker",
+      "name": "Time picker",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/timepicker/MaterialTimePicker.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/timepicker/MaterialTimePicker.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TimePicker.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/TimePicker.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/timepicker/timepicker.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/timepicker/timepicker.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/time_picker.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/time_picker.dart"
+        }
+      ]
+    },
+    {
+      "component": "toolbar",
+      "name": "Toolbar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/dockedtoolbar/DockedToolbarLayout.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/dockedtoolbar/DockedToolbarLayout.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AppBarRow.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AppBarRow.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/toolbar/toolbar.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/toolbar/toolbar.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/app_bar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/app_bar.dart"
+        }
+      ]
+    },
+    {
+      "component": "tooltip",
+      "name": "Tooltip",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/tooltip/TooltipDrawable.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/tooltip/TooltipDrawable.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Tooltip.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Tooltip.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/tooltip/tooltip.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/tooltip/tooltip.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/tooltip.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/tooltip.dart"
+        }
+      ]
+    },
+    {
+      "component": "top-app-bar",
+      "name": "Top app bar",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/appbar/MaterialToolbar.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/appbar/MaterialToolbar.java"
+        },
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/appbar/AppBarLayout.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/appbar/AppBarLayout.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AppBar.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/AppBar.kt"
+        },
+        {
+          "source": "angular-material",
+          "path": "src/material/toolbar/toolbar.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/toolbar/toolbar.ts"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/app_bar.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/app_bar.dart"
+        }
+      ]
+    },
+    {
+      "component": "tree",
+      "name": "Tree",
+      "scope": "component family",
+      "matches": [
+        {
+          "source": "angular-material",
+          "path": "src/material/tree/tree.ts",
+          "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/tree/tree.ts"
+        }
+      ]
+    },
+    {
+      "component": "typography-text",
+      "name": "Typography / text",
+      "scope": "foundation",
+      "matches": [
+        {
+          "source": "material-android",
+          "path": "lib/java/com/google/android/material/textview/MaterialTextView.java",
+          "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/textview/MaterialTextView.java"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Text.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Text.kt"
+        },
+        {
+          "source": "compose-material3",
+          "path": "compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Typography.kt",
+          "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Typography.kt"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/typography.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/typography.dart"
+        },
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/selectable_text.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/selectable_text.dart"
+        }
+      ]
+    },
+    {
+      "component": "virtualized-grid",
+      "name": "Virtualized grid",
+      "scope": "related desktop building blocks",
+      "matches": []
+    },
+    {
+      "component": "virtualized-list",
+      "name": "Virtualized list",
+      "scope": "related desktop building blocks",
+      "matches": [
+        {
+          "source": "flutter-material",
+          "path": "packages/material_ui/lib/src/reorderable_list.dart",
+          "url": "https://github.com/flutter/packages/blob/565c6573861992fbd225ca138bbc2d3b8aeb5d00/packages/material_ui/lib/src/reorderable_list.dart"
+        }
+      ]
+    }
+  ]
+}

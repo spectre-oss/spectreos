@@ -1,0 +1,17 @@
+{
+  "title": "Android XML SeekBar: split track",
+  "component": "android-seekbar",
+  "purpose": "Check Android XML splitTrack clipping using transparent thumbs, and verify that the gap follows the thumb when dragging and in RTL.",
+  "changes": "Added splitTrack=true clipping for Bhoo's SeekBar track and tick marks beneath the thumb. The example compares split and continuous tracks using transparent thumbs.",
+  "steps": [
+    "Scroll to the bottom of the example. The split-track slider should show a gap between its blue and amber track portions. The continuous-track slider below should have no gap.",
+    "The thumbs are intentionally transparent. Touch the middle of the split slider and drag left and right: the gap should move with your finger. The blue progress portion should change with it.",
+    "Drag the continuous slider too. Its blue and amber portions should meet without a gap at each position.",
+    "Turn on Right-to-left layout near the top and repeat. Progress and the moving gap should mirror. Choose OK if the steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Only the split track has a thumb-sized gap; it moves with progress and follows RTL. The continuous track remains unbroken.",
+  "limits": "The gap uses Bhoo's built-in 20 dp thumb bounds. Android custom thumb drawables and optical insets, tint blending modes and exact Android device geometry remain open. The thumb is intentionally invisible in this example to expose the track beneath it.",
+  "documentation": "docs/TDD/libbhoo/components/android-seekbar.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/AbsSeekBar.java","local":"context/reference-sources/android-framework/AbsSeekBar.java","license":"Apache-2.0","scope":"Split-track clipping around thumb optical bounds and tick drawing."}],
+  "validation": ["143 Android XML importer tests passed, including splitTrack true, false and invalid values.","Six Rust SeekBar tests passed, including clipping in LTR and RTL and tall tick preservation outside the thumb bounds."]
+}

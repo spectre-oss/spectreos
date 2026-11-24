@@ -1,0 +1,17 @@
+{
+  "title": "Android XML CheckedTextView: drawable selector",
+  "component": "android-checked-textview",
+  "purpose": "Check a custom checkMark drawable selector with different checked, unchecked and disabled shapes, including position and RTL behavior.",
+  "changes": "Added solid shape checkMark drawables, @null and supported drawable selectors. The example uses a blue circle when checked, an amber square when unchecked and a gray circle when disabled.",
+  "steps": [
+    "Scroll down to XML check-mark drawable selector. Selector at start should show a blue circle on the left; Selector at end should show an amber square on the right; the disabled row has a gray circle.",
+    "Tap the first two rows. Each mark should switch between a blue circle and an amber square as its checked state changes. The text should stay in the same position.",
+    "Try the disabled row: its gray mark should remain unchanged.",
+    "Turn on Right-to-left layout near the top. The start mark should move to the right, the end mark to the left, and tapping should continue to change their shapes. Choose OK if these steps work, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "Drawable selector state controls the visible shape and color without moving the row text. Start and end follow the layout direction, and disabled state stays gray.",
+  "limits": "This supports solid rectangular or circular XML shapes, supported state selectors and @null. Bitmap, vector, animated and other drawable types, Android tint compositing and exact device spacing or visual parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/android-checked-textview.md",
+  "references": [{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CheckedTextView.java","local":"context/reference-sources/android-framework/CheckedTextView.java","license":"Apache-2.0","scope":"Check-mark drawable state, placement and checked state."}],
+  "validation": ["144 Android XML importer tests passed, including shape selector and @null import.","Three Rust CheckedTextView tests passed, including custom checked, unchecked and disabled drawable states and reserved text width."]
+}

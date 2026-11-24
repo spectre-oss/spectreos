@@ -1,0 +1,334 @@
+{
+  "floating-action-button": {
+    "demonstrates": "Small, regular and extended creation actions; activation count. The core API also supports large FAB sizes.",
+    "remaining": "Full icon/shape tokens and elevation variants."
+  },
+  "segmented-selection-toggle-group": {
+    "demonstrates": "Single-choice view and independent multi-choice formatting.",
+    "remaining": "Expressive connected shapes and complete segmented-button semantics."
+  },
+  "button-group": {
+    "demonstrates": "Standard press-driven neighbor compression and connected single-required and multi-select groups with animated corners, clipped ripple and keyboard navigation.",
+    "remaining": "Standard shape morph, icon and size variants, overflow, RTL, native/browser accessibility bridges and exact Material motion and tokens."
+  },
+  "split-button": {
+    "demonstrates": "Five split-button sizes and filled, tonal, outlined and elevated treatments, with independent actions and animated menu chevrons.",
+    "remaining": "Leading icons, large-size typography, flexible widths, precise elevation, localized and platform expanded-state semantics, and complete Material motion parity."
+  },
+  "floating-action-menu": {
+    "demonstrates": "56dp FAB with staggered actions, RTL placement, short-window wheel/touch scrolling, keyboard focus navigation and reduced motion.",
+    "remaining": "Bidirectional text shaping, platform expanded-state semantics, exact icons/colors/elevation and Compose choreography."
+  },
+  "text-field": {
+    "demonstrates": "Outlined single-line field, native browser editing and character count.",
+    "remaining": "Native Wayland text editing/IME and complete filled/outlined tokens."
+  },
+  "multiline-text-field": {
+    "demonstrates": "Browser multiline editing, selection and IME backed by Rust UTF-8 state.",
+    "remaining": "Native text layout, scrolling metrics and cross-renderer shaping parity."
+  },
+  "search": {
+    "demonstrates": "Editable query, filtered application results, empty result and clear.",
+    "remaining": "Full expanded-search overlay and suggestion history."
+  },
+  "select": {
+    "demonstrates": "Profile trigger, selectable popup, arrow navigation and Escape.",
+    "remaining": "Complete filled/outlined field anatomy and type-ahead."
+  },
+  "autocomplete": {
+    "demonstrates": "Editable query and filtered selectable suggestions.",
+    "remaining": "Full ARIA combobox adapter and keyboard completion model."
+  },
+  "form-field-container": {
+    "demonstrates": "Label, required validation, helper/error state and character count.",
+    "remaining": "All adornment, counter and style variants."
+  },
+  "date-picker": {
+    "demonstrates": "Gregorian month navigation, correct weekdays/leap years and date selection.",
+    "remaining": "Calendar keyboard grid, locale/RTL, text-entry and disabled-date policies."
+  },
+  "date-range-picker": {
+    "demonstrates": "Ordered start/end selection within a navigable month.",
+    "remaining": "Cross-month ranges, locale input, disabled dates and keyboard grid."
+  },
+  "time-picker": {
+    "demonstrates": "Filled trigger and scrollable half-hour options in 12-hour format.",
+    "remaining": "Minute-level entry, arbitrary intervals, locale formatting and complete listbox keyboard behavior."
+  },
+  "top-app-bar": {
+    "demonstrates": "Application action surface with menu/search/share outcomes.",
+    "remaining": "Collapsing app-bar geometry and scroll behavior."
+  },
+  "bottom-app-bar": {
+    "demonstrates": "Action-bar composition and action outcomes.",
+    "remaining": "Scaffold bottom anchoring and FAB relationship."
+  },
+  "navigation-bar": {
+    "demonstrates": "Exclusive destination selection and corresponding content.",
+    "remaining": "Destination icons, badge anatomy and complete navigation tokens."
+  },
+  "navigation-rail": {
+    "demonstrates": "Destination selection and corresponding content.",
+    "remaining": "Wide-layout rail placement and expressive icon/indicator geometry."
+  },
+  "navigation-drawer": {
+    "demonstrates": "Persistent destination-list selection.",
+    "remaining": "Adaptive placement and drawer-specific modal variant."
+  },
+  "menu": {
+    "demonstrates": "Anchored menu with reference 500/150ms growth/exit, staggered items, keyboard movement and immediate exit input rejection.",
+    "remaining": "Submenus, type-ahead and complete menu role adapter."
+  },
+  "toolbar": {
+    "demonstrates": "Docked standard and vibrant action surfaces, with labeled pointer and keyboard actions.",
+    "remaining": "Overflow, full toolbar semantics and arrow-key navigation, icon slots, insets and exact Material tokens."
+  },
+  "floating-toolbar": {
+    "demonstrates": "Horizontal and vertical floating action surfaces with standard and vibrant variants.",
+    "remaining": "Floating action button, elevation, scroll-driven collapse, overflow, full toolbar semantics and exact motion and color tokens."
+  },
+  "card": {
+    "demonstrates": "Filled, outlined and elevated passive surfaces, plus actionable and disabled cards with child-action isolation.",
+    "remaining": "Exact state/elevation motion, disabled content colors, media anatomy, platform accessibility and visual parity."
+  },
+  "dialog": {
+    "demonstrates": "Modal surface/scrim with Angular comparison timing (150/75ms), dismissal, focus containment and restoration; the Material Web profile remains available.",
+    "remaining": "Full dialog semantic/assistive-technology adapter and nested ownership."
+  },
+  "bottom-sheet": {
+    "demonstrates": "Bottom-aligned modal surface with scrim and focus lifecycle.",
+    "remaining": "Drag detents, nested scroll."
+  },
+  "side-sheet": {
+    "demonstrates": "Trailing modal surface with dismissal and focus lifecycle.",
+    "remaining": "Adaptive standard variant."
+  },
+  "carousel": {
+    "demonstrates": "Virtualized uncontained and viewport-wide carousel layouts with images, drag, wheel, snapping, RTL, arrow controls and a Show all list.",
+    "remaining": "Material multi-browse and hero masking, variable aspect ratios, parallax, exact snap physics, platform accessibility and image descriptions."
+  },
+  "expansion-panel-accordion": {
+    "demonstrates": "Independent disclosures with rotating chevrons and reversible clipped height transitions.",
+    "remaining": "Dedicated disclosure semantics, full content layout and focus-on-collapse policy."
+  },
+  "scaffold": {
+    "demonstrates": "App title, destination tabs, changing content and creation action.",
+    "remaining": "General responsive slot layout and inset/overlay coordination."
+  },
+  "expressive-loading-indicator": {
+    "demonstrates": "Seven matched upstream polygon morphs, spring/rotation timing, determinate circle-to-soft-burst and contained/uncontained variants.",
+    "remaining": "Assistive-technology announcements and hardware performance qualification."
+  },
+  "snackbar": {
+    "demonstrates": "Transient archive notice, Undo, deadline and focus/hover timeout pause.",
+    "remaining": "Live announcement adapter, queueing and configurable accessibility timeouts."
+  },
+  "banner": {
+    "demonstrates": "Persistent notice with reversible reveal/fade and dismiss/view actions.",
+    "remaining": "Full banner layout variants; this is a legacy/framework pattern."
+  },
+  "data-table": {
+    "demonstrates": "Sortable sample rows with ascending, descending and unsorted header states.",
+    "remaining": "General column model, multi-selection and table semantics."
+  },
+  "sort-header": {
+    "demonstrates": "Sort-direction toggle with reordered sample rows.",
+    "remaining": "Sort announcements, multi-column data model and header semantics."
+  },
+  "paginator": {
+    "demonstrates": "Bounded previous/next paging with a correctly clamped range label.",
+    "remaining": "Page-size selector, first/last controls and localization."
+  },
+  "tree": {
+    "demonstrates": "Expandable nested sample rows and child selection.",
+    "remaining": "Tree roles, roving arrow-key navigation and lazy nested models."
+  },
+  "stepper": {
+    "demonstrates": "Three-step navigation, required account entry and bounded next/back.",
+    "remaining": "Nonlinear/optional steps, error presentation and complete workflow semantics."
+  },
+  "grid-list-image-list": {
+    "demonstrates": "Four selectable application tiles in two columns.",
+    "remaining": "Image resource/loading/cropping behavior and responsive tile sizing."
+  },
+  "avatar": {
+    "demonstrates": "Initials and fallback circle samples without focus targets.",
+    "remaining": "Image resources, error/loading handling and full avatar token roles."
+  },
+  "scrollbar": {
+    "demonstrates": "Vertical draggable thumb and wheel-driven virtualized content.",
+    "remaining": "Page-size keyboard stepping, touch expansion and nested-scroll routing."
+  },
+  "refresh-indicator": {
+    "demonstrates": "Scrollable list with pull gesture and button, busy feedback, timed completion and refresh count.",
+    "remaining": "Arbitrary nested scrolling, exact indicator geometry, animation and Android device comparison."
+  },
+  "icon": {
+    "demonstrates": "Static presentation symbols without an external icon font.",
+    "remaining": "Vector icon resource API and exact Material symbol geometry."
+  },
+  "surface-and-elevation": {
+    "demonstrates": "Surface role/tint levels and approximate static shadows.",
+    "remaining": "Physical shadow rendering and complete elevation tokens."
+  },
+  "state-layer-ripple": {
+    "demonstrates": "Pointer-origin radial ink, rounded clipping, hold/release fade, keyboard-centered ink, cancellation and reduced motion.",
+    "remaining": "Android platform RippleDrawable/sparkle shader pixel parity and hardware/device qualification."
+  },
+  "theme-tokens": {
+    "demonstrates": "Theme color-role samples with host light/dark switching.",
+    "remaining": "Full tonal palette, type scale, density and dynamic-color resolution."
+  },
+  "overlay-and-scrim": {
+    "demonstrates": "Modal backdrop with immediate logical dismissal and focus lifecycle.",
+    "remaining": "General overlay stack, nested modality and complete semantics bridge."
+  },
+  "virtualized-grid": {
+    "demonstrates": "100,000 independently selectable cells with bounded visible construction and scrolling.",
+    "remaining": "Responsive column count, selection semantics and richer tile layout."
+  },
+  "popover": {
+    "demonstrates": "Anchored custom-content surface with selection and Escape.",
+    "remaining": "Anchor collision/flip, nested content and generic semantic ownership."
+  },
+  "command-palette": {
+    "demonstrates": "Editable application query, filtered commands and actual selection outcome.",
+    "remaining": "Global shortcut adapter, grouped results and full keyboard-first dialog model."
+  },
+  "application-tile": {
+    "demonstrates": "Selectable application-name tiles.",
+    "remaining": "Icon resource, status/badge, context menu and real application launching."
+  },
+  "context-menu-integration": {
+    "demonstrates": "Right-click/ContextMenu/Shift+F10 invocation and selectable actions.",
+    "remaining": "Pointer-position anchoring, submenus and complete desktop menu semantics."
+  },
+  "shortcut-hint": {
+    "demonstrates": "Static keycap/shortcut descriptions without extra focus targets.",
+    "remaining": "Keycap anatomy, platform-specific names and RTL placement."
+  },
+  "split-pane-resizable-divider": {
+    "demonstrates": "Pointer-draggable divider, arrow-key adjustment and bounded ratio.",
+    "remaining": "Dedicated separator role, touch target policy and persisted layout."
+  },
+  "breadcrumb": {
+    "demonstrates": "Three navigable path levels with selected content.",
+    "remaining": "Overflow/collapse, current-page semantics and arbitrary hierarchical model."
+  },
+  "numeric-field-spin-box": {
+    "demonstrates": "Bounded increment/decrement and quantity slider.",
+    "remaining": "Numeric text editing/parsing, locale and spinbutton semantics."
+  },
+  "color-picker": {
+    "demonstrates": "Keyboard/pointer hue selection and RGB swatch.",
+    "remaining": "Saturation/value, alpha, text input and color-space management."
+  },
+  "file-chooser-integration": {
+    "demonstrates": "Real browser file chooser and selected filename; no upload or file-content read.",
+    "remaining": "Wayland desktop portal open/save/multi-selection adapter."
+  },
+  "empty-error-state": {
+    "demonstrates": "Empty/error/recovered states with clear-filter/retry actions.",
+    "remaining": "Application error model and announcement adapter."
+  },
+  "notification-surface": {
+    "demonstrates": "Notification content with reversible reveal/fade and dismiss/view actions.",
+    "remaining": "System notification service, privacy, urgency, queueing and announcements."
+  },
+  "rating": {
+    "demonstrates": "Five whole-star rating with hover preview, pointer selection, clearing, keyboard navigation, and disabled state.",
+    "remaining": "Half-star precision, read-only mode, custom icons, RTL keyboard semantics and complete radio-group accessibility."
+  },
+  "skeleton": {
+    "demonstrates": "Circular, text and rounded loading placeholders with a two-second pulse and reduced-motion support.",
+    "remaining": "Wave animation, configurable sizing API, content measurement and exact MUI color tokens."
+  },
+  "pagination": {
+    "demonstrates": "Numbered page selection, ellipses for large page counts and previous/next controls with boundary disabling.",
+    "remaining": "Configurable boundary/sibling counts, first/last buttons and complete accessibility."
+  },
+  "alert": {
+    "demonstrates": "Dismissible inline success, info, warning and error alerts with independently owned visibility.",
+    "remaining": "MUI filled and outlined variants, exact color tokens and icons, custom actions, and alert announcement semantics."
+  },
+  "avatar-group": {
+    "demonstrates": "Overlapping initial avatars and a surplus count without focus targets.",
+    "remaining": "Image loading/fallbacks, accessible contributor names, configurable spacing and exact MUI max semantics."
+  },
+  "link": {
+    "demonstrates": "Focusable text link with underline, hover feedback and caller-owned activation.",
+    "remaining": "Native browser anchor navigation, visited state, configurable underline modes and assistive-technology bridge."
+  },
+  "layout-grid": {
+    "demonstrates": "Equal-width grid layout with configurable column count, row height and gap.",
+    "remaining": "MUI breakpoint configuration, column spans, offsets, nested-grid inheritance and RTL placement."
+  },
+  "layout-stack": {
+    "demonstrates": "Vertical stack with configurable spacing and caller-owned child layout.",
+    "remaining": "Horizontal, responsive direction, dividers and nested MUI spacing tokens."
+  },
+  "layout-container": {
+    "demonstrates": "Centered layout region constrained to a caller-specified maximum width.",
+    "remaining": "Responsive breakpoints, gutters, fixed variants and RTL-aware host layout."
+  },
+  "layout-box": {
+    "demonstrates": "Styled box with background, corner radius, padding and clipped child layout.",
+    "remaining": "MUI sx styling system, responsive properties, theme overrides and arbitrary HTML semantics."
+  },
+  "transition-fade": {
+    "demonstrates": "Bounded content fades in and out with MUI default durations, interruption support and reduced-motion handling.",
+    "remaining": "Custom easing/durations, transition callbacks, mount policies and exact browser focus lifecycle."
+  },
+  "transition-zoom": {
+    "demonstrates": "Centered scale transition with MUI default durations, interruption support and reduced-motion handling.",
+    "remaining": "Custom transform origin, durations, easing, transition callbacks and mount policies."
+  },
+  "transition-collapse": {
+    "demonstrates": "Vertical clipped collapse with MUI auto-height duration, interruption and reduced-motion support.",
+    "remaining": "Horizontal orientation, collapsed size, custom timing, lifecycle callbacks and exact DOM mount policies."
+  },
+  "transition-slide": {
+    "demonstrates": "Slide upward from the viewport edge with MUI entry/exit easing and durations, interruption and reduced motion.",
+    "remaining": "Other directions, custom containers and timing, lifecycle callbacks and mount policies."
+  },
+  "transition-grow": {
+    "demonstrates": "MUI-style opacity and nonuniform grow transform with auto-height timing, interruption and reduced motion.",
+    "remaining": "Custom origins, timing, lifecycle callbacks and mount policies."
+  },
+  "page-transition": {
+    "demonstrates": "Two caller-selected pages with Beer CSS 400ms fade and directional entry; inactive page content is removed.",
+    "remaining": "Navigation history, focus handoff, nested routing and complete Beer CSS responsive page behavior."
+  },
+  "expressive-shapes": {
+    "demonstrates": "37 sampled Beer CSS SVG silhouettes rendered in Rust, including animated wavy and wavy-circle shapes.",
+    "remaining": "Exact animated SVG clipping and curve fidelity, animated loading SVG, shape morphs and image masks."
+  },
+  "shape-rotation": {
+    "demonstrates": "Beer CSS shape rotation at 24, 12 and 6 seconds per revolution with hidden and reduced-motion pause.",
+    "remaining": "Counter-rotating child content, custom transform origins and exact SVG curves."
+  },
+  "media": {
+    "demonstrates": "Caller-owned RGBA images rendered through Rust/WASM Canvas and native GLES with circle, rounded, responsive cover fit.",
+    "remaining": "Image file decoding and loading, animated video, alt-text accessibility, arbitrary intrinsic sizes, image atlas paging and exact Beer CSS transition effects."
+  },
+  "hover-wave": {
+    "demonstrates": "Beer CSS-style centered hover wave with 200ms linear expansion, focus visibility and immediate press/leave reset.",
+    "remaining": "Exact CSS radial-gradient rasterization, custom CSS background sizing, and complete input-modality parity."
+  },
+  "divider": {
+    "demonstrates": "Full-width and inset horizontal dividers and a vertical divider using the 1dp outline-variant token.",
+    "remaining": "Device-scale pixel validation, logical RTL inset mapping, and semantic separator use cases."
+  },
+  "badge": {
+    "demonstrates": "6dp dot and 16dp-high count or status badges anchored to icon controls; owner semantic labels include descriptions.",
+    "remaining": "Native accessibility bridge and announcements, badge content change motion, icon and typography validation, and complete visual parity."
+  },
+  "android-action-menu-view": {
+    "demonstrates": "Host-supplied action items, overflow and a compact width.",
+    "remaining": "Exact cell spacing, custom action views, complete MenuBuilder behavior and Android device parity."
+  },
+  "android-stack-view": {
+    "demonstrates": "Adapter-backed stack with swipes, selection, click and manual previous/next.",
+    "remaining": "Android slider transforms, velocity, remote adapters, lifecycle and device parity."
+  }
+}

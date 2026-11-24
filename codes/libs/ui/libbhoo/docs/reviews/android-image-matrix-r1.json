@@ -1,0 +1,13 @@
+{
+ "title":"Android ImageView: matrix scale type",
+ "component":"android-imageview",
+ "purpose":"Check the Android XML matrix scale type and a host-supplied scale and translation.",
+ "changes":"ImageView matrix starts at identity and supports host-controlled axis-aligned scale, reflection and translation. Canvas rendering now handles reflected image coordinates.",
+ "steps":["Find ImageView matrix below the Scale and translate matrix switch. With the switch off, the image begins at the padded content origin at its native size.","Turn on the switch. The image should grow and move slightly down and right, clipped to its padded area.","Turn the switch off again. The image should return to its original size and position. Choose OK if this works, or Reject with what you saw and your device."],
+ "expected":"The switch changes the image between identity and an axis-aligned scale and translation while honoring cropToPadding.",
+ "limits":"The example tests scale and translation. Rotation, skew, perspective and Android device pixel parity are not supported or verified; reflection has an automated geometry check, but no visual verification.",
+ "documentation":"docs/TDD/libbhoo/components/android-imageview.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ImageView.java","local":"context/reference-sources/android-framework/ImageView.java","license":"Apache-2.0","scope":"Matrix scale type and drawable transformation."}],
+ "validation":["152 Android XML importer tests passed, including matrix scaleType.","Rust rendering test covers identity, scale, translation, reflection and zero scale."],
+ "demo_height":1200
+}

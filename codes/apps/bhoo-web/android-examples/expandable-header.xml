@@ -1,0 +1,1 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/expandable_header" android:layout_width="match_parent" android:layout_height="48dp" android:paddingStart="16dp" android:gravity="center_vertical" android:textStyle="bold" android:text="Categories" android:background="#D4E6D9" />

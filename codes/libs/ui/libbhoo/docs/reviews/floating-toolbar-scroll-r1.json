@@ -1,0 +1,12 @@
+{
+ "title":"Floating toolbar: hide on scroll",
+ "component":"floating-toolbar",
+ "purpose":"Check a bottom-anchored Material floating toolbar hiding and returning with content scroll.",
+ "changes":"Added an interruptible hide-on-consumed-scroll offset for a floating toolbar and an interactive scrollable example.",
+ "steps":["Find the scrollable content and floating toolbar near the top of the page.","Swipe up inside the content area to scroll down. The floating toolbar should move down out of the content viewport.","Swipe down inside the content area to scroll back up. The toolbar should return from the bottom. Reverse direction during motion and check that it changes direction smoothly.","Choose OK if this works on your device, or Reject with what happened and your device."],
+ "expected":"The bottom-anchored toolbar hides while scrolling down and returns while scrolling up; motion can reverse and the toolbar stays clipped to the content viewport.",
+ "limits":"This example covers bottom-anchored hide/show. Compact collapse, other anchor directions, floating action buttons and exact Android device motion and appearance remain open.",
+ "documentation":"docs/TDD/libbhoo/components/floating-toolbar.md",
+ "references":[{"url":"https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/docs/components/FloatingToolbar.md","local":"context/reference-repos/material-android/docs/components/FloatingToolbar.md","license":"Apache-2.0","scope":"Floating toolbar hide-on-scroll behavior."},{"url":"https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/behavior/HideViewOnScrollBehavior.java","local":"context/reference-repos/material-android/lib/java/com/google/android/material/behavior/HideViewOnScrollBehavior.java","license":"Apache-2.0","scope":"Hide-on-scroll behavior."}],
+ "validation":["Rust test checks hide distance, motion reversal and reduced motion; a 320 by 440 browser touch test verifies hide and return without runtime errors."]
+}

@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bhoo Web App Debugger</title>
+  <link rel="stylesheet" href="debug.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <strong>Bhoo Web Debugger</strong>
+    </div>
+
+    <div class="controls">
+      <button id="btnAppPicker" type="button" class="app-picker-btn" aria-haspopup="dialog" aria-controls="appPickerModal" title="Choose SpectreOS app (K)">
+        <span class="app-picker-icon" id="appPickerIcon"><span data-hi="squares-2x2"></span></span>
+        <span class="app-picker-label">
+          <span class="app-picker-kicker">App</span>
+          <span class="app-picker-name" id="appPickerName">Loading…</span>
+        </span>
+        <span class="app-picker-chevron" data-hi="chevron-up-down"></span>
+      </button>
+
+      <label class="ctrl" id="filesModeWrap" hidden>
+        <span>Files Mode</span>
+        <select id="filesMode">
+          <option value="0">Browser (Normal)</option>
+          <option value="1">Picker: Open File</option>
+          <option value="2">Picker: Images (Multi)</option>
+          <option value="3">Picker: Choose Folder</option>
+          <option value="4">Picker: Save As</option>
+        </select>
+      </label>
+
+      <div class="notif-controls" id="notifControlsWrap" hidden>
+        <label class="ctrl">
+          <span>Notif Mode</span>
+          <select id="notifMode">
+            <option value="0">Heads-Up Banner (Pinned)</option>
+            <option value="1">Notification Shade</option>
+            <option value="2">Home + Auto-Expire Heads-Up</option>
+            <option value="3">Lock Screen</option>
+          </select>
+        </label>
+        <button id="btnNotifNormal" class="mini icon-btn" title="Push a standard notification">
+          <span data-hi="plus"></span><span>Normal</span>
+        </button>
+        <button id="btnNotifActions" class="mini icon-btn" title="Push a notification with Reply / Mark read actions">
+          <span data-hi="bell-alert"></span><span>Actions</span>
+        </button>
+        <button id="btnNotifCritical" class="mini icon-btn" title="Push an urgency=2 critical notification with image-data icon">
+          <span data-hi="exclamation-triangle"></span><span>Critical</span>
+        </button>
+        <button id="btnNotifClear" class="mini icon-btn" title="Clear all dismissible notifications">
+          <span data-hi="trash"></span><span>Clear</span>
+        </button>
+      </div>
+
+      <label class="ctrl">
+        <span>Viewport</span>
+        <select id="viewportPreset">
+          <option value="400x832" selected>Poco F1 (400×832)</option>
+          <option value="360x740">Compact Phone (360×740)</option>
+          <option value="480x750">Files Window (480×750)</option>
+          <option value="768x1024">Tablet (768×1024)</option>
+          <option value="1024x720">Desktop (1024×720)</option>
+          <option value="custom">Custom…</option>
+        </select>
+      </label>
+
+      <div class="custom-size" id="customSizeWrap" hidden>
+        <input id="customW" type="number" min="240" max="1920" value="400" aria-label="Width">
+        <span>×</span>
+        <input id="customH" type="number" min="240" max="1920" value="832" aria-label="Height">
+      </div>
+
+      <button id="btnRotate" class="icon-btn" title="Swap width and height">
+        <span data-hi="arrow-path"></span><span>Rotate</span>
+      </button>
+      <button id="btnBack" class="icon-btn" title="Trigger app Back (Esc)">
+        <span data-hi="arrow-left"></span><span>Back</span>
+      </button>
+      <button id="btnReset" class="icon-btn" title="Reset app state and virtual filesystem">
+        <span data-hi="arrow-uturn-left"></span><span>Reset</span>
+      </button>
+
+      <label class="toggle" title="Show semantic hit bounds"><input id="chkBounds" type="checkbox"><span data-hi="viewfinder-circle"></span> Bounds</label>
+    </div>
+
+    <div class="topbar-right">
+      <div class="status-pill" id="buildStatus">Loading WASM…</div>
+      <button id="btnSettings" class="gear-btn" title="Debugger settings & appearance (,)" aria-haspopup="dialog" aria-controls="settingsModal">
+        <span data-hi="cog-6-tooth"></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="testbar" id="quickTestBar" aria-label="Pinned test case buttons">
+    <div class="testbar-label">
+      <span data-hi="beaker"></span>
+      <span>Tests</span>
+    </div>
+    <div class="testbar-pills" id="quickTestPills"></div>
+    <div class="testbar-actions">
+      <button id="btnBarRecord" class="mini icon-btn" title="Record live inputs into a reusable test button">
+        <span data-hi="video-camera"></span><span id="barRecordLabel">Record</span>
+      </button>
+      <button id="btnBarNewTest" class="mini icon-btn primary" title="Create a new custom test case button">
+        <span data-hi="plus"></span><span>New Test</span>
+      </button>
+      <button id="btnBarRunAll" class="mini icon-btn" title="Run all test cases for the active app">
+        <span data-hi="play"></span><span>Run All</span>
+      </button>
+    </div>
+  </section>
+
+  <main class="workbench">
+    <section class="stage-wrap" id="stageWrap" tabindex="0" aria-label="Phone stage (click and press Alt+F to draw visual feedback)">
+      <div class="stage-runtime">
+        <span class="stage-fps" id="metaFps">FPS: idle</span>
+        <button type="button" class="mini icon-btn primary" id="btnReloadWasm" hidden>
+          <span data-hi="arrow-path"></span><span>Reload WASM</span>
+        </button>
+      </div>
+      <button id="btnStageDraw" type="button" class="stage-draw-trigger icon-btn" title="Click stage and press Alt+F to enter visual feedback draw mode">
+        <span data-hi="pencil"></span>
+        <span>Feedback</span>
+        <kbd class="kbd-hint">Alt+F</kbd>
+      </button>
+
+      <div class="draw-hud" id="drawModeHud" hidden>
+        <div class="draw-tools" role="radiogroup" aria-label="Annotation tool">
+          <button type="button" class="draw-tool-btn active" data-draw-tool="box" aria-keyshortcuts="B" title="Draw rectangle box">
+            <span data-hi="stop"></span><span>Box</span><kbd class="kbd-hint" aria-hidden="true">B</kbd>
+          </button>
+          <button type="button" class="draw-tool-btn" data-draw-tool="freehand" aria-keyshortcuts="F" title="Draw freehand">
+            <span data-hi="pencil"></span><span>Freehand</span><kbd class="kbd-hint" aria-hidden="true">F</kbd>
+          </button>
+          <button type="button" class="draw-tool-btn" data-draw-tool="arrow" aria-keyshortcuts="A" title="Draw pointer arrow">
+            <span data-hi="arrow-up-right"></span><span>Arrow</span><kbd class="kbd-hint" aria-hidden="true">A</kbd>
+          </button>
+        </div>
+        <div class="draw-swatches" aria-label="Annotation color">
+          <button type="button" class="draw-swatch active" data-draw-color="#ff2e63" style="--sw:#ff2e63" title="Magenta"></button>
+          <button type="button" class="draw-swatch" data-draw-color="#22c55e" style="--sw:#22c55e" title="Green"></button>
+          <button type="button" class="draw-swatch" data-draw-color="#f59e0b" style="--sw:#f59e0b" title="Amber"></button>
+          <button type="button" class="draw-swatch" data-draw-color="#3b82f6" style="--sw:#3b82f6" title="Blue"></button>
+        </div>
+        <button type="button" id="btnExitDrawMode" class="mini icon-btn" title="Exit Draw Mode (Esc / Alt+F)">
+          <span data-hi="x-mark"></span><span>Done</span>
+        </button>
+      </div>
+
+      <div class="stage-scroll" id="stageScroll">
+        <div class="device-frame" id="deviceFrame">
+          <div class="canvas-stack" id="canvasStack">
+            <canvas id="appCanvas" tabindex="0"></canvas>
+            <canvas id="overlayCanvas"></canvas>
+            <canvas id="feedbackCanvas"></canvas>
+
+            <div class="sys-notif-stack" id="sysNotifStack" aria-live="polite"></div>
+
+            <div class="stage-loader" id="stageLoader" role="status" aria-live="polite">
+              <div class="loader-card">
+                <div class="loader-head">
+                  <span class="loader-spinner" id="loaderSpinner" aria-hidden="true"></span>
+                  <div class="loader-titles">
+                    <div class="loader-title" id="loaderTitle">Downloading WebAssembly…</div>
+                    <div class="loader-sub" id="loaderSub">Connecting to debug server…</div>
+                  </div>
+                </div>
+
+                <div class="bar-group">
+                  <div class="bar-label">
+                    <span>Download</span>
+                    <span class="mono" id="dlLabel">0%</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" id="dlBarFill" style="width: 0%"></div>
+                  </div>
+                </div>
+
+                <div class="bar-group">
+                  <div class="bar-label">
+                    <span>Loading &amp; Compile</span>
+                    <span class="mono" id="loadLabel">Waiting…</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" id="loadBarFill" style="width: 0%"></div>
+                  </div>
+                </div>
+
+                <button id="btnLoaderRetry" class="loader-retry icon-btn" hidden>
+                  <span data-hi="arrow-path"></span><span>Retry</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="device-meta">
+            <span id="metaDims">400 × 832 lp</span>
+            <span id="metaPointer">pointer: —</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="feedback-popover" id="feedbackPopover" hidden>
+        <div class="feedback-popover-head">
+          <span class="feedback-num-pill" id="fbDraftNum">#1</span>
+          <span class="feedback-target-hint" id="fbDraftTarget">Region selected</span>
+          <button type="button" id="btnCancelFeedbackDraft" class="mini icon-btn" title="Cancel (Esc)">
+            <span data-hi="x-mark"></span>
+          </button>
+        </div>
+        <textarea id="feedbackInput" rows="2" placeholder="Write feedback for this area… (Enter to save, Shift+Enter newline)"></textarea>
+        <div class="feedback-popover-foot">
+          <span class="feedback-popover-tip"><kbd class="kbd-hint">Enter</kbd> save · <kbd class="kbd-hint">Esc</kbd> redraw</span>
+          <button type="button" id="btnSaveFeedbackDraft" class="mini icon-btn primary">
+            <span data-hi="check"></span><span>Add Feedback</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="feedback-toast" id="feedbackToast" role="status" aria-live="polite" hidden></div>
+
+      <div class="feedback-dock" id="feedbackDock" hidden>
+        <div class="feedback-dock-head">
+          <span class="feedback-dock-title">
+            <span data-hi="chat-bubble-left-ellipsis"></span>
+            <span>Feedback</span>
+            <span class="badge" id="feedbackCountBadge">0</span>
+          </span>
+          <button type="button" id="btnDockDraw" class="mini icon-btn" title="Draw another annotation (Alt+F)">
+            <span data-hi="plus"></span><span>Draw</span>
+          </button>
+        </div>
+
+        <div class="feedback-chip-list" id="feedbackChipList"></div>
+
+        <div class="feedback-dock-actions">
+          <button type="button" id="btnCopyAllAiText" class="mini icon-btn primary" title="Copy AI feedback text and annotated screenshot (all items)">
+            <span data-hi="clipboard-document"></span><span>Copy for AI</span>
+          </button>
+          <button type="button" id="btnCopyAllAiImg" class="mini icon-btn" title="Copy annotated PNG screenshot to clipboard for AI">
+            <span data-hi="photo"></span><span>Copy Image</span>
+          </button>
+          <button type="button" id="btnDownloadAllAiImg" class="mini icon-btn" title="Download annotated PNG screenshot">
+            <span data-hi="arrow-down-tray"></span>
+          </button>
+          <button type="button" id="btnClearFeedbacks" class="mini icon-btn" title="Clear all feedbacks">
+            <span data-hi="trash"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="splitter-v"
+      id="inspectorSplitter"
+      role="separator"
+      aria-orientation="vertical"
+      aria-label="Resize inspector panel"
+      tabindex="0"
+      title="Drag to resize inspector (double-click to reset)"
+    ></div>
+
+    <aside class="inspector" id="inspectorPane">
+      <section class="panel">
+        <div class="panel-head"><span data-hi="cpu-chip"></span><span>Frame Telemetry</span></div>
+        <div class="metrics-grid">
+          <div><span class="k">WASM</span><strong id="mWasm">0.0 ms</strong></div>
+          <div><span class="k">Paint</span><strong id="mPaint">0.0 ms</strong></div>
+          <div><span class="k">Cmds</span><strong id="mCmds">0</strong></div>
+          <div><span class="k">Nodes</span><strong id="mNodes">0</strong></div>
+          <div><span class="k">Packet</span><strong id="mBytes">0 B</strong></div>
+          <div><span class="k">Loop</span><strong id="mLoop">idle</strong></div>
+        </div>
+      </section>
+
+      <section class="panel grow">
+        <div class="tabs" role="tablist" aria-label="Inspector">
+          <button class="tab active" data-tab="state" id="inspectorTabState" role="tab" aria-controls="tabState" aria-selected="true" tabindex="0">
+            <span data-hi="code-bracket"></span><span>State</span>
+          </button>
+          <button class="tab" data-tab="tests" id="inspectorTabTests" role="tab" aria-controls="tabTests" aria-selected="false" tabindex="-1">
+            <span data-hi="beaker"></span><span>Tests</span>
+          </button>
+          <button class="tab" data-tab="sysbus" id="inspectorTabSysBus" role="tab" aria-controls="tabSysBus" aria-selected="false" tabindex="-1">
+            <span data-hi="signal"></span><span>Sys &amp; D-Bus</span>
+            <span class="tab-badge" id="busBadge" hidden>0</span>
+          </button>
+          <button class="tab" data-tab="semantics" id="inspectorTabSemantics" role="tab" aria-controls="tabSemantics" aria-selected="false" tabindex="-1">
+            <span data-hi="squares-2x2"></span><span>Nodes</span>
+          </button>
+        </div>
+
+        <div class="tab-body" id="tabState" role="tabpanel" aria-labelledby="inspectorTabState">
+          <div class="subhead">Live App State</div>
+          <pre class="code-box state-box" id="appStateJson">{}</pre>
+          <div
+            class="splitter-h"
+            id="stateLogSplitter"
+            role="separator"
+            aria-orientation="horizontal"
+            aria-label="Resize live state and action log"
+            tabindex="0"
+            title="Drag to resize state/log split (double-click to reset)"
+          ></div>
+          <div class="subhead row">
+            <span>Action &amp; Event Log</span>
+            <button id="btnClearLog" class="mini icon-btn"><span data-hi="trash"></span><span>Clear</span></button>
+          </div>
+          <div class="log-list" id="actionLog"></div>
+        </div>
+
+        <div class="tab-body" id="tabTests" role="tabpanel" aria-labelledby="inspectorTabTests" hidden>
+          <div class="subhead row">
+            <span>Input &amp; State Test Cases</span>
+            <div class="btn-row">
+              <button id="btnNewTest" class="mini icon-btn primary"><span data-hi="plus"></span><span>New</span></button>
+              <button id="btnRecordTest" class="mini icon-btn"><span data-hi="video-camera"></span><span id="tabRecordLabel">Rec</span></button>
+              <button id="btnRunAllTests" class="mini icon-btn"><span data-hi="play"></span><span>Run</span></button>
+              <button id="btnExportTests" class="mini icon-btn" title="Export test cases JSON"><span data-hi="arrow-down-tray"></span></button>
+              <button id="btnImportTests" class="mini icon-btn" title="Import test cases JSON"><span data-hi="arrow-up-tray"></span></button>
+              <input id="importTestsFile" type="file" accept="application/json" hidden>
+            </div>
+          </div>
+
+          <form class="test-editor" id="testEditorForm" hidden>
+            <div class="editor-head">
+              <strong id="testEditorTitle">New Test Case Button</strong>
+              <button type="button" id="btnCloseTestEditor" class="mini icon-btn"><span data-hi="x-mark"></span></button>
+            </div>
+            <div class="form-row">
+              <input id="tcName" type="text" placeholder="Button name (e.g. Open Images & Verify)" required>
+              <select id="tcApp" title="Target app">
+                <option value="*">Any App</option>
+                <option value="files">Files</option>
+                <option value="settings">Settings</option>
+                <option value="calendar">Calendar</option>
+                <option value="keyboard">Keyboard</option>
+                <option value="notifications">Notifications</option>
+              </select>
+            </div>
+            <div class="form-checks">
+              <label class="toggle"><input id="tcPin" type="checkbox" checked><span data-hi="bookmark"></span> Pin to Test Bar</label>
+              <label class="toggle"><input id="tcReset" type="checkbox"><span data-hi="arrow-uturn-left"></span> Reset before run</label>
+            </div>
+            <div class="subhead row">
+              <span>Steps (Inputs, State &amp; Assertions)</span>
+              <div class="btn-row">
+                <select id="tcAddStepType" class="mini-select">
+                  <option value="tapNode">Tap semantic node…</option>
+                  <option value="tap">Tap (x, y)…</option>
+                  <option value="type">Type text…</option>
+                  <option value="key">Key press…</option>
+                  <option value="viewport">Set viewport…</option>
+                  <option value="theme">Set theme…</option>
+                  <option value="filesMode">Files mode…</option>
+                  <option value="notifMode">Notif mode…</option>
+                  <option value="kbLayout">Keyboard layout…</option>
+                  <option value="pushNotif">System notification…</option>
+                  <option value="dbus">D-Bus call…</option>
+                  <option value="back">App Back</option>
+                  <option value="wait">Wait (ms)…</option>
+                  <option value="assertState">Assert state…</option>
+                </select>
+                <button type="button" id="btnAddStep" class="mini icon-btn"><span data-hi="plus"></span><span>Add</span></button>
+              </div>
+            </div>
+            <div class="step-list" id="tcStepList"></div>
+            <div class="editor-foot">
+              <button type="button" id="btnCancelTest" class="mini">Cancel</button>
+              <button type="submit" class="mini icon-btn primary"><span data-hi="check-circle"></span><span>Save Button</span></button>
+            </div>
+          </form>
+
+          <div class="test-list" id="testCaseList"></div>
+        </div>
+
+        <div class="tab-body" id="tabSysBus" role="tabpanel" aria-labelledby="inspectorTabSysBus" hidden>
+          <div class="subhead row">
+            <span>System Notification &amp; D-Bus Simulator</span>
+          </div>
+
+          <div class="injector-card">
+            <div class="form-row">
+              <select id="busPreset" title="D-Bus / Notification preset">
+                <option value="notify">org.freedesktop.Notifications.Notify</option>
+                <option value="notify-critical">org.freedesktop.Notifications.Notify (Critical)</option>
+                <option value="osk-fa">org.spectreos.OSK0.SetLayout ("ir" Farsi)</option>
+                <option value="osk-us">org.spectreos.OSK0.SetLayout ("us" English)</option>
+                <option value="osk-term">org.spectreos.OSK0.SetLayout ("terminal")</option>
+                <option value="portal-open">org.freedesktop.portal.FileChooser.OpenFile</option>
+                <option value="portal-save">org.freedesktop.portal.FileChooser.SaveFile</option>
+                <option value="nm-wifi-on">org.freedesktop.NetworkManager.SetWifi (true)</option>
+                <option value="nm-wifi-off">org.freedesktop.NetworkManager.SetWifi (false)</option>
+              </select>
+              <button id="btnSendBus" class="mini icon-btn primary" title="Dispatch into active app">
+                <span data-hi="paper-airplane"></span><span>Send</span>
+              </button>
+            </div>
+            <div class="form-row" id="busNotifInputs">
+              <input id="busNotifApp" type="text" value="SpectreOS" placeholder="App">
+              <input id="busNotifTitle" type="text" value="System Alert" placeholder="Title">
+            </div>
+            <input id="busNotifBody" type="text" value="Live notification injected through org.freedesktop.Notifications" placeholder="Notification body or D-Bus value">
+          </div>
+
+          <div class="subhead row">
+            <span>D-Bus &amp; Notification Traffic</span>
+            <div class="btn-row">
+              <select id="busFilterKind" class="mini-select">
+                <option value="all">All</option>
+                <option value="notification">Notifications</option>
+                <option value="dbus-call">D-Bus Calls</option>
+                <option value="dbus-signal">D-Bus Signals</option>
+              </select>
+              <button id="btnClearBus" class="mini icon-btn"><span data-hi="trash"></span><span>Clear</span></button>
+            </div>
+          </div>
+          <div class="bus-list" id="busList"></div>
+        </div>
+
+        <div class="tab-body" id="tabSemantics" role="tabpanel" aria-labelledby="inspectorTabSemantics" hidden>
+          <input id="semFilter" class="filter-input" type="search" placeholder="Filter by role, label, or id…">
+          <div class="sem-list" id="semList"></div>
+        </div>
+      </section>
+      <details class="panel hovered-node-panel" open>
+        <summary class="panel-head">
+          <span data-hi="viewfinder-circle"></span><span>Hovered Semantic Node</span>
+          <span class="hovered-node-chevron" data-hi="chevron-right" aria-hidden="true"></span>
+        </summary>
+        <pre class="code-box compact" id="hoverNode">Hover over canvas (or enable Bounds) to inspect targets.</pre>
+      </details>
+    </aside>
+  </main>
+
+  <div class="modal-backdrop" id="feedbackPreviewModal" role="dialog" aria-modal="true" aria-labelledby="fbPreviewHeading" hidden>
+    <div class="feedback-preview-modal">
+      <div class="app-picker-head">
+        <div class="app-picker-title-wrap">
+          <span class="feedback-num-pill" id="fbPreviewNum">#1</span>
+          <div>
+            <h2 id="fbPreviewHeading">Feedback Preview</h2>
+            <p class="app-picker-sub" id="fbPreviewMeta"></p>
+          </div>
+        </div>
+        <div class="app-picker-head-actions">
+          <button type="button" id="btnPreviewCopyText" class="mini icon-btn primary">
+            <span data-hi="clipboard-document"></span><span>Copy Text</span>
+          </button>
+          <button type="button" id="btnPreviewCopyImg" class="mini icon-btn">
+            <span data-hi="photo"></span><span>Copy Image</span>
+          </button>
+          <button type="button" id="btnPreviewDownloadImg" class="mini icon-btn" title="Download PNG">
+            <span data-hi="arrow-down-tray"></span>
+          </button>
+          <button type="button" id="btnCloseFbPreview" class="mini icon-btn" title="Close (Esc)">
+            <span data-hi="x-mark"></span>
+          </button>
+        </div>
+      </div>
+      <div class="fb-preview-body">
+        <div class="fb-preview-img-wrap">
+          <img id="fbPreviewImg" alt="Annotated UI screenshot">
+        </div>
+        <div class="fb-preview-details">
+          <div class="subhead">AI Prompt Text</div>
+          <pre class="code-box fb-preview-code" id="fbPreviewPrompt"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="appPickerModal" role="dialog" aria-modal="true" aria-labelledby="appPickerHeading" hidden>
+    <div class="app-picker-modal">
+      <div class="app-picker-head">
+        <div class="app-picker-title-wrap">
+          <span class="app-picker-head-icon" data-hi="squares-2x2"></span>
+          <h2 id="appPickerHeading">Select SpectreOS App</h2>
+        </div>
+        <button type="button" id="btnCloseAppPicker" class="icon-btn app-picker-close" aria-label="Close app picker" title="Close (Esc)">
+          <span data-hi="x-mark"></span>
+        </button>
+      </div>
+
+      <div class="app-picker-search-wrap">
+        <span class="app-picker-search-icon" data-hi="magnifying-glass"></span>
+        <input id="appPickerSearch" type="search" placeholder="Search apps by name, desktop ID, or keyword…" autocomplete="off">
+      </div>
+
+      <div class="app-card-grid" id="appCardGrid" role="listbox" aria-label="Available SpectreOS apps"></div>
+
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsModalHeading" hidden>
+    <div class="settings-modal">
+      <nav class="settings-nav" aria-label="Settings sections">
+        <div class="settings-nav-group">Workbench</div>
+        <button type="button" class="settings-nav-item active" data-settings-page="appearance">
+          <span data-hi="swatch"></span><span>Appearance</span>
+        </button>
+        <button type="button" class="settings-nav-item" data-settings-page="interaction">
+          <span data-hi="hand-raised"></span><span>Interaction &amp; Motion</span>
+        </button>
+
+        <div class="settings-nav-group">Environment</div>
+        <button type="button" class="settings-nav-item" data-settings-page="fonts">
+          <span data-hi="language"></span><span>Fonts &amp; Persian</span>
+        </button>
+        <button type="button" class="settings-nav-item" data-settings-page="storage">
+          <span data-hi="circle-stack"></span><span>Storage &amp; Reset</span>
+        </button>
+      </nav>
+
+      <div class="settings-content">
+        <div class="settings-content-head">
+          <h2 id="settingsModalHeading">Appearance</h2>
+          <button type="button" id="btnCloseSettings" class="mini icon-btn" title="Close (Esc)">
+            <span data-hi="x-mark"></span>
+          </button>
+        </div>
+
+        <div class="settings-body">
+          <section class="settings-page" data-settings-view="appearance">
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Debugger UI Theme</div>
+                <div class="setting-desc">Switch the debugger window between Dark, Light, or System appearance.</div>
+              </div>
+              <div class="seg-control" id="uiThemeSeg" role="radiogroup" aria-label="Debugger UI Theme">
+                <button type="button" class="seg-btn active" data-ui-theme="dark"><span data-hi="moon"></span><span>Dark</span></button>
+                <button type="button" class="seg-btn" data-ui-theme="light"><span data-hi="sun"></span><span>Light</span></button>
+                <button type="button" class="seg-btn" data-ui-theme="system"><span data-hi="computer-desktop"></span><span>System</span></button>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">App Theme (libbhoo)</div>
+                <div class="setting-desc">Controls the theme passed into the running SpectreOS app inside the phone frame.</div>
+              </div>
+              <div class="seg-control" id="appThemeSeg" role="radiogroup" aria-label="App Theme">
+                <button type="button" class="seg-btn active" data-app-theme="dark"><span data-hi="moon"></span><span>Dark</span></button>
+                <button type="button" class="seg-btn" data-app-theme="light"><span data-hi="sun"></span><span>Light</span></button>
+              </div>
+              <input id="chkDark" type="checkbox" checked hidden>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Stage Dot Grid</div>
+                <div class="setting-desc">Display the subtle dotted canvas pattern behind the device frame.</div>
+              </div>
+              <label class="switch"><input id="chkDotGrid" type="checkbox" checked><span></span></label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Show Quick Test Bar</div>
+                <div class="setting-desc">Keep pinned input and state test buttons visible directly under the toolbar.</div>
+              </div>
+              <label class="switch"><input id="chkModalTestBar" type="checkbox" aria-label="Show Quick Test Bar" checked><span></span></label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Show Inspector Panel</div>
+                <div class="setting-desc">Display telemetry, Live App State, Tests, Sys &amp; D-Bus, and Semantics Tree.</div>
+              </div>
+              <label class="switch"><input id="chkModalInspector" type="checkbox" aria-label="Show Inspector Panel" checked><span></span></label>
+            </div>
+          </section>
+
+          <section class="settings-page" data-settings-view="interaction" hidden>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Touch Pointer Simulation</div>
+                <div class="setting-desc">Send touch pointer events instead of desktop mouse events to libbhoo.</div>
+              </div>
+              <label class="switch"><input id="chkTouch" type="checkbox" checked><span></span></label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Reduced Motion</div>
+                <div class="setting-desc">Ask apps and Wisp animations to honor reduced motion accessibility preferences.</div>
+              </div>
+              <label class="switch"><input id="chkReduced" type="checkbox"><span></span></label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Semantic Hit Bounds</div>
+                <div class="setting-desc">Draw live interactive target boxes and hover tags over the canvas.</div>
+              </div>
+              <label class="switch"><input id="chkModalBounds" type="checkbox"><span></span></label>
+            </div>
+          </section>
+
+          <section class="settings-page" data-settings-view="fonts" hidden>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">System Font Policy</div>
+                <div class="setting-desc" id="settingsFontMeta">Latin: Roboto / Arial · Persian (fa): Shabnam v5.0.1 WOL</div>
+              </div>
+              <span class="badge">SHABNAM</span>
+            </div>
+            <div class="font-sample-box">
+              <div class="font-sample-en">SpectreOS · libbhoo Typography (Latin 0123456789)</div>
+              <div class="font-sample-fa" dir="rtl">سلام دنیا — فونت شبنم برای فارسی در اسپکتر‌اواس · ۰۱۲۳۴۵۶۷۸۹</div>
+            </div>
+          </section>
+
+          <section class="settings-page" data-settings-view="storage" hidden>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Reset Panel Layout</div>
+                <div class="setting-desc">Restore the Inspector width and State/Log splitter heights to defaults.</div>
+              </div>
+              <button type="button" id="btnResetLayout" class="mini icon-btn"><span data-hi="arrow-uturn-left"></span><span>Reset Layout</span></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Reload Repo Test Cases</div>
+                <div class="setting-desc">Reset saved test buttons back to each app's <code>test/web-tests.json</code> definitions.</div>
+              </div>
+              <button type="button" id="btnResetTests" class="mini icon-btn"><span data-hi="arrow-path"></span><span>Restore Tests</span></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Clear Debug Logs</div>
+                <div class="setting-desc">Clear both the Action Log and captured Sys &amp; D-Bus traffic list.</div>
+              </div>
+              <button type="button" id="btnClearAllLogs" class="mini icon-btn"><span data-hi="trash"></span><span>Clear Logs</span></button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="debug.js"></script>
+</body>
+</html>

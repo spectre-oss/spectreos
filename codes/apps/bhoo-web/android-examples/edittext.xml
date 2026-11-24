@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <EditText android:id="name" android:hint="Your name" android:text="Bhoo" android:layout_width="match_parent" android:layout_height="64dp"/>
+  <EditText android:id="email" android:inputType="textEmailAddress" android:hint="Email address" android:text="ghost@example.test" android:layout_width="match_parent" android:layout_height="64dp"/>
+  <EditText android:id="password" android:inputType="textPassword" android:hint="Password" android:layout_width="match_parent" android:layout_height="64dp"/>
+</LinearLayout>

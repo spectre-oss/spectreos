@@ -1,0 +1,28 @@
+[package]
+name = "spectre-settings"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "SpectreOS Settings — Android 13 / AOSP-style system settings app built on libbhoo."
+
+[features]
+default = []
+wayland = ["bhoo/wayland", "dep:chrono"]
+
+[dependencies]
+chrono = { version = "0.4.42", optional = true }
+bhoo = { package = "libbhoo", path = "../../libs/ui/libbhoo", default-features = false }
+
+[[bin]]
+name = "spectre-settings"
+path = "src/main.rs"
+required-features = ["wayland"]
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

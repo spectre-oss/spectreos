@@ -1,0 +1,38 @@
+{
+  "title": "Select: choosing and cancelling",
+  "component": "select",
+  "purpose": "Check that the Select field keeps your chosen value when its menu is cancelled, shows the current choice clearly, and stays usable with long option names. If you have a keyboard, also check type-ahead and opening keys.",
+  "changes": "The selected value is separate from the highlighted option. The menu marks the current choice with a checkmark and returns to it when reopened. Long text stops before the arrow. Typing option names can select them while the field has focus.",
+  "steps": [
+    "Tap the Power profile field and choose Performance. Check that the closed field displays Performance.",
+    "Open the menu again. Check that Performance has a checkmark. Tap empty space inside the example, outside the menu; the field should still display Performance.",
+    "Enable Long option labels. Open and close the field and check that long text never covers its arrow.",
+    "Optional keyboard check: focus the field and type b. It should choose a matching option without opening the menu. Arrow Down opens on the current choice; Arrow Up or Home opens on the first option; End opens on the last.",
+    "Optional keyboard check: navigate the open menu with arrows and press Escape. The prior choice must remain. Navigate again and press Enter to confirm the highlighted option.",
+    "Choose OK if the tested behavior is correct. Otherwise explain the problem below and choose Reject. Mention which step failed and what you saw."
+  ],
+  "expected": "Choosing an option commits it; browsing and cancelling never commit another option. The current choice has a checkmark and is focused when the menu reopens. Long labels leave the arrow visible and clickable. Keyboard type-ahead and opening keys follow the stated behavior.",
+  "limits": "This reviews the stated Select behavior and narrow-screen text layout. It does not establish complete Android pixel or motion parity, every filled/outlined variant, IME composition, or full localization support. Keyboard-only steps may be skipped on a phone without a keyboard.",
+  "documentation": "docs/TDD/libbhoo/components/select.md",
+  "references": [
+    {
+      "url": "https://github.com/material-components/material-web/blob/d872455c4be56022da2095349b30ef46e0b55bc3/select/internal/select.ts",
+      "local": "context/reference-sources/material-web/select/internal/select.ts",
+      "license": "Apache-2.0",
+      "scope": "Selected-item focus on opening, closed-trigger type-ahead and opening keys"
+    },
+    {
+      "url": "https://github.com/angular/components/blob/249b3ee5c8b334dcb6b8d9e035380318e4438c2c/src/material/select/select.ts",
+      "local": "context/reference-sources/angular-material/src/material/select/select.ts",
+      "license": "MIT",
+      "scope": "Related select behavior; no claim of full cross-toolkit parity"
+    }
+  ],
+  "validation": [
+    "Rust menu_typeahead tests: prefix matching, disabled-option skipping and closed-trigger focus retention passed.",
+    "Rust text_field tests: trailing icon text bounds and selected-menu check alignment passed.",
+    "Browser test-bhoo-select-typeahead.mjs: closed selection and opening keys passed.",
+    "Browser test-bhoo-select-cancel.mjs: cancellation, confirmation and selected-option focus on reopening passed.",
+    "Browser test-bhoo-select-long.mjs: long labels and arrow activation at 320px width passed."
+  ]
+}

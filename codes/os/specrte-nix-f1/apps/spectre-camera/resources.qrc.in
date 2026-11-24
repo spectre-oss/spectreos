@@ -1,0 +1,1 @@
+<RCC><qresource prefix="/spectre-camera/@CAMERA_QML_HASH@"><file alias="Main.qml">@CMAKE_CURRENT_SOURCE_DIR@/Main.qml</file></qresource></RCC>

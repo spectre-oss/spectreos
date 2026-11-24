@@ -1,0 +1,47 @@
+--- a/drivers/firmware/qcom/qcom_scm.c
++++ b/drivers/firmware/qcom/qcom_scm.c
+@@ -2630,6 +2630,10 @@
+  *
+  * Return: Zero on success, nonzero on failure.
+  */
++/* Off by default; allows controlled legacy/whitelist comparison. */
++static bool qseecom_diag_whitelist;
++module_param_named(qseecom_diag_whitelist, qseecom_diag_whitelist, bool, 0600);
++
+ int qcom_scm_qseecom_app_send(u32 app_id, void *req, size_t req_size,
+ 			      void *rsp, size_t rsp_size)
+ {
+@@ -2638,6 +2642,7 @@
+ 	phys_addr_t req_phys;
+ 	phys_addr_t rsp_phys;
+ 	int status;
++	void *whitelist = NULL;
+ 
+ 	req_phys = qcom_tzmem_to_phys(req);
+ 	rsp_phys = qcom_tzmem_to_phys(rsp);
+@@ -2654,7 +2659,25 @@
+ 	desc.args[3] = rsp_phys;
+ 	desc.args[4] = rsp_size;
+ 
++	/* Diagnostic only: cmd 0x205 has no embedded buffer pointers. A zero
++	 * four-entry table matches stock QSEECOM_SEND_CMD, not SEND_MODFD. */
++	if (READ_ONCE(qseecom_diag_whitelist) && req_size >= 8 &&
++	    rsp_size == 256 && ((u8 *)req)[0] == 5 && ((u8 *)req)[1] == 2 &&
++	    !((u8 *)req)[2] && !((u8 *)req)[3]) {
++		whitelist = qcom_tzmem_alloc(__scm->mempool, 32, GFP_KERNEL);
++		if (!whitelist)
++			return -ENOMEM;
++		memset(whitelist, 0, 32);
++		desc.cmd = 6;
++		desc.arginfo = QCOM_SCM_ARGS(7, QCOM_SCM_VAL,
++			QCOM_SCM_RW, QCOM_SCM_VAL, QCOM_SCM_RW,
++			QCOM_SCM_VAL, QCOM_SCM_RW, QCOM_SCM_VAL);
++		desc.args[5] = qcom_tzmem_to_phys(whitelist);
++		desc.args[6] = 32;
++	}
+ 	status = qcom_scm_qseecom_call(&desc, &res);
++	if (whitelist)
++		qcom_tzmem_free(whitelist);
+ 	if (status)
+ 		return status;
+ 

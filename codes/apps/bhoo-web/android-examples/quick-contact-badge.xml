@@ -1,0 +1,1 @@
+<QuickContactBadge xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/contact_badge" android:layout_width="80dp" android:layout_height="80dp" android:scaleType="centerCrop" android:contentDescription="Contact photo" />

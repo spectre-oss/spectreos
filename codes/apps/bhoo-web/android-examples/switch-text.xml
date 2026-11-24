@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <Switch android:id="text_wifi" android:text="Connection" android:textOn="YES" android:textOff="NO" android:checked="true" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Switch android:id="text_power" android:text="Power" android:textOn="READY" android:textOff="OFF" android:checked="false" android:showText="true" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Switch android:id="text_hidden" android:text="Text hidden" android:textOn="YES" android:textOff="NO" android:showText="false" android:layout_width="match_parent" android:layout_height="52dp"/>
+</LinearLayout>

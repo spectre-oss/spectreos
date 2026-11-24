@@ -1,0 +1,13 @@
+{
+ "title":"Android ImageView: crop to padding",
+ "component":"android-imageview",
+ "purpose":"Compare Android ImageView centerCrop rendering with cropToPadding turned off and on.",
+ "changes":"ImageView and image buttons now allow centered or center-cropped images into padding by default and clip them to padding when cropToPadding is true.",
+ "steps":["Find Image crop to padding at the top of the example. The two images have an amber background and 20 dp padding.","Compare the left and right amber padding: the upper image extends into some of it, while the lower image stops at the inner padded boundary.","Scroll to the remaining image example to check it still displays normally. Choose OK if the clipping matches the description, or Reject with the problem and your device."],
+ "expected":"The upper centerCrop image extends into horizontal padding; the lower image is clipped to the padded content area.",
+ "limits":"This covers the supported center and centerCrop geometry. Ancestor clipping, Android device subpixel geometry, matrix scaling and other drawable types remain unverified or unsupported.",
+ "documentation":"docs/TDD/libbhoo/components/android-imageview.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/ImageView.java","local":"context/reference-sources/android-framework/ImageView.java","license":"Apache-2.0","scope":"Image transformation and cropToPadding drawing."}],
+ "validation":["152 Android XML importer tests passed, including cropToPadding parsing and invalid values.","Sixteen ImageView and image-button Rust tests passed, including center and centerCrop clipping with and without padding."],
+ "demo_height":1000
+}

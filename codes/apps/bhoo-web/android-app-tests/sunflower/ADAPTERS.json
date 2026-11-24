@@ -1,0 +1,50 @@
+{
+  "row": "list_item_plant",
+  "original_classes": [
+    "ImageView",
+    "TextView",
+    "androidx.constraintlayout.widget.ConstraintLayout",
+    "com.google.samples.apps.sunflower.views.MaskedCardView"
+  ],
+  "attributes_not_executed_by_bridge": [
+    "cardElevation",
+    "cardPreventCornerOverlap",
+    "contentDescription",
+    "imageFromUrl",
+    "onClick",
+    "scaleType",
+    "shapeAppearanceOverlay",
+    "textAppearance"
+  ],
+  "explicit_adapters": [
+    {
+      "class": "ConstraintLayout",
+      "overrides": {
+        "layout_height": "match_parent"
+      },
+      "reason": "card height allocated by virtual grid instead of Android wrap-content constraint measurement"
+    },
+    {
+      "id": "plant_item_image",
+      "overrides": {
+        "kind": "Picture"
+      }
+    },
+    {
+      "id": "plant_item_title",
+      "overrides": {
+        "textSize": "16sp"
+      }
+    }
+  ],
+  "unresolved_nonlayout_theme_attributes": [
+    "?attr/textAppearanceListItem"
+  ],
+  "limits": [
+    "Only row/card XML is executed; screen XML guides the Rust controller.",
+    "No Android services, resource qualifiers, bidi constraints, arbitrary custom views or data binding runtime.",
+    "Theme/drawable selectors are replaced by Bhoo colors and icons.",
+    "Plant photographs replaced by locally drawn placeholder illustrations."
+  ],
+  "dependency_dimension_aliases": {}
+}

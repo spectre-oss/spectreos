@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_enabled="false"><shape android:shape="oval"><solid android:color="#888888"/><size android:width="16dp" android:height="16dp"/></shape></item>
+  <item android:state_checked="true"><shape android:shape="oval"><solid android:color="#1769aa"/><size android:width="16dp" android:height="16dp"/></shape></item>
+  <item><shape android:shape="rectangle"><solid android:color="#e39b16"/><size android:width="16dp" android:height="16dp"/></shape></item>
+</selector>

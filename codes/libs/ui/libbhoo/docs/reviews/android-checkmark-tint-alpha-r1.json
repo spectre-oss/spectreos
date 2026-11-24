@@ -1,0 +1,13 @@
+{
+ "title":"Android CheckedTextView: custom mark tint transparency",
+ "component":"android-checked-textview",
+ "purpose":"Check that a translucent checkMark tint preserves the custom drawable's own transparency, including checked-state color changes.",
+ "changes":"Custom solid check marks now combine drawable and tint alpha using default source-in tinting.",
+ "steps":["Find Custom check-mark tint opacity below the RTL switch. The first red circle should be lighter than the second red circle.","Tap each row. Its circle turns blue when unchecked and red when checked. The first circle stays lighter in either state.","Turn on Right-to-left layout and tap the rows again. The circles move to the left while keeping their color and opacity difference.","Choose OK if the behavior works, or Reject with the problem and your device."],
+ "expected":"A half-opacity drawable with a half-opacity tint is more transparent than an opaque drawable with the same tint. Checked-state colors and RTL placement continue to work.",
+ "limits":"Supported solid custom check marks with default source-in tint only. Other drawable types, tint modes, edge compositing and Android device pixel parity remain open.",
+ "documentation":"docs/TDD/libbhoo/components/android-checked-textview.md",
+ "references":[{"url":"https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r36/core/java/android/widget/CheckedTextView.java","local":"context/reference-sources/android-framework/CheckedTextView.java","license":"Apache-2.0","scope":"Check-mark drawable tint and checked-state behavior."}],
+ "validation":["Five CheckedTextView Rust tests passed, including custom mark tint alpha, checked state and RTL placement."],
+ "demo_height":1400
+}

@@ -1,0 +1,12 @@
+{
+ "title":"Floating toolbar: vertical FAB",
+ "component":"floating-toolbar",
+ "purpose":"Check the vertical paired floating toolbar and its FAB placement and collapse behavior.",
+ "changes":"Added a vertical paired-toolbar example and verified expanded and collapsed top/bottom FAB geometry.",
+ "steps":["Turn on Vertical near the top. The toolbar should stand vertically with its plus button below the action surface.","Turn on Start. The plus button moves above the action surface; turn Start off to return it below.","Turn Expanded off. The toolbar contracts and the plus button grows; turn Expanded on to restore it.","Try RTL and Vibrant. Vertical top/bottom placement should remain stable and the colors should change with Vibrant. Choose OK if it works, or Reject with the issue and your device."],
+ "expected":"The vertical FAB moves between top and bottom, grows when collapsed and returns when expanded; RTL does not swap top and bottom.",
+ "limits":"This tests the regular paired variant. Exact Android device motion, colors and shadow appearance remain unverified.",
+ "documentation":"docs/TDD/libbhoo/components/floating-toolbar.md",
+ "references":[{"url":"https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","local":"context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/FloatingToolbar.kt","license":"Apache-2.0","scope":"Vertical FAB top/bottom placement and expansion geometry."}],
+ "validation":["Rust test covers vertical expanded/collapsed geometry, top/bottom placement and RTL."]
+}

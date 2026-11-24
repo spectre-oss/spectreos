@@ -1,0 +1,34 @@
+{
+  "title": "Android TabWidget: weighted tabs",
+  "component": "android-tab-widget",
+  "purpose": "Check that fixed-width Android XML tab indicators divide available space according to layout_weight.",
+  "changes": "Fixed-width tabs now use positive layout_weight values to distribute remaining width, with optional weightSum. This XML example uses zero-width tabs weighted 1:2:1 and margins around the first tab.",
+  "steps": [
+    "Turn on Weighted tabs example. Second should be twice as wide as First and Third; First and Third should have the same width.",
+    "Turn on Narrow widget. The tabs should become narrower while keeping those proportions and the first tab's margins.",
+    "Turn on Right-to-left layout and verify the order reverses. Tap a tab to check selection.",
+    "Choose OK if it works, or Reject with details and your device."
+  ],
+  "expected": "The 1:2:1 proportions hold at both widget widths and in RTL; tabs remain selectable.",
+  "limits": "This covers fixed-width children. Wrap-content and match-parent sizing, Android's preliminary measurement of zero-width weighted children, rounding and device appearance remain approximate or unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-tab-widget.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/LinearLayout.java",
+      "local": "context/reference-sources/android-framework/LinearLayout.java",
+      "license": "Apache-2.0",
+      "scope": "Horizontal layout weight and remaining-space distribution."
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TabWidget.java",
+      "local": "context/reference-sources/android-framework/TabWidget.java",
+      "license": "Apache-2.0",
+      "scope": "Tab measurement and overflow."
+    }
+  ],
+  "validation": [
+    "Twelve TabWidget Rust tests, seven TabHost tests and 156 XML importer tests passed.",
+    "A 320 \u00d7 700 browser test checked proportions, selection, narrow layout and RTL."
+  ],
+  "demo_height": 700
+}

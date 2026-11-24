@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <ToggleButton android:id="styled_toggle" android:textOn="ready" android:textOff="paused" android:textAllCaps="true" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <ToggleButton android:id="disabled_full_indicator" android:textOn="Indicator visible" android:checked="true" android:enabled="false" android:disabledAlpha="1" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="12dp"/>
+  <ToggleButton android:id="disabled_hidden_indicator" android:textOn="Indicator hidden" android:checked="true" android:enabled="false" android:disabledAlpha="0" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="12dp"/>
+</LinearLayout>

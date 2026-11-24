@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+ <TextView android:text="Default: content clips at padding" android:layout_width="match_parent" android:layout_height="24dp"/>
+ <ScrollView android:id="clipped" android:layout_width="match_parent" android:layout_height="120dp" android:padding="16dp" android:background="#A9C9AD">
+  <TextView android:text="Scroll this text. The content disappears at the padded boundary. More text fills the area so you can scroll and compare the two settings below." android:layout_width="match_parent" android:layout_height="200dp" android:background="#D5B9EB"/>
+ </ScrollView>
+ <TextView android:text="clipToPadding = false · scroll on the padding" android:layout_width="match_parent" android:layout_height="24dp"/>
+ <ScrollView android:id="unclipped" android:layout_width="match_parent" android:layout_height="120dp" android:padding="16dp" android:clipToPadding="false" android:background="#A9C9AD">
+  <TextView android:text="Scroll this text. Content can now move into the padding. More text fills the area so you can scroll and compare the two settings above." android:layout_width="match_parent" android:layout_height="200dp" android:background="#D5B9EB"/>
+ </ScrollView>
+</LinearLayout>

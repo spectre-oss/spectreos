@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="72dp" android:paddingStart="64dp" android:background="#F5F9F5">
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:paddingTop="8dp">
+        <TextView android:id="@+id/child_title" android:layout_width="match_parent" android:layout_height="28dp" android:text="Child" />
+        <TextView android:id="@+id/child_detail" android:layout_width="match_parent" android:layout_height="24dp" android:textSize="12sp" android:text="Details" />
+    </LinearLayout>
+    <CheckBox android:id="@+id/child_check" android:layout_width="48dp" android:layout_height="match_parent" android:text="" />
+</LinearLayout>

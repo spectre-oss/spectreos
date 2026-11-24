@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Invisible gap: background size 56 dp" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="56dp" android:background="#E6EFE7">
+    <Button android:text="First" android:layout_width="88dp" android:layout_height="48dp"/>
+    <Space android:id="gap" android:background="@drawable/space_size" android:layout_width="wrap_content" android:layout_height="match_parent"/>
+    <Button android:text="Second" android:layout_width="88dp" android:layout_height="48dp"/>
+  </LinearLayout>
+  <TextView android:text="Weighted gap fills remaining width" android:layout_width="match_parent" android:layout_height="32dp"/>
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="56dp" android:background="#E6EFE7">
+    <Button android:text="Start" android:layout_width="88dp" android:layout_height="48dp"/>
+    <Space android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+    <Button android:text="End" android:layout_width="88dp" android:layout_height="48dp"/>
+  </LinearLayout>
+</LinearLayout>

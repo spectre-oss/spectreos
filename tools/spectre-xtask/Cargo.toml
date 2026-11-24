@@ -1,0 +1,12 @@
+[package]
+name = "spectre-xtask"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "Unified Cargo task runner for SpectreOS apps (build, release, check, test, clean, run, test-web)."
+
+[profile.dev]
+debug = 0
+incremental = false
+opt-level = 0

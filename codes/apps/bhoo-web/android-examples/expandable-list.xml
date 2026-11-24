@@ -1,0 +1,3 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <ExpandableListView android:id="@+id/expandable" android:groupIndicator="@drawable/expandable_indicator" android:indicatorLeft="8dp" android:indicatorRight="32dp" android:layout_width="match_parent" android:layout_height="288dp" android:divider="@drawable/expandable_group_divider" android:childDivider="@drawable/expandable_child_divider" android:dividerHeight="2dp" />
+</LinearLayout>

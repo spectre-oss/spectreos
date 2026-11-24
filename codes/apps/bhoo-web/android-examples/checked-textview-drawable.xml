@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <CheckedTextView android:id="drawable_start" android:text="Selector at start" android:checkMarkGravity="start" android:checkMark="@drawable/check_mark_selector" android:checked="true" android:clickable="true" android:padding="12dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <CheckedTextView android:id="drawable_end" android:text="Selector at end" android:checkMarkGravity="end" android:checkMark="@drawable/check_mark_selector" android:checked="false" android:clickable="true" android:padding="12dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+  <CheckedTextView android:id="drawable_disabled" android:text="Disabled selector" android:checkMark="@drawable/check_mark_selector" android:checked="true" android:enabled="false" android:padding="12dp" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="56dp"/>
+</LinearLayout>

@@ -1,0 +1,69 @@
+#!/bin/busybox sh
+export PATH=/bin
+/bin/busybox --install -s /bin
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+mkdir -p /dev/pts /run /logs /config
+mount -t devpts devpts /dev/pts
+exec >/logs/init.txt 2>&1
+# This diagnostic never mounts or writes a phone partition.
+(sleep 180; reboot -f) &
+echo 'RAM-only sensor diagnostic; automatic Android return in 180 seconds'
+mount -t configfs configfs /config
+G=/config/usb_gadget/sensors
+mkdir -p "$G"
+echo 0x18d1 > "$G/idVendor"
+echo 0xd001 > "$G/idProduct"
+mkdir -p "$G/strings/0x409" "$G/configs/c.1/strings/0x409" "$G/functions/rndis.usb0"
+echo sensor-diagnostic > "$G/strings/0x409/serialnumber"
+echo Poco > "$G/strings/0x409/manufacturer"
+echo 'Linux sensor diagnostic' > "$G/strings/0x409/product"
+echo USB > "$G/configs/c.1/strings/0x409/configuration"
+ln -s "$G/functions/rndis.usb0" "$G/configs/c.1/rndis.usb0"
+for U in /sys/class/udc/*; do [ -e "$U" ] && basename "$U" > "$G/UDC" && break; done
+ip link set usb0 up
+ip addr add 172.16.42.1/24 dev usb0
+httpd -p 80 -h /logs
+# Ephemeral debugging shell, reachable only on the direct USB interface.
+telnetd -b 172.16.42.1:2323 -l /bin/sh
+# Keep firmware unavailable until logging/USB are established. Initial auto
+# boot may fail with ENOENT; explicitly start once, without a restart loop.
+mkdir -p /run/current-system/sw/share
+ln -s /opt/firmware /run/current-system/sw/share/uncompressed-firmware
+/nix/store/ys02yf1ykqbnfand863q1hqbfcll07d8-pd-mapper-aarch64-unknown-linux-gnu-unstable-2022-02-08/bin/pd-mapper > /logs/pd-mapper.txt 2>&1 &
+# The cached sensor registry records the original vendor config mtime.
+# All 29 config files were byte-compared with stock. Restore their timestamps
+# in this RAM copy; Nix/CPIO normalization otherwise triggers registry rebuilds.
+TZ=UTC touch -t 200812311830.00 /opt/qcom/sensors/config/*
+echo /opt/firmware > /sys/module/firmware_class/parameters/path
+for R in /sys/class/remoteproc/remoteproc*; do
+ case "$(cat "$R/name")" in *5c00000*|slpi)
+  echo disabled > "$R/recovery"
+  cat "$R/name" "$R/state"
+  [ "$(cat "$R/state")" = offline ] && echo start > "$R/state"
+ ;; esac
+done
+for N in $(seq 1 50); do [ -e /dev/fastrpc-sdsp ] && break; sleep .1; done
+# A first attach can return EPERM while the sensor PD initializes. Retry
+# the listener, never the processor, with a strict bound below its watchdog.
+for attempt in 1 2 3; do
+ /opt/hexagonrpcd -s -f /dev/fastrpc-sdsp -d sdsp -R /opt/qcom > /logs/rpc-$attempt.txt 2>&1 &
+ RPC_PID=$!
+ sleep 3
+ kill -0 "$RPC_PID" 2>/dev/null && break
+done
+if [ -x /nix/store/ws8x26chc5bp9zafh87bzwmwsmgzks7b-qrtr-aarch64-unknown-linux-gnu-unstable-2020-12-07/bin/qrtr-ns ]; then
+ /nix/store/ws8x26chc5bp9zafh87bzwmwsmgzks7b-qrtr-aarch64-unknown-linux-gnu-unstable-2020-12-07/bin/qrtr-ns > /logs/qrtr.txt 2>&1 &
+ /nix/store/2qzz08al7bdfwf60mblm0m7gf0glj92h-libssc-aarch64-unknown-linux-gnu-0.2.2/bin/ssccli --help > /logs/ssc-help.txt 2>&1
+ /nix/store/2qzz08al7bdfwf60mblm0m7gf0glj92h-libssc-aarch64-unknown-linux-gnu-0.2.2/bin/ssccli -v --sensor light --timeout 20 > /logs/light.txt 2>&1 &
+ /nix/store/2qzz08al7bdfwf60mblm0m7gf0glj92h-libssc-aarch64-unknown-linux-gnu-0.2.2/bin/ssccli -v --sensor proximity --timeout 20 > /logs/proximity.txt 2>&1 &
+fi
+while :; do
+ ps > /logs/processes.txt
+ /nix/store/ws8x26chc5bp9zafh87bzwmwsmgzks7b-qrtr-aarch64-unknown-linux-gnu-unstable-2020-12-07/bin/qrtr-lookup > /logs/services.txt 2>&1
+ cat /proc/uptime > /logs/uptime.txt
+ dmesg > /logs/kernel.txt
+ { for R in /sys/class/remoteproc/remoteproc*; do echo "$R"; cat "$R/name" "$R/state"; done; } > /logs/remoteproc.txt
+ sleep 2
+done

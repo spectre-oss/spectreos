@@ -1,0 +1,6 @@
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/nested_group" android:orientation="vertical" android:checkedButton="@id/nested_choice" android:layout_width="match_parent" android:layout_height="96dp">
+  <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="48dp">
+    <RadioButton android:id="@+id/nested_choice" android:text="Nested choice" android:layout_width="match_parent" android:layout_height="48dp"/>
+  </LinearLayout>
+  <RadioButton android:id="@+id/direct_choice" android:text="Direct choice" android:layout_width="match_parent" android:layout_height="48dp"/>
+</RadioGroup>

@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "sensor": "IMX363 Sunny",
+  "units": "RAW10 code variance",
+  "blackLevel": 64,
+  "digitalGain": 256,
+  "gainRange": [
+    1,
+    16
+  ],
+  "source": "2026-10-20 retained fixed-control captures: dark exposure 3126 lines; scene exposure 1000 lines",
+  "limitations": "Read noise measured at 4x/16x; shot slope estimated from one stationary scene at 4x. Gain interpolation/extrapolation is a model, not a factory flat-field calibration. Temperature dependence unmeasured.",
+  "sha256": {
+    "dark4": "0e1fd78ab244bc40f797f9aebf943430b2868cef98e813a9330b526f3eacc969",
+    "dark16": "658ac6fec1882e1b8e2c8a07999ba7f1a35dbf2444d64255298241cb1ae4b425",
+    "scene4": "b2075353303185795fe3b038e26a7f17fcbc5099d7dfe603bdd72f926179e19e"
+  },
+  "channels": [
+    {
+      "cfa": "R",
+      "readVariance4": 1.5017478551519912,
+      "readVariance16": 13.250433321309925,
+      "shotSlope4": 0.5273079880347067,
+      "bins": [
+        {
+          "signal": 14.088714599609375,
+          "variance": 8.846807597463526,
+          "pixels": 334152
+        },
+        {
+          "signal": 35.562400817871094,
+          "variance": 20.386758955963966,
+          "pixels": 428832
+        },
+        {
+          "signal": 66.13475036621094,
+          "variance": 36.562023709991884,
+          "pixels": 276281
+        },
+        {
+          "signal": 109.64735412597656,
+          "variance": 59.174713936801965,
+          "pixels": 65494
+        }
+      ]
+    },
+    {
+      "cfa": "Gr",
+      "readVariance4": 3.05075196768244,
+      "readVariance16": 26.056601030447034,
+      "shotSlope4": 0.5263089013117086,
+      "bins": [
+        {
+          "signal": 13.537612915039062,
+          "variance": 10.052236936358181,
+          "pixels": 559284
+        },
+        {
+          "signal": 34.125816345214844,
+          "variance": 20.974064817365612,
+          "pixels": 173057
+        },
+        {
+          "signal": 72.76640319824219,
+          "variance": 41.534723605259614,
+          "pixels": 380464
+        },
+        {
+          "signal": 120.53175354003906,
+          "variance": 66.96437222677346,
+          "pixels": 274541
+        },
+        {
+          "signal": 200.4405517578125,
+          "variance": 109.00632593995837,
+          "pixels": 146490
+        },
+        {
+          "signal": 274.397705078125,
+          "variance": 146.88321459709454,
+          "pixels": 26686
+        }
+      ]
+    },
+    {
+      "cfa": "Gb",
+      "readVariance4": 3.052607275723727,
+      "readVariance16": 26.049070555984613,
+      "shotSlope4": 0.5316246457260355,
+      "bins": [
+        {
+          "signal": 13.531105041503906,
+          "variance": 9.991506125036462,
+          "pixels": 559110
+        },
+        {
+          "signal": 34.13556671142578,
+          "variance": 20.93944418795227,
+          "pixels": 173139
+        },
+        {
+          "signal": 72.75172424316406,
+          "variance": 41.561096105715414,
+          "pixels": 380749
+        },
+        {
+          "signal": 120.52615356445312,
+          "variance": 66.73856305030928,
+          "pixels": 274376
+        },
+        {
+          "signal": 200.52496337890625,
+          "variance": 109.73222053788855,
+          "pixels": 146564
+        },
+        {
+          "signal": 274.6526184082031,
+          "variance": 149.26954115451952,
+          "pixels": 27247
+        }
+      ]
+    },
+    {
+      "cfa": "B",
+      "readVariance4": 1.500527742865186,
+      "readVariance16": 13.141954562753831,
+      "shotSlope4": 0.5298008433283458,
+      "bins": [
+        {
+          "signal": 13.0343017578125,
+          "variance": 8.310334867931044,
+          "pixels": 402010
+        },
+        {
+          "signal": 36.53645324707031,
+          "variance": 20.967331344555568,
+          "pixels": 244057
+        },
+        {
+          "signal": 67.0257568359375,
+          "variance": 37.118706010419125,
+          "pixels": 438816
+        },
+        {
+          "signal": 122.6334228515625,
+          "variance": 66.55010956991156,
+          "pixels": 172954
+        },
+        {
+          "signal": 175.6988067626953,
+          "variance": 94.47438677918939,
+          "pixels": 42683
+        }
+      ]
+    }
+  ]
+}

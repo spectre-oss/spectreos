@@ -1,0 +1,28 @@
+[
+  {
+    "id": "keyboard-farsi-landscape",
+    "name": "Farsi Landscape",
+    "app": "keyboard",
+    "pinned": true,
+    "resetBefore": false,
+    "steps": [
+      { "type": "viewport", "w": 832, "h": 400 },
+      { "type": "kbLayout", "value": "ir" },
+      { "type": "wait", "ms": 60 },
+      { "type": "assertState", "path": "layout", "expected": "ir" }
+    ]
+  },
+  {
+    "id": "keyboard-terminal-portrait",
+    "name": "Terminal Layout",
+    "app": "keyboard",
+    "pinned": true,
+    "resetBefore": false,
+    "steps": [
+      { "type": "viewport", "w": 400, "h": 832 },
+      { "type": "kbLayout", "value": "terminal" },
+      { "type": "wait", "ms": 60 },
+      { "type": "assertState", "path": "layout", "expected": "terminal" }
+    ]
+  }
+]

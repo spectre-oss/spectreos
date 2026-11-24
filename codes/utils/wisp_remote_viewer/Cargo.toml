@@ -1,0 +1,14 @@
+[package]
+name = "wisp_remote_viewer"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+
+[dependencies]
+openh264 = "0.9.8"
+winit = "0.30"
+softbuffer = "0.4"
+png = "0.17"
+serde_json = "1"
+font8x8 = "0.3"

@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Press and hold the image" android:layout_width="match_parent" android:layout_height="28dp"/>
+  <ImageButton android:id="interactive" android:contentDescription="Stateful image" android:src="@drawable/add" android:tint="@color/image_states" android:tintMode="src_in" android:layout_width="144dp" android:layout_height="72dp" android:background="#E3ECE4"/>
+  <TextView android:text="Disabled image" android:layout_width="match_parent" android:layout_height="28dp"/>
+  <ImageButton android:id="disabled_image" android:contentDescription="Disabled image" android:src="@drawable/add" android:tint="@color/image_states" android:tintMode="src_in" android:enabled="false" android:layout_width="144dp" android:layout_height="72dp" android:background="#E3ECE4"/>
+  <ImageView android:id="asset" android:src="@drawable/sample" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+</LinearLayout>

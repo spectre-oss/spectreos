@@ -1,0 +1,38 @@
+[
+  {
+    "id": "files-images-picker",
+    "name": "Images Picker",
+    "app": "files",
+    "pinned": true,
+    "resetBefore": true,
+    "steps": [
+      { "type": "filesMode", "value": "2" },
+      { "type": "wait", "ms": 60 },
+      { "type": "assertState", "path": "picker", "expected": "true" }
+    ]
+  },
+  {
+    "id": "files-saveas-portal",
+    "name": "Save As Portal",
+    "app": "files",
+    "pinned": true,
+    "resetBefore": true,
+    "steps": [
+      { "type": "dbus", "preset": "portal-save", "value": "report.txt" },
+      { "type": "wait", "ms": 60 },
+      { "type": "assertState", "path": "picker", "expected": "true" }
+    ]
+  },
+  {
+    "id": "files-open-folder-picker",
+    "name": "Folder Picker",
+    "app": "files",
+    "pinned": false,
+    "resetBefore": true,
+    "steps": [
+      { "type": "filesMode", "value": "3" },
+      { "type": "wait", "ms": 60 },
+      { "type": "assertState", "path": "picker", "expected": "true" }
+    ]
+  }
+]

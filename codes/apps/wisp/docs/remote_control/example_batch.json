@@ -1,0 +1,7 @@
+[
+  {"type":"action","name":"home"},
+  {"type":"tap","x":200,"y":710},
+  {"type":"frame","output":"/tmp/poco_drawer.png"},
+  {"type":"wait","seconds":0.4},
+  {"type":"status"}
+]

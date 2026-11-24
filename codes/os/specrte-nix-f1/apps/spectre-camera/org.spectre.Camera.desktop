@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Spectre Camera
+Comment=Capture moments on your Poco F1
+Exec=spectre-camera
+Icon=org.spectre.Camera
+Terminal=false
+Type=Application
+Categories=Qt;Photography;Graphics;
+X-Purism-FormFactor=Workstation;Mobile;
+StartupNotify=true

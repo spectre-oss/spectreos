@@ -1,0 +1,28 @@
+Subject: [LOCAL] simple: allow the Poco app to avoid its broken binned mode
+
+On the current beryllium kernel, IMX363 1920x1080 captures contain a
+four-column colour pattern rather than the advertised two-column Bayer
+pattern. Full-resolution raw captures have the correct Bayer layout.
+Opt in only from this app, until the kernel's binned sensor mode is fixed.
+SoftISP still scales the full sensor input to the requested preview size.
+
+--- a/src/libcamera/pipeline/simple/simple.cpp
++++ b/src/libcamera/pipeline/simple/simple.cpp
+@@ -693,6 +693,17 @@
+  */
+ void SimpleCameraData::tryPipeline(unsigned int code, const Size &size)
+ {
++	/*
++	 * Local beryllium workaround, deliberately opt-in. Do not reinterpret
++	 * the corrupt binned output as a different CFA or calibrate against it.
++	 */
++	const char *fullSensor = utils::secure_getenv("SPECTRE_IMX363_FULL_SENSOR");
++	if (fullSensor && std::string(fullSensor) == "1" &&
++	    sensor_->model() == "imx363" && size == Size(1920, 1080)) {
++		LOG(SimplePipeline, Info)
++			<< "Skipping unverified IMX363 binned mode; using full sensor";
++		return;
++	}
+ 	/*
+ 	 * Propagate the format through the pipeline, and enumerate the
+ 	 * corresponding possible V4L2 pixel formats on the video node.

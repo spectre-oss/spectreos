@@ -1,0 +1,22 @@
+[package]
+name = "spectre-files"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "SpectreOS file manager and file chooser"
+
+[features]
+default = []
+wayland = ["bhoo/wayland"]
+
+[dependencies]
+bhoo = { package = "libbhoo", path = "../../libs/ui/libbhoo", default-features = false }
+image = { version = "=0.25.6", default-features = false, features = ["bmp", "gif", "jpeg", "png", "tiff", "webp"] }
+zip = { version = "2.4.2", default-features = false, features = ["deflate"] }
+libc = "0.2"
+
+[[bin]]
+name = "spectre-files"
+path = "src/main.rs"
+required-features = ["wayland"]

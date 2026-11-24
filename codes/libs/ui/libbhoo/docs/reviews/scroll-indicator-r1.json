@@ -1,0 +1,30 @@
+{
+  "title": "Material scroll indicator: direction and fade",
+  "component": "scrollbar",
+  "purpose": "Check the separate Material-style scroll indicator: it should show the content position without behaving like a draggable scrollbar, follow the layout direction, and fade after scrolling stops.",
+  "changes": "Added a thin non-interactive Material indicator with vertical and horizontal variants, right-to-left placement, an always-visible option, and the Compose Material reference's default size and fade timings.",
+  "steps": [
+    "Enable Non-interactive Material indicator at the top of the example. Swipe the numbered content up and down. A thin indicator should appear on the right while the content moves, then fade shortly after it stops.",
+    "Enable Always show indicator. The thin indicator should remain visible even when the content is still.",
+    "Enable Right-to-left. For vertical content, the indicator should appear on the left edge instead of the right.",
+    "Enable Horizontal. Swipe across the numbered items. With right-to-left enabled, the indicator begins on the right and moves toward the left as you scroll; turn right-to-left off to check the opposite direction.",
+    "Try touching the thin indicator itself: it represents position and should not behave like the separate draggable scrollbar.",
+    "Choose OK if the tested behavior is correct. Otherwise choose Reject and explain which step failed, what you saw and your device."
+  ],
+  "expected": "The thin indicator tracks scrolling, appears at the correct edge and fades after the content stops unless Always show indicator is enabled. It follows right-to-left direction and does not act as a drag handle.",
+  "limits": "This test covers the indicator's default geometry, orientation, layout direction and fade. It does not establish complete Android device parity, customizable tokens or nested scrolling. The separate interactive scrollbar is covered by the preceding test.",
+  "documentation": "docs/TDD/libbhoo/components/scrollbar.md",
+  "references": [
+    {
+      "url": "https://github.com/androidx/androidx/blob/1448d64974931a04c9fba96ac630cbd6b96cda36/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt",
+      "local": "context/reference-sources/compose-material3/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Scrollbar.kt",
+      "license": "Apache-2.0",
+      "scope": "Non-interactive scrollbar geometry, default colors, layout direction and fade timing."
+    }
+  ],
+  "validation": [
+    "Three Rust scroll_indicator tests passed for both orientations, RTL placement and touch direction, content-fit behavior, fade timing and reduced motion.",
+    "Four Rust scrollbar_drag tests passed for the existing interactive variant and fling interruption.",
+    "Browser test-bhoo-scroll-indicator.mjs passed indicator placement and scrolling at 390px width; test-bhoo-scrollbar-paging.mjs passed the existing interactive variant."
+  ]
+}

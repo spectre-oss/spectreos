@@ -1,0 +1,33 @@
+{
+  "title": "Android TextView: combining accent width",
+  "component": "android-textview",
+  "purpose": "Check that a combining accent does not add a separate character width to a wrap-content Android XML TextView.",
+  "changes": "The shared text-width fallback now counts each grapheme cluster once, so combining marks and joined emoji do not add a separate advance for every code point. ASCII keeps its fast path.",
+  "steps": [
+    "At the top of the example, compare the two colored boxes: one contains e with a combining acute accent, and the other contains a plain e.",
+    "The boxes should have the same width; the accent should sit over the first letter.",
+    "Choose OK if it looks correct, or Reject with details and your device."
+  ],
+  "expected": "The combining accent does not make the first wrap-content box wider than the plain-letter box.",
+  "limits": "This improves width estimation but does not implement full Unicode shaping, kerning or actual non-ASCII glyph measurement. Android device and font parity remain unverified.",
+  "documentation": "docs/TDD/libbhoo/components/android-textview.md",
+  "references": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TextView.java",
+      "local": "context/reference-sources/android-framework/TextView.java",
+      "license": "Apache-2.0",
+      "scope": "TextView content-based measurement."
+    },
+    {
+      "url": "https://crates.io/crates/unicode-segmentation/1.13.3",
+      "local": "THIRD_PARTY_NOTICES.md",
+      "license": "MIT",
+      "scope": "Grapheme cluster segmentation."
+    }
+  ],
+  "validation": [
+    "The full libbhoo Rust suite and 156 XML importer tests passed; dedicated tests cover combining marks, joined emoji and letter spacing.",
+    "A 320 \u00d7 650 browser pixel test verified the two example backgrounds have matching widths."
+  ],
+  "demo_height": 650
+}

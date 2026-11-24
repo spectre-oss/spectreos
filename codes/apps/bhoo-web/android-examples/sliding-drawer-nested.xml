@@ -1,0 +1,12 @@
+<SlidingDrawer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer" android:layout_width="match_parent" android:layout_height="240dp"
+    android:handle="@id/nested_handle" android:content="@id/nested_content">
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <Button android:id="@+id/nested_handle" android:layout_width="72dp" android:layout_height="48dp" android:text="Open" />
+    </FrameLayout>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <FrameLayout android:id="@+id/nested_content" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#E4EEE8">
+            <Button android:id="@+id/nested_action" android:layout_width="match_parent" android:layout_height="48dp" android:text="Nested action" />
+        </FrameLayout>
+    </FrameLayout>
+</SlidingDrawer>

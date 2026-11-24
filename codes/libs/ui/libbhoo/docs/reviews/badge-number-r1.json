@@ -1,0 +1,27 @@
+{
+  "title": "Material numeric badge overflow",
+  "component": "badge",
+  "purpose": "Check that a numeric badge shows a capped count when it exceeds the configured maximum, without changing its owner’s size.",
+  "changes": "Added a numeric badge API with a caller-supplied maximum and a plus suffix for overflow, preserving logical RTL placement.",
+  "steps": [
+    "Under Numeric badge overflow, the count starts at 998 and the inbox icon should show 998.",
+    "Tap Increase count: the badge should show 999, then 999+ when the count becomes 1000. Tap again for 1001 and check it remains 999+; the icon should not resize.",
+    "Turn on Right-to-left layout and repeat. The badge should move to the opposite side of the icon. Choose OK if it works, or Reject with the failing step, what you saw and your device."
+  ],
+  "expected": "The badge shows the number up to 999 and 999+ above it, with a fitting pill and mirrored placement.",
+  "limits": "Digits are ASCII; locale-aware formatting, automatic character-count limits, count-change animation and exact Android/Material visual parity remain open.",
+  "documentation": "docs/TDD/libbhoo/components/badge.md",
+  "references": [
+    {
+      "url": "https://github.com/material-components/material-components-android/blob/66b0eeb53afeb6025ffbbd37734b08e5bce197ed/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "local": "context/reference-repos/material-android/lib/java/com/google/android/material/badge/BadgeDrawable.java",
+      "license": "Apache-2.0",
+      "scope": "Numeric max and overflow suffix behavior."
+    }
+  ],
+  "validation": [
+    "Rust tests cover zero, threshold, overflow, large values, owner bounds and RTL.",
+    "Full libbhoo Rust test suite passed.",
+    "A 320 × 500 browser test verified count changes, overflow text and RTL interaction."
+  ]
+}

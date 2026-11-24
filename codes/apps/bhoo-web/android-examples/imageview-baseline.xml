@@ -1,0 +1,12 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="Image baseline at 20 dp" android:layout_width="match_parent" android:layout_height="28dp"/>
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="64dp">
+    <ImageView android:id="image_baseline_middle" android:src="@drawable/switcher_day" android:scaleType="centerCrop" android:baseline="20dp" android:layout_width="48dp" android:layout_height="40dp"/>
+    <TextView android:text="Aligned to image middle" android:textSize="16sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  </LinearLayout>
+  <TextView android:text="Image baseline at bottom" android:layout_width="match_parent" android:layout_height="28dp"/>
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="64dp">
+    <ImageView android:id="image_baseline_bottom" android:src="@drawable/switcher_day" android:scaleType="centerCrop" android:baselineAlignBottom="true" android:layout_width="48dp" android:layout_height="40dp"/>
+    <TextView android:text="Aligned to image bottom" android:textSize="16sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  </LinearLayout>
+</LinearLayout>
