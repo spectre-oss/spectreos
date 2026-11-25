@@ -4,7 +4,22 @@ version = "0.1.0"
 edition = "2024"
 license = "GPL-3.0-only"
 description = "Minimal UI foundations for SpectreOS"
-publish = false
+repository = "https://github.com/spectre-oss/spectreos"
+homepage = "https://spectre-oss.github.io/spectreos/"
+readme = "README.md"
+keywords = ["gui", "ui", "wayland", "gles", "wasm"]
+categories = ["gui", "graphics", "wasm"]
+exclude = [
+    "docs/",
+    "tests/",
+    "Makefile",
+    "DEVELOPMENT.md",
+    # These examples include demo sources from ../../../apps/bhoo-web (outside this crate).
+    "examples/image_reflection.rs",
+    "examples/android_gmail_capture.rs",
+    "examples/android_launcher_capture.rs",
+    "examples/android_contacts_capture.rs",
+]
 
 [lib]
 name = "bhoo"
