@@ -1,0 +1,16 @@
+{
+  "name": "spectreos-landing",
+  "version": "0.0.0",
+  "private": true,
+  "description": "SpectreOS documentation and landing site (pure Node.js static site generator, zero dependencies).",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node scripts/test.mjs"
+  }
+}

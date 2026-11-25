@@ -2,12 +2,17 @@
 
 **SpectreOS** is an open-source mobile Linux operating system, Wayland compositor/shell, UI toolkit, native application suite, and Android compatibility stack organized as a unified monorepo.
 
+- **Documentation & Downloads**: [https://spectre-oss.github.io/spectreos/](https://spectre-oss.github.io/spectreos/)
+- **Releases**: Independent per-component binary releases on [GitHub Releases](https://github.com/spectre-oss/spectreos/releases)
+- **`libbhoo` Rust Crate**: Published to [crates.io/crates/libbhoo](https://crates.io/crates/libbhoo) (`cargo add libbhoo`)
+
 ---
 
 ## Repository Structure
 
 ```text
 spectreos/
+├── .github/workflows/          # Push-to-main release pipeline & PR-only lint/check pipeline
 ├── codes/
 │   ├── apps/
 │   │   ├── wisp/               # Wayland compositor (Smithay), System UI, Lock Screen & Launcher
@@ -26,6 +31,8 @@ spectreos/
 ├── docs/
 │   ├── writing-spectreos-apps/ # App authoring guide (structure, Cargo commands, web debugging, latency)
 │   └── freedesktop/            # Local Freedesktop.org specifications mirror (XDG, D-Bus, Notifications)
+├── landing/                    # SpectreOS documentation & landing website (GitHub Pages)
+├── scripts/                    # Python Conventional Commit versioning, change detection & release publisher
 ├── tools/
 │   ├── spectre-xtask/          # Unified Cargo task runner (`cargo dev`, `cargo release`, `cargo test-web`)
 │   ├── bhoo-web-debug/         # Interactive WASM browser workbench for developing SpectreOS apps

@@ -1,0 +1,4 @@
+# Generated site (built by `npm run build`, deployed by CI to GitHub Pages)
+dist/
+node_modules/
+*.log
