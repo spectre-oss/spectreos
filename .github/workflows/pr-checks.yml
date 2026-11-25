@@ -130,6 +130,7 @@ jobs:
             libgbm-dev \
             libdrm-dev \
             libseat-dev \
+            libsystemd-dev \
             libudev-dev \
             libinput-dev \
             libxkbcommon-dev \

@@ -232,6 +232,7 @@ jobs:
             libgbm-dev \
             libdrm-dev \
             libseat-dev \
+            libsystemd-dev \
             libudev-dev \
             libinput-dev \
             libxkbcommon-dev \
@@ -351,21 +352,13 @@ jobs:
             --sha "$RELEASE_SHA" \
             --changelog codes/os/specrte-nix-f1/CHANGELOG.md
 
-  deploy-landing:
-    name: Deploy landing to GitHub Pages
+  build-landing:
+    name: Build landing site
     runs-on: ubuntu-latest
     needs: [plan-and-version]
     if: needs.plan-and-version.outputs.deploy_landing == 'true'
     permissions:
       contents: read
-      pages: write
-      id-token: write
-    concurrency:
-      group: pages
-      cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -392,6 +385,21 @@ jobs:
         with:
           path: landing/dist
 
+  deploy-landing:
+    name: Deploy landing to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: [plan-and-version, build-landing]
+    if: needs.plan-and-version.outputs.deploy_landing == 'true'
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

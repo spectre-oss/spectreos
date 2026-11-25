@@ -23,7 +23,7 @@ STAGE2_JOBS = (
     "release-apps",
     "release-calendar",
     "release-spectref1",
-    "deploy-landing",
+    "build-landing",
 )
 
 
@@ -435,11 +435,15 @@ class ReleaseWorkflowTests(WorkflowFixture):
 
     def test_job_set_and_stage_ordering(self) -> None:
         jobs = self.release["jobs"]
-        self.assertEqual(set(jobs), {"plan-and-version", *STAGE2_JOBS})
+        self.assertEqual(set(jobs), {"plan-and-version", *STAGE2_JOBS, "deploy-landing"})
         self.assertNotIn("needs", jobs["plan-and-version"])
         for name in STAGE2_JOBS:
             self.assertEqual(needs_of(jobs[name]), ["plan-and-version"], name)
             self.assertIn("needs.plan-and-version.outputs.", jobs[name]["if"], name)
+        self.assertEqual(needs_of(jobs["deploy-landing"]), ["plan-and-version", "build-landing"])
+        self.assertEqual(
+            jobs["deploy-landing"]["if"], "needs.plan-and-version.outputs.deploy_landing == 'true'"
+        )
 
     def test_plan_and_version_job(self) -> None:
         job = self.release["jobs"]["plan-and-version"]
@@ -589,6 +593,7 @@ class ReleaseWorkflowTests(WorkflowFixture):
         self.assertNotIn("cargo build --release --locked --all", scripts)
         install = next(s for s in iter_steps(job) if "apt-get install" in s.get("run", ""))
         self.assertIn("pkg-config", install["run"])
+        self.assertIn("libsystemd-dev", install["run"])
 
     def test_calendar_and_spectref1_jobs(self) -> None:
         calendar = self.release["jobs"]["release-calendar"]
@@ -607,28 +612,31 @@ class ReleaseWorkflowTests(WorkflowFixture):
         self.assertIn("--changelog codes/os/specrte-nix-f1/CHANGELOG.md", text)
 
     def test_deploy_landing(self) -> None:
-        job = self.release["jobs"]["deploy-landing"]
-        self.assertEqual(job["if"], "needs.plan-and-version.outputs.deploy_landing == 'true'")
-        self.assertEqual(job["permissions"], {"contents": "read", "pages": "write", "id-token": "write"})
-        self.assertEqual(job["concurrency"], {"group": "pages", "cancel-in-progress": True})
-        self.assertEqual(
-            job["environment"],
-            {"name": "github-pages", "url": "${{ steps.deployment.outputs.page_url }}"},
-        )
-        steps = iter_steps(job)
-        uses = [s.get("uses", "") for s in steps]
-        self.assertIn("actions/upload-pages-artifact@v3", uses)
-        self.assertIn("actions/deploy-pages@v4", uses)
-        upload = next(s for s in steps if s.get("uses") == "actions/upload-pages-artifact@v3")
+        build_job = self.release["jobs"]["build-landing"]
+        self.assertEqual(build_job["if"], "needs.plan-and-version.outputs.deploy_landing == 'true'")
+        self.assertEqual(build_job["permissions"], {"contents": "read"})
+        build_steps = iter_steps(build_job)
+        build_uses = [s.get("uses", "") for s in build_steps]
+        self.assertIn("actions/upload-pages-artifact@v3", build_uses)
+        upload = next(s for s in build_steps if s.get("uses") == "actions/upload-pages-artifact@v3")
         self.assertEqual(upload["with"]["path"], "landing/dist")
-        deploy = next(s for s in steps if s.get("uses") == "actions/deploy-pages@v4")
-        self.assertEqual(deploy["id"], "deployment")
-        scripts = [s.get("run", "") for s in steps]
+        scripts = [s.get("run", "") for s in build_steps]
         test_i = next(i for i, s in enumerate(scripts) if s == "npm test")
         build_i = next(i for i, s in enumerate(scripts) if s == "npm run build")
         self.assertLess(test_i, build_i)  # tests rebuild dist; the production build must be last
-        self.assertLess(build_i, steps.index(upload))
-        self.assertLess(steps.index(upload), steps.index(deploy))
+        self.assertLess(build_i, build_steps.index(upload))
+
+        deploy_job = self.release["jobs"]["deploy-landing"]
+        self.assertEqual(deploy_job["if"], "needs.plan-and-version.outputs.deploy_landing == 'true'")
+        self.assertEqual(deploy_job["permissions"], {"pages": "write", "id-token": "write"})
+        self.assertEqual(deploy_job["concurrency"], {"group": "pages", "cancel-in-progress": True})
+        self.assertEqual(
+            deploy_job["environment"],
+            {"name": "github-pages", "url": "${{ steps.deployment.outputs.page_url }}"},
+        )
+        deploy_steps = iter_steps(deploy_job)
+        deploy = next(s for s in deploy_steps if s.get("uses") == "actions/deploy-pages@v4")
+        self.assertEqual(deploy["id"], "deployment")
 
     def test_release_never_reads_or_writes_pr_state(self) -> None:
         code = strip_yaml_comments(self.release_text)
