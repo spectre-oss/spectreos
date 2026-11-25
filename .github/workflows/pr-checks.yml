@@ -1,0 +1,242 @@
+name: PR checks
+
+# Read-only validation for pull requests.
+#
+# This workflow never writes to the repository, never versions or tags, never publishes
+# crates or releases and never deploys Pages. All of that lives in release.yml, which only
+# runs on pushes to main. codes/shiraz-core is never checked out.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "pr-checks-${{ github.event.pull_request.number }}"
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  detect-changes:
+    name: Detect changed components
+    runs-on: ubuntu-latest
+    outputs:
+      check_scripts: ${{ steps.detect.outputs.check_scripts || 'false' }}
+      check_libbhoo: ${{ steps.detect.outputs.check_libbhoo || 'false' }}
+      has_check_apps: ${{ steps.detect.outputs.has_check_apps || 'false' }}
+      check_apps_matrix: ${{ steps.detect.outputs.check_apps_matrix || '[]' }}
+      check_spectref1: ${{ steps.detect.outputs.check_spectref1 || 'false' }}
+      check_landing: ${{ steps.detect.outputs.check_landing || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Detect changed components
+        id: detect
+        run: |
+          python3 scripts/release.py detect-pr \
+            --base "${{ github.event.pull_request.base.sha }}" \
+            --head "${{ github.event.pull_request.head.sha }}" \
+            --github-output "$GITHUB_OUTPUT"
+
+  release-tooling:
+    name: Release tooling
+    runs-on: ubuntu-latest
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.check_scripts == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Require Python 3.11+
+        run: python3 -c 'import sys; assert sys.version_info >= (3, 11), sys.version'
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Test release tooling and workflows
+        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+
+      - name: Check manifest and lockfile versions
+        run: python3 scripts/release.py --check
+
+  libbhoo:
+    name: libbhoo
+    runs-on: ubuntu-latest
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.check_libbhoo == 'true'
+    defaults:
+      run:
+        working-directory: codes/libs/ui/libbhoo
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: codes/libs/ui/libbhoo
+          key: pr-libbhoo
+
+      - name: cargo check
+        run: cargo check --locked --lib
+
+      - name: cargo check (all features)
+        run: cargo check --locked --lib --all-features
+
+      - name: cargo clippy
+        run: cargo clippy --locked --lib --all-features
+
+      - name: cargo test
+        run: cargo test --locked --lib
+
+      - name: cargo package (manifest and file list)
+        run: cargo package --locked --no-verify --list
+
+  apps:
+    name: App ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.has_check_apps == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.detect-changes.outputs.check_apps_matrix || '[]') }}
+    env:
+      APP_NAME: ${{ matrix.name }}
+      APP_MANIFEST: ${{ matrix.manifest }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pkg-config \
+            build-essential \
+            libgbm-dev \
+            libdrm-dev \
+            libseat-dev \
+            libudev-dev \
+            libinput-dev \
+            libxkbcommon-dev \
+            libwayland-dev \
+            libegl-dev \
+            libgles-dev
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ${{ matrix.dir }}
+          key: pr-app-${{ matrix.name }}
+
+      # Verified flags only. Wisp's lib tests have two known failing cases, so Wisp is
+      # compiled and linted but not tested; clippy runs without -D warnings because every
+      # crate still has pre-existing lint warnings.
+      - name: Check, lint and test
+        run: |
+          set -euo pipefail
+          case "$APP_NAME" in
+            wisp)
+              cargo check --locked --manifest-path "$APP_MANIFEST" --features compositor
+              cargo clippy --locked --manifest-path "$APP_MANIFEST" --features compositor
+              ;;
+            keyboard)
+              cargo check --locked --manifest-path "$APP_MANIFEST" --features osk
+              cargo clippy --locked --manifest-path "$APP_MANIFEST" --features osk
+              cargo test --locked --lib --manifest-path "$APP_MANIFEST" --features osk
+              ;;
+            settings|files)
+              cargo check --locked --manifest-path "$APP_MANIFEST" --features wayland
+              cargo clippy --locked --manifest-path "$APP_MANIFEST" --features wayland
+              cargo test --locked --lib --manifest-path "$APP_MANIFEST" --features wayland
+              ;;
+            calendar)
+              cargo check --locked --manifest-path "$APP_MANIFEST"
+              cargo clippy --locked --manifest-path "$APP_MANIFEST"
+              cargo test --locked --manifest-path "$APP_MANIFEST"
+              ;;
+            wisp_remote_viewer)
+              cargo check --locked --manifest-path "$APP_MANIFEST"
+              cargo test --locked --manifest-path "$APP_MANIFEST"
+              ;;
+            bhoo-web)
+              cargo check --locked --manifest-path "$APP_MANIFEST"
+              ;;
+            *)
+              echo "No verified check recipe for app '$APP_NAME'" >&2
+              exit 1
+              ;;
+          esac
+
+  spectref1:
+    name: spectref1
+    runs-on: ubuntu-latest
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.check_spectref1 == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Test spectref1
+        run: make -C codes/os/specrte-nix-f1 test
+
+  landing:
+    name: Landing site
+    runs-on: ubuntu-latest
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.check_landing == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build landing site
+        working-directory: landing
+        run: npm run build
+
+      - name: Test landing site
+        working-directory: landing
+        run: npm test
+
+  checks-ok:
+    name: Checks passed
+    runs-on: ubuntu-latest
+    needs: [detect-changes, release-tooling, libbhoo, apps, spectref1, landing]
+    if: always()
+    steps:
+      - name: Require every triggered check to succeed
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          needs = json.loads(os.environ["NEEDS"])
+          bad = {k: v["result"] for k, v in needs.items() if v["result"] in ("failure", "cancelled")}
+          for name, value in sorted(needs.items()):
+              print(f"{name}: {value['result']}")
+          if bad:
+              print(f"failed checks: {bad}", file=sys.stderr)
+              sys.exit(1)
+          PY
