@@ -13,7 +13,7 @@ export const GITHUB_REPO = 'spectreos';
 export const REPO_URL = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}`;
 export const SHIRAZ_URL = 'https://github.com/spectre-oss/shiraz';
 export const REPO_BRANCH = process.env.REPO_BRANCH || 'main';
-export const SITE_ORIGIN = (process.env.SITE_ORIGIN || 'https://spectre-oss.github.io').replace(/\/$/, '');
+export const SITE_ORIGIN = (process.env.SITE_ORIGIN || 'https://spectre.foo').replace(/\/$/, '');
 export const RELEASES_API = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases`;
 
 export const readRepoFile = (rel) => fs.readFileSync(path.join(REPO_ROOT, rel), 'utf8');

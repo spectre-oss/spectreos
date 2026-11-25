@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // SpectreOS docs & landing site generator. Pure Node.js (>=20), zero dependencies.
 //
-//   node scripts/build.mjs                  -> landing/dist, BASE_PATH=/spectreos/
-//   BASE_PATH=/ node scripts/build.mjs      -> root-relative build for local preview
+//   node scripts/build.mjs                  -> landing/dist, BASE_PATH=/
+//   BASE_PATH=/spectreos/ node scripts/build.mjs -> subpath build
 //   OUT_DIR=/tmp/site node scripts/build.mjs
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,7 +14,7 @@ import { renderDocument, faviconSvg } from './lib/layout.mjs';
 import { buildPages, flatNav, NAV, LINK_MAP, PageBuilder } from './lib/pages.mjs';
 
 export function normalizeBase(b) {
-  let base = (b ?? '/spectreos/').trim() || '/spectreos/';
+  let base = (b ?? '/').trim() || '/';
   if (!base.startsWith('/')) base = `/${base}`;
   if (!base.endsWith('/')) base += '/';
   return base;

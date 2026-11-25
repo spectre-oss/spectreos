@@ -146,7 +146,7 @@ export function renderDocument(o) {
   const { base, page, body, headings = [], nav, assetVersion = {}, sha = '', prev, next, layout = 'docs' } = o;
   const title = page.home ? 'SpectreOS — open-source mobile Linux' : `${page.title} · SpectreOS`;
   const desc = escapeHtml(page.description || 'SpectreOS: open-source mobile Linux — Wayland compositor, Rust UI toolkit and native apps.');
-  const canonical = base === '/' ? '' : `<link rel="canonical" href="${SITE_ORIGIN}${base}${page.url}">`;
+  const canonical = page.noindex ? '' : `<link rel="canonical" href="${SITE_ORIGIN}${base}${page.url}">`;
   const edit = page.edit
     ? `<a class="edit-link" href="${REPO_URL}/blob/${REPO_BRANCH}/${page.edit}" rel="noopener">View source on GitHub →</a>`
     : '';

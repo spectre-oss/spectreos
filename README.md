@@ -2,7 +2,7 @@
 
 **SpectreOS** is an open-source mobile Linux operating system, Wayland compositor/shell, UI toolkit, native application suite, and Android compatibility stack organized as a unified monorepo.
 
-- **Documentation & Downloads**: [https://spectre-oss.github.io/spectreos/](https://spectre-oss.github.io/spectreos/)
+- **Documentation & Downloads**: [https://spectre.foo/](https://spectre.foo/)
 - **Releases**: Independent per-component binary releases on [GitHub Releases](https://github.com/spectre-oss/spectreos/releases)
 - **`libbhoo` Rust Crate**: Published to [crates.io/crates/libbhoo](https://crates.io/crates/libbhoo) (`cargo add libbhoo`)
 

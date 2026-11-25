@@ -2,7 +2,7 @@
 // Automated validation for the SpectreOS site. Run with `npm test` (zero dependencies).
 //
 // 1. Unit checks for the Markdown compiler and link rewriting.
-// 2. Builds the site for BASE_PATH=/spectreos/ (CLI entry point) and BASE_PATH=/ (API).
+// 2. Builds the site for BASE_PATH=/ (CLI entry point) and BASE_PATH=/spectreos/ (API).
 // 3. Verifies pages, assets, search index, 404, .nojekyll, internal links + anchors,
 //    unresolved placeholders, file:// links and the .gitignore rule for landing/dist.
 import fs from 'node:fs';
@@ -12,7 +12,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from './build.mjs';
 import { renderMarkdown, extractSection, slugify } from './lib/markdown.mjs';
-import { makeLinkResolver, LANDING_DIR, REPO_ROOT, REPO_URL, SHIRAZ_URL } from './lib/repo.mjs';
+import { makeLinkResolver, LANDING_DIR, REPO_ROOT, REPO_URL, SHIRAZ_URL, SITE_ORIGIN } from './lib/repo.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 let passed = 0;
@@ -219,7 +219,7 @@ function validate(base, outDir, label) {
   const nf = fs.readFileSync(path.join(outDir, '404.html'), 'utf8');
   check(nf.includes(`href="${base}"`), '404 links home using BASE_PATH');
   const sitemap = fs.readFileSync(path.join(outDir, 'sitemap.xml'), 'utf8');
-  check(sitemap.includes(`https://spectre-oss.github.io${base}docs/libbhoo/`), 'sitemap lists pages under the configured base');
+  check(sitemap.includes(`${SITE_ORIGIN}${base}docs/libbhoo/`), 'sitemap lists pages under the configured base');
 }
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'spectreos-site-'));
@@ -231,14 +231,14 @@ try {
   const run = spawnSync(process.execPath, [path.join(here, 'build.mjs')], { env, encoding: 'utf8' });
   check(run.status === 0, `node scripts/build.mjs exits 0 ${run.status === 0 ? '' : `\n${run.stderr}`}`);
   if (run.stdout) console.log('  ' + run.stdout.trim().split('\n').join('\n  '));
-  check(/base \/spectreos\//.test(run.stdout || ''), 'default BASE_PATH is /spectreos/');
-  validate('/spectreos/', defaultOut, 'GitHub Pages build');
+  check(/base \/\)/.test(run.stdout || ''), 'default BASE_PATH is /');
+  validate('/', defaultOut, 'custom-domain root build');
 
-  section('Build with BASE_PATH=/');
-  const rootOut = path.join(tmp, 'root');
-  const res = build({ base: '/', outDir: rootOut, quiet: true });
-  check(res.ms < 5000, `root build finished in ${res.ms} ms`);
-  validate('/', rootOut, 'local preview build');
+  section('Build with BASE_PATH=/spectreos/');
+  const subpathOut = path.join(tmp, 'subpath');
+  const res = build({ base: '/spectreos/', outDir: subpathOut, quiet: true });
+  check(res.ms < 5000, `subpath build finished in ${res.ms} ms`);
+  validate('/spectreos/', subpathOut, 'project-subpath build');
 
   section('Build normalisation');
   const odd = build({ base: 'docs-site', outDir: path.join(tmp, 'odd'), quiet: true });
