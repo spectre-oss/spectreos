@@ -312,7 +312,7 @@ dependencies = [
 
 [[package]]
 name = "libbhoo"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "unicode-linebreak",
  "unicode-segmentation",
@@ -544,7 +544,7 @@ checksum = "0c790de23124f9ab44544d7ac05d60440adc586479ce501c1d6d7da3cd8c9cf5"
 
 [[package]]
 name = "spectre-calendar"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chrono",
  "chrono-tz",
@@ -560,7 +560,7 @@ dependencies = [
 
 [[package]]
 name = "spectre-files"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "image",
  "libbhoo",

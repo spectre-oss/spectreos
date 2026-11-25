@@ -673,7 +673,7 @@ checksum = "e2db585e1d738fc771bf08a151420d3ed193d9d895a36df7f6f8a9456b911ddc"
 
 [[package]]
 name = "libbhoo"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "bytemuck",
  "glow",
@@ -1434,7 +1434,7 @@ dependencies = [
 
 [[package]]
 name = "spectre-files"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "image",
  "libbhoo",

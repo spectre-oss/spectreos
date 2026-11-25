@@ -1589,7 +1589,7 @@ checksum = "7a79a3332a6609480d7d0c9eab957bca6b455b91bb84e66d19f5ff66294b85b8"
 
 [[package]]
 name = "libbhoo"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "bytemuck",
  "glow",
@@ -3054,7 +3054,7 @@ dependencies = [
 
 [[package]]
 name = "spectre-calendar"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chrono",
  "chrono-tz",
@@ -3070,7 +3070,7 @@ dependencies = [
 
 [[package]]
 name = "spectre-files"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "image",
  "libbhoo",
@@ -3080,7 +3080,7 @@ dependencies = [
 
 [[package]]
 name = "spectre-settings"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "libbhoo",
 ]
@@ -4096,7 +4096,7 @@ dependencies = [
 
 [[package]]
 name = "wisp"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chrono",
  "chrono-tz",
